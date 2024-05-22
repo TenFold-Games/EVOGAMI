@@ -9,7 +9,7 @@ on:
       - main
     
 permissions:
-  id-token: write
+  # id-token: write
   contents: read
   checks: write
 
@@ -44,8 +44,8 @@ jobs:
         testMode: all # Options: all, editmode, playmode
         customParameters: '-testResultsDirectory /github/home/test-results'
 
-    - name: Upload test results
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-results
-        path: /github/home/test-results
+    # - name: Upload test results
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: test-results
+    #     path: /github/home/test-results
