@@ -10,7 +10,7 @@ on:
     
 permissions:
   # id-token: write
-  contents: write
+  contents: read
   checks: write
 
 jobs:
@@ -42,10 +42,4 @@ jobs:
         projectPath: .
         githubToken: ${{ secrets.GITHUB_TOKEN }}
         testMode: all # Options: all, editmode, playmode
-        customParameters: '-testResultsDirectory /github/home/test-results'
-
-    - name: Upload test result
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results
-        path: /github/home/test-results
+        # customParameters: '-testResultsDirectory /github/home/test-results'
