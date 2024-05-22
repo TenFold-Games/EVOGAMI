@@ -1,0 +1,45 @@
+name: Unity Test Runner
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - main
+    
+permissions:
+  # id-token: write
+  contents: read
+  checks: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        # Unity versions to test against
+        unityVersion: [2022.3.28f1]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    - name: Cache Unity
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/unity3d
+        key: Unity-${{ matrix.unityVersion }}
+
+    - name: Test with Unity
+      uses: game-ci/unity-test-runner@v4
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+        UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+      with:
+        projectPath: .
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
+        testMode: all # Options: all, editmode, playmode
+        # customParameters: '-testResultsDirectory /github/home/test-results'
