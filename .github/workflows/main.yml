@@ -9,9 +9,9 @@ on:
       - main
     
 permissions:
-  contents: write
-  issues: write
-  pull-requests: write
+  id-token: write
+  contents: read
+  checks: write
 
 jobs:
   test:
