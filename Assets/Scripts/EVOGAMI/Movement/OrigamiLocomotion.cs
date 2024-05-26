@@ -7,27 +7,27 @@ namespace EVOGAMI.Movement
     public class OrigamiLocomotion : MonoBehaviour
     {
         // Managers
-        private InputManager _inputManager;
-        private PlayerManager _playerManager;
+        protected InputManager _inputManager;
+        protected PlayerManager _playerManager;
 
         // Player
-        private Transform _playerTransform;
-        private Rigidbody _playerRb;
-        private Transform _cameraTransform;
+        protected Transform _playerTransform;
+        protected Rigidbody _playerRb;
+        protected Transform _cameraTransform;
         
         // Movement
-        [SerializeField] private float speed = 5f;
-        [SerializeField] private float rotationSpeed = 10f;
-        [SerializeField] private float jumpForce = 5f;
-        [SerializeField] private float sprintMultiplier = 2f;
+        [SerializeField] protected float speed = 5f;
+        [SerializeField] protected float rotationSpeed = 10f;
+        [SerializeField] protected float jumpForce = 5f;
+        [SerializeField] protected float sprintMultiplier = 2f;
 
         // Ground check
-        [SerializeField] private Transform groundCheck;
-        [SerializeField] private float groundCheckDistance = 0.1f;
-        [SerializeField] private LayerMask groundLayer;
-        [SerializeField] private LayerMask waterLayer;
+        [SerializeField] protected Transform groundCheck;
+        [SerializeField] protected float groundCheckDistance = 0.1f;
+        [SerializeField] protected LayerMask groundLayer;
+        [SerializeField] protected LayerMask waterLayer;
         
-        [SerializeField] private OrigamiContainer.OrigamiForm form;
+        [SerializeField] protected OrigamiContainer.OrigamiForm form;
 
         // Flags
         private bool _isGrounded;
@@ -82,7 +82,7 @@ namespace EVOGAMI.Movement
             var moveDirection = _cameraTransform.forward * _inputManager.MoveInput.y +
                                 _cameraTransform.right * _inputManager.MoveInput.x;
             moveDirection.y = 0;
-            moveDirection.Normalize();
+            // moveDirection.Normalize();
             
             // Update sprint flag
             _isSprinting |= _inputManager.SprintInput;

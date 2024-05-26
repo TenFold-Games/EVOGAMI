@@ -42,6 +42,8 @@ namespace EVOGAMI.Core
                 _origamiMapping.Add(mapping.form, mapping.gameObject);
                 mapping.gameObject.SetActive(PlayerManager.Instance.GainedForms[mapping.form]);
             }
+            
+            timer = 0;
         }
 
         private void Update()
