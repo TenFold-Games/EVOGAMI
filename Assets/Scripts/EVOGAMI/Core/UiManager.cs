@@ -10,6 +10,8 @@ namespace EVOGAMI.Core
     {
         [SerializeField] private float timer;
         [SerializeField] private TextMeshProUGUI countdownString;
+
+        [SerializeField] private TextMeshProUGUI scoreString;
         [SerializeField] private GameObject[] lifeIcons;
 
         // [SerializeField] private float userScore;
@@ -34,7 +36,8 @@ namespace EVOGAMI.Core
         {
             PlayerManager.Instance.OnLoseLife += OnLoseLife;
             PlayerManager.Instance.OnGainForm += OnGainForm;
-            
+            PlayerManager.Instance.OnGainScores += addScore;
+
             // Initialize dictionary
             _origamiMapping = new Dictionary<OrigamiContainer.OrigamiForm, GameObject>();
             foreach (var mapping in formIconMappings)
@@ -65,6 +68,11 @@ namespace EVOGAMI.Core
                 return;
 
             lifeIcons[lives].SetActive(false);
+        }
+        [ContextMenu("addScore")]
+        private void addScore(int scores)
+        {
+            scoreString.text = scores.ToString();
         }
 
         /// <summary>

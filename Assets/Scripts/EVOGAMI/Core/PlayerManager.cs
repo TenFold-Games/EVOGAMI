@@ -107,5 +107,24 @@ namespace EVOGAMI.Core
         }
 
         #endregion
+
+        #region Scores
+
+
+        private int _scores;
+
+        public delegate void GainScoresCallback(int scores);
+
+        public event GainScoresCallback OnGainScores = delegate { };
+
+        public void IncreaseScores()
+        {
+            OnGainScores(_scores);
+            _scores++;
+        }
+
+        #endregion
+
+
     }
 }
