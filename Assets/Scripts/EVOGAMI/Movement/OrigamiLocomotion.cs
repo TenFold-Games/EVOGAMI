@@ -32,6 +32,10 @@ namespace EVOGAMI.Movement
         // Flags
         private bool _isGrounded;
         private bool _isSprinting;
+        
+        // Hit
+        private RaycastHit groundHit;
+        private RaycastHit waterHit;
 
         private void Start()
         {
@@ -45,21 +49,76 @@ namespace EVOGAMI.Movement
             _cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
             
             // Ground check layer
-            // groundLayer = LayerMask.GetMask("Ground");
+            groundLayer = LayerMask.GetMask("Ground");
+            waterLayer = LayerMask.GetMask("Water");
+            
+            // Register events
+            // Move
+            _inputManager.OnMoveCancelled += OnMoveCancelled;
+            // Jump
+            _inputManager.OnJumpPerformed += OnJumpPerformed;
+            // Sprint (Hold)
+            _inputManager.OnSprintHoldStarted += OnSprintStarted;
+            _inputManager.OnSprintHoldCancelled += OnSprintHoldCancelled;
+            // Sprint (Press)
+            _inputManager.OnSprintPressStarted += OnSprintStarted;
+            
         }
 
         private void FixedUpdate()
         {
             IsGrounded();
+
             if (IsWatered() && form != OrigamiContainer.OrigamiForm.Boat)
             {
                 PlayerManager.Instance.DecreaseLife();
                 GameManager.Instance.currentCheckpoint.RespawnPlayer();
                 return;
             }
+
             Move(Time.fixedDeltaTime);
-            Jump(Time.fixedDeltaTime);
         }
+
+        #region Input Events
+
+        /// <summary>
+        ///     Called when the move input is released
+        /// </summary>
+        private void OnMoveCancelled()
+        {
+            _isSprinting = false;
+        }
+
+        /// <summary>
+        ///     Called when the jump input is pressed
+        /// </summary>
+        private void OnJumpPerformed()
+        {
+            if (!_isGrounded) return;
+            
+            _playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+
+        /// <summary>
+        ///     Called when the sprint input is started
+        /// </summary>
+        private void OnSprintStarted()
+        {
+            // Cannot sprint in the air
+            if (!_isGrounded) return;
+            
+            _isSprinting = true;
+        }
+
+        /// <summary>
+        ///     Called when the sprint input (hold) is released
+        /// </summary>
+        private void OnSprintHoldCancelled()
+        {
+            _isSprinting = false;
+        }
+        
+        #endregion
 
         #region Movement
 
@@ -70,11 +129,7 @@ namespace EVOGAMI.Movement
         private void Move(float delta)
         {
             // Player is not moving
-            if (!_inputManager.IsMoving())
-            {
-                _isSprinting = false;
-                return;
-            }
+            if (!_inputManager.IsMoving) return;
             // Player is not on the ground
             // if (!_isGrounded) return;
 
@@ -82,25 +137,10 @@ namespace EVOGAMI.Movement
             var moveDirection = _cameraTransform.forward * _inputManager.MoveInput.y +
                                 _cameraTransform.right * _inputManager.MoveInput.x;
             moveDirection.y = 0;
-            // moveDirection.Normalize();
-            
-            // Update sprint flag
-            _isSprinting |= _inputManager.SprintInput;
 
             // Move and rotate player
             MovePlayer(moveDirection, delta);
             RotatePlayer(moveDirection, delta);
-        }
-
-        /// <summary>
-        ///     Handle player jumping
-        /// </summary>
-        /// <param name="delta">Time since last frame</param>
-        private void Jump(float delta)
-        {
-            if (!_inputManager.JumpInput || !_isGrounded) return;
-
-            _playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
         /// <summary>
@@ -116,7 +156,6 @@ namespace EVOGAMI.Movement
             var yVelocity = _playerRb.velocity.y;
             
             // Move player
-            // TODO: Calculate normal vector
             _playerRb.velocity = Vector3.ProjectOnPlane(moveDirection, Vector3.up);
             _playerRb.velocity += Vector3.up * yVelocity;
         }
@@ -143,13 +182,13 @@ namespace EVOGAMI.Movement
         /// <returns>True if the player is grounded, false otherwise</returns>
         private bool IsGrounded()
         {
-            _isGrounded = Physics.Raycast(groundCheck.position, Vector3.down, groundCheckDistance, groundLayer);
+            _isGrounded = Physics.Raycast(groundCheck.position, Vector3.down, out groundHit, groundCheckDistance, groundLayer);
             return _isGrounded;
         }
         
         private bool IsWatered()
         {
-            return Physics.Raycast(groundCheck.position, Vector3.down, groundCheckDistance, waterLayer);
+            return Physics.Raycast(groundCheck.position, Vector3.down, out waterHit, groundCheckDistance, waterLayer);
         }
 
         private void OnDrawGizmos()

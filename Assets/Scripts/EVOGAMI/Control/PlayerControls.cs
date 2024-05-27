@@ -48,9 +48,18 @@ namespace EVOGAMI.Control
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Sprint"",
+                    ""name"": ""Sprint_Hold"",
                     ""type"": ""Button"",
                     ""id"": ""e79ed74b-f1c9-447d-ba61-2d4c018678b2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint_Press"",
+                    ""type"": ""Button"",
+                    ""id"": ""a7c5a5c6-db48-4c2f-9ad6-326781795257"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -148,23 +157,23 @@ namespace EVOGAMI.Control
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6835d9db-bbcf-4fae-a93c-f10212fd9e18"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8c528eb4-bb91-42f8-9382-b34619cfe6ec"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Sprint"",
+                    ""action"": ""Sprint_Hold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6835d9db-bbcf-4fae-a93c-f10212fd9e18"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint_Press"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -305,7 +314,8 @@ namespace EVOGAMI.Control
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-            m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+            m_Player_Sprint_Hold = m_Player.FindAction("Sprint_Hold", throwIfNotFound: true);
+            m_Player_Sprint_Press = m_Player.FindAction("Sprint_Press", throwIfNotFound: true);
             // Origami
             m_Origami = asset.FindActionMap("Origami", throwIfNotFound: true);
             m_Origami_Transform = m_Origami.FindAction("Transform", throwIfNotFound: true);
@@ -377,14 +387,16 @@ namespace EVOGAMI.Control
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Jump;
-        private readonly InputAction m_Player_Sprint;
+        private readonly InputAction m_Player_Sprint_Hold;
+        private readonly InputAction m_Player_Sprint_Press;
         public struct PlayerActions
         {
             private @PlayerControls m_Wrapper;
             public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
-            public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+            public InputAction @Sprint_Hold => m_Wrapper.m_Player_Sprint_Hold;
+            public InputAction @Sprint_Press => m_Wrapper.m_Player_Sprint_Press;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -400,9 +412,12 @@ namespace EVOGAMI.Control
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Sprint.started += instance.OnSprint;
-                @Sprint.performed += instance.OnSprint;
-                @Sprint.canceled += instance.OnSprint;
+                @Sprint_Hold.started += instance.OnSprint_Hold;
+                @Sprint_Hold.performed += instance.OnSprint_Hold;
+                @Sprint_Hold.canceled += instance.OnSprint_Hold;
+                @Sprint_Press.started += instance.OnSprint_Press;
+                @Sprint_Press.performed += instance.OnSprint_Press;
+                @Sprint_Press.canceled += instance.OnSprint_Press;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -413,9 +428,12 @@ namespace EVOGAMI.Control
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
-                @Sprint.started -= instance.OnSprint;
-                @Sprint.performed -= instance.OnSprint;
-                @Sprint.canceled -= instance.OnSprint;
+                @Sprint_Hold.started -= instance.OnSprint_Hold;
+                @Sprint_Hold.performed -= instance.OnSprint_Hold;
+                @Sprint_Hold.canceled -= instance.OnSprint_Hold;
+                @Sprint_Press.started -= instance.OnSprint_Press;
+                @Sprint_Press.performed -= instance.OnSprint_Press;
+                @Sprint_Press.canceled -= instance.OnSprint_Press;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -567,7 +585,8 @@ namespace EVOGAMI.Control
         {
             void OnMove(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
-            void OnSprint(InputAction.CallbackContext context);
+            void OnSprint_Hold(InputAction.CallbackContext context);
+            void OnSprint_Press(InputAction.CallbackContext context);
         }
         public interface IOrigamiActions
         {

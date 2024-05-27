@@ -24,9 +24,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Sprint",
+                    "name": "Sprint_Hold",
                     "type": "Button",
                     "id": "e79ed74b-f1c9-447d-ba61-2d4c018678b2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint_Press",
+                    "type": "Button",
+                    "id": "a7c5a5c6-db48-4c2f-9ad6-326781795257",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -124,23 +133,23 @@
                 },
                 {
                     "name": "",
-                    "id": "6835d9db-bbcf-4fae-a93c-f10212fd9e18",
-                    "path": "<Gamepad>/leftStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Sprint",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "8c528eb4-bb91-42f8-9382-b34619cfe6ec",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Sprint",
+                    "action": "Sprint_Hold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6835d9db-bbcf-4fae-a93c-f10212fd9e18",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint_Press",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
