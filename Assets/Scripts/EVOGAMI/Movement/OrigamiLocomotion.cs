@@ -31,11 +31,11 @@ namespace EVOGAMI.Movement
 
         // Flags
         private bool _isGrounded;
-        private bool _isSprinting;
+        protected bool _isSprinting;
         
         // Hit
-        private RaycastHit groundHit;
-        private RaycastHit waterHit;
+        protected RaycastHit groundHit;
+        protected RaycastHit waterHit;
 
         private void Start()
         {
@@ -65,16 +65,9 @@ namespace EVOGAMI.Movement
             
         }
 
-        private void FixedUpdate()
+        protected void FixedUpdate()
         {
             IsGrounded();
-
-            // if (IsWatered() && form != OrigamiContainer.OrigamiForm.Bug)
-            // {
-            //     PlayerManager.Instance.DecreaseLife();
-            //     GameManager.Instance.currentCheckpoint.RespawnPlayer();
-            //     return;
-            // }
 
             Move(Time.fixedDeltaTime);
         }
@@ -148,7 +141,7 @@ namespace EVOGAMI.Movement
         /// </summary>
         /// <param name="moveDirection">The direction to move the player</param>
         /// <param name="delta">Time since last frame</param>
-        private void MovePlayer(Vector3 moveDirection, float delta)
+        protected virtual void MovePlayer(Vector3 moveDirection, float delta)
         {
             // Velocity
             moveDirection *= speed;
@@ -186,7 +179,11 @@ namespace EVOGAMI.Movement
             return _isGrounded;
         }
         
-        private bool IsWatered()
+        /// <summary>
+        ///     Check if the player is in water
+        /// </summary>
+        /// <returns></returns>
+        protected bool IsWatered()
         {
             return Physics.Raycast(groundCheck.position, Vector3.down, out waterHit, groundCheckDistance, waterLayer);
         }
