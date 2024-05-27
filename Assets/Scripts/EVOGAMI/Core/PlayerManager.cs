@@ -37,10 +37,10 @@ namespace EVOGAMI.Core
             // Set gained forms
             GainedForms = new Dictionary<OrigamiContainer.OrigamiForm, bool>
             {
-                { OrigamiContainer.OrigamiForm.Humanoid, false },
-                { OrigamiContainer.OrigamiForm.Crane, false },
-                { OrigamiContainer.OrigamiForm.Airplane, false },
-                { OrigamiContainer.OrigamiForm.Boat, false },
+                { OrigamiContainer.OrigamiForm.Human, false },
+                { OrigamiContainer.OrigamiForm.Frog, false },
+                { OrigamiContainer.OrigamiForm.Plane, false },
+                { OrigamiContainer.OrigamiForm.Bug, false },
                 { OrigamiContainer.OrigamiForm.None, true }
             };
             GainedForms[origamiSettings.initialForm] = true;

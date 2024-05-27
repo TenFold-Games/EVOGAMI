@@ -69,12 +69,12 @@ namespace EVOGAMI.Movement
         {
             IsGrounded();
 
-            if (IsWatered() && form != OrigamiContainer.OrigamiForm.Boat)
-            {
-                PlayerManager.Instance.DecreaseLife();
-                GameManager.Instance.currentCheckpoint.RespawnPlayer();
-                return;
-            }
+            // if (IsWatered() && form != OrigamiContainer.OrigamiForm.Bug)
+            // {
+            //     PlayerManager.Instance.DecreaseLife();
+            //     GameManager.Instance.currentCheckpoint.RespawnPlayer();
+            //     return;
+            // }
 
             Move(Time.fixedDeltaTime);
         }
