@@ -37,7 +37,7 @@ namespace EVOGAMI.Movement
         private RaycastHit groundHit;
         private RaycastHit waterHit;
 
-        private void Start()
+        protected virtual void Start()
         {
             // Managers
             _playerManager = PlayerManager.Instance;
@@ -65,7 +65,7 @@ namespace EVOGAMI.Movement
             
         }
 
-        private void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
             IsGrounded();
 
