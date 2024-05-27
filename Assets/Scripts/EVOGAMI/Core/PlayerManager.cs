@@ -44,6 +44,9 @@ namespace EVOGAMI.Core
                 { OrigamiContainer.OrigamiForm.None, true }
             };
             GainedForms[origamiSettings.initialForm] = true;
+            
+            // Set scores
+            _score = 0;
         }
 
         #region Spawning
@@ -110,17 +113,19 @@ namespace EVOGAMI.Core
 
         #region Scores
 
-
-        private int _scores;
+        private int _score;
 
         public delegate void GainScoresCallback(int scores);
 
-        public event GainScoresCallback OnGainScores = delegate { };
+        public event GainScoresCallback OnChangeScore = delegate { };
 
+        /// <summary>
+        ///     Increase the player's score
+        /// </summary>
         public void IncreaseScores()
         {
-            OnGainScores(_scores);
-            _scores++;
+            _score++;
+            OnChangeScore(_score);
         }
 
         #endregion
