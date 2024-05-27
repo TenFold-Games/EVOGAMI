@@ -10,84 +10,111 @@ namespace EVOGAMI.Movement
         [Header("Wall Check")]
         [SerializeField] private Transform wallCheck;
 
-        [SerializeField] private float wallCheckLength = 0.7f;
+        [SerializeField] private float wallCheckLength = 0.3f;
         [SerializeField] private float wallCheckRadius = 0.2f;
-        [SerializeField] private float maxWallLookAngle = 30f;
-        private float _wallLookAngle;
-        private LayerMask _wallLayer;
+        [SerializeField] private LayerMask wallLayer;
         private RaycastHit _wallHit;
         private bool _isTouchingWall;
         
         [Header("Climbing")]
-        [SerializeField] private float climbForce = 25f;
-        [SerializeField] private float maxClimbSpeed = 7.5f;
-        private bool _isClimbing;
+        [Range(0, 1)]
+        [SerializeField] private float climbSpeed = .75f;
 
         private void Awake()
         {
             // Set the form
             form = OrigamiContainer.OrigamiForm.Bug;
 
-            // Set the wall layer -- `Wall` and `Ground` layers
-            _wallLayer = LayerMask.GetMask("Wall");
+            // Set the wall layer
+            if (wallLayer == 0)
+                wallLayer = LayerMask.GetMask("Wall");
         }
         
-        private new void FixedUpdate()
+        protected override void FixedUpdate()
         {
-            // Check if the player is touching a wall
+            GroundCheck();
             WallCheck();
-            
-            base.FixedUpdate();
-            
-            if (_inputManager.IsMoving && _isTouchingWall && _wallLookAngle < maxWallLookAngle)
+
+            if (_isTouchingWall)
             {
-                _isClimbing = true;
-                Climb();
+                PlayerRb.useGravity = false;
+                Climb(Time.fixedDeltaTime);
             }
             else
             {
-                _isClimbing = false;
+                PlayerRb.useGravity = true;
+                Move(Time.fixedDeltaTime);
             }
         }
 
-        protected override void MovePlayer(Vector3 moveDirection, float delta)
+        #region Input Events
+
+        protected override void OnJumpPerformed()
         {
-            // Velocity
-            moveDirection *= speed;
-            if (_isClimbing)
-            {
-                moveDirection *= 0.1f;
-            }
-            else if (_isSprinting)
-            {
-                moveDirection *= sprintMultiplier;
-            }
-            var yVelocity = _playerRb.velocity.y;
-            
-            // Move player
-            _playerRb.velocity = Vector3.ProjectOnPlane(moveDirection, Vector3.up);
-            _playerRb.velocity += Vector3.up * yVelocity;
+            if (_isTouchingWall)
+                WallJump(0.75f);
+            else
+                base.OnJumpPerformed();
         }
 
+        #endregion
+        
         #region Climbing
 
-        private void Climb()
+        /// <summary>
+        ///     Climb on the wall
+        /// </summary>
+        /// <param name="delta">The time between frames</param>
+        private void Climb(float delta)
         {
-            // _playerRb.velocity = new Vector3(_playerRb.velocity.x, climbSpeed, _playerRb.velocity.z);
-            if (_playerRb.velocity.y < maxClimbSpeed)
-                _playerRb.AddForce(Vector3.up * climbForce, ForceMode.Acceleration);
+            PlayerRb.useGravity = false;
+            
+            // Climb on the wall
+            var moveDirection = InputManager.MoveInput.y * Vector3.up +
+                                InputManager.MoveInput.x * wallCheck.right;
+            moveDirection *= climbSpeed;
+            moveDirection = Vector3.ProjectOnPlane(moveDirection, _wallHit.normal);
+            
+            // Move player on the wall
+            PlayerRb.velocity = moveDirection * speed;
+            
+            // Make the player look at the wall
+            var lookDirection = Vector3.ProjectOnPlane(-_wallHit.normal, Vector3.up);
+            PlayerTransform.forward = lookDirection;
+        }
+        
+        /// <summary>
+        ///     Jump from the wall
+        /// </summary>
+        /// <param name="upMultiplier"></param>
+        private void WallJump(float upMultiplier)
+        {
+            var wallJumpForce = Vector3.up * (jumpForce * upMultiplier) +
+                                _wallHit.normal * (jumpForce / 2);
+            PlayerRb.AddForce(wallJumpForce, ForceMode.Impulse);
         }
         
         #endregion
 
         #region Collision
         
+        /// <summary>
+        ///     Check if the player is touching a wall
+        /// </summary>
         private void WallCheck()
         {
-            _isTouchingWall = Physics.SphereCast(wallCheck.position, wallCheckRadius, wallCheck.forward, out _wallHit, wallCheckLength, _wallLayer);
-            _wallLookAngle = Vector3.Angle(wallCheck.forward, -_wallHit.normal);
+            _isTouchingWall = Physics.SphereCast(wallCheck.position, wallCheckRadius, wallCheck.forward, out _wallHit, wallCheckLength, wallLayer);
         }
-        
+
+        protected override void OnDrawGizmos()
+        {
+            base.OnDrawGizmos();
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(wallCheck.position, wallCheckRadius);
+            Gizmos.DrawLine(wallCheck.position, wallCheck.position + wallCheck.forward * wallCheckLength);
+        }
+
         #endregion
     }
 }

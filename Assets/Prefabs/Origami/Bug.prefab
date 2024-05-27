@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3256207950014738620}
   m_Layer: 7
   m_Name: Bug
-  m_TagString: Untagged
+  m_TagString: OrigamiMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,7 +92,7 @@ Transform:
   m_GameObject: {fileID: 1749655186492952811}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -172,10 +172,10 @@ GameObject:
   - component: {fileID: 6292120452865035543}
   - component: {fileID: 4927167837537538835}
   - component: {fileID: 5072102852556882501}
-  - component: {fileID: 1462677138708553610}
+  - component: {fileID: 8011936158059419642}
   - component: {fileID: 3576154506651510086}
   m_Layer: 7
-  m_Name: Capsule
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,7 +246,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1462677138708553610
+--- !u!136 &8011936158059419642
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -286,20 +286,16 @@ MonoBehaviour:
   jumpForce: 5
   sprintMultiplier: 2
   groundCheck: {fileID: 3629728275837823787}
-  groundCheckDistance: 0.1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  waterLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  groundCheckDistance: 0.5
+  groundCheckRadius: 0.2
   form: 0
   wallCheck: {fileID: 9141382914551019654}
-  wallCheckLength: 0.7
-  wallCheckRadius: 0.1
-  maxWallLookAngle: 30
-  climbForce: 20
-  maxClimbSpeed: 5
+  wallCheckLength: 0.2
+  wallCheckRadius: 0.2
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  climbSpeed: 0.75
 --- !u!1 &8282317403906620849
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 8282317403906620849}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.45, z: 0}
+  m_LocalPosition: {x: 0, y: 0.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -351,5 +347,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.45
   m_Center: {x: 0, y: 0, z: 0}
