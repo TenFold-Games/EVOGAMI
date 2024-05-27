@@ -163,13 +163,13 @@ namespace EVOGAMI.Core
             var input = ctx.ReadValue<Vector2>();
             
             if (input.y > 0) // Up
-                NewForm = Origami.OrigamiContainer.OrigamiForm.Humanoid;
+                NewForm = Origami.OrigamiContainer.OrigamiForm.Human;
             else if (input.y < 0) // Down
-                NewForm = Origami.OrigamiContainer.OrigamiForm.Crane;
+                NewForm = Origami.OrigamiContainer.OrigamiForm.Frog;
             else if (input.x < 0) // Left
-                NewForm = Origami.OrigamiContainer.OrigamiForm.Airplane;
+                NewForm = Origami.OrigamiContainer.OrigamiForm.Plane;
             else if (input.x > 0) // Right
-                NewForm = Origami.OrigamiContainer.OrigamiForm.Boat;
+                NewForm = Origami.OrigamiContainer.OrigamiForm.Bug;
             else
                 NewForm = Origami.OrigamiContainer.OrigamiForm.None;
             

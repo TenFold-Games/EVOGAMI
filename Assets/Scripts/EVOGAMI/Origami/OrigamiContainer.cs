@@ -15,10 +15,10 @@ namespace EVOGAMI.Origami
         /// </summary>
         public enum OrigamiForm
         {
-            Humanoid,
-            Crane,
-            Airplane,
-            Boat,
+            Bug,
+            Frog,
+            Human,
+            Plane,
             None
         }
         
@@ -30,10 +30,10 @@ namespace EVOGAMI.Origami
         public Dictionary<OrigamiForm, GameObject> forms;
 
         // States
-        private OrigamiBoatState _boatState;
-        private OrigamiCraneState _craneState;
-        private OrigamiHumanoidState _humanoidState;
-        private OrigamiAirPlaneState _airPlaneState;
+        private OrigamiBugState _bugState;
+        private OrigamiFrogState _frogState;
+        private OrigamiHumanState _humanState;
+        private OrigamiPlaneState _planeState;
 
         // State machine
         private OrigamiStateMachine _stateMachine;
@@ -47,10 +47,10 @@ namespace EVOGAMI.Origami
             _stateMachine = new OrigamiStateMachine(this);
 
             // States
-            _craneState = new OrigamiCraneState(this, OrigamiForm.Crane);
-            _airPlaneState = new OrigamiAirPlaneState(this, OrigamiForm.Airplane);
-            _boatState = new OrigamiBoatState(this, OrigamiForm.Boat);
-            _humanoidState = new OrigamiHumanoidState(this, OrigamiForm.Humanoid);
+            _frogState = new OrigamiFrogState(this, OrigamiForm.Frog);
+            _planeState = new OrigamiPlaneState(this, OrigamiForm.Plane);
+            _bugState = new OrigamiBugState(this, OrigamiForm.Bug);
+            _humanState = new OrigamiHumanState(this, OrigamiForm.Human);
             
             // Initialize forms
             forms = new Dictionary<OrigamiForm, GameObject>();
@@ -62,20 +62,20 @@ namespace EVOGAMI.Origami
         {
             switch (settings.initialForm)
             {
-                case OrigamiForm.Crane:
-                    _stateMachine.Initialize(_craneState);
+                case OrigamiForm.Frog:
+                    _stateMachine.Initialize(_frogState);
                     break;
-                case OrigamiForm.Airplane:
-                    _stateMachine.Initialize(_airPlaneState);
+                case OrigamiForm.Plane:
+                    _stateMachine.Initialize(_planeState);
                     break;
-                case OrigamiForm.Boat:
-                    _stateMachine.Initialize(_boatState);
+                case OrigamiForm.Bug:
+                    _stateMachine.Initialize(_bugState);
                     break;
-                case OrigamiForm.Humanoid:
-                    _stateMachine.Initialize(_humanoidState);
+                case OrigamiForm.Human:
+                    _stateMachine.Initialize(_humanState);
                     break;
                 default:
-                    _stateMachine.Initialize(_humanoidState);
+                    _stateMachine.Initialize(_humanState);
                     break;
             }
             
@@ -105,21 +105,21 @@ namespace EVOGAMI.Origami
         {
             switch (form)
             {
-                case OrigamiForm.Crane:
-                    if (!_playerManager.GainedForms[OrigamiForm.Crane]) return; // Form not gained
-                    _stateMachine.ChangeState(_craneState);
+                case OrigamiForm.Frog:
+                    if (!_playerManager.GainedForms[OrigamiForm.Frog]) return; // Form not gained
+                    _stateMachine.ChangeState(_frogState);
                     break;
-                case OrigamiForm.Airplane:
-                    if (!_playerManager.GainedForms[OrigamiForm.Airplane]) return; // Form not gained
-                    _stateMachine.ChangeState(_airPlaneState);
+                case OrigamiForm.Plane:
+                    if (!_playerManager.GainedForms[OrigamiForm.Plane]) return; // Form not gained
+                    _stateMachine.ChangeState(_planeState);
                     break;
-                case OrigamiForm.Boat:
-                    if (!_playerManager.GainedForms[OrigamiForm.Boat]) return; // Form not gained
-                    _stateMachine.ChangeState(_boatState);
+                case OrigamiForm.Bug:
+                    if (!_playerManager.GainedForms[OrigamiForm.Bug]) return; // Form not gained
+                    _stateMachine.ChangeState(_bugState);
                     break;
-                case OrigamiForm.Humanoid:
-                    if (!_playerManager.GainedForms[OrigamiForm.Humanoid]) return; // Form not gained
-                    _stateMachine.ChangeState(_humanoidState);
+                case OrigamiForm.Human:
+                    if (!_playerManager.GainedForms[OrigamiForm.Human]) return; // Form not gained
+                    _stateMachine.ChangeState(_humanState);
                     break;
                 case OrigamiForm.None:
                     break;

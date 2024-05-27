@@ -69,7 +69,7 @@ namespace EVOGAMI.Movement
         {
             IsGrounded();
 
-            if (IsWatered() && form != OrigamiContainer.OrigamiForm.Boat)
+            if (IsWatered() && form != OrigamiContainer.OrigamiForm.Bug)
             {
                 PlayerManager.Instance.DecreaseLife();
                 GameManager.Instance.currentCheckpoint.RespawnPlayer();
