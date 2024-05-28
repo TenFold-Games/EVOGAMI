@@ -297,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   rotationSpeed: 10
-  jumpForce: 5
+  jumpForce: 3
   sprintMultiplier: 2
   groundCheck: {fileID: 3546578632946093590}
   groundCheckDistance: 0.1

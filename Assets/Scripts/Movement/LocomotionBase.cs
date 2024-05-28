@@ -1,10 +1,11 @@
-﻿using EVOGAMI.Core;
+﻿using System;
+using EVOGAMI.Core;
 using EVOGAMI.Origami;
 using UnityEngine;
 
 namespace EVOGAMI.Movement
 {
-    public class OrigamiLocomotion : MonoBehaviour
+    public class LocomotionBase : MonoBehaviour
     {
         // Managers
         protected InputManager InputManager;
@@ -50,8 +51,13 @@ namespace EVOGAMI.Movement
             CameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
 
             // Ground check
-            GroundLayer = LayerMask.GetMask("Ground");
+            GroundLayer = LayerMask.GetMask("Ground", "Water");
+        }
 
+        protected void OnEnable()
+        {
+            if (!InputManager) InputManager = InputManager.Instance;
+            
             // Register events
             // Move
             InputManager.OnMoveCancelled += OnMoveCancelled;
@@ -62,6 +68,20 @@ namespace EVOGAMI.Movement
             InputManager.OnSprintHoldCancelled += OnSprintHoldCancelled;
             // Sprint (Press)
             InputManager.OnSprintPressStarted += OnSprintStarted;
+        }
+        
+        private void OnDisable()
+        {
+            // Unregister events
+            // Move
+            InputManager.OnMoveCancelled -= OnMoveCancelled;
+            // Jump
+            InputManager.OnJumpPerformed -= OnJumpPerformed;
+            // Sprint (Hold)
+            InputManager.OnSprintHoldStarted -= OnSprintStarted;
+            InputManager.OnSprintHoldCancelled -= OnSprintHoldCancelled;
+            // Sprint (Press)
+            InputManager.OnSprintPressStarted -= OnSprintStarted;
         }
 
         protected virtual void FixedUpdate()
@@ -89,6 +109,7 @@ namespace EVOGAMI.Movement
         {
             if (!IsGrounded) return;
 
+            Debug.Log($"Jumping with force: {jumpForce}");
             PlayerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
