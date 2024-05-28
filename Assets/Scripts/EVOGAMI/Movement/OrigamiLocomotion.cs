@@ -38,7 +38,7 @@ namespace EVOGAMI.Movement
         protected bool IsSprinting;
         
 
-        private void Start()
+        protected virtual void Start()
         {
             // Managers
             PlayerManager = PlayerManager.Instance;
