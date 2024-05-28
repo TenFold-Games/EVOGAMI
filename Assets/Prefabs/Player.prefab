@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 976603600787555831}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.05, z: 0}
+  m_LocalPosition: {x: -0, y: 0.55, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -291,9 +291,17 @@ PrefabInstance:
       value: Humanoid
       objectReference: {fileID: 0}
     - target: {fileID: 4716581186568463345, guid: 221c254364ca043b8a5fde2193ad6f51, type: 3}
+      propertyPath: form
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716581186568463345, guid: 221c254364ca043b8a5fde2193ad6f51, type: 3}
       propertyPath: groundCheck
       value: 
       objectReference: {fileID: 505925653248849410}
+    - target: {fileID: 4716581186568463345, guid: 221c254364ca043b8a5fde2193ad6f51, type: 3}
+      propertyPath: groundCheckDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7489218519140889560, guid: 221c254364ca043b8a5fde2193ad6f51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

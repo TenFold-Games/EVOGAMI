@@ -14,6 +14,7 @@ namespace EVOGAMI.Region
             if (!other.CompareTag("OrigamiMesh")) return;
 
             PlayerManager.Instance.IncreaseScores();
+            Destroy(gameObject);
         }
     }
 }
