@@ -12,10 +12,6 @@ namespace EVOGAMI.Movement
             if (!animator)
             {
                 animator = GetComponent<Animator>();
-                if (!animator)
-                {
-                    Debug.LogError("Failed to find Animator component on the human GameObject.");
-                }
             }
         }
 
@@ -27,13 +23,7 @@ namespace EVOGAMI.Movement
 
         private void ManageAnimations()
         {
-            if (!animator)
-            {
-                return; // Exit if animator is not assigned
-            }
-
-            var isMoving = _playerRb.velocity.magnitude > 0.1f;  // Check if the player is moving
-            animator.SetBool("isWalk", isMoving);  // Directly set the 'isWalk' animation parameter
+            animator.SetBool("isWalk", _inputManager.IsMoving);  // Directly set the 'isWalk' animation parameter
         }
     }
 }
