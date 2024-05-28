@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,12 +103,7 @@ MonoBehaviour:
   sprintMultiplier: 2
   groundCheck: {fileID: 0}
   groundCheckDistance: 0.1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  waterLayer:
-    serializedVersion: 2
-    m_Bits: 16
+  groundCheckRadius: 0.2
   form: 3
 --- !u!64 &7332133103872178397
 MeshCollider:

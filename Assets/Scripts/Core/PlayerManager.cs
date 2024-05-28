@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Custom.Scriptable;
+using EVOGAMI.Custom.Scriptable;
 using EVOGAMI.Origami;
 using UnityEngine;
 using UnityEngine.UIElements;

@@ -2,7 +2,7 @@
 using EVOGAMI.Origami;
 using UnityEngine;
 
-namespace Custom.Serializable
+namespace EVOGAMI.Custom.Serializable
 {
     [Serializable]
     public class OriObjMapping

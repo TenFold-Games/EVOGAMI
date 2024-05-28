@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Custom.Scriptable;
-using Custom.Serializable;
+using EVOGAMI.Custom.Scriptable;
+using EVOGAMI.Custom.Serializable;
 using EVOGAMI.Core;
 using EVOGAMI.Origami.States;
 using UnityEngine;
@@ -27,7 +27,7 @@ namespace EVOGAMI.Origami
 
         // Forms
         [SerializeField] private OriObjMapping[] formsMeshMapping;
-        public Dictionary<OrigamiForm, GameObject> forms;
+        public Dictionary<OrigamiForm, GameObject> Forms;
 
         // States
         private OrigamiBugState _bugState;
@@ -53,9 +53,9 @@ namespace EVOGAMI.Origami
             _humanState = new OrigamiHumanState(this, OrigamiForm.Human);
             
             // Initialize forms
-            forms = new Dictionary<OrigamiForm, GameObject>();
+            Forms = new Dictionary<OrigamiForm, GameObject>();
             foreach (var mapping in formsMeshMapping)
-                forms.Add(mapping.form, mapping.gameObject);
+                Forms.Add(mapping.form, mapping.gameObject);
         }
 
         public void Start()
@@ -137,7 +137,7 @@ namespace EVOGAMI.Origami
         public void SetForm(OrigamiForm form)
         {
             if (form == OrigamiForm.None) return;
-            forms[form].SetActive(true);
+            Forms[form].SetActive(true);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace EVOGAMI.Origami
         public void UnsetForm(OrigamiForm form)
         {
             if (form == OrigamiForm.None) return;
-            forms[form].SetActive(false);
+            Forms[form].SetActive(false);
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace EVOGAMI.Origami
         /// </summary>
         public void UnsetAllForms()
         {
-            foreach (var form in forms)
+            foreach (var form in Forms)
                 form.Value.SetActive(false);
         }
 
