@@ -2443,6 +2443,10 @@ PrefabInstance:
       propertyPath: formsMeshMapping.Array.data[3].gameObject
       value: 
       objectReference: {fileID: 822204536}
+    - target: {fileID: 7739517288563476948, guid: 0d88386da6ed9460ca6bb07b9e15436e, type: 3}
+      propertyPath: m_Mass
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7935272937432716724, guid: 0d88386da6ed9460ca6bb07b9e15436e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50.12
@@ -3812,7 +3816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.19068253, y: -0.39446217, z: -0.08404394, w: 0.89497286}
+  m_LocalRotation: {x: -0.19094726, y: -0.39443737, z: -0.08416064, w: 0.8949164}
   m_LocalPosition: {x: 53.810585, y: 12.66, z: -2.9933615}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4444,7 +4448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243211961}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.19068252, y: -0.39446217, z: -0.08404393, w: 0.89497286}
+  m_LocalRotation: {x: -0.19094725, y: -0.39443734, z: -0.084160626, w: 0.8949164}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4865,8 +4869,8 @@ MonoBehaviour:
   m_VerticalDamping: 2.5
   m_ScreenX: 0.5
   m_ScreenY: 0.55
-  m_DeadZoneWidth: 0.25
-  m_DeadZoneHeight: 0.25
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
@@ -6483,8 +6487,8 @@ MonoBehaviour:
   m_VerticalDamping: 2.5
   m_ScreenX: 0.5
   m_ScreenY: 0.6
-  m_DeadZoneWidth: 0.25
-  m_DeadZoneHeight: 0.25
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
@@ -6944,8 +6948,8 @@ MonoBehaviour:
   m_VerticalDamping: 2.5
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_DeadZoneWidth: 0.25
-  m_DeadZoneHeight: 0.25
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
@@ -7042,7 +7046,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072578822}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.17454682, y: -0.39591077, z: -0.0769321, w: 0.89825916}
+  m_LocalRotation: {x: -0.17468075, y: -0.39589933, z: -0.07699115, w: 0.8982331}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7121,7 +7125,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2091549965}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.15831341, y: -0.39723408, z: -0.069777146, w: 0.901262}
+  m_LocalRotation: {x: -0.15831338, y: -0.39723417, z: -0.069777146, w: 0.9012619}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7328,6 +7332,14 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 410157693926823467, guid: ae91881f7f50ecd42aa954b66ee46b31, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ce9333eb88c217f4c92e0e925ed326a1, type: 2}
+    - target: {fileID: 1452254120350881066, guid: ae91881f7f50ecd42aa954b66ee46b31, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3652238402536106455, guid: ae91881f7f50ecd42aa954b66ee46b31, type: 3}
       propertyPath: m_Name
       value: Human
@@ -7338,7 +7350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4171612908515767149, guid: ae91881f7f50ecd42aa954b66ee46b31, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.45
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4171612908515767149, guid: ae91881f7f50ecd42aa954b66ee46b31, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7371,6 +7383,10 @@ PrefabInstance:
     - target: {fileID: 4171612908515767149, guid: ae91881f7f50ecd42aa954b66ee46b31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8556274671192353831, guid: ae91881f7f50ecd42aa954b66ee46b31, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
