@@ -11,8 +11,8 @@ namespace EVOGAMI.Core
 
         // Input fields
         public Vector2 MoveInput { get; private set; }
-        public bool JumpInput { get; private set; }
-        public bool SprintInput { get; private set; }
+        public bool IsMoving { get; private set; }
+        
         public Origami.OrigamiContainer.OrigamiForm NewForm { get; private set; }
         
         public delegate void FormChangeCallback(Origami.OrigamiContainer.OrigamiForm form);
@@ -32,14 +32,21 @@ namespace EVOGAMI.Core
 
             // Bind controls
             // Player - Move
-            Controls.Player.Move.performed += ctx => MoveInput = ctx.ReadValue<Vector2>();
-            Controls.Player.Move.canceled += _ => MoveInput = Vector2.zero;
+            Controls.Player.Move.started += MoveStartedCallback;
+            Controls.Player.Move.performed += MovePerformedCallback;
+            Controls.Player.Move.canceled += MoveCancelledCallback;
             // Player - Jump
-            Controls.Player.Jump.performed += _ => JumpInput = true;
-            Controls.Player.Jump.canceled += _ => JumpInput = false;
-            // Player - Sprint
-            Controls.Player.Sprint.performed += _ => SprintInput = true;
-            Controls.Player.Sprint.canceled += _ => SprintInput = false;
+            Controls.Player.Jump.started += JumpStartedCallback;
+            Controls.Player.Jump.performed += JumpPerformedCallback;
+            Controls.Player.Jump.canceled += JumpCancelledCallback;
+            // Player - Sprint (Hold)
+            Controls.Player.Sprint_Hold.started += SprintHoldStartedCallback;
+            Controls.Player.Sprint_Hold.performed += SprintHoldPerformedCallback;
+            Controls.Player.Sprint_Hold.canceled += SprintHoldCancelledCallback;
+            // Player - Sprint (Press)
+            Controls.Player.Sprint_Press.started += SprintPressStartedCallback;
+            Controls.Player.Sprint_Press.performed += SprintPressPerformedCallback;
+            Controls.Player.Sprint_Press.canceled += SprintPressCancelledCallback;
             // Origami - Transform
             Controls.Origami.Transform.performed += GetFormFromInput;
             Controls.Origami.Transform.canceled += _ => NewForm = Origami.OrigamiContainer.OrigamiForm.None;
@@ -55,27 +62,114 @@ namespace EVOGAMI.Core
             Controls.Disable();
         }
 
-        /// <summary>
-        ///     Determines if the player is moving.
-        /// </summary>
-        /// <returns>True if the player is moving, false otherwise.</returns>
-        public bool IsMoving()
+        #region Input Events
+        
+        private void MoveStartedCallback(InputAction.CallbackContext ctx)
         {
-            return MoveInput.magnitude > Mathf.Epsilon;
+            OnMoveStarted();
+        }
+        
+        private void MovePerformedCallback(InputAction.CallbackContext ctx)
+        {
+            IsMoving = true;
+            MoveInput = ctx.ReadValue<Vector2>();
+            
+            OnMovePerformed();
+        }
+        
+        private void MoveCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            IsMoving = false;
+            MoveInput = Vector2.zero;
+            
+            OnMoveCancelled();
         }
 
+        private void JumpStartedCallback(InputAction.CallbackContext ctx)
+        {
+            OnJumpStarted();
+        }
+        
+        private void JumpPerformedCallback(InputAction.CallbackContext ctx)
+        {
+            OnJumpPerformed();
+        }
+        
+        private void JumpCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            OnJumpCancelled();
+        }
+        
+        private void SprintHoldStartedCallback(InputAction.CallbackContext ctx)
+        {
+            OnSprintHoldStarted();
+        }
+        
+        private void SprintHoldPerformedCallback(InputAction.CallbackContext ctx)
+        {
+            OnSprintHoldPerformed();
+        }
+
+        private void SprintHoldCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            OnSprintHoldCancelled();
+        }
+        
+        private void SprintPressStartedCallback(InputAction.CallbackContext ctx)
+        {
+            OnSprintPressStarted();
+        }
+        
+        private void SprintPressPerformedCallback(InputAction.CallbackContext ctx)
+        {
+            OnSprintPressPerformed();
+        }
+        
+        private void SprintPressCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            OnSprintPressCancelled();
+        }
+        
+        #endregion
+
+        #region Input Event Exposure
+        
+        // Move
+        public delegate void MoveCallback();
+        public event MoveCallback OnMoveStarted = delegate { };
+        public event MoveCallback OnMovePerformed = delegate { };
+        public event MoveCallback OnMoveCancelled = delegate { };
+
+        // Jump
+        public delegate void JumpCallback();
+        public event JumpCallback OnJumpStarted = delegate { };
+        public event JumpCallback OnJumpPerformed = delegate { };
+        public event JumpCallback OnJumpCancelled = delegate { };
+        
+        // Sprint (Hold)
+        public delegate void SprintCallback();
+        public event SprintCallback OnSprintHoldStarted = delegate { };
+        public event SprintCallback OnSprintHoldPerformed = delegate { };
+        public event SprintCallback OnSprintHoldCancelled = delegate { };
+        // Sprint (Press)
+        public event SprintCallback OnSprintPressStarted = delegate { };
+        public event SprintCallback OnSprintPressPerformed = delegate { };
+        public event SprintCallback OnSprintPressCancelled = delegate { };
+
+        #endregion
+        
         private void GetFormFromInput(InputAction.CallbackContext ctx)
         {
             var input = ctx.ReadValue<Vector2>();
             
             if (input.y > 0) // Up
-                NewForm = Origami.OrigamiContainer.OrigamiForm.Humanoid;
+                NewForm = Origami.OrigamiContainer.OrigamiForm.Human;
             else if (input.y < 0) // Down
-                NewForm = Origami.OrigamiContainer.OrigamiForm.Crane;
+                NewForm = Origami.OrigamiContainer.OrigamiForm.Frog;
             else if (input.x < 0) // Left
-                NewForm = Origami.OrigamiContainer.OrigamiForm.Airplane;
+                NewForm = Origami.OrigamiContainer.OrigamiForm.Plane;
             else if (input.x > 0) // Right
-                NewForm = Origami.OrigamiContainer.OrigamiForm.Boat;
+                NewForm = Origami.OrigamiContainer.OrigamiForm.Bug;
             else
                 NewForm = Origami.OrigamiContainer.OrigamiForm.None;
             
