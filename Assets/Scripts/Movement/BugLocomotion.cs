@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 namespace EVOGAMI.Movement
 {
-    public class BugLocomotion : OrigamiLocomotion
+    public class BugLocomotion : LocomotionBase
     {
         [Header("Wall Check")]
         [SerializeField] private Transform wallCheck;

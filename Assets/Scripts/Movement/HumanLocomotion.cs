@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace EVOGAMI.Movement
 {
-    public class HumanLocomotion : OrigamiLocomotion
+    public class HumanLocomotion : LocomotionBase
     {
         [SerializeField] private Animator animator;  // Ensure this is assigned in the Unity Editor
 
