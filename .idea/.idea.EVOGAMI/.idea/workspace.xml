@@ -5,25 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3be3e3f1-cf9d-455f-a210-b8ddd9452e54" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.EVOGAMI/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.EVOGAMI/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.EVOGAMI/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art Assets/Player/Human_AC.controller" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art Assets/Player/Human_AC.controller.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art Assets/Player/Human_Idle.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art Assets/Player/Human_Idle.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art Assets/Player/Human_Walk.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art Assets/Player/Human_Walk.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art Assets/Player/Origami_Person_MeshAndIdle.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art Assets/Player/Origami_Person_MeshAndIdle.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art Assets/Player/Origami_Person_MeshAndWalking.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art Assets/Player/Origami_Person_MeshAndWalking.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/EVOGAMI/Animation.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/EVOGAMI/Core/AnimationManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/EVOGAMI/Core/AnimationManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/EVOGAMI/Movement/HumanLocomotion.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/EVOGAMI/Movement/HumanLocomotion.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EVOGAMI/Movement/OrigamiLocomotion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EVOGAMI/Movement/OrigamiLocomotion.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art Assets/Player/Origami_Person_MeshAndIdle_test.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art Assets/Player/Origami_Person_MeshAndIdle_test.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art Assets/Player/humanIdle2.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art Assets/Player/humanIdle2.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Origami/Human1.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Origami/Human1.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EVOGAMI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EVOGAMI/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +102,7 @@
       <updated>1716658990949</updated>
       <workItem from="1716658992779" duration="12864000" />
       <workItem from="1716816332942" duration="2328000" />
-      <workItem from="1716824115415" duration="9407000" />
+      <workItem from="1716824115415" duration="12708000" />
     </task>
     <servers />
   </component>
