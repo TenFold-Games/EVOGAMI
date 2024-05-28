@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -667,11 +667,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  UserScore: 0
-  scoreText: {fileID: 0}
-  countdownString: {fileID: 984276282}
-  gameOverScreen: {fileID: 0}
-  closed: 0
+  countdownString: {fileID: 0}
+  lifeIcons: []
+  formIconMappings: []
 --- !u!1 &785725255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,11 +1004,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  UserScore: 0
-  scoreText: {fileID: 0}
-  countdownString: {fileID: 984276282}
-  gameOverScreen: {fileID: 0}
-  closed: 0
+  countdownString: {fileID: 0}
+  lifeIcons: []
+  formIconMappings: []
 --- !u!4 &1370854018
 Transform:
   m_ObjectHideFlags: 0
