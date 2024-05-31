@@ -37,6 +37,7 @@ namespace EVOGAMI.Movement
         // Flags
         protected bool IsGrounded;
         protected bool IsSprinting;
+        protected bool IsCallbackSet;
         
 
         protected virtual void Start()
@@ -52,11 +53,24 @@ namespace EVOGAMI.Movement
 
             // Ground check
             GroundLayer = LayerMask.GetMask("Ground", "Water");
+            
+            // Register events
+            if (!IsCallbackSet) {
+                // Move
+                InputManager.OnMoveCancelled += OnMoveCancelled;
+                // Jump
+                InputManager.OnJumpPerformed += OnJumpPerformed;
+                // Sprint (Hold)
+                InputManager.OnSprintHoldStarted += OnSprintStarted;
+                InputManager.OnSprintHoldCancelled += OnSprintHoldCancelled;
+                // Sprint (Press)
+                InputManager.OnSprintPressStarted += OnSprintStarted;
+            }
         }
 
         protected void OnEnable()
         {
-            if (!InputManager) InputManager = InputManager.Instance;
+            if (!InputManager) return;
             
             // Register events
             // Move
@@ -68,6 +82,8 @@ namespace EVOGAMI.Movement
             InputManager.OnSprintHoldCancelled += OnSprintHoldCancelled;
             // Sprint (Press)
             InputManager.OnSprintPressStarted += OnSprintStarted;
+            
+            IsCallbackSet = true;
         }
         
         private void OnDisable()
@@ -82,6 +98,8 @@ namespace EVOGAMI.Movement
             InputManager.OnSprintHoldCancelled -= OnSprintHoldCancelled;
             // Sprint (Press)
             InputManager.OnSprintPressStarted -= OnSprintStarted;
+            
+            IsCallbackSet = false;
         }
 
         protected virtual void FixedUpdate()
@@ -109,7 +127,6 @@ namespace EVOGAMI.Movement
         {
             if (!IsGrounded) return;
 
-            Debug.Log($"Jumping with force: {jumpForce}");
             PlayerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
