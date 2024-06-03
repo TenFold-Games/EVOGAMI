@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cinemachine;
 using EVOGAMI.Custom.Scriptable;
 using EVOGAMI.Custom.Serializable;
 using EVOGAMI.Core;
@@ -28,6 +29,10 @@ namespace EVOGAMI.Origami
         // Forms
         [SerializeField] private OriObjMapping[] formsMeshMapping;
         public Dictionary<OrigamiForm, GameObject> Forms;
+        
+        // Cameras
+        public CinemachineVirtualCameraBase mainCamera;
+        public CinemachineVirtualCameraBase planeCamera;
 
         // States
         private OrigamiBugState _bugState;
@@ -127,6 +132,20 @@ namespace EVOGAMI.Origami
                     throw new ArgumentOutOfRangeException(nameof(form), form, null);
             }
         }
+
+        #region Camera
+
+        public void SetPlaneCamera()
+        {
+            planeCamera.Priority = 20;
+        }
+        
+        public void UnsetPlaneCamera()
+        {
+            planeCamera.Priority = -1;
+        }
+
+        #endregion
 
         #region Form
 

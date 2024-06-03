@@ -9,7 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d84e93a803c45c5a9e320b4eef9a03e, type: 3}
-  m_Name: OrigamiSettings
+  m_Script: {fileID: 11500000, guid: 6befe09c29be460db6834aba68a9d07e, type: 3}
+  m_Name: UnlockSettings
   m_EditorClassIdentifier: 
-  initialForm: 2
+  formUnlockStates:
+  - form: 0
+    isUnlocked: 0
+  - form: 1
+    isUnlocked: 0
+  - form: 2
+    isUnlocked: 0
+  - form: 3
+    isUnlocked: 1

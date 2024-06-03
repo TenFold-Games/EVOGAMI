@@ -17,6 +17,7 @@ namespace EVOGAMI.Core
         
         // Settings
         [SerializeField] private OrigamiSettings origamiSettings;
+        [SerializeField] private OrigamiUnlockSettings unlockSettings;
 
         public void Awake()
         {
@@ -43,6 +44,9 @@ namespace EVOGAMI.Core
                 { OrigamiContainer.OrigamiForm.Bug, false },
                 { OrigamiContainer.OrigamiForm.None, true }
             };
+            foreach (var (form, unlocked) in unlockSettings.formUnlockStates)
+                if (GainedForms.ContainsKey(form))
+                    GainedForms[form] = unlocked;
             GainedForms[origamiSettings.initialForm] = true;
             
             // Set scores

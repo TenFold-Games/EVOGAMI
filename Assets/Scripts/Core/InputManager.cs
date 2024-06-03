@@ -10,8 +10,11 @@ namespace EVOGAMI.Core
         public PlayerControls Controls { get; private set; }
 
         // Input fields
+        // Player
         public Vector2 MoveInput { get; private set; }
         public bool IsMoving { get; private set; }
+        // Plane
+        public float PlaneYawInput { get; private set; }
         
         public Origami.OrigamiContainer.OrigamiForm NewForm { get; private set; }
         
@@ -54,6 +57,10 @@ namespace EVOGAMI.Core
             Controls.UI.Pause.started += PauseStartedCallback;
             Controls.UI.Pause.performed += PausePerformedCallback;
             Controls.UI.Pause.canceled += PauseCancelledCallback;
+            // Plane - Yaw
+            Controls.Plane.Yaw.started += PlaneYawStartedCallback;
+            Controls.Plane.Yaw.performed += PlaneYawPerformedCallback;
+            Controls.Plane.Yaw.canceled += PlaneYawCancelledCallback;
         }
 
         public void OnEnable()
@@ -149,6 +156,25 @@ namespace EVOGAMI.Core
             OnPauseCancelled();
         }
         
+        private void PlaneYawStartedCallback(InputAction.CallbackContext ctx)
+        {
+            OnPlaneYawStarted();
+        }
+        
+        private void PlaneYawPerformedCallback(InputAction.CallbackContext ctx)
+        {
+            PlaneYawInput = ctx.ReadValue<float>();
+            
+            OnPlaneYawPerformed();
+        }
+        
+        private void PlaneYawCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            PlaneYawInput = 0;
+            
+            OnPlaneYawCancelled();
+        }
+        
         #endregion
 
         #region Input Event Exposure
@@ -180,6 +206,12 @@ namespace EVOGAMI.Core
         public event PauseCallback OnPauseStarted = delegate { };
         public event PauseCallback OnPausePerformed = delegate { };
         public event PauseCallback OnPauseCancelled = delegate { };
+        
+        // Plane - Yaw
+        public delegate void PlaneYawCallBack();
+        public event PlaneYawCallBack OnPlaneYawStarted = delegate { };
+        public event PlaneYawCallBack OnPlaneYawPerformed = delegate { };
+        public event PlaneYawCallBack OnPlaneYawCancelled = delegate { };
 
         #endregion
         
