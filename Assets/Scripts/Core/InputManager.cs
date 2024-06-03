@@ -28,7 +28,7 @@ namespace EVOGAMI.Core
             else Destroy(this);
 
             // Keep between scenes
-            DontDestroyOnLoad(this);
+            // DontDestroyOnLoad(this);
 
             // Initialize controls
             Controls = new PlayerControls();
@@ -50,11 +50,13 @@ namespace EVOGAMI.Core
             Controls.Player.Sprint_Press.started += SprintPressStartedCallback;
             Controls.Player.Sprint_Press.performed += SprintPressPerformedCallback;
             Controls.Player.Sprint_Press.canceled += SprintPressCancelledCallback;
-            
             // Origami - Transform
             Controls.Origami.Transform.performed += GetFormFromInput;
             Controls.Origami.Transform.canceled += _ => NewForm = Origami.OrigamiContainer.OrigamiForm.None;
-            
+            // UI - Pause
+            Controls.UI.Pause.started += PauseStartedCallback;
+            Controls.UI.Pause.performed += PausePerformedCallback;
+            Controls.UI.Pause.canceled += PauseCancelledCallback;
             // Plane - Yaw
             Controls.Plane.Yaw.started += PlaneYawStartedCallback;
             Controls.Plane.Yaw.performed += PlaneYawPerformedCallback;
@@ -139,6 +141,21 @@ namespace EVOGAMI.Core
             OnSprintPressCancelled();
         }
         
+        private void PauseStartedCallback(InputAction.CallbackContext ctx)
+        {
+            OnPauseStarted();
+        }
+        
+        private void PausePerformedCallback(InputAction.CallbackContext ctx)
+        {
+            OnPausePerformed();
+        }
+        
+        private void PauseCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            OnPauseCancelled();
+        }
+        
         private void PlaneYawStartedCallback(InputAction.CallbackContext ctx)
         {
             OnPlaneYawStarted();
@@ -183,6 +200,12 @@ namespace EVOGAMI.Core
         public event SprintCallback OnSprintPressStarted = delegate { };
         public event SprintCallback OnSprintPressPerformed = delegate { };
         public event SprintCallback OnSprintPressCancelled = delegate { };
+        
+        // Pause
+        public delegate void PauseCallback();
+        public event PauseCallback OnPauseStarted = delegate { };
+        public event PauseCallback OnPausePerformed = delegate { };
+        public event PauseCallback OnPauseCancelled = delegate { };
         
         // Plane - Yaw
         public delegate void PlaneYawCallBack();
