@@ -50,6 +50,10 @@ namespace EVOGAMI.Core
             // Origami - Transform
             Controls.Origami.Transform.performed += GetFormFromInput;
             Controls.Origami.Transform.canceled += _ => NewForm = Origami.OrigamiContainer.OrigamiForm.None;
+            // UI - Pause
+            Controls.UI.Pause.started += PauseStartedCallback;
+            Controls.UI.Pause.performed += PausePerformedCallback;
+            Controls.UI.Pause.canceled += PauseCancelledCallback;
         }
 
         public void OnEnable()
@@ -130,6 +134,21 @@ namespace EVOGAMI.Core
             OnSprintPressCancelled();
         }
         
+        private void PauseStartedCallback(InputAction.CallbackContext ctx)
+        {
+            OnPauseStarted();
+        }
+        
+        private void PausePerformedCallback(InputAction.CallbackContext ctx)
+        {
+            OnPausePerformed();
+        }
+        
+        private void PauseCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            OnPauseCancelled();
+        }
+        
         #endregion
 
         #region Input Event Exposure
@@ -155,6 +174,12 @@ namespace EVOGAMI.Core
         public event SprintCallback OnSprintPressStarted = delegate { };
         public event SprintCallback OnSprintPressPerformed = delegate { };
         public event SprintCallback OnSprintPressCancelled = delegate { };
+        
+        // Pause
+        public delegate void PauseCallback();
+        public event PauseCallback OnPauseStarted = delegate { };
+        public event PauseCallback OnPausePerformed = delegate { };
+        public event PauseCallback OnPauseCancelled = delegate { };
 
         #endregion
         

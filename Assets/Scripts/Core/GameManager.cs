@@ -15,6 +15,8 @@ namespace EVOGAMI.Core
         private Dictionary<CheckpointRegion, int> _checkpointIndices;
         public static GameManager Instance { get; private set; }
 
+        #region Unity Functions
+
         public void Awake()
         {
             // Singleton
@@ -38,6 +40,8 @@ namespace EVOGAMI.Core
             currentCheckpoint = checkpoints[0];
         }
 
+        #endregion
+
         /// <summary>
         ///     Callback for when the player reaches a checkpoint
         /// </summary>
@@ -55,6 +59,13 @@ namespace EVOGAMI.Core
         public void GameOver()
         {
             Debug.Log("Game Over!");
+        }
+
+        public void ExitGame()
+        {
+            Debug.Log("Exiting game...");
+            // TODO: Save game state
+            Application.Quit();
         }
     }
 }
