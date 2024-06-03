@@ -15,6 +15,8 @@ namespace EVOGAMI.Core
         private Dictionary<CheckpointRegion, int> _checkpointIndices;
         public static GameManager Instance { get; private set; }
 
+        #region Unity Functions
+
         public void Awake()
         {
             // Singleton
@@ -22,7 +24,7 @@ namespace EVOGAMI.Core
             else Destroy(this);
 
             // Keep between scenes
-            DontDestroyOnLoad(this);
+            // DontDestroyOnLoad(this);
 
             // Initialize checkpoint states
             // _checkpointStates = new Dictionary<CheckpointRegion, bool>();
@@ -37,6 +39,8 @@ namespace EVOGAMI.Core
             // _checkpointStates[checkpoints[0]] = true;
             currentCheckpoint = checkpoints[0];
         }
+
+        #endregion
 
         /// <summary>
         ///     Callback for when the player reaches a checkpoint
@@ -55,6 +59,13 @@ namespace EVOGAMI.Core
         public void GameOver()
         {
             Debug.Log("Game Over!");
+        }
+
+        public void ExitGame()
+        {
+            Debug.Log("Exiting game...");
+            // TODO: Save game state
+            Application.Quit();
         }
     }
 }

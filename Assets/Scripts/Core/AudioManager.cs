@@ -25,7 +25,7 @@ namespace EVOGAMI.Core
                 Destroy(gameObject);
 
             // Keep between scenes
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
 
             // Play the first background music track
             if (shouldPlayBGM && backgroundMusics.Length > 0)
