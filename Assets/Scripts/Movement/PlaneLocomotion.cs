@@ -1,28 +1,27 @@
-using Unity.Mathematics;
-using UnityEditor.Presets;
 using UnityEngine;
 
 namespace EVOGAMI.Movement
 {
     public class PlaneLocomotion : LocomotionBase
     {
-        [Header("Plane")]
+        [Header("Plane")] 
         
-        [Tooltip("The plane's throttle increment value.")]
+        [Tooltip("The plane's throttle increment value.")] 
         [SerializeField] private float throttleIncrement = 10f;
         
-        [Tooltip("Maximum engine thrust at full throttle.")]
+        [Tooltip("Maximum engine thrust at full throttle.")] 
         [SerializeField] private float maxThrust = 200f;
         
-        [Tooltip("The plane's responsiveness to pitch, roll, and yaw.")]
+        [Tooltip("The plane's responsiveness to pitch, roll, and yaw.")] 
         [SerializeField] private float responsiveness = 1f;
 
-        [Tooltip("The plane's lift force.")]
-        [SerializeField] private float lift = 135f;
-
-        [Tooltip("The plane's throttle.")] 
-        [SerializeField] private float throttle = 15f;
+        [Tooltip("The plane's lift force.")] [SerializeField]
+        private float lift = 135f;
         
+        [Tooltip("The plane's throttle.")] 
+        [Range(0, 100)]
+        [SerializeField] private float throttle = 0f;
+
         // Pitching is the rotation of the plane around the lateral axis.
         private float pitch;
         // Rolling is the rotation of the plane around the longitudinal axis.
@@ -30,16 +29,32 @@ namespace EVOGAMI.Movement
         // Yawing is the rotation of the plane around the vertical axis.
         private float yaw;
 
-        private bool isJumping = false;
-        
+        private bool isLaunched;
+
         private float ResponseModifier => PlayerRb.mass / 10 * responsiveness;
 
+        #region Input Events
+
+        protected override void OnJumpPerformed()
+        {
+            if (!IsGrounded) return;
+
+            PlayerRb.AddForce(Vector3.up * (jumpForce * PlayerRb.mass), ForceMode.Impulse);
+            isLaunched = true;
+            
+            // PlayerRb.AddForce(PlayerTransform.forward * maxThrust, ForceMode.Impulse);
+        }
+
+        #endregion
+
         #region Unity Functions
-        
+
         protected override void Start()
         {
             base.Start();
-            
+
+            isLaunched = true;
+
             InputManager.Controls.Plane.ThrottleUp.performed += _ =>
             {
                 throttle += throttleIncrement;
@@ -63,25 +78,10 @@ namespace EVOGAMI.Movement
         {
             GroundCheck();
             ReadInput();
-            
+
             Move(Time.fixedDeltaTime);
-        }
-
-        #endregion
-
-        #region Input Events
-
-        protected override void OnJumpPerformed()
-        {
-            if (!IsGrounded)
-            {
-                Debug.Log("Cannot jump while in the air.");
-                return;
-            }
-
-            Debug.Log("Jumping");
-            PlayerRb.AddForce(Vector3.up * (jumpForce * PlayerRb.mass), ForceMode.Impulse);
-            isJumping = true;
+            
+            isLaunched = !IsGrounded;
         }
 
         #endregion
@@ -92,18 +92,17 @@ namespace EVOGAMI.Movement
         {
             // Plane cannot move when grounded
             // if (IsGrounded) return;
-            
-            if (isJumping && !IsGrounded && PlayerRb.velocity.y <= Mathf.Epsilon)
+
+            if (isLaunched)
             {
-                isJumping = false;
-                PlayerRb.AddForce(transform.forward * (maxThrust * throttle));
+                PlayerRb.AddForce(Vector3.up * (PlayerRb.velocity.magnitude * lift));
+            
+                PlayerRb.AddForce(PlayerTransform.forward * (maxThrust * throttle));
+                
+                PlayerRb.AddTorque(PlayerTransform.up * (yaw * ResponseModifier));
+                PlayerRb.AddTorque(PlayerTransform.right * (pitch * ResponseModifier));
+                PlayerRb.AddTorque(-PlayerTransform.forward * (roll * ResponseModifier));
             }
-            
-            PlayerRb.AddForce(Vector3.up * (PlayerRb.velocity.magnitude * lift));
-            
-            PlayerRb.AddTorque(PlayerTransform.up * (yaw * ResponseModifier));
-            PlayerRb.AddTorque(PlayerTransform.right * (pitch * ResponseModifier));
-            PlayerRb.AddTorque(-PlayerTransform.forward * (roll * ResponseModifier));
         }
 
         protected override void MovePlayer(Vector3 moveDirection, float delta)
@@ -115,7 +114,32 @@ namespace EVOGAMI.Movement
         {
             // base.RotatePlayer(moveDirection, delta);
         }
+
+        #endregion
+
+        #region Collision
+
+        protected override void GroundCheck()
+        {
+            IsGrounded = Physics.SphereCast(
+                groundCheck.position,
+                groundCheckRadius,
+                -PlayerTransform.up,
+                out GroundHit,
+                groundCheckDistance,
+                GroundLayer
+            );
+        }
         
+        protected override void OnDrawGizmos()
+        {
+            if (groundCheck == null) return;
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+            Gizmos.DrawLine(groundCheck.position, groundCheck.position - transform.forward * groundCheckDistance);
+        }
+
         #endregion
     }
 }

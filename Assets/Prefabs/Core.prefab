@@ -1354,6 +1354,18 @@ PrefabInstance:
       propertyPath: formsMeshMapping.Array.data[3].gameObject
       value: 
       objectReference: {fileID: 1381834037060573960}
+    - target: {fileID: 7867676451796057750, guid: 0d88386da6ed9460ca6bb07b9e15436e, type: 3}
+      propertyPath: lift
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7867676451796057750, guid: 0d88386da6ed9460ca6bb07b9e15436e, type: 3}
+      propertyPath: throttle
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7867676451796057750, guid: 0d88386da6ed9460ca6bb07b9e15436e, type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7935272937432716724, guid: 0d88386da6ed9460ca6bb07b9e15436e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.65000004
