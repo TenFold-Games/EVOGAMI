@@ -138,13 +138,11 @@ namespace EVOGAMI.Origami
         public void SetPlaneCamera()
         {
             planeCamera.Priority = 20;
-            Debug.Log("Set plane camera");
         }
         
         public void UnsetPlaneCamera()
         {
             planeCamera.Priority = -1;
-            Debug.Log("Unset plane camera");
         }
 
         #endregion

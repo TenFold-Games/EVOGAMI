@@ -42,6 +42,8 @@ GameObject:
   - component: {fileID: 8127710139289289522}
   - component: {fileID: 6703958900946538146}
   - component: {fileID: 4915158990910249192}
+  - component: {fileID: 2192606242147633644}
+  - component: {fileID: 8971970411849392611}
   m_Layer: 0
   m_Name: Airplane Mesh
   m_TagString: OrigamiMesh
@@ -114,49 +116,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &4775011648615777973
-GameObject:
+--- !u!64 &2192606242147633644
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4749876687192213499}
-  - component: {fileID: 6826895407826161810}
-  - component: {fileID: 8441584162599171932}
-  m_Layer: 0
-  m_Name: Airplane
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4749876687192213499
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4775011648615777973}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.40331605, z: -0, w: 0.91506076}
-  m_LocalPosition: {x: 50.12, y: 13.66, z: 0.38}
-  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8127710139289289522}
-  - {fileID: 8806354796652477294}
-  - {fileID: 8440367564651703317}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &6826895407826161810
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4775011648615777973}
+  m_GameObject: {fileID: 4060436208321988007}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -168,18 +134,17 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.25
-  m_Height: 1.8329699
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.35, z: 0}
---- !u!114 &8441584162599171932
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8155012596763395954, guid: a0d3dc17567880e49aa008d7a25260e1, type: 3}
+--- !u!114 &8971970411849392611
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4775011648615777973}
+  m_GameObject: {fileID: 4060436208321988007}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7b377573ae34af9b5b8b2c129fc57cb, type: 3}
@@ -196,6 +161,41 @@ MonoBehaviour:
   throttleIncrement: 10
   maxThrust: 200
   responsiveness: 1
+  lift: 89
+--- !u!1 &4775011648615777973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4749876687192213499}
+  m_Layer: 0
+  m_Name: Airplane
+  m_TagString: OrigamiMesh
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4749876687192213499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4775011648615777973}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 50.12, y: 13.66, z: 0.38}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8127710139289289522}
+  - {fileID: 8806354796652477294}
+  - {fileID: 8440367564651703317}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6193623694611526988
 GameObject:
   m_ObjectHideFlags: 0

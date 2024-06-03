@@ -8,7 +8,6 @@ namespace EVOGAMI.Origami.States
         private float originalAngularDrag;
         private float originalDrag;
         private float originalMass;
-        private bool originalUseGravity;
         
         private InputManager inputManager;
 
@@ -27,7 +26,7 @@ namespace EVOGAMI.Origami.States
             inputManager.Controls.Camera.Disable();
             
             // Unfreeze player rigidbody rotation
-            PlayerManager.Instance.PlayerRb.constraints = UnityEngine.RigidbodyConstraints.None;
+            PlayerManager.Instance.PlayerRb.constraints = RigidbodyConstraints.None;
 
             // Angular drag
             originalAngularDrag = PlayerManager.Instance.PlayerRb.angularDrag;
@@ -38,9 +37,6 @@ namespace EVOGAMI.Origami.States
             // Mass
             originalMass = PlayerManager.Instance.PlayerRb.mass;
             PlayerManager.Instance.PlayerRb.mass = 400;
-            // Use Gravity
-            originalUseGravity = PlayerManager.Instance.PlayerRb.useGravity;
-            PlayerManager.Instance.PlayerRb.useGravity = false;
             
             // Set the camera
             OrigamiContainer.SetPlaneCamera();
@@ -50,10 +46,9 @@ namespace EVOGAMI.Origami.States
         {
             PlayerManager.Instance.PlayerRb.angularDrag = originalAngularDrag;
             PlayerManager.Instance.PlayerRb.drag = originalDrag;
-            PlayerManager.Instance.PlayerRb.useGravity = originalUseGravity;
             PlayerManager.Instance.PlayerRb.mass = originalMass;
             
-            PlayerManager.Instance.PlayerRb.constraints = UnityEngine.RigidbodyConstraints.FreezeRotation;
+            PlayerManager.Instance.PlayerRb.constraints = RigidbodyConstraints.FreezeRotation;
             
             OrigamiContainer.UnsetPlaneCamera();
             

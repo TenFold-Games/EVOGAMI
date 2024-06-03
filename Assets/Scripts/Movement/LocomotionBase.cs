@@ -38,7 +38,8 @@ namespace EVOGAMI.Movement
         protected bool IsGrounded;
         protected bool IsSprinting;
         protected bool IsCallbackSet;
-        
+
+        #region Unity Functions
 
         protected virtual void Start()
         {
@@ -110,6 +111,8 @@ namespace EVOGAMI.Movement
             Move(Time.fixedDeltaTime);
         }
 
+        #endregion
+        
         #region Input Events
 
         /// <summary>
