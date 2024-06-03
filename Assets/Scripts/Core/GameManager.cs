@@ -24,7 +24,7 @@ namespace EVOGAMI.Core
             else Destroy(this);
 
             // Keep between scenes
-            DontDestroyOnLoad(this);
+            // DontDestroyOnLoad(this);
 
             // Initialize checkpoint states
             // _checkpointStates = new Dictionary<CheckpointRegion, bool>();
