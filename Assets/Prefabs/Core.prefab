@@ -388,7 +388,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3577663787762337026}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.022681365, y: -0.40319464, z: 0.009996961, w: 0.91477853}
+  m_LocalRotation: {x: 0.022681369, y: -0.40319467, z: 0.009996963, w: 0.9147785}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1299,6 +1299,14 @@ PrefabInstance:
     - target: {fileID: 3661648003641697268, guid: e326842803fe1244091815de6e5b6f93, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697168603405526584, guid: e326842803fe1244091815de6e5b6f93, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 24198707571280f4bbca55b19e2bcdbf, type: 3}
+    - target: {fileID: 7107672714559695709, guid: e326842803fe1244091815de6e5b6f93, type: 3}
+      propertyPath: m_Name
+      value: Frog
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
