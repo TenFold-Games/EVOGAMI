@@ -56,7 +56,10 @@ namespace EVOGAMI.Movement
                 // DetectObstacles();
                 ManageAnimations(Time.deltaTime);
             }
-            
+
+            // DetectObstacles();
+            // Debug.Log(isObstacleDetected);
+
             // If human (hand) touching obstacle => ???
             // if (_isTouchingObstacle)
         }
@@ -72,11 +75,7 @@ namespace EVOGAMI.Movement
             }
 
             // If no obstacle is detected, perform the regular jump
-            if (IsGrounded)
-            {
-                base.OnJumpPerformed();
-                //PlayerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            }
+            base.OnJumpPerformed();
         }
         
         #endregion
@@ -104,19 +103,19 @@ namespace EVOGAMI.Movement
         private IEnumerator VaultRoutine(Vector3 targetPosition)
         {
             float elapsedTime = 0f;
-            Vector3 startingPosition = transform.position;
+            Vector3 startingPosition = PlayerTransform.position;
             
             // Trigger vault animation here
             // animator.SetTrigger("Vault");
 
             while (elapsedTime < vaultSpeed)
             {
-                transform.position = Vector3.Lerp(startingPosition, targetPosition, (elapsedTime / vaultSpeed));
+                PlayerTransform.position = Vector3.Lerp(startingPosition, targetPosition, (elapsedTime / vaultSpeed));
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
 
-            transform.position = targetPosition;
+            PlayerTransform.position = targetPosition;
 
             // Re-enable player control after vault.
             // EnablePlayerControl();
@@ -151,28 +150,39 @@ namespace EVOGAMI.Movement
         #endregion
         
         #region Collision
+
+        private bool isObstacleDetected = false;
         
         /// <summary>
         ///     Check if the player is in front of a vaultable obstacle.
         /// </summary>
         private bool DetectObstacles()
         {
-            if (Physics.Raycast(obstacleCheck.position, obstacleCheck.forward, out _obstacleHit, detectionRange))
+            LayerMask obstacleLayer = LayerMask.GetMask("Ground", "Default", "Wall");
+            if (Physics.SphereCast(obstacleCheck.position, obstacleCheckRadius, obstacleCheck.forward, out _obstacleHit, obstacleCheckLength))
+            // if (
+            //     Physics.SphereCast(obstacleCheck.position, obstacleCheckRadius, obstacleCheck.forward, out _obstacleHit, detectionRange, obstacleLayer) ||
+            //     Physics.SphereCast(obstacleCheck.position, obstacleCheckRadius, -obstacleCheck.forward, out _obstacleHit, detectionRange, obstacleLayer) ||
+            //     Physics.SphereCast(obstacleCheck.position, obstacleCheckRadius, -obstacleCheck.right, out _obstacleHit, detectionRange, obstacleLayer) ||
+            //     Physics.SphereCast(obstacleCheck.position, obstacleCheckRadius, obstacleCheck.right, out _obstacleHit, detectionRange, obstacleLayer)
+            //     )
             {
                 // TODO: create "obstacle" tag 
                 if (_obstacleHit.collider.CompareTag("obstacle"))
                 {
-                    float obstacleHeight = _obstacleHit.collider.bounds.size.y;
-                    float playerHeight = GetComponent<CapsuleCollider>().height;
+                    // float obstacleHeight = _obstacleHit.collider.bounds.size.y;
+                    // float playerHeight = GetComponent<CapsuleCollider>().height;
                     
-                    if (obstacleHeight <= (1.0f / 3.0f) * playerHeight)
-                    {
+                    // if (obstacleHeight <= (1.0f / 3.0f) * playerHeight)
+                    // {
                         // Debug.Log("Obstacle detected and suitable for vaulting.");
                         Vault(_obstacleHit.collider);
+                        isObstacleDetected = true;
                         return true;
-                    }
+                    // }
                 }
             }
+            isObstacleDetected = false;
             return false;
         }
         
