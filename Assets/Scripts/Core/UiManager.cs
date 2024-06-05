@@ -3,6 +3,7 @@ using EVOGAMI.Custom.Serializable;
 using EVOGAMI.Origami;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace EVOGAMI.Core
 {
@@ -17,7 +18,10 @@ namespace EVOGAMI.Core
 
         [Header("Score")]
         [SerializeField] private TextMeshProUGUI scoreString;
+        
+        [Header("Life")]
         [SerializeField] private GameObject[] lifeIcons;
+        [SerializeField] private Sprite lifeLostSprite;
 
         [Header("Form Icons")]
         public List<OriObjMapping> formIconMappings;
@@ -70,7 +74,8 @@ namespace EVOGAMI.Core
             if (lives < 0 || lives > PlayerManager.Instance.MaxLives)
                 return;
 
-            lifeIcons[lives].SetActive(false);
+            // lifeIcons[lives].SetActive(false);
+            lifeIcons[lives].GetComponent<Image>().sprite = lifeLostSprite;
         }
 
         /// <summary>
