@@ -34,6 +34,15 @@ namespace EVOGAMI.Movement
             // Bind input actions
             // InputManager.Instance.Controls.Player.Jump.performed += ctx => OnJumpPerformed();
         }
+            
+        protected override void Start()
+        {
+            base.Start();
+            if (!animator)
+            {
+                animator = GetComponent<Animator>();
+            }
+        }
         
         protected override void FixedUpdate()
         {
@@ -45,23 +54,15 @@ namespace EVOGAMI.Movement
                 base.FixedUpdate();
                 // GroundCheck();
                 // DetectObstacles();
+                ManageAnimations(Time.deltaTime);
             }
             
             // If human (hand) touching obstacle => ???
             // if (_isTouchingObstacle)
         }
         
-        private void ManageAnimations(float delta)
-        {
-            // animator.SetBool("isWalk", InputManager.IsMoving);  // Directly set the 'isWalk' animation parameter
-            float horizontal = InputManager.MoveInput.magnitude;
-            float vertical = PlayerManager.PlayerRb.velocity.y; 
-            
-            animator.SetFloat("vertical", vertical, 0.1f, delta);
-            animator.SetFloat("horizontal", horizontal, 0.1f, delta);
-        }
-        
         #region Input Events
+        
         protected override void OnJumpPerformed()
         {
             // Check if an obstacle is in front and vault if detected
@@ -77,6 +78,7 @@ namespace EVOGAMI.Movement
                 //PlayerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
         }
+        
         #endregion
         
         #region Vaulting
@@ -183,6 +185,23 @@ namespace EVOGAMI.Movement
             Gizmos.DrawLine(obstacleCheck.position, obstacleCheck.position + obstacleCheck.forward * obstacleCheckLength);
         }
         
+        #endregion
+
+        #region Animation
+
+        [SerializeField] private Animator animate;
+        
+        private void ManageAnimations(float delta)
+        {
+            // animator.SetBool("isWalk", InputManager.IsMoving);  // Directly set the 'isWalk' animation parameter
+            float horizontal = InputManager.MoveInput.magnitude;
+            float vertical = PlayerManager.PlayerRb.velocity.y; 
+            
+            animator.SetFloat("vertical", vertical, 0.1f, delta);
+            animator.SetFloat("horizontal", horizontal, 0.1f, delta);
+        }
+        
+
         #endregion
     }
 }
