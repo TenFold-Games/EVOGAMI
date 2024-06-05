@@ -18,6 +18,8 @@ namespace EVOGAMI.Core
 
         [Header("Score")]
         [SerializeField] private TextMeshProUGUI scoreString;
+
+        [SerializeField] private int totalCranes = 4;
         
         [Header("Life")]
         [SerializeField] private GameObject[] lifeIcons;
@@ -54,6 +56,7 @@ namespace EVOGAMI.Core
             }
             
             timer = 0;
+            scoreString.text = "0 / " + totalCranes;
         }
 
         private void Update()
@@ -96,7 +99,7 @@ namespace EVOGAMI.Core
         /// <param name="scores">The score that the player currently has</param>
         private void OnChangeScore(int scores)
         {
-            scoreString.text = scores.ToString();
+            scoreString.text = scores + " / " + totalCranes;
         }
     }
 }
