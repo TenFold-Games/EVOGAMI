@@ -17,6 +17,7 @@ namespace EVOGAMI.UI
             // Disable player input
             InputManager.Instance.Controls.UI.Cancel.performed += ctx => OnContinueClicked();
             InputManager.Instance.Controls.Player.Disable();
+            InputManager.Instance.Controls.Origami.Disable();
         }
 
         public override void Disable()
@@ -29,6 +30,7 @@ namespace EVOGAMI.UI
             // Enable player input
             InputManager.Instance.Controls.UI.Cancel.performed -= ctx => OnContinueClicked();
             InputManager.Instance.Controls.Player.Enable();
+            InputManager.Instance.Controls.Origami.Enable();
         }
 
         #region Callbacks
