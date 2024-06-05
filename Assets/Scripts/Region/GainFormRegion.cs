@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EVOGAMI.Region
 {
-    public class GainFormRegion : Region
+    public class GainFormRegion : RegionBase
     {
         public OrigamiContainer.OrigamiForm form;
 

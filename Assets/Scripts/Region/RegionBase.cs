@@ -3,7 +3,7 @@
 namespace EVOGAMI.Region
 {
     [RequireComponent(typeof(Collider))]
-    public abstract class Region : MonoBehaviour
+    public abstract class RegionBase : MonoBehaviour
     {
         private MeshRenderer _meshRenderer;
 

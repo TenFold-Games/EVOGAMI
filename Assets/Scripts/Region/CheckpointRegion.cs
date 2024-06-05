@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EVOGAMI.Region
 {
-    public class CheckpointRegion : Region
+    public class CheckpointRegion : RegionBase
     {
         [SerializeField] private Transform respawnPoint;
 

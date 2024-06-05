@@ -3,6 +3,7 @@ using EVOGAMI.Custom.Serializable;
 using EVOGAMI.Origami;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace EVOGAMI.Core
 {
@@ -17,7 +18,12 @@ namespace EVOGAMI.Core
 
         [Header("Score")]
         [SerializeField] private TextMeshProUGUI scoreString;
+
+        [SerializeField] private int totalCranes = 4;
+        
+        [Header("Life")]
         [SerializeField] private GameObject[] lifeIcons;
+        [SerializeField] private Sprite lifeLostSprite;
 
         [Header("Form Icons")]
         public List<OriObjMapping> formIconMappings;
@@ -50,6 +56,7 @@ namespace EVOGAMI.Core
             }
             
             timer = 0;
+            scoreString.text = "0 / " + totalCranes;
         }
 
         private void Update()
@@ -70,7 +77,8 @@ namespace EVOGAMI.Core
             if (lives < 0 || lives > PlayerManager.Instance.MaxLives)
                 return;
 
-            lifeIcons[lives].SetActive(false);
+            // lifeIcons[lives].SetActive(false);
+            lifeIcons[lives].GetComponent<Image>().sprite = lifeLostSprite;
         }
 
         /// <summary>
@@ -91,7 +99,7 @@ namespace EVOGAMI.Core
         /// <param name="scores">The score that the player currently has</param>
         private void OnChangeScore(int scores)
         {
-            scoreString.text = scores.ToString();
+            scoreString.text = scores + " / " + totalCranes;
         }
     }
 }
