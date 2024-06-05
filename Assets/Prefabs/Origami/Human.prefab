@@ -304,6 +304,11 @@ MonoBehaviour:
   groundCheckRadius: 0.2
   form: 2
   animator: {fileID: 3530546334031301269}
+  obstacleCheck: {fileID: 4171612908515767149}
+  obstacleCheckLength: 0.3
+  obstacleCheckRadius: 0.2
+  detectionRange: 0.1
+  vaultSpeed: 0.75
 --- !u!95 &3530546334031301269
 Animator:
   serializedVersion: 5
