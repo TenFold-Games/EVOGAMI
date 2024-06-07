@@ -17,7 +17,6 @@ namespace EVOGAMI.Movement
         
         [SerializeField] private float obstacleCheckLength = 0.3f;
         [SerializeField] private float obstacleCheckRadius = 0.2f;
-        [SerializeField] private float detectionRange = 0.1f;
         private RaycastHit _obstacleHit;
            
         [Header("Vaulting")]
@@ -107,8 +106,6 @@ namespace EVOGAMI.Movement
         
         #region Collision
 
-        private bool isObstacleDetected = false;
-        
         /// <summary>
         ///     Check if the player is in front of a vaultable obstacle.
         /// </summary>
@@ -126,12 +123,10 @@ namespace EVOGAMI.Movement
                     // {
                         // Debug.Log("Obstacle detected and suitable for vaulting.");
                         Vault(_obstacleHit.collider);
-                        isObstacleDetected = true;
                         return true;
                     // }
                 }
             }
-            isObstacleDetected = false;
             return false;
         }
         
