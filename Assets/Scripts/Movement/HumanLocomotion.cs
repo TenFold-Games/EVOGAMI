@@ -23,6 +23,19 @@ namespace EVOGAMI.Movement
         [SerializeField] private float vaultSpeed = .75f;
         private bool isVaulting = false;
         
+        [Header("PickUp and Drop")]
+        //reference to your hands/the position where you want your object to go
+        [SerializeField] public GameObject myHands; 
+        
+        //a bool to see if you can or cant pick up the item
+        [SerializeField] private bool canpickup;
+        
+        // the game object on which you collided with
+        [SerializeField] private GameObject objectIwantToPickUp;
+        
+        // a bool to see if you have an item in your hand
+        [SerializeField] private bool hasItem; 
+        
         private void Awake()
         {
             // Set the form
@@ -36,6 +49,9 @@ namespace EVOGAMI.Movement
             {
                 animator = GetComponent<Animator>();
             }
+            
+            canpickup = false;
+            hasItem = false;
         }
         
         protected override void FixedUpdate()
@@ -45,6 +61,24 @@ namespace EVOGAMI.Movement
                 base.FixedUpdate();
                 ManageAnimations(Time.deltaTime);
             }
+            
+            if (canpickup)
+            {
+                if (Input.GetKeyDown("e"))
+                {
+                    objectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = true;
+                    objectIwantToPickUp.transform.position = myHands.transform.position;
+                    objectIwantToPickUp.transform.parent = myHands.transform;
+                    hasItem = true;
+                }
+            }
+            if (Input.GetKeyDown("q") && hasItem)
+            {
+                objectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false;
+                objectIwantToPickUp.transform.parent = null;
+                hasItem = false;
+            }
+            
         }
         
         #region Input Events
@@ -52,7 +86,7 @@ namespace EVOGAMI.Movement
         protected override void OnJumpPerformed()
         {
             // Check if an obstacle is in front and vault if detected
-            if (DetectObstacles())
+            if (DetectObject())
             {
                 return;
             }
@@ -109,23 +143,38 @@ namespace EVOGAMI.Movement
         /// <summary>
         ///     Check if the player is in front of a vaultable obstacle.
         /// </summary>
-        private bool DetectObstacles()
+        private bool DetectObject()
         {
             LayerMask obstacleLayer = LayerMask.GetMask("Ground", "Default", "Wall");
             if (Physics.SphereCast(obstacleCheck.position, obstacleCheckRadius, obstacleCheck.forward, out _obstacleHit, obstacleCheckLength))
             {
                 if (_obstacleHit.collider.CompareTag("obstacle"))
                 {
+                    Vault(_obstacleHit.collider);
+                    return true;
                     // float obstacleHeight = _obstacleHit.collider.bounds.size.y;
                     // float playerHeight = GetComponent<CapsuleCollider>().height;
                     
                     // if (obstacleHeight <= (1.0f / 3.0f) * playerHeight)
                     // {
                         // Debug.Log("Obstacle detected and suitable for vaulting.");
-                        Vault(_obstacleHit.collider);
-                        return true;
+                        //Vault(_obstacleHit.collider);
+                        // return true;
                     // }
                 }
+
+                if (_obstacleHit.collider.CompareTag("movable"))
+                {
+                    canpickup = true;
+                    objectIwantToPickUp = _obstacleHit.collider.gameObject;
+                    // objectIwantToPickUp = hit.collider.gameObject;
+                }
+                else
+                {
+                    canpickup = false;
+                    objectIwantToPickUp = null;
+                }
+                
             }
             return false;
         }
@@ -160,6 +209,31 @@ namespace EVOGAMI.Movement
     }
 }
 
+/* original
+private bool DetectObstacles()
+   {
+       LayerMask obstacleLayer = LayerMask.GetMask("Ground", "Default", "Wall");
+       if (Physics.SphereCast(obstacleCheck.position, obstacleCheckRadius, obstacleCheck.forward, out _obstacleHit, obstacleCheckLength))
+       {
+           if (_obstacleHit.collider.CompareTag("obstacle"))
+           {
+               Vault(_obstacleHit.collider);
+               return true;
+               // float obstacleHeight = _obstacleHit.collider.bounds.size.y;
+               // float playerHeight = GetComponent<CapsuleCollider>().height;
+               
+               // if (obstacleHeight <= (1.0f / 3.0f) * playerHeight)
+               // {
+                   // Debug.Log("Obstacle detected and suitable for vaulting.");
+                   //Vault(_obstacleHit.collider);
+                   // return true;
+               // }
+           }
+       }
+       return false;
+   }
+*/
+
 /*
  ARCHIVED METHODS 2 Disable/Enable player control
  
@@ -185,3 +259,86 @@ namespace EVOGAMI.Movement
             InputManager.Instance.Controls.Player.Enable();
         }
 */
+
+/*
+    [Header("Grab and Drop")]
+   [SerializeField] private Transform playerCameraTransform;
+   [SerializeField] private Transform objectGrabPointTransform;
+   [SerializeField] private LayerMask pickUpLayerMask;
+
+   private ObjectGrabbable objectGrabbable;
+   
+   <FixedUpdate>
+   
+   if (Input.GetKeyDown(KeyCode.E)) {
+       Debug.Log("E command received. Started pickup");
+       if (objectGrabbable == null) {
+           // Not carrying an object, try to grab
+           Debug.Log("Attempting pick up");
+           float pickUpDistance = 4f;
+           if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask)) {
+               Debug.Log("Raycast successful");
+               if (raycastHit.transform.TryGetComponent(out objectGrabbable)) {
+                   objectGrabbable.Grab(objectGrabPointTransform);
+                   Debug.Log("Pick Up successful");
+               }
+           }
+           else
+           {
+               Debug.Log("Pick Up failed.");
+           }
+           //Debug.Log("Pick Up failed.");
+       } else {
+           Debug.Log("Raycast did not hit any object");
+           // Currently carrying something, drop
+           objectGrabbable.Drop();
+           objectGrabbable = null;
+       }
+   }
+   
+#region Grab and Drop items
+
+   private void GrabObject()
+   {
+       
+   }
+
+   private void DropObject()
+   {
+       
+   }
+#endregion
+
+*/
+
+        /*
+        [Header("PickUp and Drop Items")]
+        [SerializeField] private LayerMask movableLayerMask;
+        [SerializeField] private Transform playerCameraTransform;
+
+        // text: "use E key to pick up objects"
+        // [SerializeField] GameObject pickUpUI;
+
+        [SerializeField]
+        [Min(1)]
+        private float hitRange = 3;
+
+        private RaycastHit hit;
+
+        private void Update()
+        {
+            Debug.DrawRay(playerCameraTransform.position, playerCameraTransform.forward * hitRange, Color.red);
+            if (hit.collider != null)
+            {
+                hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
+                // pickUpUI.SetActive(false);
+            }
+
+            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange,
+                    movableLayerMask))
+            {
+                hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
+                // pickUpUI.SetActive(true);
+            }
+        }
+        */
