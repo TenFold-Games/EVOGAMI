@@ -38,11 +38,16 @@ namespace EVOGAMI.Movement
         
         // Bool to prevent multiple inputs for picking up
         private bool isPickingUp = false;
+        [SerializeField] private HumanGrabTrigger grabTrigger;
         
         private void Awake()
         {
             // Set the form
             form = OrigamiContainer.OrigamiForm.Human;
+            
+            if (!grabTrigger) grabTrigger = GetComponentInChildren<HumanGrabTrigger>();
+            grabTrigger.TriggerEnterCallback += PickUpTriggerEnterCallback;
+            grabTrigger.TriggerExitCallback += PickUpTriggerExitCallback;
         }
             
         protected override void Start()
@@ -69,28 +74,6 @@ namespace EVOGAMI.Movement
                 base.FixedUpdate();
                 ManageAnimations(Time.deltaTime);
             }
-            
-            /*
-            if (canpickup)
-            {
-                Debug.Log("FixedUpdate: canpickup is true ");
-                if (Input.GetKeyDown("e")) // Change key if necessary
-                {
-                    Debug.Log("FixedUpdate: detected key e pressed ");
-                    objectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = true;
-                    objectIwantToPickUp.transform.position = myHands.transform.position;
-                    objectIwantToPickUp.transform.parent = myHands.transform;
-                    hasItem = true;
-                }
-            }
-            if (Input.GetKeyDown("q") && hasItem) // Change key if necessary
-            {
-                Debug.Log("FixedUpdate: detected key q pressed");
-                objectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false;
-                objectIwantToPickUp.transform.parent = null;
-                hasItem = false;
-            }
-            */
         }
         
         #region Input Events
@@ -185,27 +168,24 @@ namespace EVOGAMI.Movement
             // Debug.Log("Item dropped successfully.");
         }
         
-        private void OnTriggerEnter(Collider other)
+        private void PickUpTriggerEnterCallback(GameObject other)
         {
-            // Debug.Log("Entered trigger with object tagged: " + other.gameObject.tag);
-            if (other.gameObject.CompareTag("PickUp"))
-            {
-                // Debug.Log("Entered trigger with a movable object.");
-                canpickup = true;
-                objectIwantToPickUp = other.gameObject;
-            }
+            if (!other.CompareTag("PickUp")) return;
+            if (hasItem) return; // Prevent picking up multiple items
+            
+            canpickup = true;
+            objectIwantToPickUp = other;
         }
-
-        private void OnTriggerExit(Collider other)
+        
+        private void PickUpTriggerExitCallback(GameObject other)
         {
-            // Debug.Log("Exited trigger with object tagged: " + other.gameObject.tag);
-            if (other.gameObject.CompareTag("PickUp"))
-            {
-                // Debug.Log("Exited trigger with a movable object.");
-                canpickup = false;
-                objectIwantToPickUp = null;
-            }
+            if (!other.CompareTag("PickUp")) return;
+            if (hasItem) return; // Prevent picking up multiple items
+            
+            canpickup = false;
+            objectIwantToPickUp = null;
         }
+        
         #endregion
         
         #region Collision
@@ -223,15 +203,6 @@ namespace EVOGAMI.Movement
                 {
                     Vault(_obstacleHit.collider);
                     return true;
-                    // float obstacleHeight = _obstacleHit.collider.bounds.size.y;
-                    // float playerHeight = GetComponent<CapsuleCollider>().height;
-                    
-                    // if (obstacleHeight <= (1.0f / 3.0f) * playerHeight)
-                    // {
-                        // Debug.Log("Obstacle detected and suitable for vaulting.");
-                        //Vault(_obstacleHit.collider);
-                        // return true;
-                    // }
                 }
             }
             return false;
