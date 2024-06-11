@@ -56,6 +56,10 @@ namespace EVOGAMI.Movement
             canpickup = false;
             hasItem = false;
             // Debug.Log("Start: canpickup = " + canpickup + ", hasItem = " + hasItem);
+            
+            // Set the pick-up and drop callbacks
+            InputManager.OnPickUpPerformed += PickUpObject;
+            InputManager.OnDropPerformed += DropObject;
         }
         
         protected override void FixedUpdate()
@@ -88,39 +92,6 @@ namespace EVOGAMI.Movement
             }
             */
         }
-        
-        protected void Update()
-        {
-            // Pick-up and drop logic
-            if (canpickup && !isPickingUp)
-            {
-                if (Input.GetKeyDown("e")) // Change key if necessary
-                {
-                    // Debug.Log("Attempting to pick up the item...");
-                    if (objectIwantToPickUp != null)
-                    {
-                        StartCoroutine(PickUpObject());
-                    }
-                    else
-                    {
-                        // Debug.Log("objectIwantToPickUp is null.");
-                    }
-                }
-            }
-            if (Input.GetKeyDown("q") && hasItem) // Change key if necessary
-            {
-                // Debug.Log("Attempting to drop the item...");
-                if (objectIwantToPickUp != null)
-                {
-                    DropObject();
-                }
-                else
-                {
-                    // Debug.Log("objectIwantToPickUp is null during drop.");
-                }
-            }
-        }
-        
         
         #region Input Events
         
@@ -180,8 +151,18 @@ namespace EVOGAMI.Movement
         #endregion
         
         #region Grab and Drop items
+
+        private void PickUpObject()
+        {
+            // Nothing to pick up
+            if (!objectIwantToPickUp) return; 
+            // Prevent multiple inputs
+            if (!canpickup || isPickingUp) return;
+            
+            StartCoroutine(PickUpObjectCoroutine());
+        }
         
-        private IEnumerator PickUpObject()
+        private IEnumerator PickUpObjectCoroutine()
         {
             isPickingUp = true;
             objectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = true;
@@ -195,11 +176,15 @@ namespace EVOGAMI.Movement
 
         private void DropObject()
         {
+            // Nothing to drop
+            if (!hasItem || !objectIwantToPickUp) return;
+            
             objectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false;
             objectIwantToPickUp.transform.parent = null;
             hasItem = false;
             // Debug.Log("Item dropped successfully.");
         }
+        
         private void OnTriggerEnter(Collider other)
         {
             // Debug.Log("Entered trigger with object tagged: " + other.gameObject.tag);

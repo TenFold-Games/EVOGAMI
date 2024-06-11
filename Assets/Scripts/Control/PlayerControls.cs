@@ -64,6 +64,24 @@ namespace EVOGAMI.Control
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PickUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""088d9388-6887-4cf0-9852-2e472d94aba2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drop"",
+                    ""type"": ""Button"",
+                    ""id"": ""b60a4f48-3427-46ab-9a89-e2f5e8bebe08"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -174,6 +192,50 @@ namespace EVOGAMI.Control
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Sprint_Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25211a2b-4305-46e3-9045-54aa1e7c5257"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ecde954-76c0-4ec7-8709-b118fbd7ecdd"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8607326-25e3-4853-851e-3cfc79babb36"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b79fa96-2593-443c-b0a8-fdfd36bc8dd1"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -936,6 +998,8 @@ namespace EVOGAMI.Control
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Sprint_Hold = m_Player.FindAction("Sprint_Hold", throwIfNotFound: true);
             m_Player_Sprint_Press = m_Player.FindAction("Sprint_Press", throwIfNotFound: true);
+            m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
+            m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
             // Origami
             m_Origami = asset.FindActionMap("Origami", throwIfNotFound: true);
             m_Origami_Transform = m_Origami.FindAction("Transform", throwIfNotFound: true);
@@ -1025,6 +1089,8 @@ namespace EVOGAMI.Control
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Sprint_Hold;
         private readonly InputAction m_Player_Sprint_Press;
+        private readonly InputAction m_Player_PickUp;
+        private readonly InputAction m_Player_Drop;
         public struct PlayerActions
         {
             private @PlayerControls m_Wrapper;
@@ -1033,6 +1099,8 @@ namespace EVOGAMI.Control
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Sprint_Hold => m_Wrapper.m_Player_Sprint_Hold;
             public InputAction @Sprint_Press => m_Wrapper.m_Player_Sprint_Press;
+            public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
+            public InputAction @Drop => m_Wrapper.m_Player_Drop;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1054,6 +1122,12 @@ namespace EVOGAMI.Control
                 @Sprint_Press.started += instance.OnSprint_Press;
                 @Sprint_Press.performed += instance.OnSprint_Press;
                 @Sprint_Press.canceled += instance.OnSprint_Press;
+                @PickUp.started += instance.OnPickUp;
+                @PickUp.performed += instance.OnPickUp;
+                @PickUp.canceled += instance.OnPickUp;
+                @Drop.started += instance.OnDrop;
+                @Drop.performed += instance.OnDrop;
+                @Drop.canceled += instance.OnDrop;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1070,6 +1144,12 @@ namespace EVOGAMI.Control
                 @Sprint_Press.started -= instance.OnSprint_Press;
                 @Sprint_Press.performed -= instance.OnSprint_Press;
                 @Sprint_Press.canceled -= instance.OnSprint_Press;
+                @PickUp.started -= instance.OnPickUp;
+                @PickUp.performed -= instance.OnPickUp;
+                @PickUp.canceled -= instance.OnPickUp;
+                @Drop.started -= instance.OnDrop;
+                @Drop.performed -= instance.OnDrop;
+                @Drop.canceled -= instance.OnDrop;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1373,6 +1453,8 @@ namespace EVOGAMI.Control
             void OnJump(InputAction.CallbackContext context);
             void OnSprint_Hold(InputAction.CallbackContext context);
             void OnSprint_Press(InputAction.CallbackContext context);
+            void OnPickUp(InputAction.CallbackContext context);
+            void OnDrop(InputAction.CallbackContext context);
         }
         public interface IOrigamiActions
         {
