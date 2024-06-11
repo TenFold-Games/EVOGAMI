@@ -23,10 +23,31 @@ namespace EVOGAMI.Movement
         [SerializeField] private float vaultSpeed = .75f;
         private bool isVaulting = false;
         
+        [Header("PickUp and Drop")]
+        //reference to your hands/the position where you want your object to go
+        [SerializeField] public GameObject myHands; 
+        
+        //a bool to see if you can or cant pick up the item
+        [SerializeField] private bool canpickup;
+        
+        // the game object on which you collided with
+        [SerializeField] private GameObject objectIwantToPickUp;
+        
+        // a bool to see if you have an item in your hand
+        [SerializeField] private bool hasItem;
+        
+        // Bool to prevent multiple inputs for picking up
+        private bool isPickingUp = false;
+        [SerializeField] private HumanGrabTrigger grabTrigger;
+        
         private void Awake()
         {
             // Set the form
             form = OrigamiContainer.OrigamiForm.Human;
+            
+            if (!grabTrigger) grabTrigger = GetComponentInChildren<HumanGrabTrigger>();
+            grabTrigger.TriggerEnterCallback += PickUpTriggerEnterCallback;
+            grabTrigger.TriggerExitCallback += PickUpTriggerExitCallback;
         }
             
         protected override void Start()
@@ -36,6 +57,14 @@ namespace EVOGAMI.Movement
             {
                 animator = GetComponent<Animator>();
             }
+            
+            canpickup = false;
+            hasItem = false;
+            // Debug.Log("Start: canpickup = " + canpickup + ", hasItem = " + hasItem);
+            
+            // Set the pick-up and drop callbacks
+            InputManager.OnPickUpPerformed += PickUpObject;
+            InputManager.OnDropPerformed += DropObject;
         }
         
         protected override void FixedUpdate()
@@ -52,7 +81,7 @@ namespace EVOGAMI.Movement
         protected override void OnJumpPerformed()
         {
             // Check if an obstacle is in front and vault if detected
-            if (DetectObstacles())
+            if (DetectObstacle())
             {
                 return;
             }
@@ -104,27 +133,76 @@ namespace EVOGAMI.Movement
         
         #endregion
         
+        #region Grab and Drop items
+
+        private void PickUpObject()
+        {
+            // Nothing to pick up
+            if (!objectIwantToPickUp) return; 
+            // Prevent multiple inputs
+            if (!canpickup || isPickingUp) return;
+            
+            StartCoroutine(PickUpObjectCoroutine());
+        }
+        
+        private IEnumerator PickUpObjectCoroutine()
+        {
+            isPickingUp = true;
+            objectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = true;
+            objectIwantToPickUp.transform.position = myHands.transform.position;
+            objectIwantToPickUp.transform.parent = myHands.transform;
+            hasItem = true;
+            // Debug.Log("Item picked up successfully.");
+            yield return new WaitForSeconds(0.2f); // Add a slight delay to debounce input
+            isPickingUp = false;
+        }
+
+        private void DropObject()
+        {
+            // Nothing to drop
+            if (!hasItem || !objectIwantToPickUp) return;
+            
+            objectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false;
+            objectIwantToPickUp.transform.parent = null;
+            hasItem = false;
+            // Debug.Log("Item dropped successfully.");
+        }
+        
+        private void PickUpTriggerEnterCallback(GameObject other)
+        {
+            if (!other.CompareTag("PickUp")) return;
+            if (hasItem) return; // Prevent picking up multiple items
+            
+            canpickup = true;
+            objectIwantToPickUp = other;
+        }
+        
+        private void PickUpTriggerExitCallback(GameObject other)
+        {
+            if (!other.CompareTag("PickUp")) return;
+            if (hasItem) return; // Prevent picking up multiple items
+            
+            canpickup = false;
+            objectIwantToPickUp = null;
+        }
+        
+        #endregion
+        
         #region Collision
 
         /// <summary>
         ///     Check if the player is in front of a vaultable obstacle.
         /// </summary>
-        private bool DetectObstacles()
+        private bool DetectObstacle()
         {
             LayerMask obstacleLayer = LayerMask.GetMask("Ground", "Default", "Wall");
+            // Debug.Log("DetectObject: sphere cast to detect obstacle");
             if (Physics.SphereCast(obstacleCheck.position, obstacleCheckRadius, obstacleCheck.forward, out _obstacleHit, obstacleCheckLength))
             {
                 if (_obstacleHit.collider.CompareTag("obstacle"))
                 {
-                    // float obstacleHeight = _obstacleHit.collider.bounds.size.y;
-                    // float playerHeight = GetComponent<CapsuleCollider>().height;
-                    
-                    // if (obstacleHeight <= (1.0f / 3.0f) * playerHeight)
-                    // {
-                        // Debug.Log("Obstacle detected and suitable for vaulting.");
-                        Vault(_obstacleHit.collider);
-                        return true;
-                    // }
+                    Vault(_obstacleHit.collider);
+                    return true;
                 }
             }
             return false;
@@ -159,29 +237,3 @@ namespace EVOGAMI.Movement
         #endregion
     }
 }
-
-/*
- ARCHIVED METHODS 2 Disable/Enable player control
- 
-        private void DisablePlayerControl()
-        {
-            isVaulting = true;
-
-            // Disable player input.
-            // InputManager.Instance.Controls.Disable();
-
-            // Disable player movement input.
-            InputManager.Instance.Controls.Player.Disable();
-        }
-
-        private void EnablePlayerControl()
-        {
-            isVaulting = false;
-
-            // Re-enable player input.
-            // InputManager.Instance.Controls.Enable();
-
-            // Re-enable player movement input.
-            InputManager.Instance.Controls.Player.Enable();
-        }
-*/
