@@ -50,6 +50,14 @@ namespace EVOGAMI.Core
             Controls.Player.Sprint_Press.started += SprintPressStartedCallback;
             Controls.Player.Sprint_Press.performed += SprintPressPerformedCallback;
             Controls.Player.Sprint_Press.canceled += SprintPressCancelledCallback;
+            // Player - Pick Up
+            Controls.Player.PickUp.started += PickUpStartedCallback;
+            Controls.Player.PickUp.performed += PickUpPerformedCallback;
+            Controls.Player.PickUp.canceled += PickUpCancelledCallback;
+            // Player - Drop
+            Controls.Player.Drop.started += DropStartedCallback;
+            Controls.Player.Drop.performed += DropPerformedCallback;
+            Controls.Player.Drop.canceled += DropCancelledCallback;
             // Origami - Transform
             Controls.Origami.Transform.performed += GetFormFromInput;
             Controls.Origami.Transform.canceled += _ => NewForm = Origami.OrigamiContainer.OrigamiForm.None;
@@ -141,6 +149,36 @@ namespace EVOGAMI.Core
             OnSprintPressCancelled();
         }
         
+        private void PickUpStartedCallback(InputAction.CallbackContext ctx)
+        {
+            OnPickUpStarted();
+        }
+        
+        private void PickUpPerformedCallback(InputAction.CallbackContext ctx)
+        {
+            OnPickUpPerformed();
+        }
+        
+        private void PickUpCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            OnPickUpCancelled();
+        }
+        
+        private void DropStartedCallback(InputAction.CallbackContext ctx)
+        {
+            OnDropStarted();
+        }
+        
+        private void DropPerformedCallback(InputAction.CallbackContext ctx)
+        {
+            OnDropPerformed();
+        }
+        
+        private void DropCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            OnDropCancelled();
+        }
+        
         private void PauseStartedCallback(InputAction.CallbackContext ctx)
         {
             OnPauseStarted();
@@ -200,6 +238,18 @@ namespace EVOGAMI.Core
         public event SprintCallback OnSprintPressStarted = delegate { };
         public event SprintCallback OnSprintPressPerformed = delegate { };
         public event SprintCallback OnSprintPressCancelled = delegate { };
+        
+        // Pick Up
+        public delegate void PickUpCallback();
+        public event PickUpCallback OnPickUpStarted = delegate { };
+        public event PickUpCallback OnPickUpPerformed = delegate { };
+        public event PickUpCallback OnPickUpCancelled = delegate { };
+        
+        // Drop
+        public delegate void DropCallback();
+        public event DropCallback OnDropStarted = delegate { };
+        public event DropCallback OnDropPerformed = delegate { };
+        public event DropCallback OnDropCancelled = delegate { };
         
         // Pause
         public delegate void PauseCallback();
