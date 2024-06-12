@@ -25,7 +25,10 @@ namespace EVOGAMI.Interactable
         
         private void OnBallEnter()
         {
-            if (ballDetector.Other.layer == LayerMask.NameToLayer("Launchable")) _ballInPlace = true;
+            if (ballDetector.Other.layer != LayerMask.NameToLayer("Launchable")) return;
+            
+            _ballInPlace = true;
+            _objectLauncher.SetBall(ballDetector.Other);
         }
         
         private void OnBallStay()

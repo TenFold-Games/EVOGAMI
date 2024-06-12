@@ -18,11 +18,34 @@ namespace EVOGAMI.Region
         public TriggerEnterCallback TriggerEnter => m_onTriggerEnter;
         public TriggerStayCallback TriggerStay => m_onTriggerStay;
         public TriggerExitCallback TriggerExit => m_onTriggerExit;
+
+        [SerializeField] private LayerMask layerMask = 0;
+        [SerializeField] private string otherTag = "Untagged";
         
         public GameObject Other { get; private set; }
+
+        private bool ConditionMet(Collider other)
+        {
+            if (layerMask != 0)
+            {
+                Debug.Log(other.gameObject.layer);
+                if ((layerMask & (1 << other.gameObject.layer)) == 0) return false;
+            }
+            
+            Debug.Log(other.gameObject.tag);
+            if (otherTag != "Untagged" && !string.IsNullOrEmpty(otherTag))
+            {
+                if (!other.gameObject.CompareTag(otherTag)) return false;
+            }
+            
+            return true;
+        }
         
         private void OnTriggerEnter(Collider other)
         {
+            if (!ConditionMet(other)) return;
+            
+            Debug.Log("Trigger Enter");
             Other = other.gameObject;
             m_onTriggerEnter.Invoke();
         }

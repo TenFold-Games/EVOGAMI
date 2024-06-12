@@ -142,6 +142,8 @@ namespace EVOGAMI.Movement
             // Prevent multiple inputs
             if (!canpickup || isPickingUp) return;
             
+            PlayerManager.PlayerRb.mass += objectIwantToPickUp.GetComponent<Rigidbody>().mass;
+            
             StartCoroutine(PickUpObjectCoroutine());
         }
         
@@ -157,19 +159,27 @@ namespace EVOGAMI.Movement
             isPickingUp = false;
         }
 
-        private void DropObject()
+        public void DropObject()
         {
             // Nothing to drop
             if (!hasItem || !objectIwantToPickUp) return;
             
+            PlayerManager.PlayerRb.mass -= objectIwantToPickUp.GetComponent<Rigidbody>().mass;
+            
+            Rigidbody rb = objectIwantToPickUp.GetComponent<Rigidbody>();
+            
             objectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false;
             objectIwantToPickUp.transform.parent = null;
+            rb.AddForce(rb.mass * PlayerManager.Player.transform.forward, ForceMode.Impulse);
+            
             hasItem = false;
             // Debug.Log("Item dropped successfully.");
         }
         
         private void PickUpTriggerEnterCallback(GameObject other)
         {
+            if (PlayerManager.PlayerOrigami.StateMachine.CurrentState.Form != OrigamiContainer.OrigamiForm.Human) return;
+            
             if (!other.CompareTag("PickUp")) return;
             if (hasItem) return; // Prevent picking up multiple items
             
@@ -179,6 +189,8 @@ namespace EVOGAMI.Movement
         
         private void PickUpTriggerExitCallback(GameObject other)
         {
+            if (PlayerManager.PlayerOrigami.StateMachine.CurrentState.Form != OrigamiContainer.OrigamiForm.Human) return;
+            
             if (!other.CompareTag("PickUp")) return;
             if (hasItem) return; // Prevent picking up multiple items
             

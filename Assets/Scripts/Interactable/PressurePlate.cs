@@ -8,7 +8,7 @@ namespace EVOGAMI.Interactable
     public class PressurePlate : MonoBehaviour
     {
         private Collider _collider;
-        [SerializeField] private int minimumMass;
+        [SerializeField] private float minimumMass;
 
         [Serializable] public class PlatePressedEvent : UnityEvent {}
         [Serializable] public class PlateHoldEvent : UnityEvent {}
