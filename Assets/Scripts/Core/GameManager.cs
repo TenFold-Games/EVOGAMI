@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using EVOGAMI.Region;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace EVOGAMI.Core
 {
@@ -66,6 +67,11 @@ namespace EVOGAMI.Core
             Debug.Log("Exiting game...");
             // TODO: Save game state
             Application.Quit();
+        }
+
+        public void FinishLevel()
+        {
+            Debug.Log("Finish level!");
         }
     }
 }

@@ -7,5 +7,6 @@ namespace EVOGAMI.Custom.Scriptable
     public class OrigamiSettings : ScriptableObject
     {
         public OrigamiContainer.OrigamiForm initialForm;
+        public int scoreToWin = 4;
     }
 }

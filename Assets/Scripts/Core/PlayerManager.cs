@@ -134,6 +134,9 @@ namespace EVOGAMI.Core
         {
             _score++;
             OnChangeScore(_score);
+
+            if (_score == origamiSettings.scoreToWin)
+                GameManager.Instance.FinishLevel();
         }
 
         #endregion
