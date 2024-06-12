@@ -10,6 +10,9 @@ namespace EVOGAMI.Core
         [SerializeField] private CheckpointRegion[] checkpoints;
 
         public CheckpointRegion currentCheckpoint;
+        
+        [SerializeField] GameObject mainCanvas;
+        [SerializeField] GameObject finishLevelUi;
 
         // TODO: Optimize this mess
         // private Dictionary<CheckpointRegion, bool> _checkpointStates;
@@ -72,6 +75,17 @@ namespace EVOGAMI.Core
         public void FinishLevel()
         {
             Debug.Log("Finish level!");
+            
+            StartCoroutine(FinishLevelCoroutine());
+        }
+        
+        private System.Collections.IEnumerator FinishLevelCoroutine()
+        {
+            yield return new WaitForSeconds(3);
+            Debug.Log("Level finished!");
+            
+            mainCanvas.SetActive(false);
+            finishLevelUi.SetActive(true);
         }
     }
 }
