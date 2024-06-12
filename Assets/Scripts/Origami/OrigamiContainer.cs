@@ -4,6 +4,7 @@ using Cinemachine;
 using EVOGAMI.Custom.Scriptable;
 using EVOGAMI.Custom.Serializable;
 using EVOGAMI.Core;
+using EVOGAMI.Movement;
 using EVOGAMI.Origami.States;
 using UnityEngine;
 
@@ -40,8 +41,10 @@ namespace EVOGAMI.Origami
         private OrigamiHumanState _humanState;
         private OrigamiPlaneState _planeState;
 
+        [SerializeField] public HumanLocomotion humanLocomotion;
+
         // State machine
-        private OrigamiStateMachine _stateMachine;
+        public OrigamiStateMachine StateMachine;
         
         // Initial form
         [SerializeField] private OrigamiSettings settings;
@@ -49,7 +52,7 @@ namespace EVOGAMI.Origami
         public void Awake()
         {
             // State machine
-            _stateMachine = new OrigamiStateMachine(this);
+            StateMachine = new OrigamiStateMachine(this);
 
             // States
             _frogState = new OrigamiFrogState(this, OrigamiForm.Frog);
@@ -68,19 +71,19 @@ namespace EVOGAMI.Origami
             switch (settings.initialForm)
             {
                 case OrigamiForm.Frog:
-                    _stateMachine.Initialize(_frogState);
+                    StateMachine.Initialize(_frogState);
                     break;
                 case OrigamiForm.Plane:
-                    _stateMachine.Initialize(_planeState);
+                    StateMachine.Initialize(_planeState);
                     break;
                 case OrigamiForm.Bug:
-                    _stateMachine.Initialize(_bugState);
+                    StateMachine.Initialize(_bugState);
                     break;
                 case OrigamiForm.Human:
-                    _stateMachine.Initialize(_humanState);
+                    StateMachine.Initialize(_humanState);
                     break;
                 default:
-                    _stateMachine.Initialize(_humanState);
+                    StateMachine.Initialize(_humanState);
                     break;
             }
             
@@ -93,12 +96,12 @@ namespace EVOGAMI.Origami
 
         public void Update()
         {
-            _stateMachine.Update(Time.deltaTime);
+            StateMachine.Update(Time.deltaTime);
         }
 
         public void FixedUpdate()
         {
-            _stateMachine.FixedUpdate(Time.fixedDeltaTime);
+            StateMachine.FixedUpdate(Time.fixedDeltaTime);
         }
 
         /// <summary>
@@ -112,19 +115,19 @@ namespace EVOGAMI.Origami
             {
                 case OrigamiForm.Frog:
                     if (!_playerManager.GainedForms[OrigamiForm.Frog]) return; // Form not gained
-                    _stateMachine.ChangeState(_frogState);
+                    StateMachine.ChangeState(_frogState);
                     break;
                 case OrigamiForm.Plane:
                     if (!_playerManager.GainedForms[OrigamiForm.Plane]) return; // Form not gained
-                    _stateMachine.ChangeState(_planeState);
+                    StateMachine.ChangeState(_planeState);
                     break;
                 case OrigamiForm.Bug:
                     if (!_playerManager.GainedForms[OrigamiForm.Bug]) return; // Form not gained
-                    _stateMachine.ChangeState(_bugState);
+                    StateMachine.ChangeState(_bugState);
                     break;
                 case OrigamiForm.Human:
                     if (!_playerManager.GainedForms[OrigamiForm.Human]) return; // Form not gained
-                    _stateMachine.ChangeState(_humanState);
+                    StateMachine.ChangeState(_humanState);
                     break;
                 case OrigamiForm.None:
                     break;

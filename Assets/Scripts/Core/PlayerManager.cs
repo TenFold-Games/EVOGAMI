@@ -14,6 +14,7 @@ namespace EVOGAMI.Core
         // Player
         public GameObject Player { get; private set; }
         public Rigidbody PlayerRb { get; private set; }
+        public OrigamiContainer PlayerOrigami { get; private set; }
         
         // Settings
         [SerializeField] private OrigamiSettings origamiSettings;
@@ -51,6 +52,9 @@ namespace EVOGAMI.Core
             
             // Set scores
             _score = 0;
+            
+            // Set player origami
+            PlayerOrigami = Player.GetComponent<OrigamiContainer>();
         }
 
         #region Spawning
