@@ -82,6 +82,24 @@ namespace EVOGAMI.Control
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pull_Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""9de9f61f-ed24-475e-b370-0ccbfcd11245"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pull_Execute"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ad7f68b-cb81-4cbc-a54c-c95797981f7e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -231,11 +249,55 @@ namespace EVOGAMI.Control
                 {
                     ""name"": """",
                     ""id"": ""3b79fa96-2593-443c-b0a8-fdfd36bc8dd1"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""385b3eda-1f39-4156-9549-97f26412c27f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pull_Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b833530f-3771-49aa-926f-93a84eaab4f5"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pull_Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c2f8be6-47d0-4498-a266-5a7d9cfda577"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pull_Execute"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e58c89d4-4ad2-4dbc-ab75-8cfae4c677b4"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pull_Execute"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -921,6 +983,8 @@ namespace EVOGAMI.Control
             m_Player_Sprint_Press = m_Player.FindAction("Sprint_Press", throwIfNotFound: true);
             m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
             m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
+            m_Player_Pull_Aim = m_Player.FindAction("Pull_Aim", throwIfNotFound: true);
+            m_Player_Pull_Execute = m_Player.FindAction("Pull_Execute", throwIfNotFound: true);
             // Origami
             m_Origami = asset.FindActionMap("Origami", throwIfNotFound: true);
             m_Origami_Transform = m_Origami.FindAction("Transform", throwIfNotFound: true);
@@ -1007,6 +1071,8 @@ namespace EVOGAMI.Control
         private readonly InputAction m_Player_Sprint_Press;
         private readonly InputAction m_Player_PickUp;
         private readonly InputAction m_Player_Drop;
+        private readonly InputAction m_Player_Pull_Aim;
+        private readonly InputAction m_Player_Pull_Execute;
         public struct PlayerActions
         {
             private @PlayerControls m_Wrapper;
@@ -1017,6 +1083,8 @@ namespace EVOGAMI.Control
             public InputAction @Sprint_Press => m_Wrapper.m_Player_Sprint_Press;
             public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
             public InputAction @Drop => m_Wrapper.m_Player_Drop;
+            public InputAction @Pull_Aim => m_Wrapper.m_Player_Pull_Aim;
+            public InputAction @Pull_Execute => m_Wrapper.m_Player_Pull_Execute;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1044,6 +1112,12 @@ namespace EVOGAMI.Control
                 @Drop.started += instance.OnDrop;
                 @Drop.performed += instance.OnDrop;
                 @Drop.canceled += instance.OnDrop;
+                @Pull_Aim.started += instance.OnPull_Aim;
+                @Pull_Aim.performed += instance.OnPull_Aim;
+                @Pull_Aim.canceled += instance.OnPull_Aim;
+                @Pull_Execute.started += instance.OnPull_Execute;
+                @Pull_Execute.performed += instance.OnPull_Execute;
+                @Pull_Execute.canceled += instance.OnPull_Execute;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1066,6 +1140,12 @@ namespace EVOGAMI.Control
                 @Drop.started -= instance.OnDrop;
                 @Drop.performed -= instance.OnDrop;
                 @Drop.canceled -= instance.OnDrop;
+                @Pull_Aim.started -= instance.OnPull_Aim;
+                @Pull_Aim.performed -= instance.OnPull_Aim;
+                @Pull_Aim.canceled -= instance.OnPull_Aim;
+                @Pull_Execute.started -= instance.OnPull_Execute;
+                @Pull_Execute.performed -= instance.OnPull_Execute;
+                @Pull_Execute.canceled -= instance.OnPull_Execute;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1309,6 +1389,8 @@ namespace EVOGAMI.Control
             void OnSprint_Press(InputAction.CallbackContext context);
             void OnPickUp(InputAction.CallbackContext context);
             void OnDrop(InputAction.CallbackContext context);
+            void OnPull_Aim(InputAction.CallbackContext context);
+            void OnPull_Execute(InputAction.CallbackContext context);
         }
         public interface IOrigamiActions
         {

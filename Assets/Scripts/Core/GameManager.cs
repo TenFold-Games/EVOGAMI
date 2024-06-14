@@ -56,7 +56,7 @@ namespace EVOGAMI.Core
             _checkpointIndices = new Dictionary<CheckpointRegion, int>();
             var i = 0;
             foreach (var checkpoint in checkpoints)
-                _checkpointIndices.Add(checkpoint, i++);
+                _checkpointIndices?.Add(checkpoint, i++);
             CurrentCheckpoint = checkpoints[0];
             
             // Locks the cursor to the game window
