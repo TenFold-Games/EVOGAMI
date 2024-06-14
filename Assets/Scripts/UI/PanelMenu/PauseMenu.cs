@@ -1,10 +1,12 @@
 using EVOGAMI.Core;
 using UnityEngine;
 using UnityEngine.UI;
-using Debug = System.Diagnostics.Debug;
 
-namespace EVOGAMI.UI
+namespace EVOGAMI.UI.PanelMenu
 {
+    /// <summary>
+    ///     The pause menu.
+    /// </summary>
     public class PauseMenu : SubMenuBase
     {
         public override void Enable(Selectable previousElement)

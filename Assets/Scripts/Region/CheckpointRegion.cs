@@ -3,14 +3,16 @@ using UnityEngine;
 
 namespace EVOGAMI.Region
 {
-    public class CheckpointRegion : RegionBase
+    public class CheckpointRegion : CallbackRegion
     {
-        [SerializeField] private Transform respawnPoint;
+        [Header("Settings")]
+        // The point where the player will respawn at
+        [SerializeField] [Tooltip("The point where the player will respawn at.")]
+        private Transform respawnPoint;
 
         private void OnTriggerEnter(Collider other)
         {
-            // Only interact with OrigamiMesh
-            if (!other.CompareTag("OrigamiMesh")) return;
+            if (!IsConditionMet(other)) return;
 
             GameManager.Instance.CheckpointReached(this);
         }

@@ -4,52 +4,62 @@ using UnityEngine.Events;
 
 namespace EVOGAMI.Interactable
 {
+    /// <summary>
+    ///     A pressure plate.
+    /// </summary>
     [RequireComponent(typeof(Collider))]
     public class PressurePlate : MonoBehaviour
     {
-        private Collider _collider;
-        [SerializeField] private float minimumMass;
+        [Header("Settings")]
+        // Minimum mass of the object to trigger the pressure plate.
+        [SerializeField] [Tooltip("Minimum mass of the object to trigger the pressure plate.")]
+        private float minimumMass;
+        
+        [Header("Callbacks")]
+        // Event invoked when objects are placed on the plate.
+        [SerializeField] [Tooltip("Event invoked when objects are placed on the plate.")]
+        private PlatePressedEvent onPlatePressed = new();
+        // Event invoked when objects are removed from the plate.
+        [SerializeField] [Tooltip("Event invoked when objects are removed from the plate.")]
+        private PlateReleaseEvent onPlateRelease = new();
 
+        /// <summary>
+        ///     Event invoked when objects are placed on the plate.
+        /// </summary>
         [Serializable] public class PlatePressedEvent : UnityEvent {}
-        [Serializable] public class PlateHoldEvent : UnityEvent {}
+        /// <summary>
+        ///     Event invoked when objects are removed from the plate.
+        /// </summary>
         [Serializable] public class PlateReleaseEvent : UnityEvent {}
         
-        [SerializeField] private PlatePressedEvent onPlatePressed = new();
-        [SerializeField] private PlateHoldEvent onPlateHold = new();
-        [SerializeField] private PlateReleaseEvent onPlateRelease = new();
+        private float _lastPressedTime;
         
-        private float _pressTime;
+        // Flags
         private bool _isPressed;
 
-        public void OnEnable()
-        {
-            _collider = GetComponent<Collider>();
-        }
-        
+        #region Collision
+
         public void OnCollisionEnter(Collision other)
         {
             if (other.rigidbody.mass < minimumMass) return;
                 
             _isPressed = true;
-            _pressTime = Time.time;
-            onPlatePressed.Invoke();
-        }
-        
-        public void OnCollisionStay(Collision other)
-        {
-            if (!_isPressed) return;
+            _lastPressedTime = Time.time;
             
-            onPlateHold.Invoke();
+            onPlatePressed.Invoke();
         }
 
         public void OnCollisionExit(Collision other)
         {
-            if (Time.time - _pressTime < 0.1f) return; // Ignore quick presses
-            if (!_isPressed) return;
+            if (Time.time - _lastPressedTime < 0.1f) return; // Ignore quick presses
+            if (!_isPressed) return; // Should not happen
             if (other.rigidbody.mass < minimumMass) return;
             
             _isPressed = false;
+            
             onPlateRelease.Invoke();
         }
+        
+        #endregion
     }
 }

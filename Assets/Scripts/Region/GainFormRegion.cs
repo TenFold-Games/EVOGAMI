@@ -4,14 +4,16 @@ using UnityEngine;
 
 namespace EVOGAMI.Region
 {
-    public class GainFormRegion : RegionBase
+    public class GainFormRegion : CallbackRegion
     {
+        [Header("Settings")]
+        // The form to gain when the player enters this region
+        [SerializeField] [Tooltip("The form to gain when the player enters this region")]
         public OrigamiContainer.OrigamiForm form;
 
         private void OnTriggerEnter(Collider other)
         {
-            // Only interact with OrigamiMesh
-            if (!other.CompareTag("OrigamiMesh")) return;
+            if (!IsConditionMet(other)) return;
 
             PlayerManager.Instance.GainForm(form);
         }

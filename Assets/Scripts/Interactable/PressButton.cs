@@ -1,23 +1,24 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace EVOGAMI.Interactable
 {
+    /// <summary>
+    ///     A press button.
+    /// </summary>
+    [RequireComponent(typeof(Collider))]
     public class PressButton : MonoBehaviour
     {
-        /// <summary>
-        ///     Function definition for a button press event.
-        /// </summary>
-        [Serializable]
-        public class ButtonPressedEvent : UnityEvent {}
-
-        /// <summary>
-        ///     Event delegates triggered on press.
-        /// </summary>
-        [SerializeField]
+        [Header("Callbacks")]
+        // Event invoked when the button is pressed.
+        [SerializeField] [Tooltip("Event invoked when the button is pressed.")]
         private ButtonPressedEvent onPress = new();
+        
+        /// <summary>
+        ///     Event invoked when the button is pressed.
+        /// </summary>
+        [Serializable] public class ButtonPressedEvent : UnityEvent {}
         
         #region Unity Functions
 

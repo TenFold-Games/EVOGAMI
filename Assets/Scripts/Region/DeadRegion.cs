@@ -3,16 +3,13 @@ using UnityEngine;
 
 namespace EVOGAMI.Region
 {
-    public class DeadRegion : RegionBase
+    public class DeadRegion : CallbackRegion
     {
         private void OnTriggerEnter(Collider other)
         {
-            // Only interact with OrigamiMesh
-            if (!other.CompareTag("OrigamiMesh")) return;
+            if (!IsConditionMet(other)) return;
 
-            Debug.Log("Dead region entered");
-            PlayerManager.Instance.DecreaseLife();
-            PlayerManager.Instance.RespawnPlayer(GameManager.Instance.currentCheckpoint.transform);
+            PlayerManager.Instance.RespawnPlayer(GameManager.Instance.CurrentCheckpoint.transform);
         }
     }
 }
