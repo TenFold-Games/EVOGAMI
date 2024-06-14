@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d84e93a803c45c5a9e320b4eef9a03e, type: 3}
   m_Name: OrigamiSettings
   m_EditorClassIdentifier: 
-  initialForm: 2
+  initialForm: 1
+  formUnlockStates:
+  - form: 0
+    isUnlocked: 0
+  - form: 1
+    isUnlocked: 0
+  - form: 2
+    isUnlocked: 0
+  totalCranes: 4
