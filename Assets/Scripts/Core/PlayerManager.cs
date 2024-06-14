@@ -50,10 +50,6 @@ namespace EVOGAMI.Core
             // Set cranes collected
             CranesCollected = 0;
 
-        }
-        
-        public void Start()
-        {
             _gameManager = GameManager.Instance;
             
             // Load form unlock states
@@ -62,7 +58,7 @@ namespace EVOGAMI.Core
                     GainedForms[form] = unlocked;
             GainedForms[_gameManager.origamiSettings.initialForm] = true;
         }
-
+        
         #endregion
 
         #region Spawning
