@@ -86,6 +86,14 @@ namespace EVOGAMI.Core
             Controls.Player.Drop.started += DropStartedCallback;
             Controls.Player.Drop.performed += DropPerformedCallback;
             Controls.Player.Drop.canceled += DropCancelledCallback;
+            // Player - Pull (Aim)
+            Controls.Player.Pull_Aim.started += PullAimStartedCallback;
+            Controls.Player.Pull_Aim.performed += PullAimPerformedCallback;
+            Controls.Player.Pull_Aim.canceled += PullAimCancelledCallback;
+            // Player - Pull (Execute)
+            Controls.Player.Pull_Execute.started += PullExecuteStartedCallback;
+            Controls.Player.Pull_Execute.performed += PullExecutePerformedCallback;
+            Controls.Player.Pull_Execute.canceled += PullExecuteCancelledCallback;
             
             // UI - Pause
             Controls.UI.Pause.started += PauseStartedCallback;
@@ -208,6 +216,36 @@ namespace EVOGAMI.Core
         {
             OnDropCancelled();
         }
+        
+        private void PullAimStartedCallback(InputAction.CallbackContext ctx)
+        {
+            OnPullAimStarted();
+        }
+        
+        private void PullAimPerformedCallback(InputAction.CallbackContext ctx)
+        {
+            OnPullAimPerformed();
+        }
+        
+        private void PullAimCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            OnPullAimCancelled();
+        }
+        
+        private void PullExecuteStartedCallback(InputAction.CallbackContext ctx)
+        {
+            OnPullExecuteStarted();
+        }
+        
+        private void PullExecutePerformedCallback(InputAction.CallbackContext ctx)
+        {
+            OnPullExecutePerformed();
+        }
+        
+        private void PullExecuteCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            OnPullExecuteCancelled();
+        }
 
         private void PauseStartedCallback(InputAction.CallbackContext ctx)
         {
@@ -268,6 +306,22 @@ namespace EVOGAMI.Core
         public event DropCallback OnDropStarted = delegate { };
         public event DropCallback OnDropPerformed = delegate { };
         public event DropCallback OnDropCancelled = delegate { };
+        
+        // Pull (Aim)
+        public delegate void PullAimCallback();
+        
+        public event PullAimCallback OnPullAimStarted = delegate { };
+        public event PullAimCallback OnPullAimPerformed = delegate { };
+        public event PullAimCallback OnPullAimCancelled = delegate { };
+        
+        // Pull (Execute)
+        public delegate void PullExecuteCallback();
+        
+        public event PullExecuteCallback OnPullExecuteStarted = delegate { };
+        
+        public event PullExecuteCallback OnPullExecutePerformed = delegate { };
+        
+        public event PullExecuteCallback OnPullExecuteCancelled = delegate { };
 
         // Pause
         public delegate void PauseCallback();
