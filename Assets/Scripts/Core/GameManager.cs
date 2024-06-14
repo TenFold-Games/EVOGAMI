@@ -1,47 +1,72 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using EVOGAMI.Custom.Scriptable;
 using EVOGAMI.Region;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.Events;
 
 namespace EVOGAMI.Core
 {
+    /// <summary>
+    ///     Manages the game state and progression
+    /// </summary>
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private CheckpointRegion[] checkpoints;
-
-        public CheckpointRegion currentCheckpoint;
-        
-        [SerializeField] GameObject mainCanvas;
-        [SerializeField] GameObject finishLevelUi;
-
-        // TODO: Optimize this mess
-        // private Dictionary<CheckpointRegion, bool> _checkpointStates;
-        private Dictionary<CheckpointRegion, int> _checkpointIndices;
+        /// <summary>
+        ///     Singleton instance of the GameManager
+        /// </summary>
         public static GameManager Instance { get; private set; }
+        
+        [Header("Checkpoints")]
+        // The checkpoints in the level, ordered from start to finish
+        [SerializeField] [Tooltip("The checkpoints in the level, ordered from start to finish")]
+        private CheckpointRegion[] checkpoints;
+        // The checkpoint the player will respawn at
+        [Tooltip("The checkpoint the player will respawn at")]
+        public CheckpointRegion CurrentCheckpoint { get; private set; }
+        
+        // [Header("UI Elements")]
+        // The HUD for the player
+        // [SerializeField] [Tooltip("The HUD for the player")]
+        // public GameObject headsUpDisplay;
+        // The UI for when the player finishes the level
+        // [SerializeField] [Tooltip("The UI for when the player finishes the level")]
+        // private GameObject finishLevelUi;
+        
+        [Header("Settings")]
+        // Origami related settings
+        [SerializeField] [Tooltip("Origami related settings")]
+        public OrigamiSettings origamiSettings;
+        
+        private GameObject _headsUpDisplay;
+        
+        /// <summary>
+        ///     The indices of the checkpoints
+        /// </summary>
+        private Dictionary<CheckpointRegion, int> _checkpointIndices;
 
         #region Unity Functions
 
         public void Awake()
         {
-            // Singleton
             if (Instance == null) Instance = this;
             else Destroy(this);
 
-            // Keep between scenes
-            // DontDestroyOnLoad(this);
-
             // Initialize checkpoint states
-            // _checkpointStates = new Dictionary<CheckpointRegion, bool>();
             _checkpointIndices = new Dictionary<CheckpointRegion, int>();
             var i = 0;
             foreach (var checkpoint in checkpoints)
-            {
-                // _checkpointStates.Add(checkpoint, false);
                 _checkpointIndices.Add(checkpoint, i++);
-            }
+            CurrentCheckpoint = checkpoints[0];
+            
+            // Locks the cursor to the game window
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 
-            // _checkpointStates[checkpoints[0]] = true;
-            currentCheckpoint = checkpoints[0];
+        private void Start()
+        {
+            // Get the heads-up display
+            _headsUpDisplay = UiManager.Instance.headsUpDisplay;
         }
 
         #endregion
@@ -52,40 +77,45 @@ namespace EVOGAMI.Core
         /// <param name="checkpoint">The checkpoint that was reached</param>
         public void CheckpointReached(CheckpointRegion checkpoint)
         {
-            // _checkpointStates[checkpoint] = true;
-            if (_checkpointIndices[checkpoint] > _checkpointIndices[currentCheckpoint])
-                currentCheckpoint = checkpoint;
-        }
-
-        /// <summary>
-        ///     Callback for when the player loses all lives
-        /// </summary>
-        public void GameOver()
-        {
-            Debug.Log("Game Over!");
+            // Update the current checkpoint
+            if (_checkpointIndices[checkpoint] > _checkpointIndices[CurrentCheckpoint])
+                CurrentCheckpoint = checkpoint;
         }
 
         public void ExitGame()
         {
-            Debug.Log("Exiting game...");
             // TODO: Save game state
             Application.Quit();
         }
 
-        public void FinishLevel()
+        #region Game Complete
+        
+        [Header("End Game")]
+        // Event invoked when the game is complete
+        [SerializeField] [Tooltip("Event invoked when the game is complete")]
+        public GameCompleteEvent onGameComplete = new();
+        
+        /// <summary>
+        ///     Event invoked when the game is complete
+        /// </summary>
+        [Serializable] public class GameCompleteEvent : UnityEvent {}
+
+        /// <summary>
+        ///     The game is complete
+        /// </summary>
+        public void GameComplete()
         {
-            Debug.Log("Finish level!");
-            
-            StartCoroutine(FinishLevelCoroutine());
+            onGameComplete.Invoke();
         }
         
         private System.Collections.IEnumerator FinishLevelCoroutine()
         {
             yield return new WaitForSeconds(3);
-            Debug.Log("Level finished!");
             
-            mainCanvas.SetActive(false);
-            finishLevelUi.SetActive(true);
+            _headsUpDisplay.SetActive(false);
+            // finishLevelUi.SetActive(true);
         }
+
+        #endregion
     }
 }

@@ -1,65 +1,88 @@
 using System;
+using System.Linq;
+using EVOGAMI.Custom.Attributes;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace EVOGAMI.Region
 {
     public class CallbackRegion : MonoBehaviour
     {
-        [Serializable] public class TriggerEnterCallback : UnityEvent {}
-        [Serializable] public class TriggerStayCallback : UnityEvent {}
-        [Serializable] public class TriggerExitCallback : UnityEvent {}
+        [Header("Callbacks")]
+        // Event invoked when a collider enters the area.
+        [SerializeField] [Tooltip("Event invoked when a collider enters the area.")]
+        private RegionEnterEvent onRegionEnter = new();
+        // Event invoked when a collider exits the area.
+        [SerializeField] [Tooltip("Event invoked when a collider exits the area.")]
+        private RegionExitEvent onRegionExit = new();
         
-        [SerializeField] private TriggerEnterCallback m_onTriggerEnter = new();
-        [SerializeField] private TriggerStayCallback m_onTriggerStay = new();
-        [SerializeField] private TriggerExitCallback m_onTriggerExit = new();
-        
-        public TriggerEnterCallback TriggerEnter => m_onTriggerEnter;
-        public TriggerStayCallback TriggerStay => m_onTriggerStay;
-        public TriggerExitCallback TriggerExit => m_onTriggerExit;
+        /// <summary>
+        ///     Event that is invoked when a collider enters the trigger.
+        /// </summary>
+        [Serializable] public class RegionEnterEvent : UnityEvent<Collider> {}
+        /// <summary>
+        ///     Event that is invoked when a collider exits the trigger.
+        /// </summary>
+        [Serializable] public class RegionExitEvent : UnityEvent<Collider> {}
 
-        [SerializeField] private LayerMask layerMask = 0;
-        [SerializeField] private string otherTag = "Untagged";
-        
-        public GameObject Other { get; private set; }
+        /// <summary>
+        ///     The callback for when a collider enters the trigger.
+        /// </summary>
+        public RegionEnterEvent RegionEnterCallback => onRegionEnter;
+        /// <summary>
+        ///     The callback for when a collider exits the trigger.
+        /// </summary>
+        public RegionExitEvent RegionExitCallback => onRegionExit;
 
-        private bool ConditionMet(Collider other)
+        [Header("Region Conditions")] 
+        [SerializeField] [TagSelector] [Tooltip("The tags that the collider must have to trigger the callback.")]
+        private string[] tags = { };
+        [SerializeField] [Tooltip("The layer mask that the collider must be in to trigger the callback.")]
+        private LayerMask layerMask = 0;
+
+        private MeshRenderer _meshRenderer;
+
+        /// <summary>
+        ///     Check if the condition is met for the callback to be invoked.
+        /// </summary>
+        /// <param name="other">The collider that entered the trigger.</param>
+        /// <returns>True if the condition is met, false otherwise.</returns>
+        protected bool IsConditionMet(Collider other)
         {
+            // Condition for layer mask
             if (layerMask != 0)
-            {
-                Debug.Log(other.gameObject.layer);
                 if ((layerMask & (1 << other.gameObject.layer)) == 0) return false;
-            }
-            
-            Debug.Log(other.gameObject.tag);
-            if (otherTag != "Untagged" && !string.IsNullOrEmpty(otherTag))
-            {
-                if (!other.gameObject.CompareTag(otherTag)) return false;
-            }
+
+            // Condition for tags
+            if (tags.Length > 0)
+                if (!tags.Contains(other.tag)) return false;
             
             return true;
         }
-        
+
+        #region Unity Functions
+
+        protected virtual void Awake()
+        {
+            // Hide the mesh renderer if it exists.
+            _meshRenderer = GetComponent<MeshRenderer>();
+            if (_meshRenderer != null) _meshRenderer.enabled = false;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            if (!ConditionMet(other)) return;
-            
-            Debug.Log("Trigger Enter");
-            Other = other.gameObject;
-            m_onTriggerEnter.Invoke();
+            if (!IsConditionMet(other)) return;
+
+            onRegionEnter.Invoke(other);
         }
-        
-        private void OnTriggerStay(Collider other)
-        {
-            Other = other.gameObject;
-            m_onTriggerStay.Invoke();
-        }
-        
+
         private void OnTriggerExit(Collider other)
         {
-            Other = other.gameObject;
-            m_onTriggerExit.Invoke();
+            if (!IsConditionMet(other)) return;
+            
+            onRegionExit.Invoke(other);
         }
+
+        #endregion
     }
 }

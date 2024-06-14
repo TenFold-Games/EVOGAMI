@@ -14,11 +14,19 @@ namespace EVOGAMI.UI.MenuButton
     {
         [SerializeField] private TextMeshProUGUI textGameObject;
 
-        // Serialize fields of the colours
-        [SerializeField] private Color normalColor;
-        [SerializeField] private Color highlightedColor;
-        [SerializeField] private Color pressedColor;
-        [SerializeField] private Color selectedColor;
+        [Header("Colors")]
+        // The normal color of the button
+        [SerializeField] [Tooltip("The normal color of the button")]
+        private Color normalColor;
+        // The highlighted color of the button
+        [SerializeField] [Tooltip("The highlighted color of the button")]
+        private Color highlightedColor;
+        // The pressed color of the button
+        [SerializeField] [Tooltip("The pressed color of the button")]
+        private Color pressedColor;
+        // The selected color of the button
+        [SerializeField] [Tooltip("The selected color of the button")]
+        private Color selectedColor;
 
         public void OnPointerClick(PointerEventData eventData)
         {

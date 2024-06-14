@@ -5,46 +5,66 @@ namespace EVOGAMI.Interactable
 {
     public class Clip : MonoBehaviour
     {
-        [SerializeField] private CallbackRegion ballDetector;
-        [SerializeField] private CallbackRegion playerDetector;
+        [Header("Callback Regions")] 
+        // The regions that detect the ball
+        [SerializeField] [Tooltip("The region that detects the ball")]
+        private CallbackRegion ballDetector;
+        // The region that detects the player
+        [SerializeField] [Tooltip("The region that detects the player")]
+        private CallbackRegion playerDetector;
         
         private ObjectLauncher _objectLauncher;
         
-        public bool _ballInPlace = false;
-        
+        // Flags
+        private bool _ballInPlace;
+
+        #region Unity Functions
+
         private void Awake()
         {
-            ballDetector.TriggerEnter.AddListener(OnBallEnter);
-            ballDetector.TriggerStay.AddListener(OnBallStay);
-            ballDetector.TriggerExit.AddListener(OnBallExit);
-            
-            playerDetector.TriggerEnter.AddListener(OnPlayerEnter);
-            
+            // Components
             _objectLauncher = GetComponent<ObjectLauncher>();
-        }
-        
-        private void OnBallEnter()
-        {
-            if (ballDetector.Other.layer != LayerMask.NameToLayer("Launchable")) return;
+
+            // Initialize flags
+            _ballInPlace = false;
             
+            // Subscribe to events
+            ballDetector.RegionEnterCallback.AddListener(OnBallEnter);
+            ballDetector.RegionExitCallback.AddListener(OnBallExit);
+            playerDetector.RegionEnterCallback.AddListener(OnPlayerEnter);
+        }
+
+        #endregion
+
+        /// <summary>
+        ///     Callback for when the ball enters the BallDetector region
+        /// </summary>
+        /// <param name="other">The collider of the ball</param>
+        private void OnBallEnter(Collider other)
+        {
             _ballInPlace = true;
-            _objectLauncher.SetBall(ballDetector.Other);
+            _objectLauncher.SetObject(other.gameObject);
         }
-        
-        private void OnBallStay()
+
+        /// <summary>
+        ///     Callback for when the ball exits the BallDetector region
+        /// </summary>
+        /// <param name="other">The collider of the ball</param>
+        private void OnBallExit(Collider other)
         {
-            if (ballDetector.Other.layer == LayerMask.NameToLayer("Launchable")) _ballInPlace = true;
+            _ballInPlace = false;
+            _objectLauncher.SetObject(null);
         }
-        
-        private void OnBallExit()
+
+        /// <summary>
+        ///     Callback for when the player enters the PlayerDetector region
+        /// </summary>
+        /// <param name="other">The collider of the player</param>
+        private void OnPlayerEnter(Collider other)
         {
-            if (ballDetector.Other.layer == LayerMask.NameToLayer("Launchable")) _ballInPlace = false;
-        }
-        
-        private void OnPlayerEnter()
-        {
+            // No ball to launch
             if (!_ballInPlace) return;
-            
+
             _objectLauncher.Launch();
         }
     }

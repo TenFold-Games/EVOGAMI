@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Cinemachine;
 using EVOGAMI.Custom.Scriptable;
 using EVOGAMI.Custom.Serializable;
 using EVOGAMI.Core;
-using EVOGAMI.Movement;
 using EVOGAMI.Origami.States;
 using UnityEngine;
 
@@ -17,10 +15,9 @@ namespace EVOGAMI.Origami
         /// </summary>
         public enum OrigamiForm
         {
-            Bug,
+            Crab,
             Frog,
-            Human,
-            Plane,
+            NinjaStar,
             None
         }
         
@@ -31,24 +28,19 @@ namespace EVOGAMI.Origami
         [SerializeField] private OriObjMapping[] formsMeshMapping;
         public Dictionary<OrigamiForm, GameObject> Forms;
         
-        // Cameras
-        public CinemachineVirtualCameraBase mainCamera;
-        public CinemachineVirtualCameraBase planeCamera;
+        // Initial form
+        [SerializeField] private OrigamiSettings origamiSettings;
 
         // States
-        private OrigamiBugState _bugState;
+        private OrigamiCrabState _crabState;
         private OrigamiFrogState _frogState;
-        private OrigamiHumanState _humanState;
-        private OrigamiPlaneState _planeState;
-
-        [SerializeField] public HumanLocomotion humanLocomotion;
+        private OrigamiNinjaStarState _ninjaStarState;
 
         // State machine
         public OrigamiStateMachine StateMachine;
-        
-        // Initial form
-        [SerializeField] private OrigamiSettings settings;
-        
+
+        #region Unity Functions
+
         public void Awake()
         {
             // State machine
@@ -56,9 +48,8 @@ namespace EVOGAMI.Origami
 
             // States
             _frogState = new OrigamiFrogState(this, OrigamiForm.Frog);
-            _planeState = new OrigamiPlaneState(this, OrigamiForm.Plane);
-            _bugState = new OrigamiBugState(this, OrigamiForm.Bug);
-            _humanState = new OrigamiHumanState(this, OrigamiForm.Human);
+            _crabState = new OrigamiCrabState(this, OrigamiForm.Crab);
+            _ninjaStarState = new OrigamiNinjaStarState(this, OrigamiForm.NinjaStar);
             
             // Initialize forms
             Forms = new Dictionary<OrigamiForm, GameObject>();
@@ -68,22 +59,19 @@ namespace EVOGAMI.Origami
 
         public void Start()
         {
-            switch (settings.initialForm)
+            switch (origamiSettings.initialForm)
             {
+                case OrigamiForm.Crab:
+                    StateMachine.Initialize(_crabState);
+                    break;
                 case OrigamiForm.Frog:
                     StateMachine.Initialize(_frogState);
                     break;
-                case OrigamiForm.Plane:
-                    StateMachine.Initialize(_planeState);
-                    break;
-                case OrigamiForm.Bug:
-                    StateMachine.Initialize(_bugState);
-                    break;
-                case OrigamiForm.Human:
-                    StateMachine.Initialize(_humanState);
+                case OrigamiForm.NinjaStar:
+                    StateMachine.Initialize(_ninjaStarState);
                     break;
                 default:
-                    StateMachine.Initialize(_humanState);
+                    StateMachine.Initialize(_ninjaStarState);
                     break;
             }
             
@@ -104,6 +92,8 @@ namespace EVOGAMI.Origami
             StateMachine.FixedUpdate(Time.fixedDeltaTime);
         }
 
+        #endregion
+
         /// <summary>
         ///     Change the form of the origami
         /// </summary>
@@ -113,21 +103,17 @@ namespace EVOGAMI.Origami
         {
             switch (form)
             {
+                case OrigamiForm.Crab:
+                    if (!_playerManager.GainedForms[OrigamiForm.Crab]) return; // Form not gained
+                    StateMachine.ChangeState(_crabState);
+                    break;
                 case OrigamiForm.Frog:
                     if (!_playerManager.GainedForms[OrigamiForm.Frog]) return; // Form not gained
                     StateMachine.ChangeState(_frogState);
                     break;
-                case OrigamiForm.Plane:
-                    if (!_playerManager.GainedForms[OrigamiForm.Plane]) return; // Form not gained
-                    StateMachine.ChangeState(_planeState);
-                    break;
-                case OrigamiForm.Bug:
-                    if (!_playerManager.GainedForms[OrigamiForm.Bug]) return; // Form not gained
-                    StateMachine.ChangeState(_bugState);
-                    break;
-                case OrigamiForm.Human:
-                    if (!_playerManager.GainedForms[OrigamiForm.Human]) return; // Form not gained
-                    StateMachine.ChangeState(_humanState);
+                case OrigamiForm.NinjaStar:
+                    if (!_playerManager.GainedForms[OrigamiForm.NinjaStar]) return; // Form not gained
+                    StateMachine.ChangeState(_ninjaStarState);
                     break;
                 case OrigamiForm.None:
                     break;
@@ -135,20 +121,6 @@ namespace EVOGAMI.Origami
                     throw new ArgumentOutOfRangeException(nameof(form), form, null);
             }
         }
-
-        #region Camera
-
-        public void SetPlaneCamera()
-        {
-            planeCamera.Priority = 20;
-        }
-        
-        public void UnsetPlaneCamera()
-        {
-            planeCamera.Priority = -1;
-        }
-
-        #endregion
 
         #region Form
 

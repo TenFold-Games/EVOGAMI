@@ -1,61 +1,69 @@
 ﻿using System.Collections.Generic;
-using EVOGAMI.Custom.Scriptable;
 using EVOGAMI.Origami;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace EVOGAMI.Core
 {
     public class PlayerManager : MonoBehaviour
     {
-        // Singleton
+        /// <summary>
+        ///     Singleton instance of the PlayerManager
+        /// </summary>
         public static PlayerManager Instance { get; private set; }
+        
+        // Managers
+        private GameManager _gameManager;
 
         // Player
         public GameObject Player { get; private set; }
         public Rigidbody PlayerRb { get; private set; }
         public OrigamiContainer PlayerOrigami { get; private set; }
-        
-        // Settings
-        [SerializeField] private OrigamiSettings origamiSettings;
-        [SerializeField] private OrigamiUnlockSettings unlockSettings;
+
+        // Player forms
+        public Dictionary<OrigamiContainer.OrigamiForm, bool> GainedForms { get; private set; }
+
+        #region Unity Functions
 
         public void Awake()
         {
-            // Singleton
             if (Instance == null) Instance = this;
             else Destroy(this);
 
-            // Keep between scenes
-            // DontDestroyOnLoad(this);
-
             // Find player
             Player = GameObject.FindGameObjectWithTag("Player");
+            Debug.Assert(Player != null, "Player not found"); // Should not happen
+            // Get player components
             PlayerRb = Player.GetComponent<Rigidbody>();
-
-            // Set lives
-            _lives = maxLives;
+            PlayerOrigami = Player.GetComponent<OrigamiContainer>();
+            Debug.Assert(PlayerRb != null, "Player Rigidbody not found"); // Should not happen
+            Debug.Assert(PlayerOrigami != null, "Player OrigamiContainer not found"); // Should not happen
 
             // Set gained forms
             GainedForms = new Dictionary<OrigamiContainer.OrigamiForm, bool>
             {
-                { OrigamiContainer.OrigamiForm.Human, false },
+                { OrigamiContainer.OrigamiForm.NinjaStar, false },
                 { OrigamiContainer.OrigamiForm.Frog, false },
-                { OrigamiContainer.OrigamiForm.Plane, false },
-                { OrigamiContainer.OrigamiForm.Bug, false },
+                { OrigamiContainer.OrigamiForm.Crab, false },
                 { OrigamiContainer.OrigamiForm.None, true }
             };
-            foreach (var (form, unlocked) in unlockSettings.formUnlockStates)
+
+            // Set cranes collected
+            CranesCollected = 0;
+
+        }
+        
+        public void Start()
+        {
+            _gameManager = GameManager.Instance;
+            
+            // Load form unlock states
+            foreach (var (form, unlocked) in _gameManager.origamiSettings.formUnlockStates)
                 if (GainedForms.ContainsKey(form))
                     GainedForms[form] = unlocked;
-            GainedForms[origamiSettings.initialForm] = true;
-            
-            // Set scores
-            _score = 0;
-            
-            // Set player origami
-            PlayerOrigami = Player.GetComponent<OrigamiContainer>();
+            GainedForms[_gameManager.origamiSettings.initialForm] = true;
         }
+
+        #endregion
 
         #region Spawning
 
@@ -70,34 +78,7 @@ namespace EVOGAMI.Core
 
         #endregion
 
-        #region Life
-
-        [SerializeField] private int maxLives = 3;
-        public int MaxLives => maxLives; // Read-only
-
-        private int _lives;
-
-        public delegate void LoseLifeCallback(int lives);
-
-        public event LoseLifeCallback OnLoseLife = delegate { };
-
-        public void DecreaseLife()
-        {
-            if (_lives > 0)
-            {
-                _lives--;
-                OnLoseLife(_lives);
-                
-                if (_lives == 0)
-                    GameManager.Instance.GameOver();
-            }
-        }
-
-        #endregion
-
         #region Gaining Forms
-
-        public Dictionary<OrigamiContainer.OrigamiForm, bool> GainedForms { get; private set; }
 
         public delegate void GainFormCallback(OrigamiContainer.OrigamiForm form);
 
@@ -121,26 +102,24 @@ namespace EVOGAMI.Core
 
         #region Scores
 
-        private int _score;
+        public int CranesCollected { get; private set; }
 
-        public delegate void GainScoresCallback(int scores);
+        public delegate void CraneCollectedCallback();
 
-        public event GainScoresCallback OnChangeScore = delegate { };
+        public event CraneCollectedCallback OnCraneCollected = delegate { };
 
         /// <summary>
         ///     Increase the player's score
         /// </summary>
-        public void IncreaseScores()
+        public void CraneCollected()
         {
-            _score++;
-            OnChangeScore(_score);
+            CranesCollected++;
+            OnCraneCollected();
 
-            if (_score == origamiSettings.scoreToWin)
-                GameManager.Instance.FinishLevel();
+            if (CranesCollected == _gameManager.origamiSettings.totalCranes)
+                GameManager.Instance.GameComplete();
         }
 
         #endregion
-
-
     }
 }

@@ -1,16 +1,16 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace EVOGAMI.UI
+namespace EVOGAMI.UI.PanelMenu
 {
     public abstract class SubMenuBase : MonoBehaviour
     {
-        [Tooltip("The sub-menu to be displayed")] 
-        [SerializeField] private GameObject panel;
-
-        [Tooltip("The default element to be selected when the sub-menu is opened.")] 
-        [SerializeField] private Selectable defaultElement;
+        // The sub-menu to be displayed
+        [SerializeField] [Tooltip("The sub-menu to be displayed")] 
+        private GameObject panel;
+        // The default element to be selected when the sub-menu is opened
+        [SerializeField] [Tooltip("The default element to be selected when the sub-menu is opened.")] 
+        private Selectable defaultElement;
 
         protected Selectable PreviousElement;
 
