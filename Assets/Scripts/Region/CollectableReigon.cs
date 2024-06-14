@@ -3,16 +3,15 @@ using UnityEngine;
 
 namespace EVOGAMI.Region
 {
-    public class GainScoreRegion : CallbackRegion
+    public class CollectableRegion : CallbackRegion
     {
-        private void OnTriggerEnter(Collider other)
+        protected override void OnTriggerEnter(Collider other)
         {
-            // Only interact with OrigamiMesh
-            if (!other.CompareTag("OrigamiMesh")) return;
-
-            PlayerManager.Instance.CraneCollected();
+            if (!IsConditionMet(other)) return;
             
-            // Destroy the collectible
+            onRegionEnter.Invoke(other);
+            
+            PlayerManager.Instance.CraneCollected();
             Destroy(gameObject);
         }
     }

@@ -29,6 +29,8 @@ namespace EVOGAMI.Movement
             
             InputManager.OnPickUpPerformed += OnPickUpPerformed;
             InputManager.OnDropPerformed += OnDropPerformed;
+
+            PlayerManager.PlayerOrigami.OnFormChange += _ => DropObject();
         }
         
         protected override void UnregisterCallbacks()
@@ -37,6 +39,8 @@ namespace EVOGAMI.Movement
             
             InputManager.OnPickUpPerformed -= OnPickUpPerformed;
             InputManager.OnDropPerformed -= OnDropPerformed;
+
+            PlayerManager.PlayerOrigami.OnFormChange -= _ => DropObject();
         }
 
         #endregion
@@ -59,6 +63,11 @@ namespace EVOGAMI.Movement
 
         private void Awake()
         {
+            // Initialize flags
+            _canPickUp = false;
+            _isPickingUp = false;
+            
+            // Register callbacks
             pickUpRegion.RegionEnterCallback.AddListener(OnPickUpTriggerEnter);
             pickUpRegion.RegionExitCallback.AddListener(OnPickUpTriggerExit);
         }

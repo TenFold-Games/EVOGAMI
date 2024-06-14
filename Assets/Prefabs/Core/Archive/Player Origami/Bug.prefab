@@ -173,7 +173,6 @@ GameObject:
   - component: {fileID: 4927167837537538835}
   - component: {fileID: 5072102852556882501}
   - component: {fileID: 8011936158059419642}
-  - component: {fileID: 3576154506651510086}
   m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
@@ -269,33 +268,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3576154506651510086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3049586644752836828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eed13bf1932b4fcbba79658d25c6b3fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  rotationSpeed: 10
-  jumpForce: 5
-  sprintMultiplier: 2
-  groundCheck: {fileID: 3629728275837823787}
-  groundCheckDistance: 0.5
-  groundCheckRadius: 0.2
-  form: 0
-  wallCheck: {fileID: 9141382914551019654}
-  wallCheckLength: 0.2
-  wallCheckRadius: 0.2
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  climbSpeed: 0.75
 --- !u!1 &8282317403906620849
 GameObject:
   m_ObjectHideFlags: 0

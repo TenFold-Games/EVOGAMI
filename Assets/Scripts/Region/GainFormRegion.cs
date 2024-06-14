@@ -11,9 +11,11 @@ namespace EVOGAMI.Region
         [SerializeField] [Tooltip("The form to gain when the player enters this region")]
         public OrigamiContainer.OrigamiForm form;
 
-        private void OnTriggerEnter(Collider other)
+        protected override void OnTriggerEnter(Collider other)
         {
             if (!IsConditionMet(other)) return;
+            
+            onRegionEnter.Invoke(other);
 
             PlayerManager.Instance.GainForm(form);
         }
