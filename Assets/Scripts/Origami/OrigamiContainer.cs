@@ -38,6 +38,10 @@ namespace EVOGAMI.Origami
 
         // State machine
         public OrigamiStateMachine StateMachine;
+        
+        // Callbacks
+        public delegate void FormChangeCallback(OrigamiForm form);
+        public event FormChangeCallback OnFormChange = delegate { };
 
         #region Unity Functions
 
@@ -105,14 +109,17 @@ namespace EVOGAMI.Origami
             {
                 case OrigamiForm.Crab:
                     if (!_playerManager.GainedForms[OrigamiForm.Crab]) return; // Form not gained
+                    OnFormChange.Invoke(OrigamiForm.Crab);
                     StateMachine.ChangeState(_crabState);
                     break;
                 case OrigamiForm.Frog:
                     if (!_playerManager.GainedForms[OrigamiForm.Frog]) return; // Form not gained
+                    OnFormChange.Invoke(OrigamiForm.Frog);
                     StateMachine.ChangeState(_frogState);
                     break;
                 case OrigamiForm.NinjaStar:
                     if (!_playerManager.GainedForms[OrigamiForm.NinjaStar]) return; // Form not gained
+                    OnFormChange.Invoke(OrigamiForm.NinjaStar);
                     StateMachine.ChangeState(_ninjaStarState);
                     break;
                 case OrigamiForm.None:

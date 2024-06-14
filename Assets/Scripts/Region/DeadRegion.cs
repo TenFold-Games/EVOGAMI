@@ -5,10 +5,12 @@ namespace EVOGAMI.Region
 {
     public class DeadRegion : CallbackRegion
     {
-        private void OnTriggerEnter(Collider other)
+        protected override void OnTriggerEnter(Collider other)
         {
             if (!IsConditionMet(other)) return;
 
+            onRegionEnter.Invoke(other);
+            
             PlayerManager.Instance.RespawnPlayer(GameManager.Instance.CurrentCheckpoint.transform);
         }
     }

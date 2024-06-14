@@ -11,10 +11,10 @@ namespace EVOGAMI.Region
         [Header("Callbacks")]
         // Event invoked when a collider enters the area.
         [SerializeField] [Tooltip("Event invoked when a collider enters the area.")]
-        private RegionEnterEvent onRegionEnter = new();
+        protected RegionEnterEvent onRegionEnter = new();
         // Event invoked when a collider exits the area.
         [SerializeField] [Tooltip("Event invoked when a collider exits the area.")]
-        private RegionExitEvent onRegionExit = new();
+        protected RegionExitEvent onRegionExit = new();
         
         /// <summary>
         ///     Event that is invoked when a collider enters the trigger.
@@ -69,14 +69,14 @@ namespace EVOGAMI.Region
             if (_meshRenderer != null) _meshRenderer.enabled = false;
         }
 
-        private void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
             if (!IsConditionMet(other)) return;
 
             onRegionEnter.Invoke(other);
         }
 
-        private void OnTriggerExit(Collider other)
+        protected virtual void OnTriggerExit(Collider other)
         {
             if (!IsConditionMet(other)) return;
             

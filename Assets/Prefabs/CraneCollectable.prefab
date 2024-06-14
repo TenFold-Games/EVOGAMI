@@ -79,11 +79,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  ScoreUi: {fileID: 0}
-  ChangeFormUi: {fileID: 0}
-  CraneCollectedUi: {fileID: 0}
-  meshRenderer: {fileID: 0}
-  colliderComponent: {fileID: 0}
 --- !u!1001 &5763782544510751058
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -44,3 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 064ab31007b17433da0aea016fc0bf13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  origamiSettings: {fileID: 11400000, guid: a1605372e5257de46bbc766e140cf960, type: 2}
+  onGameComplete:
+    m_PersistentCalls:
+      m_Calls: []

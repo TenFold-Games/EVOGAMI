@@ -10,11 +10,13 @@ namespace EVOGAMI.Region
         [SerializeField] [Tooltip("The point where the player will respawn at.")]
         private Transform respawnPoint;
 
-        private void OnTriggerEnter(Collider other)
+        protected override void OnTriggerEnter(Collider other)
         {
             if (!IsConditionMet(other)) return;
 
             GameManager.Instance.CheckpointReached(this);
+            
+            onRegionEnter.Invoke(other);
         }
 
         public void RespawnPlayer()
