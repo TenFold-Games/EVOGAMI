@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6518446083569622726}
   - component: {fileID: 6482993948378804902}
-  - component: {fileID: 8154889498331374578}
+  - component: {fileID: -2556738370435371164}
   m_Layer: 0
   m_Name: CraneCollectable
   m_TagString: Untagged
@@ -55,7 +55,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8154889498331374578
+--- !u!114 &-2556738370435371164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,12 +67,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7563c6db2f8615c46b62f99ef9c9b840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 1
+  onRegionEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onRegionExit:
+    m_PersistentCalls:
+      m_Calls: []
+  tags:
+  - OrigamiMesh
+  - Player
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   ScoreUi: {fileID: 0}
   ChangeFormUi: {fileID: 0}
   CraneCollectedUi: {fileID: 0}
-  _meshRenderer: {fileID: 6358101971392237014}
-  _collider: {fileID: 6482993948378804902}
+  meshRenderer: {fileID: 0}
+  colliderComponent: {fileID: 0}
 --- !u!1001 &5763782544510751058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,10 +148,5 @@ PrefabInstance:
 --- !u!4 &5221827916187596473 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6f305ea9cfb4f2349a03f684cdfeb668, type: 3}
-  m_PrefabInstance: {fileID: 5763782544510751058}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &6358101971392237014 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 6f305ea9cfb4f2349a03f684cdfeb668, type: 3}
   m_PrefabInstance: {fileID: 5763782544510751058}
   m_PrefabAsset: {fileID: 0}
