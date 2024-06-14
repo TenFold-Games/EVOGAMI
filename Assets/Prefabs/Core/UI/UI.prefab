@@ -236,13 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34dbf933813df34db59c8b1482e1adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  countdownString: {fileID: 1484273601719470928}
   scoreString: {fileID: 1094952644971512336}
-  lifeIcons:
-  - {fileID: 6257148015490647646}
-  - {fileID: 6773591503173504770}
-  - {fileID: 4578055945574598541}
   formIconMappings:
   - form: 2
     gameObject: {fileID: 7742627437446405164}
@@ -278,9 +272,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870087672271959751}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2355636824342476798}
