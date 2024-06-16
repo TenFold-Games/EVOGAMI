@@ -46,15 +46,13 @@ namespace EVOGAMI.Interactable
         private Vector3 GetTargetPosition()
         {
             var targetPosition = forwardDirection == Vector3.zero ? _sourceTransform.position : forwardDirection + transform.position;
-            targetPosition.y = transform.position.y; // Prevent the object from moving up or down.
+            if (preventVerticalMovement) targetPosition.y = transform.position.y; // Prevent the object from moving up or down.
             return targetPosition;
         }
         
         private float GetAngularVelocity(float speed, Vector3 currentPosition)
         {
             // Calculate the speed based on the angle between the source and current position.
-            // When the angle is 0, the speed is the same as the input speed.
-            // When the angle is 90, the speed is 0.
             var angle = Vector3.Angle(_sourceTransform.position - currentPosition, _targetPosition - currentPosition);
             return speed * Mathf.Cos(angle * Mathf.Deg2Rad);
         }
