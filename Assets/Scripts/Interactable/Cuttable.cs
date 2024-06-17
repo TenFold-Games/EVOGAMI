@@ -5,7 +5,10 @@ using UnityEngine;
 
 namespace EVOGAMI.Interactable
 {
-    public class Cutable : MonoBehaviour
+    /// <summary>
+    ///     Handles objects that can be cut.
+    /// </summary>
+    public class Cuttable : MonoBehaviour
     {
         [Header("Callbacks")]
         // Event invoked when cut is performed.
@@ -15,7 +18,7 @@ namespace EVOGAMI.Interactable
         /// <summary>
         ///     Event that is invoked when cut is performed.
         /// </summary>
-        [Serializable] public class CutEvent : UnityEngine.Events.UnityEvent<Cutable> {}
+        [Serializable] public class CutEvent : UnityEngine.Events.UnityEvent<Cuttable> {}
         
         /// <summary>
         ///     The callback for when cut is performed.
