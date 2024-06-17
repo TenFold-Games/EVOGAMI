@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Start Menu.unity
     guid: 8909a5494f4665f40bded166363c89cd
   - enabled: 1
-    path: Assets/Scenes/Level Design Bedroom.unity
-    guid: 6e13d28f5aea2894d9ef02159e5108b3
+    path: Assets/Scenes/Level Design Bedroom Form Update.unity
+    guid: ea11c3c9b50b5954ba25a53cf31a6f6a
   m_configObjects: {}

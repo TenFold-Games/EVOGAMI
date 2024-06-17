@@ -14,6 +14,11 @@ namespace EVOGAMI.UI.PanelMenu
         // The name of the scene to load
         [SerializeField] [Tooltip("The name of the scene to load")]
         private string sceneToLoad;
+        
+        private void Start()
+        {
+            Enable(null);
+        }
 
         #region Callbacks
 
@@ -23,7 +28,6 @@ namespace EVOGAMI.UI.PanelMenu
         public void OnStartClicked()
         {
             SceneManager.LoadScene(sceneToLoad);
-            
         }
 
         /// <summary>
@@ -38,7 +42,7 @@ namespace EVOGAMI.UI.PanelMenu
         /// </summary>
         public void OnExitClicked()
         {
-            GameManager.Instance.ExitGame();
+            Application.Quit();
         }
 
         #endregion

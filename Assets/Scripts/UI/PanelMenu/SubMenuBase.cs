@@ -7,10 +7,10 @@ namespace EVOGAMI.UI.PanelMenu
     {
         // The sub-menu to be displayed
         [SerializeField] [Tooltip("The sub-menu to be displayed")] 
-        private GameObject panel;
+        protected GameObject panel;
         // The default element to be selected when the sub-menu is opened
         [SerializeField] [Tooltip("The default element to be selected when the sub-menu is opened.")] 
-        private Selectable defaultElement;
+        protected Selectable defaultElement;
 
         protected Selectable PreviousElement;
 
