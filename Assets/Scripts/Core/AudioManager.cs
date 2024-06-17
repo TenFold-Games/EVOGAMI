@@ -31,12 +31,21 @@ namespace EVOGAMI.Core
             if (shouldPlayBGM && backgroundMusics.Length > 0)
                 PlayRandomBackgroundMusic();
         }
-
-        public void Update()
+        
+        // TBD: Start --------------------------------------------------------------------------------------------------
+        private void Start()
         {
-            if (shouldPlayBGM && !_isPlayingBGM)
-                PlayRandomBackgroundMusic();
+            // Play the first background music track
+            if (shouldPlayBGM && backgroundMusics.Length > 0)
+                PlayBackgroundMusic(0, true);
         }
+        // TBD: End ----------------------------------------------------------------------------------------------------
+
+        // public void Update()
+        // {
+        //     if (shouldPlayBGM && !_isPlayingBGM)
+        //         PlayRandomBackgroundMusic();
+        // }
 
         /// <summary>
         ///     Play the audio source
