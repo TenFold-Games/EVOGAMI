@@ -15,6 +15,7 @@ namespace EVOGAMI.Core
         // Flags
         public bool shouldPlayBGM = true;
         private bool _isPlayingBGM;
+        private AudioSource _currentBGM;
 
         private void Awake()
         {
@@ -35,17 +36,19 @@ namespace EVOGAMI.Core
         // TBD: Start --------------------------------------------------------------------------------------------------
         private void Start()
         {
-            // Play the first background music track
+            //play the first background music track
             if (shouldPlayBGM && backgroundMusics.Length > 0)
                 PlayBackgroundMusic(0, true);
         }
         // TBD: End ----------------------------------------------------------------------------------------------------
 
-        // public void Update()
-        // {
-        //     if (shouldPlayBGM && !_isPlayingBGM)
-        //         PlayRandomBackgroundMusic();
-        // }
+         public void Update()
+         {
+            _isPlayingBGM = _currentBGM.isPlaying;
+
+            if (shouldPlayBGM && !_isPlayingBGM)
+                 PlayRandomBackgroundMusic();
+         }
 
         /// <summary>
         ///     Play the audio source
@@ -55,6 +58,8 @@ namespace EVOGAMI.Core
         private void Play([NotNull] AudioSource audioSource, bool loop)
         {
             if (_isPlayingBGM) return;
+
+            _currentBGM = audioSource;
 
             _isPlayingBGM = true;
             audioSource.loop = loop;
