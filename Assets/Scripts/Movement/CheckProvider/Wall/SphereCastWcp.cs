@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EVOGAMI.Movement.CheckProvider.WallCheck
+namespace EVOGAMI.Movement.CheckProvider.Wall
 {
     public class SphereCastWcp : WallCheckProviderBase
     {

@@ -43,6 +43,8 @@ namespace EVOGAMI.UI.PanelMenu
         public void OnContinueClicked()
         {
             Disable();
+            if (UiManager.Instance.headsUpDisplay && !UiManager.Instance.headsUpDisplay.gameObject.activeSelf)
+                UiManager.Instance.headsUpDisplay.gameObject.SetActive(true);
             gameObject.SetActive(false);
         }
 

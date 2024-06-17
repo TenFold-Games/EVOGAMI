@@ -1,4 +1,4 @@
-namespace EVOGAMI.Movement.CheckProvider.WallCheck
+namespace EVOGAMI.Movement.CheckProvider.Wall
 {
     public abstract class WallCheckProviderBase : CheckProviderBase
     {

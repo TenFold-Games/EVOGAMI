@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1519350568354636477}
   - component: {fileID: 4439489938543989572}
   - component: {fileID: 6481192051969348956}
+  - component: {fileID: 8307222985085292792}
   - component: {fileID: 5049390866638089800}
   - component: {fileID: 6753351768035400312}
   - component: {fileID: 2818450206380572098}
@@ -29,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381843261129666074}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -74,10 +75,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a731c129023845f18819de40b329481e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkName: Ground Check
   checkTransform: {fileID: 2143251615892065353}
   checkLayer:
     serializedVersion: 2
     m_Bits: 8
+  groundCheckRadius: 0.25
+  groundCheckDistance: 0.25
+--- !u!114 &8307222985085292792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381843261129666074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a731c129023845f18819de40b329481e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkName: Water Check
+  checkTransform: {fileID: 2143251615892065353}
+  checkLayer:
+    serializedVersion: 2
+    m_Bits: 16
   groundCheckRadius: 0.25
   groundCheckDistance: 0.25
 --- !u!114 &5049390866638089800
@@ -99,6 +120,7 @@ MonoBehaviour:
   canSprint: 1
   sprintSpeed: 10
   groundCheckProvider: {fileID: 6481192051969348956}
+  waterCheckProvider: {fileID: 8307222985085292792}
   animator: {fileID: 8977554812520990595}
 --- !u!114 &6753351768035400312
 MonoBehaviour:

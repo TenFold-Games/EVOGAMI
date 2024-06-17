@@ -4,8 +4,10 @@ namespace EVOGAMI.Movement.CheckProvider.Ground
 {
     public class SphereCastGcp : GroundCheckProviderBase
     {
+        // Radius of the sphere cast
         [SerializeField] [Tooltip("Radius of the sphere cast")]
         private float groundCheckRadius;
+        // Distance to check for ground
         [SerializeField] [Tooltip("Distance to check for ground")]
         private float groundCheckDistance;
 
