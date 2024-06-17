@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace EVOGAMI.Movement.CheckProvider.WallCheck
+namespace EVOGAMI.Movement.CheckProvider.Wall
 {
     public class RayCastWcp : WallCheckProviderBase
     {

@@ -18,10 +18,5 @@ namespace EVOGAMI.Region
             
             onRegionEnter.Invoke(other);
         }
-
-        public void RespawnPlayer()
-        {
-            PlayerManager.Instance.RespawnPlayer(respawnPoint);
-        }
     }
 }

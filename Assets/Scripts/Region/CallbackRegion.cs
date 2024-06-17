@@ -6,6 +6,10 @@ using UnityEngine.Events;
 
 namespace EVOGAMI.Region
 {
+    /// <summary>
+    ///     A region that invokes callbacks when a collider enters or exits the area.
+    /// </summary>
+    [RequireComponent(typeof(Collider))]
     public class CallbackRegion : MonoBehaviour
     {
         [Header("Callbacks")]

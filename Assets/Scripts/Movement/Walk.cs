@@ -16,7 +16,7 @@ namespace EVOGAMI.Movement
         // Whether the player can walk in the air
         [SerializeField] [Tooltip("Whether the player can walk in the air")]
         private bool canWalkInAir = true;
-        
+
         [Header("Walk")]
         // The speed at which the player walks
         [SerializeField] [Tooltip("The speed at which the player walks")]
@@ -24,7 +24,7 @@ namespace EVOGAMI.Movement
         // The speed at which the player rotates
         [SerializeField] [Tooltip("The speed at which the player rotates")]
         private float rotationSpeed = 10f;
-        
+
         [Header("Sprint")]
         // Whether the player can sprint
         [SerializeField] [Tooltip("Whether the player can sprint")]
@@ -37,7 +37,7 @@ namespace EVOGAMI.Movement
         // The ground check provider
         [SerializeField] [Tooltip("The ground check provider")]
         private GroundCheckProviderBase groundCheckProvider;
-        
+
         [Header("Animation")]
         // The animator component
         [SerializeField] [Tooltip("The animator component")]
@@ -45,7 +45,7 @@ namespace EVOGAMI.Movement
 
         // Flags
         private bool _isSprinting;
-        
+
         // Cashed Property Indices
         private static readonly int Horizontal = Animator.StringToHash("horizontal");
         private static readonly int Vertical = Animator.StringToHash("vertical");
@@ -150,6 +150,8 @@ namespace EVOGAMI.Movement
             // Move and rotate player
             if (canWalkOnGround && groundCheckProvider.IsCheckTrue || canWalkInAir && !groundCheckProvider.IsCheckTrue)
                 MovePlayer(moveDirection, delta);
+            else // Set player velocity to zero to avoid sliding
+                PlayerRb.velocity = new Vector3(0, PlayerRb.velocity.y, 0);
             RotatePlayer(moveDirection, delta);
         }
         

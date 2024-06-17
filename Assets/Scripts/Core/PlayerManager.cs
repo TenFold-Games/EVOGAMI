@@ -63,7 +63,16 @@ namespace EVOGAMI.Core
 
         #region Spawning
 
-        public void RespawnPlayer(Transform t)
+        public void RespawnAtLastCheckpoint()
+        {
+            // Get last checkpoint
+            var t = _gameManager.CurrentCheckpoint.transform;
+            if (t == null) return; // Should not happen
+            
+            RespawnPlayer(t);
+        }
+
+        private void RespawnPlayer(Transform t)
         {
             // Reset player velocity
             PlayerRb.velocity = Vector3.zero;

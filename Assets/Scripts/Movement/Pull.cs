@@ -189,6 +189,7 @@ namespace EVOGAMI.Movement
         private void EnterAimState()
         {
             _pullState = PullState.Aim;
+            InputManager.Controls.Origami.Disable(); // Disable form switching
             
             // TBD: Start ----------------------------------------------------------------------------------------------
             _lineRenderer.enabled = true;
@@ -209,12 +210,14 @@ namespace EVOGAMI.Movement
             _lineRenderer.enabled = false;
             // TBD: End ------------------------------------------------------------------------------------------------
 
+            InputManager.Controls.Origami.Enable(); // Enable form switching
             _pullState = PullState.None;
         }
 
         private void EnterMountState()
         {
             _pullState = PullState.Mount;
+            InputManager.Controls.Origami.Disable(); // Disable form switching
             
             // TBD: Start ----------------------------------------------------------------------------------------------
             _lineRenderer.enabled = true;
@@ -239,12 +242,14 @@ namespace EVOGAMI.Movement
             _lineRenderer.enabled = false;
             // TBD: End ------------------------------------------------------------------------------------------------
 
+            InputManager.Controls.Origami.Enable(); // Enable form switching
             _pullState = PullState.None;
         }
 
         private void EnterPullState()
         {
             _pullState = PullState.Pull;
+            InputManager.Controls.Origami.Disable(); // Disable form switching
 
             _pullable = _pullHit.collider.GetComponent<Pullable>();
             _pullable!.SetPullSource(pullPoint);
@@ -257,7 +262,10 @@ namespace EVOGAMI.Movement
         {
             onPullExit.Invoke(_pullHit);
             _isPulling = false;
+            
+            _pullable = null;
 
+            InputManager.Controls.Origami.Enable(); // Enable form switching
             _pullState = PullState.None;
         }
 

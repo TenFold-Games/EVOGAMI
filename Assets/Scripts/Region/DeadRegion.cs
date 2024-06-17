@@ -11,7 +11,7 @@ namespace EVOGAMI.Region
 
             onRegionEnter.Invoke(other);
             
-            PlayerManager.Instance.RespawnPlayer(GameManager.Instance.CurrentCheckpoint.transform);
+            PlayerManager.Instance.RespawnAtLastCheckpoint();
         }
     }
 }
