@@ -11,14 +11,14 @@ namespace EVOGAMI.Movement
         [SerializeField] [Tooltip("The region within which objects can cut.")]
         private CallbackRegion cutRegion;
         
-        private Cutable _objectToCut;
+        private Cuttable _objectToCut;
 
         #region Callback Region Events
 
         private void OnCutTriggerEnter(Collider other)
         {
             // Set the object to cut.
-            _objectToCut = other.GetComponent<Cutable>();
+            _objectToCut = other.GetComponent<Cuttable>();
         }
         
         private void OnCutTriggerExit(Collider other)
