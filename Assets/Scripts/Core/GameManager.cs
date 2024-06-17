@@ -39,6 +39,7 @@ namespace EVOGAMI.Core
         public OrigamiSettings origamiSettings;
         
         private GameObject _headsUpDisplay;
+        private GameObject _finishLevelUi;
         
         /// <summary>
         ///     The indices of the checkpoints
@@ -65,8 +66,9 @@ namespace EVOGAMI.Core
 
         private void Start()
         {
-            // Get the heads-up display
+            // Get the UI elements
             _headsUpDisplay = UiManager.Instance.headsUpDisplay;
+            _finishLevelUi = UiManager.Instance.finishLevelUi;
         }
 
         #endregion
@@ -106,6 +108,8 @@ namespace EVOGAMI.Core
         public void GameComplete()
         {
             onGameComplete.Invoke();
+            
+            StartCoroutine(FinishLevelCoroutine());
         }
         
         private System.Collections.IEnumerator FinishLevelCoroutine()
@@ -113,7 +117,7 @@ namespace EVOGAMI.Core
             yield return new WaitForSeconds(3);
             
             _headsUpDisplay.SetActive(false);
-            // finishLevelUi.SetActive(true);
+            _finishLevelUi.SetActive(true);
         }
 
         #endregion

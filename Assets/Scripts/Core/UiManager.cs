@@ -26,6 +26,9 @@ namespace EVOGAMI.Core
         // The heads-up display
         [SerializeField] [Tooltip("The heads-up display")]
         public GameObject headsUpDisplay;
+        // The UI for when the player finishes the level
+        [SerializeField] [Tooltip("The UI for when the player finishes the level")]
+        public GameObject finishLevelUi;
         
         private Dictionary<OrigamiContainer.OrigamiForm, GameObject> _origamiMapping;
 
