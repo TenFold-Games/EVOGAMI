@@ -1,10 +1,13 @@
 using System.Collections;
+using EVOGAMI.Audio;
 using EVOGAMI.Core;
 using UnityEngine;
 
 namespace EVOGAMI.Region
 {
-    public class CollectableRegion : CallbackRegion
+    public class CollectableRegion : 
+        CallbackRegion, 
+        ISfxPlayer
     {
         [Header("Display")]
         // The MeshRenderer for the collectable region
@@ -13,7 +16,7 @@ namespace EVOGAMI.Region
         // The Collider for the collectable region
         [SerializeField] [Tooltip("The Collider for the collectable region")]
         private Collider m_collider;
-        
+
         [Header("Audio")]
         // The audio source for the collectable region
         [SerializeField] [Tooltip("The audio source for the collectable region")]
@@ -28,19 +31,24 @@ namespace EVOGAMI.Region
             PlayerManager.Instance.CraneCollected();
             StartCoroutine(PlayAudioAndDestroy());
         }
-        
+
         private void Disappear()
         {
             meshRenderer.enabled = false;
             m_collider.enabled = false;
         }
-        
+
         private IEnumerator PlayAudioAndDestroy()
         {
-            audioSource.Play();
+            PlaySfx(audioSource);
             yield return new WaitForSeconds(audioSource.clip.length);
             audioSource.Stop();
             Destroy(gameObject);
+        }
+
+        public void PlaySfx(AudioSource sfx)
+        {
+            sfx.Play();
         }
     }
 }
