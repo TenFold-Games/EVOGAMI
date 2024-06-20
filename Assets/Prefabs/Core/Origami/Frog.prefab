@@ -190,7 +190,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4106126533245857275}
   - component: {fileID: 893247889171126746}
-  - component: {fileID: 1939793843877317579}
   - component: {fileID: 2494217303144362527}
   - component: {fileID: 6805688755999872221}
   - component: {fileID: 6328380476177856481}
@@ -242,24 +241,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.28, y: 0.73084414, z: 2.2270234}
   m_Center: {x: 0, y: -0.14262176, z: 0.3486427}
---- !u!114 &1939793843877317579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6493369439384624171}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57a2b2ebf3f74a4c9147ce5a51a86435, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkTransform: {fileID: 8137539479007687602}
-  checkLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  boxSize: {x: 1.3, y: 0.01, z: 1.6}
-  groundCheckDistance: 0.2
 --- !u!114 &2494217303144362527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +258,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   groundCheckRadius: 0.2
-  groundCheckDistance: 0.2
+  groundCheckDistance: 0.25
 --- !u!114 &6805688755999872221
 MonoBehaviour:
   m_ObjectHideFlags: 0
