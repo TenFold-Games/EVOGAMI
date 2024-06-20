@@ -214,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 939173157}
   defaultElement: {fileID: 1513310446}
-  sceneToLoad: Assets/Scenes/Level Design Bedroom Form Update.unity
+  sceneToLoad: Assets/Scenes/Level Design Bedroom Form Ninja Star Update.unity
 --- !u!1 &443805798
 GameObject:
   m_ObjectHideFlags: 0
