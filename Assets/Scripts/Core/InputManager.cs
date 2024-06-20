@@ -52,6 +52,32 @@ namespace EVOGAMI.Core
         }
         // TBD: END ----------------------------------------------------------------------------------------------------
 
+        #region Input Controls
+
+        public void DisablePlayerControls()
+        {
+            Controls.Player.Disable();
+            Controls.Origami.Disable();
+        }
+        
+        public void DisableCameraControls()
+        {
+            Controls.Camera.Disable();
+        }
+        
+        public void EnablePlayerControls()
+        {
+            Controls.Player.Enable();
+            Controls.Origami.Enable();
+        }
+        
+        public void EnableCameraControls()
+        {
+            Controls.Camera.Enable();
+        }
+
+        #endregion
+
         #region Unity Functions
 
         public void Awake()
