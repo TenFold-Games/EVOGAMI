@@ -68,14 +68,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
-  maxThrowDistance: 30
-  throwCheckRadius: 5
+  maxThrowDistance: 20
+  throwCheckRadius: 2.5
   throwLayer:
     serializedVersion: 2
     m_Bits: 1024
   speed: 10
   rotationSpeed: 360
   targetTransform: {fileID: 0}
+  minDistance: 2
 --- !u!1001 &3407847407090065101
 PrefabInstance:
   m_ObjectHideFlags: 0
