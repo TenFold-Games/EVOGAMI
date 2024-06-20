@@ -4,6 +4,7 @@ using EVOGAMI.Custom.Scriptable;
 using EVOGAMI.Region;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace EVOGAMI.Core
 {
@@ -38,6 +39,11 @@ namespace EVOGAMI.Core
         [SerializeField] [Tooltip("Origami related settings")]
         public OrigamiSettings origamiSettings;
         
+        [Header("Scene Management")]
+        // The start scene
+        [SerializeField] [Tooltip("The start scene")]
+        private string startMenuScene;
+        
         private GameObject _headsUpDisplay;
         private GameObject _finishLevelUi;
         
@@ -45,6 +51,16 @@ namespace EVOGAMI.Core
         ///     The indices of the checkpoints
         /// </summary>
         private Dictionary<CheckpointRegion, int> _checkpointIndices;
+
+        #region Scene Management
+
+        private void LoadStartMenu()
+        {
+            // Load the start menu scene
+            SceneManager.LoadScene(startMenuScene);
+        }
+
+        #endregion
 
         #region Unity Functions
 
@@ -118,6 +134,10 @@ namespace EVOGAMI.Core
             
             _headsUpDisplay.SetActive(false);
             _finishLevelUi.SetActive(true);
+            
+            yield return new WaitForSeconds(3);
+            
+            LoadStartMenu();
         }
 
         #endregion
