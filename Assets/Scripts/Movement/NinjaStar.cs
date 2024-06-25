@@ -42,6 +42,9 @@ namespace EVOGAMI.Movement
         // The transform of the target object.
         [SerializeField] [Tooltip("The transform of the target object.")]
         private Transform targetTransform;
+        // The minimum distance the player must be from the target object.
+        [SerializeField] [Tooltip("The minimum distance the player must be from the target object.")]
+        private float minDistance = 2f;
         
         // State Machine
         private NinjaStarStates _state;
@@ -76,6 +79,16 @@ namespace EVOGAMI.Movement
         {
             // Check if the player can throw the ninja star and is in the aim state.
             if (!_canThrow || _state != NinjaStarStates.Aim) return;
+            
+            // Don't throw if the player is too close to the target.
+            if (Vector3.Distance(PlayerTransform.position, _hit.point) < minDistance) return;
+            
+            // Don't throw if the path is blocked.
+            if (Physics.Linecast(
+                    transform.position, 
+                    _hit.point, 
+                    ~throwLayer & ~LayerMask.GetMask("Ignore Raycast"))
+            ) return;
             
             ExitAimState();
             EnterThrowState();

@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2616777, y: 1.2616777, z: 1.2616777}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6256550577811682036}
@@ -80,8 +80,8 @@ MonoBehaviour:
   checkTransform: {fileID: 2143251615892065353}
   checkLayer:
     serializedVersion: 2
-    m_Bits: 8
-  groundCheckRadius: 0.25
+    m_Bits: 4294967295
+  groundCheckRadius: 0.15
   groundCheckDistance: 0.25
 --- !u!114 &8307222985085292792
 MonoBehaviour:
@@ -614,6 +614,14 @@ PrefabInstance:
     - target: {fileID: -7424507524287867659, guid: e1c20436d342342fda7e52ae32bc00f8, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5564726113243047161, guid: e1c20436d342342fda7e52ae32bc00f8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.75
+      objectReference: {fileID: 0}
+    - target: {fileID: -5564726113243047161, guid: e1c20436d342342fda7e52ae32bc00f8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: -5564726113243047161, guid: e1c20436d342342fda7e52ae32bc00f8, type: 3}
       propertyPath: m_LocalRotation.w

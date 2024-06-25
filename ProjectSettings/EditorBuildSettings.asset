@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Start Menu.unity
     guid: 8909a5494f4665f40bded166363c89cd
   - enabled: 1
-    path: Assets/Scenes/Level Design Bedroom Form Update.unity
-    guid: ea11c3c9b50b5954ba25a53cf31a6f6a
+    path: Assets/Scenes/Level Design Bedroom Form Ninja Star Update.unity
+    guid: 71b6647bd29d290438609b8c5f63e930
   m_configObjects: {}

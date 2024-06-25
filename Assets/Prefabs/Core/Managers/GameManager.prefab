@@ -51,6 +51,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   origamiSettings: {fileID: 11400000, guid: a1605372e5257de46bbc766e140cf960, type: 2}
+  startMenuScene: Assets/Scenes/Start Menu.unity
   onGameComplete:
     m_PersistentCalls:
       m_Calls: []

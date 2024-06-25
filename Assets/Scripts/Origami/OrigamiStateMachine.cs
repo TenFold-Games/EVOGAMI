@@ -1,4 +1,5 @@
-﻿using EVOGAMI.Origami.States;
+﻿using EVOGAMI.Core;
+using EVOGAMI.Origami.States;
 
 namespace EVOGAMI.Origami
 {
@@ -37,6 +38,7 @@ namespace EVOGAMI.Origami
 
             CurrentState.Exit();
             CurrentState = state;
+            PlayerManager.Instance.PlayerRb.useGravity = true;
             CurrentState.Enter();
         }
 
