@@ -63,6 +63,10 @@ namespace EVOGAMI.Origami
 
         public void Start()
         {
+            // Managers
+            _playerManager = PlayerManager.Instance;
+            
+            // Set up initial form
             switch (origamiSettings.initialForm)
             {
                 case OrigamiForm.Crab:
@@ -74,16 +78,17 @@ namespace EVOGAMI.Origami
                 case OrigamiForm.NinjaStar:
                     StateMachine.Initialize(_ninjaStarState);
                     break;
+                case OrigamiForm.None:
                 default:
-                    StateMachine.Initialize(_ninjaStarState);
+                    Debug.LogError("Initial form not recognized");
+                    StateMachine.Initialize(_frogState);
                     break;
             }
-            
-            // Managers
-            _playerManager = PlayerManager.Instance;
 
+            /* TBD: Start ----------------------------------------------------------------------------------------------
             // Set up input handlers
             InputManager.Instance.OnFormChange += ChangeForm;
+            ----------------------------------------------------------------------------------------------- TBD: End */
         }
 
         public void Update()
@@ -98,6 +103,7 @@ namespace EVOGAMI.Origami
 
         #endregion
 
+        /* TBD: Start --------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Change the form of the origami
         /// </summary>
@@ -128,8 +134,35 @@ namespace EVOGAMI.Origami
                     throw new ArgumentOutOfRangeException(nameof(form), form, null);
             }
         }
+        ---------------------------------------------------------------------------------------------------- TBD: End */
 
         #region Form
+
+        public void ChangeForm(OrigamiForm form)
+        {
+            // Form not gained
+            if (!_playerManager.GainedForms[form]) return;
+            
+            Debug.Log($"Changing form to {form}");
+            OnFormChange.Invoke(form);
+
+            switch (form)
+            {
+                case OrigamiForm.Crab:
+                    StateMachine.ChangeState(_crabState);
+                    break;
+                case OrigamiForm.Frog:
+                    StateMachine.ChangeState(_frogState);
+                    break;
+                case OrigamiForm.NinjaStar:
+                    StateMachine.ChangeState(_ninjaStarState);
+                    break;
+                case OrigamiForm.None:
+                    break; // Should not happen
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(form), form, null);
+            }
+        }
 
         /// <summary>
         ///     Activate the selected form

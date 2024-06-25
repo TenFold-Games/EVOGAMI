@@ -1,4 +1,5 @@
 ﻿using EVOGAMI.Control;
+using EVOGAMI.Custom.Enums;
 using EVOGAMI.Origami;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -29,29 +30,6 @@ namespace EVOGAMI.Core
         /// </summary>
         public bool IsMoving { get; private set; }
 
-        // TBD: START --------------------------------------------------------------------------------------------------
-        // Origami form changing
-        public OrigamiContainer.OrigamiForm NewForm { get; private set; }
-        public delegate void FormChangeCallback(OrigamiContainer.OrigamiForm form);
-        public event FormChangeCallback OnFormChange = delegate { };
-
-        private void GetFormFromInput(InputAction.CallbackContext ctx)
-        {
-            var input = ctx.ReadValue<Vector2>();
-
-            if (input.y > 0) // Up
-                NewForm = OrigamiContainer.OrigamiForm.NinjaStar;
-            else if (input.x < 0) // Left
-                NewForm = OrigamiContainer.OrigamiForm.Frog;
-            else if (input.x > 0) // Right
-                NewForm = OrigamiContainer.OrigamiForm.Crab;
-            else
-                NewForm = OrigamiContainer.OrigamiForm.None;
-
-            OnFormChange(NewForm);
-        }
-        // TBD: END ----------------------------------------------------------------------------------------------------
-
         #region Input Controls
 
         public void DisablePlayerControls()
@@ -60,20 +38,10 @@ namespace EVOGAMI.Core
             Controls.Origami.Disable();
         }
         
-        public void DisableCameraControls()
-        {
-            Controls.Camera.Disable();
-        }
-        
         public void EnablePlayerControls()
         {
             Controls.Player.Enable();
             Controls.Origami.Enable();
-        }
-        
-        public void EnableCameraControls()
-        {
-            Controls.Camera.Enable();
         }
 
         #endregion
@@ -126,11 +94,14 @@ namespace EVOGAMI.Core
             Controls.UI.Pause.performed += PausePerformedCallback;
             Controls.UI.Pause.canceled += PauseCancelledCallback;
             
-            // TBD: START ----------------------------------------------------------------------------------------------
             // Origami - Transform
-            Controls.Origami.Transform.performed += GetFormFromInput;
-            Controls.Origami.Transform.canceled += _ => NewForm = OrigamiContainer.OrigamiForm.None;
-            // TBD: END ------------------------------------------------------------------------------------------------
+            Controls.Origami.Transform.started += TransformStartedCallback;
+            Controls.Origami.Transform.performed += TransformPerformedCallback;
+            Controls.Origami.Transform.canceled += TransformCancelledCallback;
+            // Origami - Sequence
+            Controls.Origami.Sequence.started += SequenceStartedCallback;
+            Controls.Origami.Sequence.performed += SequencePerformedCallback;
+            Controls.Origami.Sequence.canceled += SequenceCancelledCallback;
         }
 
         public void OnEnable()
@@ -147,10 +118,10 @@ namespace EVOGAMI.Core
 
         #region Input Events
 
-        private void MoveStartedCallback(InputAction.CallbackContext ctx)
-        {
-            OnMoveStarted();
-        }
+        // Player - Move
+        #region Move
+
+        private void MoveStartedCallback(InputAction.CallbackContext ctx) { OnMoveStarted(); }
 
         private void MovePerformedCallback(InputAction.CallbackContext ctx)
         {
@@ -168,179 +139,175 @@ namespace EVOGAMI.Core
             OnMoveCancelled();
         }
 
-        private void JumpStartedCallback(InputAction.CallbackContext ctx)
-        {
-            OnJumpStarted();
-        }
+        #endregion
 
-        private void JumpPerformedCallback(InputAction.CallbackContext ctx)
-        {
-            OnJumpPerformed();
-        }
+        // Player - Jump
+        #region Jump
 
-        private void JumpCancelledCallback(InputAction.CallbackContext ctx)
-        {
-            OnJumpCancelled();
-        }
+        private void JumpStartedCallback(InputAction.CallbackContext ctx) { OnJumpStarted(); }
+        private void JumpPerformedCallback(InputAction.CallbackContext ctx) { OnJumpPerformed(); }
+        private void JumpCancelledCallback(InputAction.CallbackContext ctx) { OnJumpCancelled(); }
 
-        private void SprintHoldStartedCallback(InputAction.CallbackContext ctx)
-        {
-            OnSprintHoldStarted();
-        }
+        #endregion
 
-        private void SprintHoldPerformedCallback(InputAction.CallbackContext ctx)
-        {
-            OnSprintHoldPerformed();
-        }
+        // Player - Sprint (Hold)
+        #region Sprint (Hold)
 
-        private void SprintHoldCancelledCallback(InputAction.CallbackContext ctx)
-        {
-            OnSprintHoldCancelled();
-        }
-
-        private void SprintPressStartedCallback(InputAction.CallbackContext ctx)
-        {
-            OnSprintPressStarted();
-        }
-
-        private void SprintPressPerformedCallback(InputAction.CallbackContext ctx)
-        {
-            OnSprintPressPerformed();
-        }
-
-        private void SprintPressCancelledCallback(InputAction.CallbackContext ctx)
-        {
-            OnSprintPressCancelled();
-        }
-
-        private void PickUpStartedCallback(InputAction.CallbackContext ctx)
-        {
-            OnPickUpStarted();
-        }
-
-        private void PickUpPerformedCallback(InputAction.CallbackContext ctx)
-        {
-            OnPickUpPerformed();
-        }
-
-        private void PickUpCancelledCallback(InputAction.CallbackContext ctx)
-        {
-            OnPickUpCancelled();
-        }
-
-        private void DropStartedCallback(InputAction.CallbackContext ctx)
-        {
-            OnDropStarted();
-        }
-
-        private void DropPerformedCallback(InputAction.CallbackContext ctx)
-        {
-            OnDropPerformed();
-        }
-
-        private void DropCancelledCallback(InputAction.CallbackContext ctx)
-        {
-            OnDropCancelled();
-        }
+        private void SprintHoldStartedCallback(InputAction.CallbackContext ctx) { OnSprintHoldStarted(); }
+        private void SprintHoldPerformedCallback(InputAction.CallbackContext ctx) { OnSprintHoldPerformed(); }
+        private void SprintHoldCancelledCallback(InputAction.CallbackContext ctx) { OnSprintHoldCancelled(); }
         
-        private void PullAimStartedCallback(InputAction.CallbackContext ctx)
-        {
-            OnPullAimStarted();
-        }
-        
-        private void PullAimPerformedCallback(InputAction.CallbackContext ctx)
-        {
-            OnPullAimPerformed();
-        }
-        
-        private void PullAimCancelledCallback(InputAction.CallbackContext ctx)
-        {
-            OnPullAimCancelled();
-        }
-        
-        private void PullExecuteStartedCallback(InputAction.CallbackContext ctx)
-        {
-            OnPullExecuteStarted();
-        }
-        
-        private void PullExecutePerformedCallback(InputAction.CallbackContext ctx)
-        {
-            OnPullExecutePerformed();
-        }
-        
-        private void PullExecuteCancelledCallback(InputAction.CallbackContext ctx)
-        {
-            OnPullExecuteCancelled();
-        }
+        #endregion
 
-        private void PauseStartedCallback(InputAction.CallbackContext ctx)
-        {
-            OnPauseStarted();
-        }
+        // Player - Sprint (Press)
+        #region Sprint (Press)
+        
+        private void SprintPressStartedCallback(InputAction.CallbackContext ctx) { OnSprintPressStarted(); }
+        private void SprintPressPerformedCallback(InputAction.CallbackContext ctx) { OnSprintPressPerformed(); }
+        private void SprintPressCancelledCallback(InputAction.CallbackContext ctx) { OnSprintPressCancelled(); }
+        
+        #endregion
 
-        private void PausePerformedCallback(InputAction.CallbackContext ctx)
-        {
-            OnPausePerformed();
-        }
+        // Player - Pick Up
+        #region Pick Up
+        
+        private void PickUpStartedCallback(InputAction.CallbackContext ctx) { OnPickUpStarted(); }
+        private void PickUpPerformedCallback(InputAction.CallbackContext ctx) { OnPickUpPerformed(); }
+        private void PickUpCancelledCallback(InputAction.CallbackContext ctx) { OnPickUpCancelled(); }
+        
+        #endregion
 
-        private void PauseCancelledCallback(InputAction.CallbackContext ctx)
-        {
-            OnPauseCancelled();
-        }
+        // Player - Drop
+        #region Drop
+        
+        private void DropStartedCallback(InputAction.CallbackContext ctx) { OnDropStarted(); }
+        private void DropPerformedCallback(InputAction.CallbackContext ctx) { OnDropPerformed(); }
+        private void DropCancelledCallback(InputAction.CallbackContext ctx) { OnDropCancelled(); }
+        
+        #endregion
 
+        // Player - Pull (Aim)
+        #region Pull (Aim)
+        
+        private void PullAimStartedCallback(InputAction.CallbackContext ctx) { OnPullAimStarted(); }
+        private void PullAimPerformedCallback(InputAction.CallbackContext ctx) { OnPullAimPerformed(); }
+        private void PullAimCancelledCallback(InputAction.CallbackContext ctx) { OnPullAimCancelled(); }
+        
+        #endregion
+
+        // Player - Pull (Execute)
+        #region Pull (Execute)
+        
+        private void PullExecuteStartedCallback(InputAction.CallbackContext ctx) { OnPullExecuteStarted(); }
+        private void PullExecutePerformedCallback(InputAction.CallbackContext ctx) { OnPullExecutePerformed(); }
+        private void PullExecuteCancelledCallback(InputAction.CallbackContext ctx) { OnPullExecuteCancelled(); }
+        
+        #endregion
+
+        // UI - Pause
+        #region Pause
+
+        private void PauseStartedCallback(InputAction.CallbackContext ctx) { OnPauseStarted(); }
+        private void PausePerformedCallback(InputAction.CallbackContext ctx) { OnPausePerformed(); }
+        private void PauseCancelledCallback(InputAction.CallbackContext ctx) { OnPauseCancelled(); }
+        
+        #endregion
+
+        // Origami - Transform
+        #region Transform
+        
+        private void TransformStartedCallback(InputAction.CallbackContext ctx) { OnTransformStarted(); }
+        private void TransformPerformedCallback(InputAction.CallbackContext ctx) { OnTransformPerformed(); }
+        private void TransformCancelledCallback(InputAction.CallbackContext ctx) { OnTransformCancelled(); }
+        
+        #endregion
+
+        // Origami - Sequence
+        #region Sequence
+
+        private void SequenceStartedCallback(InputAction.CallbackContext ctx) { OnSequenceStarted(CtxToDirection(ctx)); }
+        private void SequencePerformedCallback(InputAction.CallbackContext ctx) { OnSequencePerformed(CtxToDirection(ctx)); }
+        private void SequenceCancelledCallback(InputAction.CallbackContext ctx) { OnSequenceCancelled(CtxToDirection(ctx)); }
+        
+        #endregion
+        
         #endregion
 
         #region Input Event Exposure
 
-        // Move
+        // Player - Move
+        #region Move
+        
         public delegate void MoveCallback();
 
         public event MoveCallback OnMoveStarted = delegate { };
         public event MoveCallback OnMovePerformed = delegate { };
         public event MoveCallback OnMoveCancelled = delegate { };
+        
+        #endregion
 
-        // Jump
+        // Player - Jump
+        #region Jump
         public delegate void JumpCallback();
 
         public event JumpCallback OnJumpStarted = delegate { };
         public event JumpCallback OnJumpPerformed = delegate { };
         public event JumpCallback OnJumpCancelled = delegate { };
+        
+        #endregion
 
-        // Sprint (Hold)
+        // Player - Sprint (Hold)
+        #region Sprint (Hold)
         public delegate void SprintCallback();
 
         public event SprintCallback OnSprintHoldStarted = delegate { };
         public event SprintCallback OnSprintHoldPerformed = delegate { };
 
         public event SprintCallback OnSprintHoldCancelled = delegate { };
+        
+        #endregion
 
-        // Sprint (Press)
+        // Player - Sprint (Press)
+        #region Sprint (Press)
         public event SprintCallback OnSprintPressStarted = delegate { };
         public event SprintCallback OnSprintPressPerformed = delegate { };
         public event SprintCallback OnSprintPressCancelled = delegate { };
+        
+        #endregion
 
-        // Pick Up
+        // Player - Pick Up
+        #region Pick Up
         public delegate void PickUpCallback();
 
         public event PickUpCallback OnPickUpStarted = delegate { };
         public event PickUpCallback OnPickUpPerformed = delegate { };
         public event PickUpCallback OnPickUpCancelled = delegate { };
+        
+        #endregion
 
-        // Drop
+        // Player - Drop
+        #region Drop
         public delegate void DropCallback();
 
         public event DropCallback OnDropStarted = delegate { };
         public event DropCallback OnDropPerformed = delegate { };
         public event DropCallback OnDropCancelled = delegate { };
         
-        // Pull (Aim)
+        #endregion
+        
+        // Player - Pull (Aim)
+        #region Pull (Aim)
         public delegate void PullAimCallback();
         
         public event PullAimCallback OnPullAimStarted = delegate { };
         public event PullAimCallback OnPullAimPerformed = delegate { };
         public event PullAimCallback OnPullAimCancelled = delegate { };
         
-        // Pull (Execute)
+        #endregion
+        
+        // Player - Pull (Execute)
+        #region Pull (Execute)
+
         public delegate void PullExecuteCallback();
         
         public event PullExecuteCallback OnPullExecuteStarted = delegate { };
@@ -349,7 +316,11 @@ namespace EVOGAMI.Core
         
         public event PullExecuteCallback OnPullExecuteCancelled = delegate { };
 
-        // Pause
+        #endregion
+        
+        // UI - Pause
+        #region Pause 
+
         public delegate void PauseCallback();
 
         public event PauseCallback OnPauseStarted = delegate { };
@@ -357,5 +328,38 @@ namespace EVOGAMI.Core
         public event PauseCallback OnPauseCancelled = delegate { };
 
         #endregion
+        
+        // Origami - Transform
+        #region Transform
+        public delegate void TransformCallback();
+        
+        public event TransformCallback OnTransformStarted = delegate { };
+        public event TransformCallback OnTransformPerformed = delegate { };
+        public event TransformCallback OnTransformCancelled = delegate { };
+        
+        #endregion
+
+        // Origami - Sequence
+        #region Sequence
+        
+        public delegate void SequenceCallback(Directions direction);
+        
+        public event SequenceCallback OnSequenceStarted = delegate { };
+        public event SequenceCallback OnSequencePerformed = delegate { };
+        public event SequenceCallback OnSequenceCancelled = delegate { };
+        
+        #endregion
+
+        #endregion
+        
+        private Directions CtxToDirection(InputAction.CallbackContext ctx)
+        {
+            var input = ctx.ReadValue<Vector2>();
+
+            if (Mathf.Abs(input.x) > Mathf.Abs(input.y)) // Horizontal
+                return input.x > 0 ? Directions.R : Directions.L;
+            else // Vertical
+                return input.y > 0 ? Directions.U : Directions.D;
+        }
     }
 }

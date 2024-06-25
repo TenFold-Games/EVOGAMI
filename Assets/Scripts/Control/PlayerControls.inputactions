@@ -285,6 +285,15 @@
             "actions": [
                 {
                     "name": "Transform",
+                    "type": "Button",
+                    "id": "f6313a28-cfe6-4718-861f-41173948e9bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sequence",
                     "type": "Value",
                     "id": "6b6b5be5-c52e-48ae-82c2-cf2953ca57b3",
                     "expectedControlType": "Vector2",
@@ -296,12 +305,34 @@
             "bindings": [
                 {
                     "name": "",
+                    "id": "a6070dcd-6607-4f72-bef0-35b6d4e9e96e",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Transform",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ea75818-469d-4291-a3eb-76af0e51058d",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Transform",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "48d319a5-639d-41cc-9d7a-541462852919",
                     "path": "<Gamepad>/dpad",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Transform",
+                    "action": "Sequence",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -312,7 +343,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Transform",
+                    "action": "Sequence",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -323,7 +354,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Transform",
+                    "action": "Sequence",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -334,7 +365,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Transform",
+                    "action": "Sequence",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -345,7 +376,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Transform",
+                    "action": "Sequence",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -356,7 +387,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Transform",
+                    "action": "Sequence",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
