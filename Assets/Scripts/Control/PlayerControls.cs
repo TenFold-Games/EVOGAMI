@@ -309,6 +309,15 @@ namespace EVOGAMI.Control
             ""actions"": [
                 {
                     ""name"": ""Transform"",
+                    ""type"": ""Button"",
+                    ""id"": ""f6313a28-cfe6-4718-861f-41173948e9bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sequence"",
                     ""type"": ""Value"",
                     ""id"": ""6b6b5be5-c52e-48ae-82c2-cf2953ca57b3"",
                     ""expectedControlType"": ""Vector2"",
@@ -320,12 +329,34 @@ namespace EVOGAMI.Control
             ""bindings"": [
                 {
                     ""name"": """",
+                    ""id"": ""a6070dcd-6607-4f72-bef0-35b6d4e9e96e"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Transform"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ea75818-469d-4291-a3eb-76af0e51058d"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Transform"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""48d319a5-639d-41cc-9d7a-541462852919"",
                     ""path"": ""<Gamepad>/dpad"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Transform"",
+                    ""action"": ""Sequence"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -336,7 +367,7 @@ namespace EVOGAMI.Control
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Transform"",
+                    ""action"": ""Sequence"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -347,7 +378,7 @@ namespace EVOGAMI.Control
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Transform"",
+                    ""action"": ""Sequence"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -358,7 +389,7 @@ namespace EVOGAMI.Control
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Transform"",
+                    ""action"": ""Sequence"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -369,7 +400,7 @@ namespace EVOGAMI.Control
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Transform"",
+                    ""action"": ""Sequence"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -380,7 +411,7 @@ namespace EVOGAMI.Control
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Transform"",
+                    ""action"": ""Sequence"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -988,6 +1019,7 @@ namespace EVOGAMI.Control
             // Origami
             m_Origami = asset.FindActionMap("Origami", throwIfNotFound: true);
             m_Origami_Transform = m_Origami.FindAction("Transform", throwIfNotFound: true);
+            m_Origami_Sequence = m_Origami.FindAction("Sequence", throwIfNotFound: true);
             // Camera
             m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
             m_Camera_Orbit = m_Camera.FindAction("Orbit", throwIfNotFound: true);
@@ -1168,11 +1200,13 @@ namespace EVOGAMI.Control
         private readonly InputActionMap m_Origami;
         private List<IOrigamiActions> m_OrigamiActionsCallbackInterfaces = new List<IOrigamiActions>();
         private readonly InputAction m_Origami_Transform;
+        private readonly InputAction m_Origami_Sequence;
         public struct OrigamiActions
         {
             private @PlayerControls m_Wrapper;
             public OrigamiActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Transform => m_Wrapper.m_Origami_Transform;
+            public InputAction @Sequence => m_Wrapper.m_Origami_Sequence;
             public InputActionMap Get() { return m_Wrapper.m_Origami; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1185,6 +1219,9 @@ namespace EVOGAMI.Control
                 @Transform.started += instance.OnTransform;
                 @Transform.performed += instance.OnTransform;
                 @Transform.canceled += instance.OnTransform;
+                @Sequence.started += instance.OnSequence;
+                @Sequence.performed += instance.OnSequence;
+                @Sequence.canceled += instance.OnSequence;
             }
 
             private void UnregisterCallbacks(IOrigamiActions instance)
@@ -1192,6 +1229,9 @@ namespace EVOGAMI.Control
                 @Transform.started -= instance.OnTransform;
                 @Transform.performed -= instance.OnTransform;
                 @Transform.canceled -= instance.OnTransform;
+                @Sequence.started -= instance.OnSequence;
+                @Sequence.performed -= instance.OnSequence;
+                @Sequence.canceled -= instance.OnSequence;
             }
 
             public void RemoveCallbacks(IOrigamiActions instance)
@@ -1395,6 +1435,7 @@ namespace EVOGAMI.Control
         public interface IOrigamiActions
         {
             void OnTransform(InputAction.CallbackContext context);
+            void OnSequence(InputAction.CallbackContext context);
         }
         public interface ICameraActions
         {
