@@ -1,6 +1,5 @@
 using EVOGAMI.Core;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace EVOGAMI.UI.PanelMenu
 {
@@ -9,28 +8,31 @@ namespace EVOGAMI.UI.PanelMenu
     /// </summary>
     public class PauseMenu : SubMenuBase
     {
-        public override void Enable(Selectable previousElement)
+        [Header("Controller")]
+        // The sub-menu controller
+        [SerializeField] [Tooltip("The sub-menu controller")]
+        private SubMenuController controller;
+
+        public override void OnEnable()
         {
-            base.Enable(previousElement);
+            // Disable player input
+            InputManager.Instance.Controls.Player.Disable();
+            InputManager.Instance.Controls.Origami.Disable();
+
+            base.OnEnable();
 
             // Pause the game
             Time.timeScale = Mathf.Epsilon;
-            
-            // Disable player input
-            InputManager.Instance.Controls.UI.Cancel.performed += ctx => OnContinueClicked();
-            InputManager.Instance.Controls.Player.Disable();
-            InputManager.Instance.Controls.Origami.Disable();
         }
 
-        public override void Disable()
+        public override void OnDisable()
         {
-            base.Disable();
-
             // Unpause the game
-            Time.timeScale = 1;
-            
+            Time.timeScale = 1.0f;
+
+            base.OnDisable();
+
             // Enable player input
-            InputManager.Instance.Controls.UI.Cancel.performed -= ctx => OnContinueClicked();
             InputManager.Instance.Controls.Player.Enable();
             InputManager.Instance.Controls.Origami.Enable();
         }
@@ -38,13 +40,11 @@ namespace EVOGAMI.UI.PanelMenu
         #region Callbacks
 
         /// <summary>
-        ///     Callback for when the continue button is clicked.
+        ///     Callback for when the reset button is clicked.
         /// </summary>
-        public void OnContinueClicked()
+        public void OnResetClicked()
         {
-            Disable();
-            if (UiManager.Instance.headsUpDisplay && !UiManager.Instance.headsUpDisplay.gameObject.activeSelf)
-                UiManager.Instance.headsUpDisplay.gameObject.SetActive(true);
+            GameManager.ResetGame();
             gameObject.SetActive(false);
         }
 

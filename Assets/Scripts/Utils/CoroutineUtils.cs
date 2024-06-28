@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EVOGAMI.Utils
 {
-    public class CoroutineUtils
+    public static class CoroutineUtils
     {
         public static IEnumerator DelayAction(float delay, System.Action action)
         {

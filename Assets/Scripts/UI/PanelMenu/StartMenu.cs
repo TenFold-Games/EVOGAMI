@@ -1,7 +1,6 @@
-using EVOGAMI.Core;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace EVOGAMI.UI.PanelMenu
 {
@@ -14,10 +13,17 @@ namespace EVOGAMI.UI.PanelMenu
         // The name of the scene to load
         [SerializeField] [Tooltip("The name of the scene to load")]
         private string sceneToLoad;
-        
+
+        public override void OnEnable()
+        {
+            base.OnEnable();
+
+            Cursor.lockState = CursorLockMode.None;
+        }
+
         private void Start()
         {
-            Enable(null);
+            OnEnable(); // Explicitly call OnEnable
         }
 
         #region Callbacks

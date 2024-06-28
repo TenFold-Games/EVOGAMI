@@ -64,20 +64,25 @@ namespace EVOGAMI.UI.Transformation
         private SequenceMatcher _sequenceMatcher;
         private readonly Dictionary<string, OrigamiContainer.OrigamiForm> _seqFormMapping = new();
 
+        public void Reset()
+        {
+            _sequenceMatcher.ClearBuffer();
+        }
+
         #region Callbacks
 
         protected override void RegisterCallbacks()
         {
             base.RegisterCallbacks();
             
-            InputManager.OnSequencePerformed += OnSequencePerformed;
+            InputManager.OnSequenceStarted += OnSequencePerformed;
         }
         
         protected override void UnregisterCallbacks()
         {
             base.UnregisterCallbacks();
             
-            InputManager.OnSequencePerformed -= OnSequencePerformed;
+            InputManager.OnSequenceStarted -= OnSequencePerformed;
         }
 
         #endregion

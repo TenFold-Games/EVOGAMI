@@ -30,17 +30,27 @@ namespace EVOGAMI.Core
         /// </summary>
         public bool IsMoving { get; private set; }
 
+        private Directions _sequenceInput;
+
         #region Input Controls
 
         public void DisablePlayerControls()
         {
             Controls.Player.Disable();
+        }
+        
+        public void DisableOrigamiControls()
+        {
             Controls.Origami.Disable();
         }
         
         public void EnablePlayerControls()
         {
             Controls.Player.Enable();
+        }
+        
+        public void EnableOrigamiControls()
+        {
             Controls.Origami.Enable();
         }
 
@@ -99,9 +109,21 @@ namespace EVOGAMI.Core
             Controls.Origami.Transform.performed += TransformPerformedCallback;
             Controls.Origami.Transform.canceled += TransformCancelledCallback;
             // Origami - Sequence
-            Controls.Origami.Sequence.started += SequenceStartedCallback;
-            Controls.Origami.Sequence.performed += SequencePerformedCallback;
-            Controls.Origami.Sequence.canceled += SequenceCancelledCallback;
+            // started
+            Controls.Origami.Up.started += _ => SequenceStartedCallback(Directions.U);
+            Controls.Origami.Down.started += _ => SequenceStartedCallback(Directions.D);
+            Controls.Origami.Left.started += _ => SequenceStartedCallback(Directions.L);
+            Controls.Origami.Right.started += _ => SequenceStartedCallback(Directions.R);
+            // performed
+            Controls.Origami.Up.performed += _ => SequencePerformedCallback(Directions.U);
+            Controls.Origami.Down.performed += _ => SequencePerformedCallback(Directions.D);
+            Controls.Origami.Left.performed += _ => SequencePerformedCallback(Directions.L);
+            Controls.Origami.Right.performed += _ => SequencePerformedCallback(Directions.R);
+            // cancelled
+            Controls.Origami.Up.canceled += _ => SequenceCancelledCallback(Directions.U);
+            Controls.Origami.Down.canceled += _ => SequenceCancelledCallback(Directions.D);
+            Controls.Origami.Left.canceled += _ => SequenceCancelledCallback(Directions.L);
+            Controls.Origami.Right.canceled += _ => SequenceCancelledCallback(Directions.R);
         }
 
         public void OnEnable()
@@ -225,9 +247,9 @@ namespace EVOGAMI.Core
         // Origami - Sequence
         #region Sequence
 
-        private void SequenceStartedCallback(InputAction.CallbackContext ctx) { OnSequenceStarted(CtxToDirection(ctx)); }
-        private void SequencePerformedCallback(InputAction.CallbackContext ctx) { OnSequencePerformed(CtxToDirection(ctx)); }
-        private void SequenceCancelledCallback(InputAction.CallbackContext ctx) { OnSequenceCancelled(CtxToDirection(ctx)); }
+        private void SequenceStartedCallback(Directions sequenceInput) { OnSequenceStarted(sequenceInput); }
+        private void SequencePerformedCallback(Directions sequenceInput) { OnSequencePerformed(sequenceInput); }
+        private void SequenceCancelledCallback(Directions sequenceInput) { OnSequenceCancelled(sequenceInput); }
         
         #endregion
         
@@ -351,15 +373,5 @@ namespace EVOGAMI.Core
         #endregion
 
         #endregion
-        
-        private Directions CtxToDirection(InputAction.CallbackContext ctx)
-        {
-            var input = ctx.ReadValue<Vector2>();
-
-            if (Mathf.Abs(input.x) > Mathf.Abs(input.y)) // Horizontal
-                return input.x > 0 ? Directions.R : Directions.L;
-            else // Vertical
-                return input.y > 0 ? Directions.U : Directions.D;
-        }
     }
 }

@@ -476,7 +476,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8223691931879614432}
         m_TargetAssemblyTypeName: EVOGAMI.UI.PauseMenu, Assembly-CSharp
-        m_MethodName: OnContinueClicked
+        m_MethodName: OnResetClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

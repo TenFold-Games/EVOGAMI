@@ -317,13 +317,40 @@ namespace EVOGAMI.Control
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Sequence"",
-                    ""type"": ""Value"",
-                    ""id"": ""6b6b5be5-c52e-48ae-82c2-cf2953ca57b3"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""308302ef-da8a-49c1-82d9-2d57b532161d"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""7656a417-73ff-4766-85bf-bf0ceae541e7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""67dad08e-9ac3-4198-a327-60c0fefe66a3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""d6c7deba-5b91-401c-87f4-a22c69a72c64"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -351,69 +378,91 @@ namespace EVOGAMI.Control
                 },
                 {
                     ""name"": """",
-                    ""id"": ""48d319a5-639d-41cc-9d7a-541462852919"",
-                    ""path"": ""<Gamepad>/dpad"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sequence"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Arrows"",
-                    ""id"": ""a85fe73e-21e2-420b-9edf-d8d122b270ca"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sequence"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""f38dcea3-0c8f-4066-9c45-0761a2ce4eba"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Sequence"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""dcc34a16-fe0d-4f23-b177-ebfaca9ebb1f"",
+                    ""id"": ""c6c1e5d8-21b4-444d-8479-55d6298ba489"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Sequence"",
+                    ""action"": ""Down"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""bb660dec-d8b2-411b-899a-606ce3aa93dc"",
+                    ""name"": """",
+                    ""id"": ""c96d735f-d4e6-4c95-9c09-3bcce12394db"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7f63b4a6-2ad2-46eb-970e-ac21e2b86f1b"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Sequence"",
+                    ""action"": ""Left"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""right"",
-                    ""id"": ""fbe0ce61-19a3-46fd-b3ee-24151651517e"",
+                    ""name"": """",
+                    ""id"": ""f236e314-0515-4638-bf94-85ea74c4770c"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""991de560-006a-44f4-abe8-71fedaf5de8a"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Sequence"",
+                    ""action"": ""Right"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""558c2cbb-b868-4ff6-b4d6-cf9ef2536ab9"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""906a52d0-a21e-4a01-8ca3-e6536f5ccac2"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27776752-18f7-4e43-bb52-219daabf1bdf"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1019,7 +1068,10 @@ namespace EVOGAMI.Control
             // Origami
             m_Origami = asset.FindActionMap("Origami", throwIfNotFound: true);
             m_Origami_Transform = m_Origami.FindAction("Transform", throwIfNotFound: true);
-            m_Origami_Sequence = m_Origami.FindAction("Sequence", throwIfNotFound: true);
+            m_Origami_Up = m_Origami.FindAction("Up", throwIfNotFound: true);
+            m_Origami_Down = m_Origami.FindAction("Down", throwIfNotFound: true);
+            m_Origami_Left = m_Origami.FindAction("Left", throwIfNotFound: true);
+            m_Origami_Right = m_Origami.FindAction("Right", throwIfNotFound: true);
             // Camera
             m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
             m_Camera_Orbit = m_Camera.FindAction("Orbit", throwIfNotFound: true);
@@ -1200,13 +1252,19 @@ namespace EVOGAMI.Control
         private readonly InputActionMap m_Origami;
         private List<IOrigamiActions> m_OrigamiActionsCallbackInterfaces = new List<IOrigamiActions>();
         private readonly InputAction m_Origami_Transform;
-        private readonly InputAction m_Origami_Sequence;
+        private readonly InputAction m_Origami_Up;
+        private readonly InputAction m_Origami_Down;
+        private readonly InputAction m_Origami_Left;
+        private readonly InputAction m_Origami_Right;
         public struct OrigamiActions
         {
             private @PlayerControls m_Wrapper;
             public OrigamiActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Transform => m_Wrapper.m_Origami_Transform;
-            public InputAction @Sequence => m_Wrapper.m_Origami_Sequence;
+            public InputAction @Up => m_Wrapper.m_Origami_Up;
+            public InputAction @Down => m_Wrapper.m_Origami_Down;
+            public InputAction @Left => m_Wrapper.m_Origami_Left;
+            public InputAction @Right => m_Wrapper.m_Origami_Right;
             public InputActionMap Get() { return m_Wrapper.m_Origami; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1219,9 +1277,18 @@ namespace EVOGAMI.Control
                 @Transform.started += instance.OnTransform;
                 @Transform.performed += instance.OnTransform;
                 @Transform.canceled += instance.OnTransform;
-                @Sequence.started += instance.OnSequence;
-                @Sequence.performed += instance.OnSequence;
-                @Sequence.canceled += instance.OnSequence;
+                @Up.started += instance.OnUp;
+                @Up.performed += instance.OnUp;
+                @Up.canceled += instance.OnUp;
+                @Down.started += instance.OnDown;
+                @Down.performed += instance.OnDown;
+                @Down.canceled += instance.OnDown;
+                @Left.started += instance.OnLeft;
+                @Left.performed += instance.OnLeft;
+                @Left.canceled += instance.OnLeft;
+                @Right.started += instance.OnRight;
+                @Right.performed += instance.OnRight;
+                @Right.canceled += instance.OnRight;
             }
 
             private void UnregisterCallbacks(IOrigamiActions instance)
@@ -1229,9 +1296,18 @@ namespace EVOGAMI.Control
                 @Transform.started -= instance.OnTransform;
                 @Transform.performed -= instance.OnTransform;
                 @Transform.canceled -= instance.OnTransform;
-                @Sequence.started -= instance.OnSequence;
-                @Sequence.performed -= instance.OnSequence;
-                @Sequence.canceled -= instance.OnSequence;
+                @Up.started -= instance.OnUp;
+                @Up.performed -= instance.OnUp;
+                @Up.canceled -= instance.OnUp;
+                @Down.started -= instance.OnDown;
+                @Down.performed -= instance.OnDown;
+                @Down.canceled -= instance.OnDown;
+                @Left.started -= instance.OnLeft;
+                @Left.performed -= instance.OnLeft;
+                @Left.canceled -= instance.OnLeft;
+                @Right.started -= instance.OnRight;
+                @Right.performed -= instance.OnRight;
+                @Right.canceled -= instance.OnRight;
             }
 
             public void RemoveCallbacks(IOrigamiActions instance)
@@ -1435,7 +1511,10 @@ namespace EVOGAMI.Control
         public interface IOrigamiActions
         {
             void OnTransform(InputAction.CallbackContext context);
-            void OnSequence(InputAction.CallbackContext context);
+            void OnUp(InputAction.CallbackContext context);
+            void OnDown(InputAction.CallbackContext context);
+            void OnLeft(InputAction.CallbackContext context);
+            void OnRight(InputAction.CallbackContext context);
         }
         public interface ICameraActions
         {

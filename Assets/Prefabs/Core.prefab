@@ -1298,10 +1298,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7526941702336864273}
     m_Modifications:
+    - target: {fileID: 74274476742828267, guid: 90f165923b2141741a7d620091924dfa, type: 3}
+      propertyPath: m_Name
+      value: Reset (TMP)
+      objectReference: {fileID: 0}
     - target: {fileID: 3974062551045226843, guid: 90f165923b2141741a7d620091924dfa, type: 3}
       propertyPath: origamiContainer
       value: 
       objectReference: {fileID: 7637370290059537053}
+    - target: {fileID: 6692686799912415584, guid: 90f165923b2141741a7d620091924dfa, type: 3}
+      propertyPath: m_text
+      value: RESET
+      objectReference: {fileID: 0}
     - target: {fileID: 6902501094047260302, guid: 90f165923b2141741a7d620091924dfa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1341,6 +1349,10 @@ PrefabInstance:
     - target: {fileID: 6902501094047260302, guid: 90f165923b2141741a7d620091924dfa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8628315881312722960, guid: 90f165923b2141741a7d620091924dfa, type: 3}
+      propertyPath: m_Name
+      value: Reset
       objectReference: {fileID: 0}
     - target: {fileID: 9046623096057144554, guid: 90f165923b2141741a7d620091924dfa, type: 3}
       propertyPath: m_Name
