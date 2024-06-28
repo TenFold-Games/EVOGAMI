@@ -1,6 +1,6 @@
-using System.Collections;
 using EVOGAMI.Audio;
 using EVOGAMI.Core;
+using EVOGAMI.Utils;
 using UnityEngine;
 
 namespace EVOGAMI.Region
@@ -30,7 +30,7 @@ namespace EVOGAMI.Region
             Disappear();
 
             PlayerManager.Instance.CraneCollected();
-            StartCoroutine(PlayAudioAndDestroy());
+            PlayAudioAndDestroy();
         }
 
         public void PlayAudio(AudioSource sfx)
@@ -44,12 +44,14 @@ namespace EVOGAMI.Region
             m_collider.enabled = false;
         }
 
-        private IEnumerator PlayAudioAndDestroy()
+        private void PlayAudioAndDestroy()
         {
             PlayAudio(audioSource);
-            yield return new WaitForSeconds(audioSource.clip.length);
-            audioSource.Stop();
-            Destroy(gameObject);
+            StartCoroutine(CoroutineUtils.DelayAction(audioSource.clip.length, () =>
+            {
+                audioSource.Stop();
+                Destroy(gameObject);
+            }));
         }
     }
 }
