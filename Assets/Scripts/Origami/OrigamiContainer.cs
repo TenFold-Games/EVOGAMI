@@ -143,7 +143,6 @@ namespace EVOGAMI.Origami
             // Form not gained
             if (!_playerManager.GainedForms[form]) return;
             
-            Debug.Log($"Changing form to {form}");
             OnFormChange.Invoke(form);
 
             switch (form)
