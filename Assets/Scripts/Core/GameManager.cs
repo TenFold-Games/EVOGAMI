@@ -17,7 +17,7 @@ namespace EVOGAMI.Core
         ///     Singleton instance of the GameManager
         /// </summary>
         public static GameManager Instance { get; private set; }
-        
+
         [Header("Checkpoints")]
         // The checkpoints in the level, ordered from start to finish
         [SerializeField] [Tooltip("The checkpoints in the level, ordered from start to finish")]
@@ -25,28 +25,30 @@ namespace EVOGAMI.Core
         // The checkpoint the player will respawn at
         [Tooltip("The checkpoint the player will respawn at")]
         public CheckpointRegion CurrentCheckpoint { get; private set; }
-        
-        // [Header("UI Elements")]
-        // The HUD for the player
-        // [SerializeField] [Tooltip("The HUD for the player")]
-        // public GameObject headsUpDisplay;
-        // The UI for when the player finishes the level
-        // [SerializeField] [Tooltip("The UI for when the player finishes the level")]
-        // private GameObject finishLevelUi;
-        
+
         [Header("Settings")]
         // Origami related settings
         [SerializeField] [Tooltip("Origami related settings")]
         public OrigamiSettings origamiSettings;
-        
+
         [Header("Scene Management")]
         // The start scene
         [SerializeField] [Tooltip("The start scene")]
         private string startMenuScene;
-        
+
+        [Header("End Game")]
+        // Event invoked when the game is complete
+        [SerializeField] [Tooltip("Event invoked when the game is complete")]
+        public GameCompleteEvent onGameComplete = new();
+
+        /// <summary>
+        ///     Event invoked when the game is complete
+        /// </summary>
+        [Serializable] public class GameCompleteEvent : UnityEvent {}
+
         private GameObject _headsUpDisplay;
         private GameObject _finishLevelUi;
-        
+
         /// <summary>
         ///     The indices of the checkpoints
         /// </summary>
@@ -75,7 +77,7 @@ namespace EVOGAMI.Core
             foreach (var checkpoint in checkpoints)
                 _checkpointIndices?.Add(checkpoint, i++);
             CurrentCheckpoint = checkpoints[0];
-            
+
             // Locks the cursor to the game window
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -106,17 +108,19 @@ namespace EVOGAMI.Core
             Application.Quit();
         }
 
+        public static void ResetGame()
+        {
+            var playerRb = PlayerManager.Instance.PlayerRb;
+            playerRb.useGravity = true;
+            playerRb.isKinematic = false;
+            playerRb.velocity = Vector3.zero;
+            playerRb.freezeRotation = true;
+            
+            // Reset the player to the current checkpoint
+            PlayerManager.Instance.RespawnAtLastCheckpoint();
+        }
+
         #region Game Complete
-        
-        [Header("End Game")]
-        // Event invoked when the game is complete
-        [SerializeField] [Tooltip("Event invoked when the game is complete")]
-        public GameCompleteEvent onGameComplete = new();
-        
-        /// <summary>
-        ///     Event invoked when the game is complete
-        /// </summary>
-        [Serializable] public class GameCompleteEvent : UnityEvent {}
 
         /// <summary>
         ///     The game is complete
@@ -124,19 +128,19 @@ namespace EVOGAMI.Core
         public void GameComplete()
         {
             onGameComplete.Invoke();
-            
+
             StartCoroutine(FinishLevelCoroutine());
         }
-        
+
         private System.Collections.IEnumerator FinishLevelCoroutine()
         {
             yield return new WaitForSeconds(3);
-            
+
             _headsUpDisplay.SetActive(false);
             _finishLevelUi.SetActive(true);
-            
+
             yield return new WaitForSeconds(3);
-            
+
             LoadStartMenu();
         }
 
