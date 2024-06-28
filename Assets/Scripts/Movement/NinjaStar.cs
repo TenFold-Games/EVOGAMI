@@ -132,6 +132,7 @@ namespace EVOGAMI.Movement
             
             // Disable user input
             InputManager.DisablePlayerControls();
+            InputManager.DisableOrigamiControls();
             // InputManager.DisableCameraControls();
             
             // Disable gravity
@@ -147,6 +148,7 @@ namespace EVOGAMI.Movement
             
             // Enable user input
             InputManager.EnablePlayerControls();
+            InputManager.EnableOrigamiControls();
             // InputManager.EnableCameraControls();
             
             // Enable gravity

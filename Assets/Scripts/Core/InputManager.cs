@@ -35,12 +35,20 @@ namespace EVOGAMI.Core
         public void DisablePlayerControls()
         {
             Controls.Player.Disable();
+        }
+        
+        public void DisableOrigamiControls()
+        {
             Controls.Origami.Disable();
         }
         
         public void EnablePlayerControls()
         {
             Controls.Player.Enable();
+        }
+        
+        public void EnableOrigamiControls()
+        {
             Controls.Origami.Enable();
         }
 

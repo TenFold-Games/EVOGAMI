@@ -112,11 +112,13 @@ namespace EVOGAMI.UI.Transformation
             {
                 _startPos = _offScreenPos;
                 _endPos = _onScreenPos;
+                InputManager.Instance.DisablePlayerControls();
             }
             else // On-screen -> Off-screen
             {
                 _startPos = _onScreenPos;
                 _endPos = _offScreenPos;
+                InputManager.Instance.EnablePlayerControls();
             }
         }
 
