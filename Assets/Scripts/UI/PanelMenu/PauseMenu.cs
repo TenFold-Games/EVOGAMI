@@ -42,8 +42,9 @@ namespace EVOGAMI.UI.PanelMenu
         /// <summary>
         ///     Callback for when the reset button is clicked.
         /// </summary>
-        public void OnContinueClicked()
+        public void OnResetClicked()
         {
+            GameManager.ResetGame();
             gameObject.SetActive(false);
         }
 
