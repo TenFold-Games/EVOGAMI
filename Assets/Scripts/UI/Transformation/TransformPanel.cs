@@ -85,6 +85,7 @@ namespace EVOGAMI.UI.Transformation
         private void OnSequenceRead(string buffer)
         {
             SetArrows(buffer);
+            StopAllCoroutines();
             foldingAnimation.OnSequenceRead(buffer, controller.sequenceLength);
         }
 
