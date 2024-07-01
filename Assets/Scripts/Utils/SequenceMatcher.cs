@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EVOGAMI.Origami;
 using Unity.VisualScripting.Dependencies.NCalc;
+using UnityEngine;
 
 namespace EVOGAMI.Utils
 {
-    public class SequenceMatcher
+    public class SequenceMatcher<T>
     {
         private readonly int _sequenceLength;
         
@@ -16,7 +19,7 @@ namespace EVOGAMI.Utils
         public event SequenceCallback OnSequenceRead = delegate {  };
         public event SequenceCallback OnSequenceBreak = delegate {  };
         public event SequenceCallback OnSequenceComplete = delegate {  };
-        
+
         public SequenceMatcher(int sequenceLength)
         {
             _sequenceLength = sequenceLength;
@@ -37,24 +40,27 @@ namespace EVOGAMI.Utils
             return _buffer.ToString();
         }
 
-        public void OnSequencePerformed(char c)
+        public void OnSequencePerformed(char c, Func<string, bool> canUnlock)
         {
             _buffer.Append(c);
-            
+
             // Trim the buffer if it exceeds the sequence length.
             if (_buffer.Length > _sequenceLength) _buffer.Remove(0, 1);
-            
+
             OnSequenceRead(_buffer.ToString());
 
             if (_buffer.Length != _sequenceLength) // Buffer not full
             {
-                if (!_recipes.Any(recipe => recipe.StartsWith(_buffer.ToString()))) 
+                if (!_recipes.Any(recipe => recipe.StartsWith(_buffer.ToString())))
                     OnSequenceBreak(_buffer.ToString());
             }
             else
             {
+                Debug.Log("I am here");
+                Debug.Log($"canUnlock({_buffer.ToString()}): {canUnlock(_buffer.ToString())}");
+
                 // Buffer is full, check if it matches any of the recipes.
-                if (_recipes.Contains(_buffer.ToString()))
+                if (_recipes.Contains(_buffer.ToString()) && canUnlock(_buffer.ToString()))
                     OnSequenceComplete(_buffer.ToString());
                 else
                     OnSequenceBreak(_buffer.ToString());

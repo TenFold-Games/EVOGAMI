@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using EVOGAMI.Core;
 using EVOGAMI.Custom.Enums;
+using EVOGAMI.Custom.Serializable;
 using EVOGAMI.Origami;
 using EVOGAMI.Utils;
 using UnityEngine;
@@ -27,6 +28,11 @@ namespace EVOGAMI.UI.Transformation
         // The delay after the sequence is completed before closing the panel.
         [SerializeField] [Tooltip("The delay after the sequence is completed before closing the panel.")]
         private float closeDelay = 0.5f;
+
+        [Header("Recipe")]
+        // The recipes, matched with the forms.
+        [SerializeField] [Tooltip("The recipes, matched with the forms.")]
+        private OriObjMapping[] recipes;
 
         [Header("Folding Animation")]
         // The transformation controller.
@@ -157,6 +163,19 @@ namespace EVOGAMI.UI.Transformation
             controller.SequenceBreakCallback.AddListener(OnSequenceBreak);
             controller.SequenceReadCallback.AddListener(OnSequenceRead);
             controller.SequenceCompleteCallback.AddListener(OnSequenceComplete);
+
+            PlayerManager.Instance.OnGainForm += form =>
+            {
+                // Check if the form is in the recipes
+                var recipe = System.Array.Find(recipes, obj => obj.form == form);
+                if (recipe is null) return; // Should not happen
+                
+                // Set game object active
+                recipe.gameObject.SetActive(true);
+            };
+            
+            foreach (var oriObj in recipes)
+                oriObj.gameObject.SetActive(PlayerManager.Instance.GainedForms[oriObj.form]);
         }
 
         private void Update()
