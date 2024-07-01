@@ -162,14 +162,21 @@ namespace EVOGAMI.Movement
         /// <param name="delta">Time since last frame</param>
         protected virtual void MovePlayer(Vector3 moveDirection, float delta)
         {
-            // Velocity
-            moveDirection *= _isSprinting ? sprintSpeed : walkSpeed;
-            var yVelocity = PlayerRb.velocity.y;
-
-            // Move player
-            PlayerRb.velocity = Vector3.ProjectOnPlane(moveDirection, Vector3.up);
-            // PlayerRb.AddForce( moveDirection - PlayerRb.velocity, ForceMode.VelocityChange);
-            PlayerRb.velocity += Vector3.up * yVelocity;
+            // // Velocity
+            // moveDirection *= _isSprinting ? sprintSpeed : walkSpeed;
+            // var yVelocity = PlayerRb.velocity.y;
+            //
+            // // Move player
+            // PlayerRb.velocity = Vector3.ProjectOnPlane(moveDirection, Vector3.up);
+            // // PlayerRb.AddForce( moveDirection - PlayerRb.velocity, ForceMode.VelocityChange);
+            // PlayerRb.velocity += Vector3.up * yVelocity;
+            
+            var targetSpeed = moveDirection * (_isSprinting ? sprintSpeed : walkSpeed);
+            var acceleration = walkSpeed;
+            
+            var velocity = Vector3.Lerp(PlayerRb.velocity, targetSpeed, acceleration * delta);
+            velocity.y = PlayerRb.velocity.y;
+            PlayerRb.velocity = velocity;
         }
 
         /// <summary>
