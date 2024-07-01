@@ -148,7 +148,7 @@ namespace EVOGAMI.Core
         private void MovePerformedCallback(InputAction.CallbackContext ctx)
         {
             IsMoving = true;
-            MoveInput = ctx.ReadValue<Vector2>();
+            MoveInput = ctx.ReadValue<Vector2>().normalized;
 
             OnMovePerformed();
         }
