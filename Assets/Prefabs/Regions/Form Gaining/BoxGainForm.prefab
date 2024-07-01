@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1372694037960845965}
   - component: {fileID: 1729270740681390566}
   - component: {fileID: 8069395147477055698}
-  - component: {fileID: 2494141677293187849}
+  - component: {fileID: 3153638708858698919}
   m_Layer: 0
   m_Name: BoxGainForm
   m_TagString: Untagged
@@ -106,7 +106,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2494141677293187849
+--- !u!114 &3153638708858698919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5105355727401920688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d0e1cab6e3b455db03ad11a5d7272cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 274842caf7b9c554caf80a3552db9f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onRegionEnter:
@@ -126,6 +126,7 @@ MonoBehaviour:
       m_Calls: []
   tags:
   - OrigamiMesh
+  - Player
   layerMask:
     serializedVersion: 2
     m_Bits: 0

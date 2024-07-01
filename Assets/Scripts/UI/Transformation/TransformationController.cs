@@ -33,8 +33,7 @@ namespace EVOGAMI.UI.Transformation
         [Header("Origami")]
         [SerializeField] [Tooltip("The origami container.")]
         private OrigamiContainer origamiContainer;
-        
-        
+
         /// <summary>
         ///     The event that is triggered when a sequence input is read.
         /// </summary>
@@ -61,8 +60,9 @@ namespace EVOGAMI.UI.Transformation
         /// </summary>
         public SequenceCompleteEvent SequenceCompleteCallback => onSequenceComplete;
 
-        private SequenceMatcher _sequenceMatcher;
+        private SequenceMatcher<OrigamiContainer.OrigamiForm> _sequenceMatcher;
         private readonly Dictionary<string, OrigamiContainer.OrigamiForm> _seqFormMapping = new();
+        private Dictionary<OrigamiContainer.OrigamiForm, bool> _unlockStatus = new();
 
         public void Reset()
         {
@@ -92,7 +92,7 @@ namespace EVOGAMI.UI.Transformation
         private void OnSequencePerformed(Directions direction)
         {
             Debug.Log($"Sequence performed: {direction}");
-             _sequenceMatcher.OnSequencePerformed(direction.ToString()[0]);
+            _sequenceMatcher.OnSequencePerformed(direction.ToString()[0], s => _unlockStatus[_seqFormMapping[s]]);
         }
 
         #endregion
@@ -100,9 +100,9 @@ namespace EVOGAMI.UI.Transformation
         #region Unity Functions
 
         private void Awake()
-        {
+        {    
             // Initialize the sequence matcher.
-            _sequenceMatcher = new SequenceMatcher(sequenceLength);
+            _sequenceMatcher = new SequenceMatcher<OrigamiContainer.OrigamiForm>(sequenceLength);
             foreach (var recipe in recipes)
                 _sequenceMatcher.AddRecipe(recipe.ToString());
             
@@ -133,6 +133,10 @@ namespace EVOGAMI.UI.Transformation
             
             origamiContainer ??= PlayerManager.Instance.Player.GetComponent<OrigamiContainer>();
             Debug.Assert(origamiContainer != null, "Origami container is not set.");
+
+            // Load form unlock states
+            foreach (var (form, isUnlocked) in GameManager.Instance.origamiSettings.formUnlockStates)
+                _unlockStatus.Add(form, isUnlocked);
         }
         
         #endregion

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6748346415376100674}
   - component: {fileID: 8091891309396115084}
   - component: {fileID: 6387502711486608921}
-  - component: {fileID: 5945922956863493299}
+  - component: {fileID: 7595261180233443368}
   m_Layer: 0
   m_Name: CapsuleGainForm
   m_TagString: Untagged
@@ -108,7 +108,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5945922956863493299
+--- !u!114 &7595261180233443368
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7689400963443993725}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d0e1cab6e3b455db03ad11a5d7272cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 274842caf7b9c554caf80a3552db9f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onRegionEnter:
@@ -128,6 +128,7 @@ MonoBehaviour:
       m_Calls: []
   tags:
   - OrigamiMesh
+  - Player
   layerMask:
     serializedVersion: 2
     m_Bits: 0
