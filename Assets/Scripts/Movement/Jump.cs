@@ -34,6 +34,8 @@ namespace EVOGAMI.Movement
 
         public void SetAnimationParams(float delta)
         {
+            if (!animator) return;
+
             var vertical = PlayerManager.PlayerRb.velocity.y; 
             
             animator.SetFloat(Vertical, vertical, 0.1f, delta);
