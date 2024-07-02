@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 1729270740681390566}
   - component: {fileID: 8069395147477055698}
   - component: {fileID: 3153638708858698919}
-  m_Layer: 0
+  - component: {fileID: 2494141677293187849}
+  m_Layer: 2
   m_Name: BoxGainForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}

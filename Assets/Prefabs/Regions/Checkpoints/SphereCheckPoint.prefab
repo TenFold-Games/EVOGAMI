@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8454335581631551321}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Respawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5240290458840099858}
   - component: {fileID: 4928810042839075663}
   - component: {fileID: 4212455814078211486}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SphereCheckPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

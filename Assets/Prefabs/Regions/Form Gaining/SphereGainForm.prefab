@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5240290458840099858}
   - component: {fileID: 4928810042839075663}
   - component: {fileID: 3364502849767807103}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SphereGainForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}

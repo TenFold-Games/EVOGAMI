@@ -256,7 +256,7 @@ MonoBehaviour:
   checkTransform: {fileID: 2916814856027244850}
   checkLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 2027
   groundCheckRadius: 0.2
   groundCheckDistance: 0.25
 --- !u!114 &6805688755999872221
@@ -313,81 +313,6 @@ MonoBehaviour:
   pullLayer:
     serializedVersion: 2
     m_Bits: 256
-  onAimEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  onAimStay:
-    m_PersistentCalls:
-      m_Calls: []
-  onAimExit:
-    m_PersistentCalls:
-      m_Calls: []
-  onMountEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6805688755999872221}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6328380476177856481}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onMountStay:
-    m_PersistentCalls:
-      m_Calls: []
-  onMountExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6805688755999872221}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 6328380476177856481}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  onPullEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  onPullStay:
-    m_PersistentCalls:
-      m_Calls: []
-  onPullExit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!120 &7269216442371859605
 LineRenderer:
   serializedVersion: 2

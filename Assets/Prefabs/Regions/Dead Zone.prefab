@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2554806721839918515}
   - component: {fileID: 9026440342102427768}
   - component: {fileID: 4740261168042427925}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Dead Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,3 +78,4 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
+  audioSource: {fileID: 0}

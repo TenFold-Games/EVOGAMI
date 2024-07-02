@@ -69,7 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   maxThrowDistance: 20
-  throwCheckRadius: 2.5
+  throwCheckRadius: 5
   throwLayer:
     serializedVersion: 2
     m_Bits: 1024
