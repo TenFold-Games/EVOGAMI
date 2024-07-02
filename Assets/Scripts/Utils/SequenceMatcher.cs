@@ -56,9 +56,6 @@ namespace EVOGAMI.Utils
             }
             else
             {
-                Debug.Log("I am here");
-                Debug.Log($"canUnlock({_buffer.ToString()}): {canUnlock(_buffer.ToString())}");
-
                 // Buffer is full, check if it matches any of the recipes.
                 if (_recipes.Contains(_buffer.ToString()) && canUnlock(_buffer.ToString()))
                     OnSequenceComplete(_buffer.ToString());
