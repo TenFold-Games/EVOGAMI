@@ -10,10 +10,9 @@ namespace EVOGAMI.Movement
         MovementBase,
         ICheckProvider
     {
-        private enum PullState
+        private enum PullStates
         {
             Aim,
-            Mount,
             Pull,
             None
         }
@@ -39,47 +38,52 @@ namespace EVOGAMI.Movement
         // The raycast hit used to store the pull hit.
         private RaycastHit _pullHit;
 
-        [Header("Callbacks")] 
-        [SerializeField] private PullEvent onAimEnter;
-        [SerializeField] private PullEvent onAimStay;
-        [SerializeField] private PullEvent onAimExit;
-        [SerializeField] private PullEvent onMountEnter;
-        [SerializeField] private PullEvent onMountStay;
-        [SerializeField] private PullEvent onMountExit;
-        [SerializeField] private PullEvent onPullEnter;
-        [SerializeField] private PullEvent onPullStay;
-        [SerializeField] private PullEvent onPullExit;
-
-        /// <summary>
-        ///     Event triggered when the player aims at / mounts / pulls an object.
-        /// </summary>
-        [Serializable] public class PullEvent : UnityEvent<RaycastHit> {}
-
-        public PullEvent OnAimEnter => onAimEnter;
-        public PullEvent OnAimStay => onAimStay;
-        public PullEvent OnAimExit => onAimExit;
-        public PullEvent OnMountEnter => onMountEnter;
-        public PullEvent OnMountStay => onMountStay;
-        public PullEvent OnMountExit => onMountExit;
-        public PullEvent OnPullEnter => onPullEnter;
-        public PullEvent OnPullStay => onPullStay;
-        public PullEvent OnPullExit => onPullExit;
-        
         // Object Being Pulled
         private Pullable _pullable;
-        
+
         // State Machine
-        private PullState _pullState = PullState.None;
-        
-        // TBD: Start --------------------------------------------------------------------------------------------------
-        private LineRenderer _lineRenderer;
-        // TBD: End ----------------------------------------------------------------------------------------------------
+        private PullStates _state;
+
+        // Outline
+        private Outline _targetOutline;
 
         // Flags
-        private bool _isAiming;     // 1. Aim
-        private bool _isCheckTrue;  // 2. Check
-        private bool _isMounted;    // 3. Mounted
-        private bool _isPulling;    // 4. Pull
+        private bool _canPull;
+        private bool _isCheckTrue;
+        
+        #region Callbacks
+
+        protected override void RegisterCallbacks()
+        {
+            base.RegisterCallbacks();
+
+            InputManager.OnInteractPerformed += OnInteractPerformed;
+        }
+
+        protected override void UnregisterCallbacks()
+        {
+            base.UnregisterCallbacks();
+
+            InputManager.OnInteractPerformed -= OnInteractPerformed;
+        }
+
+        #endregion
+
+        #region Input Events
+        
+        private void OnInteractPerformed()
+        {
+            // Chef if the player can pull the object and is in the aim state.
+            if (!_canPull || _state != PullStates.Aim) return;
+            
+            // Pull the object.
+            ExitAimState();
+            EnterPullState();
+        }
+
+        #endregion
+
+        #region Physics
 
         public bool Check()
         {
@@ -94,218 +98,97 @@ namespace EVOGAMI.Movement
             return _isCheckTrue;
         }
 
-        #region Aim and Pull
-
-        private void Aim()
-        {
-            Check();
-            
-            // TBD: Start ----------------------------------------------------------------------------------------------
-            _lineRenderer.startColor = _isCheckTrue ? Color.green : Color.magenta;
-            _lineRenderer.endColor = _isCheckTrue ? Color.blue : Color.red;
-
-            _lineRenderer.SetPosition( 0, pullPoint.position);
-            _lineRenderer.SetPosition( 1,
-                _isCheckTrue ? _pullHit.point : pullPoint.position + pullPoint.forward * maxPullDistance);
-            // TBD: End ------------------------------------------------------------------------------------------------
-        }
-
-        private void PullObject(float delta)
-        {
-            _pullable?.Pull(pullSpeed * delta);
-        }
-
-        #endregion
-
-        #region Callbacks
-
-        protected override void RegisterCallbacks()
-        {
-            base.RegisterCallbacks();
-
-            // Pull (Aim)
-            InputManager.OnPullAimStarted += OnPullAimStarted;
-            InputManager.OnPullAimCancelled += OnPullAimCanceled;
-            // Pull (Execute)
-            InputManager.OnPullExecuteStarted += OnPullExecuteStarted;
-            InputManager.OnPullExecuteCancelled += OnPullExecuteCancelled;
-        }
-
-        protected override void UnregisterCallbacks()
-        {
-            base.UnregisterCallbacks();
-
-            // Pull (Aim)
-            InputManager.OnPullAimStarted -= OnPullAimStarted;
-            InputManager.OnPullAimCancelled -= OnPullAimCanceled;
-            // Pull (Execute)
-            InputManager.OnPullExecuteStarted -= OnPullExecuteStarted;
-            InputManager.OnPullExecuteCancelled -= OnPullExecuteCancelled;
-        }
-
-        #endregion
-
-        #region Input Events
-
-        private void OnPullAimStarted()
-        {
-            if (_isAiming || _isPulling) return;
-
-            if (_isMounted) ExitMountState();
-
-            EnterAimState();
-        }
-
-        private void OnPullAimCanceled()
-        {
-            if (!_isAiming) return;
-
-            ExitAimState();
-
-            if (_isCheckTrue) EnterMountState();
-        }
-
-        private void OnPullExecuteStarted()
-        {
-            if (_isAiming || _isPulling) return;
-            if (!_isMounted || !_isCheckTrue) return;
-
-            EnterPullState();
-        }
-
-        private void OnPullExecuteCancelled()
-        {
-            if (!_isPulling) return;
-
-            ExitPullState();
-
-            if (_isMounted) ExitMountState();
-        }
-
         #endregion
 
         #region State Machine
 
         private void EnterAimState()
         {
-            _pullState = PullState.Aim;
-            InputManager.Controls.Origami.Disable(); // Disable form switching
-            
-            // TBD: Start ----------------------------------------------------------------------------------------------
-            _lineRenderer.enabled = true;
-            // TBD: End ------------------------------------------------------------------------------------------------
-
-            _isAiming = true;
-            onAimEnter.Invoke(_pullHit);
+            _state = PullStates.Aim;
         }
 
         private void ExitAimState()
         {
-            onAimExit.Invoke(_pullHit);
-            _isAiming = false;
-            
-            // TBD: Start ----------------------------------------------------------------------------------------------
-            _lineRenderer.SetPosition(0, Vector3.zero);
-            _lineRenderer.SetPosition(1, Vector3.zero);
-            _lineRenderer.enabled = false;
-            // TBD: End ------------------------------------------------------------------------------------------------
-
-            InputManager.Controls.Origami.Enable(); // Enable form switching
-            _pullState = PullState.None;
-        }
-
-        private void EnterMountState()
-        {
-            _pullState = PullState.Mount;
-            InputManager.Controls.Origami.Disable(); // Disable form switching
-            
-            // TBD: Start ----------------------------------------------------------------------------------------------
-            _lineRenderer.enabled = true;
-            _lineRenderer.SetPosition(0, pullPoint.position);
-            _lineRenderer.SetPosition(1, _pullHit.point);
-            _lineRenderer.startColor = Color.cyan;
-            _lineRenderer.endColor = Color.yellow;
-            // TBD: End ------------------------------------------------------------------------------------------------
-
-            _isMounted = true;
-            onMountEnter.Invoke(_pullHit);
-        }
-
-        private void ExitMountState()
-        {
-            onMountExit.Invoke(_pullHit);
-            _isMounted = false;
-            
-            // TBD: Start ----------------------------------------------------------------------------------------------
-            _lineRenderer.SetPosition(0, Vector3.zero);
-            _lineRenderer.SetPosition(1, Vector3.zero);
-            _lineRenderer.enabled = false;
-            // TBD: End ------------------------------------------------------------------------------------------------
-
-            InputManager.Controls.Origami.Enable(); // Enable form switching
-            _pullState = PullState.None;
+            _state = PullStates.None;
         }
 
         private void EnterPullState()
         {
-            _pullState = PullState.Pull;
-            InputManager.Controls.Origami.Disable(); // Disable form switching
-
+            // Get the pullable component.
             _pullable = _pullHit.collider.GetComponent<Pullable>();
-            _pullable!.SetPullSource(pullPoint);
+            if (_pullable == null) return; // Should never happen.
+            _pullable.SetPullSource(pullPoint);
 
-            _isPulling = true;
-            onPullEnter.Invoke(_pullHit);
+            _state = PullStates.Pull;
         }
 
         private void ExitPullState()
         {
-            onPullExit.Invoke(_pullHit);
-            _isPulling = false;
-            
+            // Reset the pullable component.
             _pullable = null;
 
-            InputManager.Controls.Origami.Enable(); // Enable form switching
-            _pullState = PullState.None;
+            _state = PullStates.None;
         }
 
         #endregion
 
         #region Unity Functions
         
-        // TBD: Start --------------------------------------------------------------------------------------------------
         private void Awake()
         {
-            _lineRenderer = GetComponent<LineRenderer>();
-            if (!_lineRenderer) _lineRenderer = gameObject.AddComponent<LineRenderer>();
+            // Initialize flags
+            _canPull = false;
+            _isCheckTrue = false;
             
-            _lineRenderer.startWidth = pullCheckRadius;
-            _lineRenderer.endWidth = 0;
-            
-            _lineRenderer.positionCount = 2;
-            
-            _lineRenderer.enabled = false;
+            // Initialize state
+            EnterAimState();
         }
-        // TBD: End ----------------------------------------------------------------------------------------------------
 
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
 
-            switch (_pullState)
+            var ret = Check();
+            switch (_state)
             {
-                case PullState.Aim:
-                    Aim();
+                case PullStates.Aim:
+                {
+                    switch (ret)
+                    {
+                        case true when !_canPull:
+                        {
+                            // Cannot pull -> can pull
+                            // TODO: Highlight the object.
+                            break;
+                        }
+                        case false when _canPull:
+                        {
+                            // Can pull -> cannot pull
+                            // TODO: Unhighlight the object.
+                            break;
+                        }
+                    }
+                    
+                    _canPull = ret;
                     break;
-                case PullState.Mount:
+                }
+                case PullStates.Pull:
+                {
+                    _pullable.Pull(pullSpeed * Time.fixedDeltaTime);
+                    
+                    // Check if the pullable stopped
+                    if (_pullable.IsStopped)
+                    {
+                        ExitPullState();
+                        EnterAimState();
+                    }
+                    
                     break;
-                case PullState.Pull:
-                    PullObject(Time.fixedDeltaTime);
-                    break;
-                case PullState.None:
-                    break;
-                default: // Should never happen
+                }
+                case PullStates.None:
+                default:
                     throw new ArgumentOutOfRangeException();
+                    
             }
         }
 

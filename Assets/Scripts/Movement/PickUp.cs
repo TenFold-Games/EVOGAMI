@@ -1,3 +1,4 @@
+using EVOGAMI.Origami;
 using EVOGAMI.Region;
 using UnityEngine;
 
@@ -27,25 +28,33 @@ namespace EVOGAMI.Movement
         {
             base.RegisterCallbacks();
             
-            InputManager.OnPickUpPerformed += OnPickUpPerformed;
-            InputManager.OnDropPerformed += OnDropPerformed;
+            // InputManager.OnPickUpPerformed += OnPickUpPerformed;
+            // InputManager.OnDropPerformed += OnDropPerformed;
+            InputManager.OnInteractPerformed += OnInteractPerformed;
 
-            PlayerManager.PlayerOrigami.OnFormChange += _ => DropObject();
+            PlayerManager.PlayerOrigami.OnFormChange += OnFormChange;
         }
         
         protected override void UnregisterCallbacks()
         {
             base.UnregisterCallbacks();
             
-            InputManager.OnPickUpPerformed -= OnPickUpPerformed;
-            InputManager.OnDropPerformed -= OnDropPerformed;
+            // InputManager.OnPickUpPerformed -= OnPickUpPerformed;
+            // InputManager.OnDropPerformed -= OnDropPerformed;
+            InputManager.OnInteractPerformed -= OnInteractPerformed;
 
-            PlayerManager.PlayerOrigami.OnFormChange -= _ => DropObject();
+            PlayerManager.PlayerOrigami.OnFormChange -= OnFormChange;
         }
 
         #endregion
 
         #region Input Events
+        
+        private void OnInteractPerformed()
+        {
+            if (!_isPickingUp) PickUpObject();
+            else DropObject();
+        }
 
         private void OnPickUpPerformed()
         {
@@ -55,6 +64,12 @@ namespace EVOGAMI.Movement
         private void OnDropPerformed()
         {
             DropObject();
+        }
+
+        private void OnFormChange(OrigamiContainer.OrigamiForm oldForm, OrigamiContainer.OrigamiForm newForm)
+        {
+            if (oldForm != newForm && _isPickingUp)
+                DropObject();
         }
 
         #endregion

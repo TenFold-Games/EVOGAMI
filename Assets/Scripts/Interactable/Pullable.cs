@@ -19,11 +19,25 @@ namespace EVOGAMI.Interactable
         private Transform _sourceTransform;
         private Vector3 _targetPosition;
         private float _distanceTravelled;
-        
+
+        public bool IsStopped { get; private set; } = false;
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("OrigamiMesh"))
+            {
+                IsStopped = true;
+                Debug.Log($"Hit {other.gameObject.name}");
+            }
+        }
+
         public void Pull(float speed)
         {
-            if (maxDistance != 0 && _distanceTravelled >= maxDistance) return;
-            float angularVelocity = GetAngularVelocity(speed, transform.position);
+            if (maxDistance != 0 && _distanceTravelled >= maxDistance) IsStopped = true;
+
+            if (IsStopped) return;
+            
+            var angularVelocity = GetAngularVelocity(speed, transform.position);
             
             // Move the object towards the source transform.
             transform.position = Vector3.MoveTowards(

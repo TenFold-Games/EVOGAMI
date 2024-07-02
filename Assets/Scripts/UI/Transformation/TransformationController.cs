@@ -75,14 +75,14 @@ namespace EVOGAMI.UI.Transformation
         {
             base.RegisterCallbacks();
             
-            InputManager.OnSequenceStarted += OnSequencePerformed;
+            InputManager.OnSequencePerformed += OnSequencePerformed;
         }
         
         protected override void UnregisterCallbacks()
         {
             base.UnregisterCallbacks();
             
-            InputManager.OnSequenceStarted -= OnSequencePerformed;
+            InputManager.OnSequencePerformed  -= OnSequencePerformed;
         }
 
         #endregion
@@ -91,8 +91,10 @@ namespace EVOGAMI.UI.Transformation
 
         private void OnSequencePerformed(Directions direction)
         {
-            Debug.Log($"Sequence performed: {direction}");
-            _sequenceMatcher.OnSequencePerformed(direction.ToString()[0], s => _unlockStatus[_seqFormMapping[s]]);
+            _sequenceMatcher.OnSequencePerformed(
+                direction.ToString()[0], 
+                s => _unlockStatus[_seqFormMapping[s]]
+            );
         }
 
         #endregion

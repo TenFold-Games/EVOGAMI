@@ -141,7 +141,11 @@ namespace EVOGAMI.Movement
         private void Move(float delta)
         {
             // Not moving
-            if (!InputManager.IsMoving) return;
+            if (!InputManager.IsMoving)
+            {
+                PlayerRb.velocity = new Vector3(0, PlayerRb.velocity.y, 0);
+                return;
+            }
             
             var moveDirection = CameraTransform.forward * InputManager.MoveInput.y +
                                 CameraTransform.right * InputManager.MoveInput.x;
@@ -149,7 +153,7 @@ namespace EVOGAMI.Movement
             
             // Move and rotate player
             if (canWalkOnGround && groundCheckProvider.IsCheckTrue || canWalkInAir && !groundCheckProvider.IsCheckTrue)
-                MovePlayer(moveDirection, delta);
+                MovePlayer(moveDirection.normalized, delta);
             else // Set player velocity to zero to avoid sliding
                 PlayerRb.velocity = new Vector3(0, PlayerRb.velocity.y, 0);
             RotatePlayer(moveDirection, delta);

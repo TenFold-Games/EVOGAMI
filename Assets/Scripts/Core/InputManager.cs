@@ -82,22 +82,10 @@ namespace EVOGAMI.Core
             Controls.Player.Sprint_Press.started += SprintPressStartedCallback;
             Controls.Player.Sprint_Press.performed += SprintPressPerformedCallback;
             Controls.Player.Sprint_Press.canceled += SprintPressCancelledCallback;
-            // Player - Pick Up
-            Controls.Player.PickUp.started += PickUpStartedCallback;
-            Controls.Player.PickUp.performed += PickUpPerformedCallback;
-            Controls.Player.PickUp.canceled += PickUpCancelledCallback;
-            // Player - Drop
-            Controls.Player.Drop.started += DropStartedCallback;
-            Controls.Player.Drop.performed += DropPerformedCallback;
-            Controls.Player.Drop.canceled += DropCancelledCallback;
-            // Player - Pull (Aim)
-            Controls.Player.Pull_Aim.started += PullAimStartedCallback;
-            Controls.Player.Pull_Aim.performed += PullAimPerformedCallback;
-            Controls.Player.Pull_Aim.canceled += PullAimCancelledCallback;
-            // Player - Pull (Execute)
-            Controls.Player.Pull_Execute.started += PullExecuteStartedCallback;
-            Controls.Player.Pull_Execute.performed += PullExecutePerformedCallback;
-            Controls.Player.Pull_Execute.canceled += PullExecuteCancelledCallback;
+            // Player - Interact
+            Controls.Player.Interact.started += InteractStartedCallback;
+            Controls.Player.Interact.performed += InteractPerformedCallback;
+            Controls.Player.Interact.canceled += InteractCancelledCallback;
             
             // UI - Pause
             Controls.UI.Pause.started += PauseStartedCallback;
@@ -190,40 +178,13 @@ namespace EVOGAMI.Core
         
         #endregion
 
-        // Player - Pick Up
-        #region Pick Up
+        // Player - Interact
+        #region Interact
         
-        private void PickUpStartedCallback(InputAction.CallbackContext ctx) { OnPickUpStarted(); }
-        private void PickUpPerformedCallback(InputAction.CallbackContext ctx) { OnPickUpPerformed(); }
-        private void PickUpCancelledCallback(InputAction.CallbackContext ctx) { OnPickUpCancelled(); }
-        
-        #endregion
+        private void InteractStartedCallback(InputAction.CallbackContext ctx) { OnInteractStarted(); }
+        private void InteractPerformedCallback(InputAction.CallbackContext ctx) { OnInteractPerformed(); }
+        private void InteractCancelledCallback(InputAction.CallbackContext ctx) { OnInteractCancelled(); }
 
-        // Player - Drop
-        #region Drop
-        
-        private void DropStartedCallback(InputAction.CallbackContext ctx) { OnDropStarted(); }
-        private void DropPerformedCallback(InputAction.CallbackContext ctx) { OnDropPerformed(); }
-        private void DropCancelledCallback(InputAction.CallbackContext ctx) { OnDropCancelled(); }
-        
-        #endregion
-
-        // Player - Pull (Aim)
-        #region Pull (Aim)
-        
-        private void PullAimStartedCallback(InputAction.CallbackContext ctx) { OnPullAimStarted(); }
-        private void PullAimPerformedCallback(InputAction.CallbackContext ctx) { OnPullAimPerformed(); }
-        private void PullAimCancelledCallback(InputAction.CallbackContext ctx) { OnPullAimCancelled(); }
-        
-        #endregion
-
-        // Player - Pull (Execute)
-        #region Pull (Execute)
-        
-        private void PullExecuteStartedCallback(InputAction.CallbackContext ctx) { OnPullExecuteStarted(); }
-        private void PullExecutePerformedCallback(InputAction.CallbackContext ctx) { OnPullExecutePerformed(); }
-        private void PullExecuteCancelledCallback(InputAction.CallbackContext ctx) { OnPullExecuteCancelled(); }
-        
         #endregion
 
         // UI - Pause
@@ -297,46 +258,13 @@ namespace EVOGAMI.Core
         
         #endregion
 
-        // Player - Pick Up
-        #region Pick Up
-        public delegate void PickUpCallback();
+        // Player - Interact
+        #region Interact
 
-        public event PickUpCallback OnPickUpStarted = delegate { };
-        public event PickUpCallback OnPickUpPerformed = delegate { };
-        public event PickUpCallback OnPickUpCancelled = delegate { };
-        
-        #endregion
-
-        // Player - Drop
-        #region Drop
-        public delegate void DropCallback();
-
-        public event DropCallback OnDropStarted = delegate { };
-        public event DropCallback OnDropPerformed = delegate { };
-        public event DropCallback OnDropCancelled = delegate { };
-        
-        #endregion
-        
-        // Player - Pull (Aim)
-        #region Pull (Aim)
-        public delegate void PullAimCallback();
-        
-        public event PullAimCallback OnPullAimStarted = delegate { };
-        public event PullAimCallback OnPullAimPerformed = delegate { };
-        public event PullAimCallback OnPullAimCancelled = delegate { };
-        
-        #endregion
-        
-        // Player - Pull (Execute)
-        #region Pull (Execute)
-
-        public delegate void PullExecuteCallback();
-        
-        public event PullExecuteCallback OnPullExecuteStarted = delegate { };
-        
-        public event PullExecuteCallback OnPullExecutePerformed = delegate { };
-        
-        public event PullExecuteCallback OnPullExecuteCancelled = delegate { };
+        public delegate void InteractCallback();
+        public event InteractCallback OnInteractStarted = delegate { };
+        public event InteractCallback OnInteractPerformed = delegate { };
+        public event InteractCallback OnInteractCancelled = delegate { };
 
         #endregion
         
