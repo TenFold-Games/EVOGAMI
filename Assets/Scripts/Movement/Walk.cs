@@ -54,6 +54,8 @@ namespace EVOGAMI.Movement
 
         public void SetAnimationParams(float delta)
         {
+            if (!animator) return;
+
             var horizontal = InputManager.MoveInput.magnitude;
             var vertical = PlayerManager.PlayerRb.velocity.y; 
             
@@ -204,8 +206,8 @@ namespace EVOGAMI.Movement
             _isSprinting = false;
             
             // Find components
-            if (!animator) animator = GetComponent<Animator>();
-            if (!groundCheckProvider) groundCheckProvider = GetComponent<GroundCheckProviderBase>();
+            // if (!animator) animator = GetComponent<Animator>();
+            // if (!groundCheckProvider) groundCheckProvider = GetComponent<GroundCheckProviderBase>();
         }
         
         protected override void FixedUpdate()
