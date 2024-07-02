@@ -61,21 +61,21 @@ namespace EVOGAMI.Movement
         {
             base.RegisterCallbacks();
             
-            InputManager.OnJumpPerformed += OnJumpPerformed;
+            InputManager.OnInteractPerformed += OnInteractionPerformed;
         }
         
         protected override void UnregisterCallbacks()
         {
             base.UnregisterCallbacks();
             
-            InputManager.OnJumpCancelled -= OnJumpPerformed;
+            InputManager.OnInteractPerformed -= OnInteractionPerformed;
         }
 
         #endregion
 
         #region Input Events
 
-        private void OnJumpPerformed()
+        private void OnInteractionPerformed()
         {
             // Check if the player can throw the ninja star and is in the aim state.
             if (!_canThrow || _state != NinjaStarStates.Aim) return;
