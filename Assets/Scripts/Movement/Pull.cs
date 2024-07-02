@@ -164,13 +164,13 @@ namespace EVOGAMI.Movement
                         case true when !_canPull:
                         {
                             // Cannot pull -> can pull
-                            // TODO: Highlight the object.
+                            OnPullAtFound();
                             break;
                         }
                         case false when _canPull:
                         {
                             // Can pull -> cannot pull
-                            // TODO: Unhighlight the object.
+                            OnPullAtLost();
                             break;
                         }
                     }
@@ -203,6 +203,22 @@ namespace EVOGAMI.Movement
             Gizmos.color = Check() ? Color.green : Color.red;
             Gizmos.DrawWireSphere(pullPoint.position, pullCheckRadius);
             Gizmos.DrawLine(pullPoint.position, pullPoint.position + pullPoint.forward * maxPullDistance);
+        }
+        
+        private void OnPullAtFound()
+        {
+            
+            _targetOutline = _pullHit.transform.GetComponent<Outline>();
+            if (!_targetOutline) return;
+            
+            _targetOutline.enabled = true;
+        }
+        
+        private void OnPullAtLost()
+        {
+            if (!_targetOutline) return;
+            
+            _targetOutline.enabled = false;
         }
 
         #endregion
