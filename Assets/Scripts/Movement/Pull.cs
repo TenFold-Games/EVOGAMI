@@ -119,6 +119,9 @@ namespace EVOGAMI.Movement
             if (_pullable == null) return; // Should never happen.
             _pullable.SetPullSource(pullPoint);
 
+            InputManager.DisablePlayerControls();
+            InputManager.DisableOrigamiControls();
+
             _state = PullStates.Pull;
         }
 
@@ -126,6 +129,9 @@ namespace EVOGAMI.Movement
         {
             // Reset the pullable component.
             _pullable = null;
+
+            InputManager.EnablePlayerControls();
+            InputManager.EnableOrigamiControls();
 
             _state = PullStates.None;
         }
