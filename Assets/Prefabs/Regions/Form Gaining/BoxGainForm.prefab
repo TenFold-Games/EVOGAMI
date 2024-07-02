@@ -102,7 +102,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5105355727401920688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d0e1cab6e3b455db03ad11a5d7272cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 274842caf7b9c554caf80a3552db9f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onRegionEnter:
@@ -124,8 +124,7 @@ MonoBehaviour:
   onRegionExit:
     m_PersistentCalls:
       m_Calls: []
-  tags:
-  - OrigamiMesh
+  tags: []
   layerMask:
     serializedVersion: 2
     m_Bits: 0
