@@ -54,9 +54,9 @@ namespace EVOGAMI.Core
             
             // Load form unlock states
             foreach (var (form, unlocked) in _gameManager.origamiSettings.formUnlockStates)
-                if (GainedForms.ContainsKey(form))
-                    GainedForms[form] = unlocked;
-            GainedForms[_gameManager.origamiSettings.initialForm] = true;
+                GainedForms[form] = unlocked;
+            if (!GainedForms[_gameManager.origamiSettings.initialForm])
+                GainForm(_gameManager.origamiSettings.initialForm);
         }
         
         #endregion

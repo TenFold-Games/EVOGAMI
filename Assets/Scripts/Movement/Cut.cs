@@ -37,7 +37,7 @@ namespace EVOGAMI.Movement
             
             // TBD: Start ----------------------------------------------------------------------------------------------
             // TODO: set proper bindings
-            InputManager.OnPullExecutePerformed += OnCutPerformed;
+            InputManager.OnInteractPerformed += OnCutPerformed;
             // InputManager.OnInteractionCanceled += OnCutCanceled;
             // TBD: End ------------------------------------------------------------------------------------------------
         }
@@ -48,7 +48,7 @@ namespace EVOGAMI.Movement
             
             // TBD: Start ----------------------------------------------------------------------------------------------
             // TODO: set proper bindings
-            InputManager.OnPullExecutePerformed -= OnCutPerformed;
+            InputManager.OnInteractPerformed -= OnCutPerformed;
             // InputManager.OnInteractionCanceled -= OnCutCanceled;
             // TBD: End ------------------------------------------------------------------------------------------------
         }
