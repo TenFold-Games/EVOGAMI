@@ -20,4 +20,4 @@ MonoBehaviour:
     isUnlocked: 1
   - form: 2
     isUnlocked: 1
-  totalCranes: 4
+  totalCranes: 10
