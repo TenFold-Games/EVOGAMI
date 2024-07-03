@@ -4670,6 +4670,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.008032617, y: 0.0003166324, z: 0.06478471}
   m_Center: {x: 0.000000004656613, y: 0, z: 0}
+--- !u!114 &268282111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268282103}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &268636648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9171,6 +9189,7 @@ GameObject:
   - component: {fileID: 436144584}
   - component: {fileID: 436144583}
   - component: {fileID: 436144586}
+  - component: {fileID: 436144587}
   m_Layer: 8
   m_Name: Pullable Bloc
   m_TagString: Untagged
@@ -9280,6 +9299,24 @@ MonoBehaviour:
   maxDistance: 2.2
   preventVerticalMovement: 1
   forwardDirection: {x: 0, y: 0, z: 0}
+--- !u!114 &436144587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436144580}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &450399071
 GameObject:
   m_ObjectHideFlags: 0
@@ -17862,6 +17899,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5beba45f4e780b04eb0140e5560f97b2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 268282110}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5beba45f4e780b04eb0140e5560f97b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 268282111}
   m_SourcePrefab: {fileID: 100100000, guid: 5beba45f4e780b04eb0140e5560f97b2, type: 3}
 --- !u!1 &789448107
 GameObject:
@@ -46888,11 +46928,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7570125994414033130, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.25094575
+      value: 0.2509456
       objectReference: {fileID: 0}
     - target: {fileID: 7570125994414033130, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0357105
+      value: -0.03571047
       objectReference: {fileID: 0}
     - target: {fileID: 7570125994414033130, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.y
@@ -46900,7 +46940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7570125994414033130, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.13628334
+      value: 0.13628331
       objectReference: {fileID: 0}
     - target: {fileID: 7933600281234488595, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: boxSize.y
