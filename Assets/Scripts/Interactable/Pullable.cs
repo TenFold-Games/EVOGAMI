@@ -29,11 +29,11 @@ namespace EVOGAMI.Interactable
 
         private void OnCollisionEnter(Collision other)
         {
-            // if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("OrigamiMesh"))
-            // {
+            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("OrigamiMesh"))
+            {
                 IsStopped = true;
                 Debug.Log($"Hit {other.gameObject.name}");
-            // }
+            }
         }
 
         public void Pull(float speed)

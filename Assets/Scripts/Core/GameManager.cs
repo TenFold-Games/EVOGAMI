@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using EVOGAMI.Custom.Scriptable;
+using EVOGAMI.Origami;
 using EVOGAMI.Region;
 using UnityEngine;
 using UnityEngine.Events;
@@ -108,13 +109,16 @@ namespace EVOGAMI.Core
             Application.Quit();
         }
 
-        public static void ResetGame()
+        public void ResetGame()
         {
             var playerRb = PlayerManager.Instance.PlayerRb;
             playerRb.useGravity = true;
             playerRb.isKinematic = false;
             playerRb.velocity = Vector3.zero;
             playerRb.freezeRotation = true;
+            
+            PlayerManager.Instance.PlayerOrigami.ChangeForm(OrigamiContainer.OrigamiForm.None);
+            PlayerManager.Instance.PlayerOrigami.ChangeForm(origamiSettings.initialForm);
             
             // Reset the player to the current checkpoint
             PlayerManager.Instance.RespawnAtLastCheckpoint();

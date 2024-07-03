@@ -44,7 +44,7 @@ namespace EVOGAMI.UI.PanelMenu
         /// </summary>
         public void OnResetClicked()
         {
-            GameManager.ResetGame();
+            GameManager.Instance.ResetGame();
             gameObject.SetActive(false);
         }
 
