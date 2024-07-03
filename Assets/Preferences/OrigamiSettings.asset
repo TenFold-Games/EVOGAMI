@@ -17,7 +17,7 @@ MonoBehaviour:
   - form: 0
     isUnlocked: 0
   - form: 1
-    isUnlocked: 1
+    isUnlocked: 0
   - form: 2
-    isUnlocked: 1
+    isUnlocked: 0
   totalCranes: 10
