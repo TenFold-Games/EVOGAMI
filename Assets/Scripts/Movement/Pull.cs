@@ -124,14 +124,16 @@ namespace EVOGAMI.Movement
             _pullable = _pullHit.collider.GetComponent<Pullable>();
             if (_pullable == null) return; // Should never happen.
             _pullable.SetPullSource(pullPoint);
+            
 
+            
             InputManager.DisablePlayerControls();
             InputManager.DisableOrigamiControls();
 
             _state = PullStates.Pull;
             
             // Set isPull to true
-            if (tongueController != null)
+            if (tongueController != null && !_pullable.IsStopped)
             {
                 tongueController.SetPullState(true);
             }
