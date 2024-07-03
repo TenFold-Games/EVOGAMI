@@ -15,7 +15,7 @@ MonoBehaviour:
   initialForm: 1
   formUnlockStates:
   - form: 0
-    isUnlocked: 1
+    isUnlocked: 0
   - form: 1
     isUnlocked: 1
   - form: 2
