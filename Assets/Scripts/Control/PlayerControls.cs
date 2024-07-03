@@ -66,24 +66,6 @@ namespace EVOGAMI.Control
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""PickUp"",
-                    ""type"": ""Button"",
-                    ""id"": ""088d9388-6887-4cf0-9852-2e472d94aba2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Drop"",
-                    ""type"": ""Button"",
-                    ""id"": ""b60a4f48-3427-46ab-9a89-e2f5e8bebe08"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Pull_Aim"",
                     ""type"": ""Button"",
                     ""id"": ""9de9f61f-ed24-475e-b370-0ccbfcd11245"",
@@ -100,75 +82,18 @@ namespace EVOGAMI.Control
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""484a4101-dfe2-4035-ae16-e0838da7bb14"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""0b7d676b-1494-481c-bc94-8e8a74f2b18b"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""WASD"",
-                    ""id"": ""af248dc4-67cb-4080-912a-da403e7c22ab"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""2ece0559-7803-49b7-ba3e-770e8d61a1cf"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""1233b33f-f16b-4ab1-a0cc-569480ed6f51"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""37dc7d05-16cd-4192-ac9a-45ff5a5898d2"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""aa301fcc-be60-42ee-96c5-ff2622434eb5"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
                 {
                     ""name"": """",
                     ""id"": ""270ae686-e86b-4812-9a7f-c8637927602a"",
@@ -215,50 +140,6 @@ namespace EVOGAMI.Control
                 },
                 {
                     ""name"": """",
-                    ""id"": ""25211a2b-4305-46e3-9045-54aa1e7c5257"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PickUp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0ecde954-76c0-4ec7-8709-b118fbd7ecdd"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PickUp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b8607326-25e3-4853-851e-3cfc79babb36"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Drop"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3b79fa96-2593-443c-b0a8-fdfd36bc8dd1"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Drop"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""385b3eda-1f39-4156-9549-97f26412c27f"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -298,6 +179,171 @@ namespace EVOGAMI.Control
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pull_Execute"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdd57f3b-10c2-4113-97bf-400cd334c7a7"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5faf9491-d0ef-45af-b768-509ec6da080b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2db0676c-3b1c-4d60-8144-a0a2db228880"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6f8d2062-eeb3-4d01-b476-c12648db8e8e"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""4ed651bc-e835-468f-b643-f333cdeb0612"",
+                    ""path"": ""Dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""8927cb8a-3ec6-400a-ad0b-a2cc85dd7dde"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""1667c260-906e-49b6-8f1b-05eb1f9df398"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""40689550-c107-4d17-a6e9-f4cd336dcc23"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""79508fea-da83-4dc1-ba35-0a985259cbf2"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""cb8178b9-3f44-4e4d-bf90-76b905ced42d"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""7f6c2e7f-e6c0-4bd9-83cd-86a18533be52"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""1b2d56bc-ae5a-432f-b175-3b52cb35c851"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""637adef0-4055-4aa3-997c-7a0b65eefa03"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45e394de-7140-499e-b726-f4f936f6c0d4"",
+                    ""path"": ""<XRController>/{Primary2DAxis}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e9da391-2aa3-4518-a280-dac1aa37a179"",
+                    ""path"": ""<Joystick>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -368,7 +414,7 @@ namespace EVOGAMI.Control
                 {
                     ""name"": """",
                     ""id"": ""6ea75818-469d-4291-a3eb-76af0e51058d"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -400,6 +446,28 @@ namespace EVOGAMI.Control
                 },
                 {
                     ""name"": """",
+                    ""id"": ""6118c285-edc7-4a91-861a-1521289d6717"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1665db43-a82a-44f8-b313-3207c91c6d69"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c6c1e5d8-21b4-444d-8479-55d6298ba489"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
@@ -413,6 +481,28 @@ namespace EVOGAMI.Control
                     ""name"": """",
                     ""id"": ""c96d735f-d4e6-4c95-9c09-3bcce12394db"",
                     ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a4761156-8642-4c72-89db-94d1c8cb09c6"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43366731-83aa-4837-a8c0-6571d2e1ac21"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -444,6 +534,28 @@ namespace EVOGAMI.Control
                 },
                 {
                     ""name"": """",
+                    ""id"": ""60a916c5-627e-4690-9b60-f2d73e10a780"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8483443c-b315-4741-99e5-cd0e44e392b1"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""991de560-006a-44f4-abe8-71fedaf5de8a"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
@@ -457,6 +569,28 @@ namespace EVOGAMI.Control
                     ""name"": """",
                     ""id"": ""558c2cbb-b868-4ff6-b4d6-cf9ef2536ab9"",
                     ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eab68684-c139-4966-8fb9-7597bcbcac38"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53e73956-9c8c-4d5d-b244-416e56254f6e"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -483,7 +617,7 @@ namespace EVOGAMI.Control
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""870218d6-ab31-4bbc-b27b-de83fb6e38cd"",
+                    ""id"": ""6d791165-721e-4230-9bb4-d5f5225c1252"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -494,8 +628,19 @@ namespace EVOGAMI.Control
                 },
                 {
                     ""name"": """",
-                    ""id"": ""93b7c90c-f2a6-4d30-89cd-fbe9c071c62c"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""id"": ""35161d02-a4d4-475d-b851-4c954617643f"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Orbit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30eb1584-c488-4e83-9f9e-810739419739"",
+                    ""path"": ""<Joystick>/{Hatswitch}"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1061,10 +1206,9 @@ namespace EVOGAMI.Control
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Sprint_Hold = m_Player.FindAction("Sprint_Hold", throwIfNotFound: true);
             m_Player_Sprint_Press = m_Player.FindAction("Sprint_Press", throwIfNotFound: true);
-            m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
-            m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
             m_Player_Pull_Aim = m_Player.FindAction("Pull_Aim", throwIfNotFound: true);
             m_Player_Pull_Execute = m_Player.FindAction("Pull_Execute", throwIfNotFound: true);
+            m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
             // Origami
             m_Origami = asset.FindActionMap("Origami", throwIfNotFound: true);
             m_Origami_Transform = m_Origami.FindAction("Transform", throwIfNotFound: true);
@@ -1153,10 +1297,9 @@ namespace EVOGAMI.Control
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Sprint_Hold;
         private readonly InputAction m_Player_Sprint_Press;
-        private readonly InputAction m_Player_PickUp;
-        private readonly InputAction m_Player_Drop;
         private readonly InputAction m_Player_Pull_Aim;
         private readonly InputAction m_Player_Pull_Execute;
+        private readonly InputAction m_Player_Interact;
         public struct PlayerActions
         {
             private @PlayerControls m_Wrapper;
@@ -1165,10 +1308,9 @@ namespace EVOGAMI.Control
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Sprint_Hold => m_Wrapper.m_Player_Sprint_Hold;
             public InputAction @Sprint_Press => m_Wrapper.m_Player_Sprint_Press;
-            public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
-            public InputAction @Drop => m_Wrapper.m_Player_Drop;
             public InputAction @Pull_Aim => m_Wrapper.m_Player_Pull_Aim;
             public InputAction @Pull_Execute => m_Wrapper.m_Player_Pull_Execute;
+            public InputAction @Interact => m_Wrapper.m_Player_Interact;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1190,18 +1332,15 @@ namespace EVOGAMI.Control
                 @Sprint_Press.started += instance.OnSprint_Press;
                 @Sprint_Press.performed += instance.OnSprint_Press;
                 @Sprint_Press.canceled += instance.OnSprint_Press;
-                @PickUp.started += instance.OnPickUp;
-                @PickUp.performed += instance.OnPickUp;
-                @PickUp.canceled += instance.OnPickUp;
-                @Drop.started += instance.OnDrop;
-                @Drop.performed += instance.OnDrop;
-                @Drop.canceled += instance.OnDrop;
                 @Pull_Aim.started += instance.OnPull_Aim;
                 @Pull_Aim.performed += instance.OnPull_Aim;
                 @Pull_Aim.canceled += instance.OnPull_Aim;
                 @Pull_Execute.started += instance.OnPull_Execute;
                 @Pull_Execute.performed += instance.OnPull_Execute;
                 @Pull_Execute.canceled += instance.OnPull_Execute;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1218,18 +1357,15 @@ namespace EVOGAMI.Control
                 @Sprint_Press.started -= instance.OnSprint_Press;
                 @Sprint_Press.performed -= instance.OnSprint_Press;
                 @Sprint_Press.canceled -= instance.OnSprint_Press;
-                @PickUp.started -= instance.OnPickUp;
-                @PickUp.performed -= instance.OnPickUp;
-                @PickUp.canceled -= instance.OnPickUp;
-                @Drop.started -= instance.OnDrop;
-                @Drop.performed -= instance.OnDrop;
-                @Drop.canceled -= instance.OnDrop;
                 @Pull_Aim.started -= instance.OnPull_Aim;
                 @Pull_Aim.performed -= instance.OnPull_Aim;
                 @Pull_Aim.canceled -= instance.OnPull_Aim;
                 @Pull_Execute.started -= instance.OnPull_Execute;
                 @Pull_Execute.performed -= instance.OnPull_Execute;
                 @Pull_Execute.canceled -= instance.OnPull_Execute;
+                @Interact.started -= instance.OnInteract;
+                @Interact.performed -= instance.OnInteract;
+                @Interact.canceled -= instance.OnInteract;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1503,10 +1639,9 @@ namespace EVOGAMI.Control
             void OnJump(InputAction.CallbackContext context);
             void OnSprint_Hold(InputAction.CallbackContext context);
             void OnSprint_Press(InputAction.CallbackContext context);
-            void OnPickUp(InputAction.CallbackContext context);
-            void OnDrop(InputAction.CallbackContext context);
             void OnPull_Aim(InputAction.CallbackContext context);
             void OnPull_Execute(InputAction.CallbackContext context);
+            void OnInteract(InputAction.CallbackContext context);
         }
         public interface IOrigamiActions
         {

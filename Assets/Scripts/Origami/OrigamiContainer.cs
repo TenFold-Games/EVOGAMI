@@ -40,7 +40,7 @@ namespace EVOGAMI.Origami
         public OrigamiStateMachine StateMachine;
         
         // Callbacks
-        public delegate void FormChangeCallback(OrigamiForm form);
+        public delegate void FormChangeCallback(OrigamiForm oldForm, OrigamiForm newForm);
         public event FormChangeCallback OnFormChange = delegate { };
 
         #region Unity Functions
@@ -143,7 +143,7 @@ namespace EVOGAMI.Origami
             // Form not gained
             if (!_playerManager.GainedForms[form]) return;
             
-            OnFormChange.Invoke(form);
+            OnFormChange.Invoke(StateMachine.CurrentState.Form, form);
 
             switch (form)
             {

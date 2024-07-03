@@ -54,6 +54,8 @@ namespace EVOGAMI.Movement
 
         public void SetAnimationParams(float delta)
         {
+            if (!animator) return;
+
             var horizontal = InputManager.MoveInput.magnitude;
             var vertical = PlayerManager.PlayerRb.velocity.y; 
             
@@ -141,7 +143,11 @@ namespace EVOGAMI.Movement
         private void Move(float delta)
         {
             // Not moving
-            if (!InputManager.IsMoving) return;
+            if (!InputManager.IsMoving)
+            {
+                PlayerRb.velocity = new Vector3(0, PlayerRb.velocity.y, 0);
+                return;
+            }
             
             var moveDirection = CameraTransform.forward * InputManager.MoveInput.y +
                                 CameraTransform.right * InputManager.MoveInput.x;
@@ -149,7 +155,7 @@ namespace EVOGAMI.Movement
             
             // Move and rotate player
             if (canWalkOnGround && groundCheckProvider.IsCheckTrue || canWalkInAir && !groundCheckProvider.IsCheckTrue)
-                MovePlayer(moveDirection, delta);
+                MovePlayer(moveDirection.normalized, delta);
             else // Set player velocity to zero to avoid sliding
                 PlayerRb.velocity = new Vector3(0, PlayerRb.velocity.y, 0);
             RotatePlayer(moveDirection, delta);
@@ -162,14 +168,21 @@ namespace EVOGAMI.Movement
         /// <param name="delta">Time since last frame</param>
         protected virtual void MovePlayer(Vector3 moveDirection, float delta)
         {
-            // Velocity
-            moveDirection *= _isSprinting ? sprintSpeed : walkSpeed;
-            var yVelocity = PlayerRb.velocity.y;
-
-            // Move player
-            PlayerRb.velocity = Vector3.ProjectOnPlane(moveDirection, Vector3.up);
-            // PlayerRb.AddForce( moveDirection - PlayerRb.velocity, ForceMode.VelocityChange);
-            PlayerRb.velocity += Vector3.up * yVelocity;
+            // // Velocity
+            // moveDirection *= _isSprinting ? sprintSpeed : walkSpeed;
+            // var yVelocity = PlayerRb.velocity.y;
+            //
+            // // Move player
+            // PlayerRb.velocity = Vector3.ProjectOnPlane(moveDirection, Vector3.up);
+            // // PlayerRb.AddForce( moveDirection - PlayerRb.velocity, ForceMode.VelocityChange);
+            // PlayerRb.velocity += Vector3.up * yVelocity;
+            
+            var targetSpeed = moveDirection * (_isSprinting ? sprintSpeed : walkSpeed);
+            var acceleration = walkSpeed;
+            
+            var velocity = Vector3.Lerp(PlayerRb.velocity, targetSpeed, acceleration * delta);
+            velocity.y = PlayerRb.velocity.y;
+            PlayerRb.velocity = velocity;
         }
 
         /// <summary>
@@ -193,8 +206,8 @@ namespace EVOGAMI.Movement
             _isSprinting = false;
             
             // Find components
-            if (!animator) animator = GetComponent<Animator>();
-            if (!groundCheckProvider) groundCheckProvider = GetComponent<GroundCheckProviderBase>();
+            // if (!animator) animator = GetComponent<Animator>();
+            // if (!groundCheckProvider) groundCheckProvider = GetComponent<GroundCheckProviderBase>();
         }
         
         protected override void FixedUpdate()
