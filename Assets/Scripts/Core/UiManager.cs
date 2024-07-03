@@ -1,9 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using EVOGAMI.Custom.Serializable;
 using EVOGAMI.Origami;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 namespace EVOGAMI.Core
 {
@@ -29,6 +30,9 @@ namespace EVOGAMI.Core
         // The UI for when the player finishes the level
         [SerializeField] [Tooltip("The UI for when the player finishes the level")]
         public GameObject finishLevelUi;
+        // The UI for the game gained
+        [FormerlySerializedAs("gameGainedUi")] [SerializeField] [Tooltip("The UI for the game gained")]
+        public GameObject formGainedUi;
         
         private Dictionary<OrigamiContainer.OrigamiForm, GameObject> _origamiMapping;
 
@@ -70,6 +74,15 @@ namespace EVOGAMI.Core
             if (!_origamiMapping.ContainsKey(form)) return; // Should not happen
 
             _origamiMapping[form].SetActive(true);
+            
+            formGainedUi.SetActive(true);
+            StartCoroutine(WaitCloseFormGained());
+        }
+        
+        private IEnumerator WaitCloseFormGained()
+        {
+            yield return new WaitForSeconds(3);
+            formGainedUi.SetActive(false);
         }
         
         /// <summary>
