@@ -137,9 +137,13 @@ namespace EVOGAMI.UI.Transformation
             Debug.Assert(origamiContainer != null, "Origami container is not set.");
 
             // Load form unlock states
-            foreach (var (form, isUnlocked) in GameManager.Instance.origamiSettings.formUnlockStates)
+            foreach (var (form, isUnlocked) in PlayerManager.Instance.GainedForms)
                 _unlockStatus.Add(form, isUnlocked);
+            
+            PlayerManager.Instance.OnGainForm += form => _unlockStatus[form] = true;
         }
+        
+        
         
         #endregion
     }
