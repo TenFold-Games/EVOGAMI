@@ -4,6 +4,7 @@ using EVOGAMI.Interactable;
 using EVOGAMI.Movement.CheckProvider;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace EVOGAMI.Movement
 {
@@ -47,6 +48,11 @@ namespace EVOGAMI.Movement
 
         // Outline
         private Outline _targetOutline;
+
+        // TBD: Start --------------------------------------------------------------------------------------------------
+        [SerializeField] [Tooltip("The line renderer used to show the pull line.")]
+        private LineRenderer lineRenderer;
+        // TBD: End ----------------------------------------------------------------------------------------------------
 
         // Flags
         private bool _canPull;
@@ -110,11 +116,19 @@ namespace EVOGAMI.Movement
 
         private void EnterAimState()
         {
+            // TBD: Start ----------------------------------------------------------------------------------------------
+            lineRenderer.enabled = true;
+            // TBD: End ------------------------------------------------------------------------------------------------
             _state = PullStates.Aim;
         }
 
         private void ExitAimState()
         {
+            // TBD: Start ----------------------------------------------------------------------------------------------
+            lineRenderer.SetPosition(0, Vector3.zero);
+            lineRenderer.SetPosition(1, Vector3.zero);
+            lineRenderer.enabled = false;
+            // TBD: End ------------------------------------------------------------------------------------------------
             _state = PullStates.None;
         }
 
@@ -124,19 +138,14 @@ namespace EVOGAMI.Movement
             _pullable = _pullHit.collider.GetComponent<Pullable>();
             if (_pullable == null) return; // Should never happen.
             _pullable.SetPullSource(pullPoint);
-            
 
-            
             InputManager.DisablePlayerControls();
             InputManager.DisableOrigamiControls();
 
             _state = PullStates.Pull;
             
             // Set isPull to true
-            if (tongueController != null && !_pullable.IsStopped)
-            {
-                tongueController.SetPullState(true);
-            }
+            // if (tongueController != null && !_pullable.IsStopped) tongueController.SetPullState(true);
         }
 
         private void ExitPullState()
@@ -150,10 +159,7 @@ namespace EVOGAMI.Movement
             _state = PullStates.None;
             
             // Set isPull to false
-            if (tongueController != null)
-            {
-                tongueController.SetPullState(false);
-            }
+            // if (tongueController) tongueController.SetPullState(false);
         }
 
         #endregion
@@ -168,7 +174,25 @@ namespace EVOGAMI.Movement
             
             // Initialize state
             EnterAimState();
+            
+            // TBD: Start ----------------------------------------------------------------------------------------------
+            lineRenderer.startWidth = pullCheckRadius;
+            lineRenderer.endWidth = 0;
+            
+            lineRenderer.positionCount = 2;
+            // TBD: End ------------------------------------------------------------------------------------------------
         }
+
+        // TBD: Start --------------------------------------------------------------------------------------------------
+        private void Aim(bool canPull)
+        {
+            lineRenderer.startColor = canPull ? Color.green : Color.red;
+            lineRenderer.endColor = canPull ? Color.green : Color.red;
+            
+            lineRenderer.SetPosition(0, pullPoint.position);
+            lineRenderer.SetPosition(1, _isCheckTrue ? _pullHit.point : pullPoint.position + pullPoint.forward * maxPullDistance);
+        }
+        // TBD: End ----------------------------------------------------------------------------------------------------
 
         protected override void FixedUpdate()
         {
@@ -196,6 +220,8 @@ namespace EVOGAMI.Movement
                     }
                     
                     _canPull = ret;
+                    if (_pullable && _pullable.IsStopped) _canPull = false;
+                    Aim(_canPull);
                     break;
                 }
                 case PullStates.Pull:
@@ -227,11 +253,15 @@ namespace EVOGAMI.Movement
         
         private void OnPullAtFound()
         {
-            
             _targetOutline = _pullHit.transform.GetComponent<Outline>();
             if (!_targetOutline) return;
             
-            _targetOutline.enabled = true;
+            _pullable = _pullHit.collider.GetComponent<Pullable>();
+            if (!_pullable) return; // Should never happen.
+            _pullable.OnMount();
+            
+            if (!_pullable.IsStopped)
+                _targetOutline.enabled = true;
         }
         
         private void OnPullAtLost()
