@@ -1,4 +1,5 @@
 using System;
+using EVOGAMI.Animations;
 using EVOGAMI.Interactable;
 using EVOGAMI.Movement.CheckProvider;
 using UnityEngine;
@@ -99,6 +100,11 @@ namespace EVOGAMI.Movement
         }
 
         #endregion
+        
+        #region Animation
+        [SerializeField] private TongueController tongueController;
+        
+        #endregion
 
         #region State Machine
 
@@ -123,6 +129,12 @@ namespace EVOGAMI.Movement
             InputManager.DisableOrigamiControls();
 
             _state = PullStates.Pull;
+            
+            // Set isPull to true
+            if (tongueController != null)
+            {
+                tongueController.SetPullState(true);
+            }
         }
 
         private void ExitPullState()
@@ -134,6 +146,12 @@ namespace EVOGAMI.Movement
             InputManager.EnableOrigamiControls();
 
             _state = PullStates.None;
+            
+            // Set isPull to false
+            if (tongueController != null)
+            {
+                tongueController.SetPullState(false);
+            }
         }
 
         #endregion
