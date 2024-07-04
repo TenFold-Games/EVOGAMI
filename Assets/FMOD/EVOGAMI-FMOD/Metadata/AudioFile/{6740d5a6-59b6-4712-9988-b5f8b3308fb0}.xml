@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{6740d5a6-59b6-4712-9988-b5f8b3308fb0}">
+		<property name="assetPath">
+			<value>sfx_frog_croaking.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.51</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{6c7f7bce-7486-49b8-9390-1b4e43c74425}</destination>
+		</relationship>
+	</object>
+</objects>
