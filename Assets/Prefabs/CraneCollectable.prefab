@@ -95,6 +95,7 @@ MonoBehaviour:
   meshRenderer: {fileID: 6358101971392237014}
   m_collider: {fileID: 6482993948378804902}
   audioSource: {fileID: 2694599722389319119}
+  rotationSpeed: 45
 --- !u!82 &2694599722389319119
 AudioSource:
   m_ObjectHideFlags: 0

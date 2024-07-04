@@ -15,6 +15,11 @@ namespace EVOGAMI.Interactable
         // The forward direction when being pulled. Set to <0, 0, 0> to disable.
         [SerializeField] [Tooltip("The forward direction when being pulled. Set to <0, 0, 0> to disable.")]
         private Vector3 forwardDirection;
+
+        [Header("Outline")]
+        // The outline object.
+        [SerializeField] [Tooltip("The outline object.")]
+        private Outline outline;
         
         private Transform _sourceTransform;
         private Vector3 _targetPosition;
@@ -35,7 +40,11 @@ namespace EVOGAMI.Interactable
         {
             if (maxDistance != 0 && _distanceTravelled >= maxDistance) IsStopped = true;
 
-            if (IsStopped) return;
+            if (IsStopped)
+            {
+                outline.enabled = false;
+                return;
+            }
             
             var angularVelocity = GetAngularVelocity(speed, transform.position);
             
@@ -53,6 +62,12 @@ namespace EVOGAMI.Interactable
         {
             _sourceTransform = sourceTransform;
             _targetPosition = GetTargetPosition();
+        }
+
+        public void OnMount()
+        {
+            if (maxDistance == 0 || _distanceTravelled < maxDistance) 
+                IsStopped = false;
         }
 
         #region Pull Direction Physics
@@ -81,6 +96,13 @@ namespace EVOGAMI.Interactable
             
             Gizmos.color = Color.cyan;
             Gizmos.DrawLine(transform.position, transform.position + forwardDirection);
+        }
+
+        private void Awake()
+        {
+            if (!outline)
+                outline = gameObject.GetComponent<Outline>();
+            outline.enabled = false;
         }
 
         #endregion

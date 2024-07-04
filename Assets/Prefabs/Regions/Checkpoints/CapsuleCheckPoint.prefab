@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8091891309396115084}
   - component: {fileID: 6387502711486608921}
   - component: {fileID: 1974412264095863981}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CapsuleCheckPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5791016267468258449}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Respawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
