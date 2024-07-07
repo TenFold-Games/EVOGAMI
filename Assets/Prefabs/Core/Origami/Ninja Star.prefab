@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5471099348594292190}
   - component: {fileID: 7974472063950137379}
-  - component: {fileID: 6094491471434031769}
+  - component: {fileID: 3295364777738927906}
+  - component: {fileID: 2721818185855815237}
   m_Layer: 0
   m_Name: Ninja Star
   m_TagString: OrigamiMesh
@@ -55,7 +56,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6094491471434031769
+--- !u!114 &3295364777738927906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,19 +65,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 2621075922335175480}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9981aedab61e4d9a9a35e20b4fc0f341, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d46e192a9c44fa98ca92f52e9280482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
-  maxThrowDistance: 20
-  throwCheckRadius: 5
-  throwLayer:
+  maxProbeDistance: 20
+  probeCheckRadius: 2.5
+  probeLayer:
     serializedVersion: 2
     m_Bits: 1024
+  onProbeFound:
+    m_PersistentCalls:
+      m_Calls: []
+  onProbeLost:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2721818185855815237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2621075922335175480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ebda73d71549e1b225954e4e901ea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  probe: {fileID: 3295364777738927906}
   speed: 10
   rotationSpeed: 360
-  targetTransform: {fileID: 0}
-  minDistance: 2
 --- !u!1001 &3407847407090065101
 PrefabInstance:
   m_ObjectHideFlags: 0
