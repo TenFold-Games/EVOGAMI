@@ -405,15 +405,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5039065905281578786, guid: 057cf30eb2370224d9b2460f0136e399, type: 3}
+      propertyPath: lineRenderer
+      value: 
+      objectReference: {fileID: 2079058208534222537}
     - target: {fileID: 6493369439384624171, guid: 057cf30eb2370224d9b2460f0136e399, type: 3}
       propertyPath: m_Name
       value: Frog
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269216442371859605, guid: 057cf30eb2370224d9b2460f0136e399, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 057cf30eb2370224d9b2460f0136e399, type: 3}
+--- !u!120 &2079058208534222537 stripped
+LineRenderer:
+  m_CorrespondingSourceObject: {fileID: 7269216442371859605, guid: 057cf30eb2370224d9b2460f0136e399, type: 3}
+  m_PrefabInstance: {fileID: 8663586184767353436}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2460698921814453879 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6493369439384624171, guid: 057cf30eb2370224d9b2460f0136e399, type: 3}
