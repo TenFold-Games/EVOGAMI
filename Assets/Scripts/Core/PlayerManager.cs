@@ -57,6 +57,17 @@ namespace EVOGAMI.Core
                 GainedForms[form] = unlocked;
             if (!GainedForms[_gameManager.origamiSettings.initialForm])
                 GainForm(_gameManager.origamiSettings.initialForm);
+            
+            // Reset player rotation on form change
+            PlayerOrigami.OnFormChange += (_, _) =>
+                Player.transform.rotation = Quaternion.Euler(0, Player.transform.rotation.eulerAngles.y, 0);
+        }
+        
+        private void FixedUpdate()
+        {
+            // If flipped, flip back
+            if (Player.transform.up.y < 0)
+                Player.transform.rotation = Quaternion.Euler(0, Player.transform.rotation.eulerAngles.y, 0);
         }
         
         #endregion
