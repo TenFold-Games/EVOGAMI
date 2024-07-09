@@ -3,6 +3,7 @@ using EVOGAMI.Custom.Enums;
 using EVOGAMI.Origami;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
 
 namespace EVOGAMI.Core
 {
@@ -11,6 +12,14 @@ namespace EVOGAMI.Core
     /// </summary>
     public class InputManager : MonoBehaviour
     {
+        public enum InputDeviceScheme
+        {
+            KeyboardMouse,
+            XboxController,
+            PSController,
+            Unsupported
+        }
+
         /// <summary>
         ///     Singleton instance of the InputManager.
         /// </summary>
@@ -31,6 +40,61 @@ namespace EVOGAMI.Core
         public bool IsMoving { get; private set; }
 
         private Directions _sequenceInput;
+        
+        // Input device
+        private InputDevice _inputDevice;
+        public InputDeviceScheme InputScheme { get; private set; }
+        public Gamepad ControllerDevice { get; private set; }
+
+        private void UpdateInputScheme(InputDevice inputDevice)
+        {
+            switch (inputDevice)
+            {
+                // Get the type of input device
+                case Keyboard or Mouse:
+                {
+                    if (InputScheme == InputDeviceScheme.KeyboardMouse) break;
+
+                    // Switch to keyboard and mouse
+                    OnInputSchemeChanged(InputScheme, InputDeviceScheme.KeyboardMouse);
+                    InputScheme = InputDeviceScheme.KeyboardMouse;
+                    ControllerDevice = null;
+                    break;
+                }
+                case DualShockGamepad dualShock:
+                {
+                    if (InputScheme == InputDeviceScheme.PSController) break;
+
+                    // Switch to PS controller
+                    OnInputSchemeChanged(InputScheme, InputDeviceScheme.PSController);
+                    InputScheme = InputDeviceScheme.PSController;
+                    ControllerDevice = dualShock;
+                    break;
+                }
+                case Gamepad gamepad:
+                {
+                    if (InputScheme == InputDeviceScheme.XboxController) break;
+
+                    // Default to Xbox controller
+                    OnInputSchemeChanged(InputScheme, InputDeviceScheme.XboxController);
+                    InputScheme = InputDeviceScheme.XboxController;
+                    ControllerDevice = gamepad;
+                    break;
+                }
+                default:
+                {
+                    if (InputScheme == InputDeviceScheme.Unsupported) break;
+
+                    // Unsupported input device
+                    Debug.LogWarning($"Unsupported input device: {inputDevice.displayName} ({inputDevice.name})");
+
+                    // Default to keyboard and mouse
+                    OnInputSchemeChanged(InputScheme, InputDeviceScheme.KeyboardMouse);
+                    InputScheme = InputDeviceScheme.KeyboardMouse;
+                    break;
+                }
+            }
+        }
 
         #region Input Controls
 
@@ -86,7 +150,7 @@ namespace EVOGAMI.Core
             Controls.Player.Interact.started += InteractStartedCallback;
             Controls.Player.Interact.performed += InteractPerformedCallback;
             Controls.Player.Interact.canceled += InteractCancelledCallback;
-            
+
             // UI - Pause
             Controls.UI.Pause.started += PauseStartedCallback;
             Controls.UI.Pause.performed += PausePerformedCallback;
@@ -98,20 +162,20 @@ namespace EVOGAMI.Core
             Controls.Origami.Transform.canceled += TransformCancelledCallback;
             // Origami - Sequence
             // started
-            Controls.Origami.Up.started += _ => SequenceStartedCallback(Directions.U);
-            Controls.Origami.Down.started += _ => SequenceStartedCallback(Directions.D);
-            Controls.Origami.Left.started += _ => SequenceStartedCallback(Directions.L);
-            Controls.Origami.Right.started += _ => SequenceStartedCallback(Directions.R);
+            Controls.Origami.Up.started += ctx => SequenceStartedCallback(ctx, Directions.U);
+            Controls.Origami.Down.started += ctx => SequenceStartedCallback(ctx, Directions.D);
+            Controls.Origami.Left.started += ctx => SequenceStartedCallback(ctx, Directions.L);
+            Controls.Origami.Right.started += ctx => SequenceStartedCallback(ctx, Directions.R);
             // performed
-            Controls.Origami.Up.performed += _ => SequencePerformedCallback(Directions.U);
-            Controls.Origami.Down.performed += _ => SequencePerformedCallback(Directions.D);
-            Controls.Origami.Left.performed += _ => SequencePerformedCallback(Directions.L);
-            Controls.Origami.Right.performed += _ => SequencePerformedCallback(Directions.R);
+            Controls.Origami.Up.performed += ctx => SequencePerformedCallback(ctx, Directions.U);
+            Controls.Origami.Down.performed += ctx => SequencePerformedCallback(ctx, Directions.D);
+            Controls.Origami.Left.performed += ctx => SequencePerformedCallback(ctx, Directions.L);
+            Controls.Origami.Right.performed += ctx => SequencePerformedCallback(ctx, Directions.R);
             // cancelled
-            Controls.Origami.Up.canceled += _ => SequenceCancelledCallback(Directions.U);
-            Controls.Origami.Down.canceled += _ => SequenceCancelledCallback(Directions.D);
-            Controls.Origami.Left.canceled += _ => SequenceCancelledCallback(Directions.L);
-            Controls.Origami.Right.canceled += _ => SequenceCancelledCallback(Directions.R);
+            Controls.Origami.Up.canceled += ctx => SequenceCancelledCallback(ctx, Directions.U);
+            Controls.Origami.Down.canceled += ctx => SequenceCancelledCallback(ctx, Directions.D);
+            Controls.Origami.Left.canceled += ctx => SequenceCancelledCallback(ctx, Directions.L);
+            Controls.Origami.Right.canceled += ctx => SequenceCancelledCallback(ctx, Directions.R);
         }
 
         public void OnEnable()
@@ -131,13 +195,18 @@ namespace EVOGAMI.Core
         // Player - Move
         #region Move
 
-        private void MoveStartedCallback(InputAction.CallbackContext ctx) { OnMoveStarted(); }
+        private void MoveStartedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnMoveStarted();
+        }
 
         private void MovePerformedCallback(InputAction.CallbackContext ctx)
         {
             IsMoving = true;
             MoveInput = ctx.ReadValue<Vector2>().normalized;
 
+            UpdateInputScheme(ctx.control.device);
             OnMovePerformed();
         }
 
@@ -146,6 +215,7 @@ namespace EVOGAMI.Core
             IsMoving = false;
             MoveInput = Vector2.zero;
 
+            UpdateInputScheme(ctx.control.device);
             OnMoveCancelled();
         }
 
@@ -154,63 +224,159 @@ namespace EVOGAMI.Core
         // Player - Jump
         #region Jump
 
-        private void JumpStartedCallback(InputAction.CallbackContext ctx) { OnJumpStarted(); }
-        private void JumpPerformedCallback(InputAction.CallbackContext ctx) { OnJumpPerformed(); }
-        private void JumpCancelledCallback(InputAction.CallbackContext ctx) { OnJumpCancelled(); }
+        private void JumpStartedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnJumpStarted();
+        }
+
+        private void JumpPerformedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnJumpPerformed();
+        }
+
+        private void JumpCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnJumpCancelled();
+        }
 
         #endregion
 
         // Player - Sprint (Hold)
         #region Sprint (Hold)
 
-        private void SprintHoldStartedCallback(InputAction.CallbackContext ctx) { OnSprintHoldStarted(); }
-        private void SprintHoldPerformedCallback(InputAction.CallbackContext ctx) { OnSprintHoldPerformed(); }
-        private void SprintHoldCancelledCallback(InputAction.CallbackContext ctx) { OnSprintHoldCancelled(); }
+        private void SprintHoldStartedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnSprintHoldStarted();
+        }
+
+        private void SprintHoldPerformedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnSprintHoldPerformed();
+        }
+
+        private void SprintHoldCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnSprintHoldCancelled();
+        }
         
         #endregion
 
         // Player - Sprint (Press)
         #region Sprint (Press)
-        
-        private void SprintPressStartedCallback(InputAction.CallbackContext ctx) { OnSprintPressStarted(); }
-        private void SprintPressPerformedCallback(InputAction.CallbackContext ctx) { OnSprintPressPerformed(); }
-        private void SprintPressCancelledCallback(InputAction.CallbackContext ctx) { OnSprintPressCancelled(); }
+
+        private void SprintPressStartedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnSprintPressStarted();
+        }
+
+        private void SprintPressPerformedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnSprintPressPerformed();
+        }
+        private void SprintPressCancelledCallback(InputAction.CallbackContext ctx) { 
+            UpdateInputScheme(ctx.control.device);
+            OnSprintPressCancelled(); 
+        }
         
         #endregion
 
         // Player - Interact
         #region Interact
-        
-        private void InteractStartedCallback(InputAction.CallbackContext ctx) { OnInteractStarted(); }
-        private void InteractPerformedCallback(InputAction.CallbackContext ctx) { OnInteractPerformed(); }
-        private void InteractCancelledCallback(InputAction.CallbackContext ctx) { OnInteractCancelled(); }
+
+        private void InteractStartedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnInteractStarted();
+        }
+
+        private void InteractPerformedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnInteractPerformed();
+        }
+
+        private void InteractCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnInteractCancelled();
+        }
 
         #endregion
 
         // UI - Pause
         #region Pause
 
-        private void PauseStartedCallback(InputAction.CallbackContext ctx) { OnPauseStarted(); }
-        private void PausePerformedCallback(InputAction.CallbackContext ctx) { OnPausePerformed(); }
-        private void PauseCancelledCallback(InputAction.CallbackContext ctx) { OnPauseCancelled(); }
+        private void PauseStartedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnPauseStarted();
+        }
+
+        private void PausePerformedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnPausePerformed();
+        }
+
+        private void PauseCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnPauseCancelled();
+        }
         
         #endregion
 
         // Origami - Transform
         #region Transform
-        
-        private void TransformStartedCallback(InputAction.CallbackContext ctx) { OnTransformStarted(); }
-        private void TransformPerformedCallback(InputAction.CallbackContext ctx) { OnTransformPerformed(); }
-        private void TransformCancelledCallback(InputAction.CallbackContext ctx) { OnTransformCancelled(); }
+
+        private void TransformStartedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnTransformStarted();
+        }
+
+        private void TransformPerformedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnTransformPerformed();
+        }
+
+        private void TransformCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnTransformCancelled();
+        }
         
         #endregion
 
         // Origami - Sequence
         #region Sequence
 
-        private void SequenceStartedCallback(Directions sequenceInput) { OnSequenceStarted(sequenceInput); }
-        private void SequencePerformedCallback(Directions sequenceInput) { OnSequencePerformed(sequenceInput); }
-        private void SequenceCancelledCallback(Directions sequenceInput) { OnSequenceCancelled(sequenceInput); }
+        private void SequenceStartedCallback(InputAction.CallbackContext ctx, Directions sequenceInput)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnSequenceStarted(sequenceInput);
+        }
+
+        private void SequencePerformedCallback(InputAction.CallbackContext ctx, Directions sequenceInput)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnSequencePerformed(sequenceInput);
+        }
+
+        private void SequenceCancelledCallback(InputAction.CallbackContext ctx, Directions sequenceInput)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnSequenceCancelled(sequenceInput);
+        }
         
         #endregion
         
@@ -299,6 +465,28 @@ namespace EVOGAMI.Core
         public event SequenceCallback OnSequenceCancelled = delegate { };
         
         #endregion
+        
+        public delegate void InputSchemeChangedCallback(InputDeviceScheme oldInputDeviceScheme, InputDeviceScheme newInputDeviceScheme);
+        public event InputSchemeChangedCallback OnInputSchemeChanged = delegate { };
+
+        #endregion
+
+        #region Haptic Feedback
+
+        public static void VibrateController(float lowFrequency, float highFrequency, float duration = -1)
+        {
+            if (Instance.ControllerDevice == null) return;
+            
+            Instance.ControllerDevice.SetMotorSpeeds(lowFrequency, highFrequency);
+
+            if (duration > 0)
+                Instance.Invoke(nameof(Instance.StopVibration), duration);
+        }
+        
+        public void StopVibration()
+        {
+            ControllerDevice.SetMotorSpeeds(0, 0);
+        }
 
         #endregion
     }
