@@ -1,4 +1,5 @@
 using EVOGAMI.Animations;
+using EVOGAMI.Core;
 using EVOGAMI.Movement.CheckProvider.Ground;
 using UnityEngine;
 
@@ -67,6 +68,9 @@ namespace EVOGAMI.Movement
         {
             if (!groundCheckProvider.IsCheckTrue) return;
             
+            // Add haptic feedback
+            InputManager.VibrateController(0.05f, 0.05f, 0.025f);
+
             // Perform jump
             PlayerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }

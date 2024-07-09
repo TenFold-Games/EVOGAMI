@@ -1,7 +1,7 @@
 using System;
+using EVOGAMI.Core;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace EVOGAMI.Movement
 {
@@ -48,6 +48,12 @@ namespace EVOGAMI.Movement
         private GameObject _probedObject;
         // private GameObject _previousProbedObject;
 
+        private void Awake()
+        {
+            onProbeFound.AddListener(obj => InputManager.VibrateController(0.05f, 0.05f, 0.025f));
+            onProbeLost.AddListener(obj => InputManager.VibrateController(0.05f, 0.05f, 0.025f));
+        }
+
         #region Physics
 
         private bool IsObjectProbed(Ray ray)
@@ -72,7 +78,6 @@ namespace EVOGAMI.Movement
             );
             
             // If hit too close, ignore
-            Debug.Log($"Found a hit with distance {_probeHit.distance}");
             return found && !(_probeHit.distance < probeCheckRadius);
         }
         

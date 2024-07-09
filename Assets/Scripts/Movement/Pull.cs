@@ -1,10 +1,9 @@
 using System;
 using EVOGAMI.Animations;
+using EVOGAMI.Core;
 using EVOGAMI.Interactable;
 using EVOGAMI.Movement.CheckProvider;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace EVOGAMI.Movement
 {
@@ -261,13 +260,17 @@ namespace EVOGAMI.Movement
             _pullable.OnMount();
             
             if (!_pullable.IsStopped)
+            {
+                InputManager.VibrateController(0.05f, 0.05f, 0.025f);
                 _targetOutline.enabled = true;
+            }
         }
         
         private void OnPullAtLost()
         {
             if (!_targetOutline) return;
             
+            InputManager.VibrateController(0.05f, 0.05f, 0.025f);
             _targetOutline.enabled = false;
         }
 
