@@ -33797,9 +33797,7 @@ GameObject:
   - component: {fileID: 1488428205}
   - component: {fileID: 1488428204}
   - component: {fileID: 1488428203}
-  - component: {fileID: 1488428202}
-  - component: {fileID: 1488428206}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Dresser Drawer Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33827,22 +33825,6 @@ Transform:
   - {fileID: 1242078166}
   m_Father: {fileID: 2104534905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1488428202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488428200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f636fbd021649dcbc4166a2e04a9ddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDistance: 1.5
-  preventVerticalMovement: 1
-  forwardDirection: {x: 0, y: 0, z: -7.63}
-  outline: {fileID: 1488428206}
 --- !u!65 &1488428203
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33914,24 +33896,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488428200}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1488428206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488428200}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 1, b: 0, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &1489107155
 GameObject:
   m_ObjectHideFlags: 0
@@ -37699,9 +37663,7 @@ GameObject:
   - component: {fileID: 1706033562}
   - component: {fileID: 1706033561}
   - component: {fileID: 1706033560}
-  - component: {fileID: 1706033559}
-  - component: {fileID: 1706033563}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Dresser Drawer Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37729,22 +37691,6 @@ Transform:
   - {fileID: 450399072}
   m_Father: {fileID: 725551957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1706033559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706033557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f636fbd021649dcbc4166a2e04a9ddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDistance: 1.5
-  preventVerticalMovement: 1
-  forwardDirection: {x: -3.57, y: 0, z: 0}
-  outline: {fileID: 1488428206}
 --- !u!65 &1706033560
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37816,24 +37762,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706033557}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1706033563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706033557}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 1, b: 0, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &1706866600
 GameObject:
   m_ObjectHideFlags: 0
@@ -42546,9 +42474,7 @@ GameObject:
   - component: {fileID: 1939433543}
   - component: {fileID: 1939433542}
   - component: {fileID: 1939433541}
-  - component: {fileID: 1939433540}
-  - component: {fileID: 1939433544}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Dresser Drawer Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42576,22 +42502,6 @@ Transform:
   - {fileID: 533705609}
   m_Father: {fileID: 2104534905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1939433540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939433538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f636fbd021649dcbc4166a2e04a9ddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDistance: 1.5
-  preventVerticalMovement: 1
-  forwardDirection: {x: 0, y: 0, z: -7.63}
-  outline: {fileID: 1488428206}
 --- !u!65 &1939433541
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42663,24 +42573,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939433538}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1939433544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939433538}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 1, b: 0, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &1940446918 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5d0a7b328d684a24a903152a8ff44e13, type: 3}
@@ -45492,9 +45384,7 @@ GameObject:
   - component: {fileID: 2078758141}
   - component: {fileID: 2078758140}
   - component: {fileID: 2078758139}
-  - component: {fileID: 2078758138}
-  - component: {fileID: 2078758142}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Dresser Drawer Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45522,22 +45412,6 @@ Transform:
   - {fileID: 1582794981}
   m_Father: {fileID: 725551957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2078758138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2078758136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f636fbd021649dcbc4166a2e04a9ddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDistance: 1.5
-  preventVerticalMovement: 1
-  forwardDirection: {x: 0, y: 0, z: -7.63}
-  outline: {fileID: 1488428206}
 --- !u!65 &2078758139
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45609,24 +45483,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078758136}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2078758142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2078758136}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 1, b: 0, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1001 &2085774433
 PrefabInstance:
   m_ObjectHideFlags: 0
