@@ -214,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 939173157}
   defaultButton: {fileID: 1513310449}
-  sceneToLoad: Assets/Scenes/Alpha Build Scene.unity
+  sceneToLoad: Assets/Scenes/intro.unity
 --- !u!1 &312010210
 GameObject:
   m_ObjectHideFlags: 0
