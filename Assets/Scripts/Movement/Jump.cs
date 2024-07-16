@@ -2,6 +2,7 @@ using EVOGAMI.Animations;
 using EVOGAMI.Core;
 using EVOGAMI.Movement.CheckProvider.Ground;
 using UnityEngine;
+using FMODUnity;
 
 namespace EVOGAMI.Movement
 {
@@ -12,6 +13,7 @@ namespace EVOGAMI.Movement
     public class Jump : 
         MovementBase,
         IAnimationHandler
+
     {
         [Header("Jump")]
         // The force applied to the player when jumping.
@@ -27,6 +29,8 @@ namespace EVOGAMI.Movement
         // The animator component
         [SerializeField] [Tooltip("The animator component")]
         private Animator animator;
+
+        [SerializeField] StudioEventEmitter frogjumpsfx;
 
         // Cashed Property Indices
         private static readonly int Vertical = Animator.StringToHash("vertical");
@@ -73,6 +77,10 @@ namespace EVOGAMI.Movement
 
             // Perform jump
             PlayerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+            frogjumpsfx.Play();
+
+
         }
         
         #endregion

@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 5039065905281578786}
   - component: {fileID: 7269216442371859605}
   - component: {fileID: 7189607802858015478}
+  - component: {fileID: 6649883397775873734}
   m_Layer: 0
   m_Name: Frog
   m_TagString: OrigamiMesh
@@ -296,6 +297,7 @@ MonoBehaviour:
   jumpForce: 8.77
   groundCheckProvider: {fileID: 2494217303144362527}
   animator: {fileID: 4250060218162524038}
+  frogjumpsfx: {fileID: 6649883397775873734}
 --- !u!114 &5039065905281578786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +436,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tongueObject: {fileID: 4712921347588838649}
+--- !u!114 &6649883397775873734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6493369439384624171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1960556603
+      Data2: 1285125610
+      Data3: 16924839
+      Data4: 511820068
+    Path: event:/sfx_frog_jump
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &622899383574445647
 PrefabInstance:
   m_ObjectHideFlags: 0
