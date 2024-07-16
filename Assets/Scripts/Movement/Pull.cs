@@ -3,6 +3,7 @@ using EVOGAMI.Animations;
 using EVOGAMI.Core;
 using EVOGAMI.Interactable;
 using EVOGAMI.Movement.CheckProvider;
+using FMODUnity;
 using UnityEngine;
 
 namespace EVOGAMI.Movement
@@ -56,6 +57,9 @@ namespace EVOGAMI.Movement
         // Flags
         private bool _canPull;
         private bool _isCheckTrue;
+
+        // FMOD Studio Event Emitter
+        [SerializeField] StudioEventEmitter frogtongueoutsfx;
         
         #region Callbacks
 
@@ -81,6 +85,9 @@ namespace EVOGAMI.Movement
         {
             // Chef if the player can pull the object and is in the aim state.
             if (!_canPull || _state != PullStates.Aim) return;
+
+            // Play Frog Tongue Out SFX
+            frogtongueoutsfx.Play();
             
             // Pull the object.
             ExitAimState();

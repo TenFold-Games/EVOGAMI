@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6753351768035400312}
   - component: {fileID: 2818450206380572098}
   - component: {fileID: 4823978451282583667}
+  - component: {fileID: 3988220289669870332}
   m_Layer: 0
   m_Name: Crab
   m_TagString: OrigamiMesh
@@ -115,6 +116,7 @@ MonoBehaviour:
   jumpForce: 5
   groundCheckProvider: {fileID: 397967431481544584}
   animator: {fileID: 0}
+  frogjumpsfx: {fileID: 0}
 --- !u!114 &2818450206380572098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +144,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutRegion: {fileID: 3028071919668338280}
+  sfxcrabcut: {fileID: 3988220289669870332}
+--- !u!114 &3988220289669870332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381843261129666074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 632543246
+      Data2: 1286774374
+      Data3: 903071395
+      Data4: -906271622
+    Path: event:/sfx_crab_cut
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1393692138037076502
 GameObject:
   m_ObjectHideFlags: 0

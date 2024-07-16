@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4799413737925949085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx_crab_cut
+  m_EditorClassIdentifier: 
+  Path: event:/sfx_crab_cut
+  Guid:
+    Data1: 632543246
+    Data2: 1286774374
+    Data3: 903071395
+    Data4: -906271622
+  Banks:
+  - {fileID: 1602773102428187241}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &-617325738313075784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,12 +71,14 @@ MonoBehaviour:
   - {fileID: 1602773102428187241}
   EditorEvents:
   - {fileID: -617325738313075784}
+  - {fileID: 8518673410188440350}
+  - {fileID: -4799413737925949085}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1602773102428187241}
   StringsBanks:
   - {fileID: 8871384967824601268}
-  cacheTime: 638567540393226886
+  cacheTime: 638567554849445276
   cacheVersion: 131617
 --- !u!114 &1602773102428187241
 MonoBehaviour:
@@ -66,11 +95,38 @@ MonoBehaviour:
   Path: EVOGAMIFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638567540393216882
+  lastModified: 638567554849429264
   FileSizes:
   - Name: Desktop
-    Value: 12864
+    Value: 41696
   Exists: 1
+--- !u!114 &8518673410188440350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx_frog_tongue_out
+  m_EditorClassIdentifier: 
+  Path: event:/sfx_frog_tongue_out
+  Guid:
+    Data1: 645928258
+    Data2: 1177263915
+    Data3: 1722483851
+    Data4: -152109185
+  Banks:
+  - {fileID: 1602773102428187241}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1468
 --- !u!114 &8871384967824601268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,8 +142,8 @@ MonoBehaviour:
   Path: EVOGAMIFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638567540393226886
+  lastModified: 638567554849445276
   FileSizes:
   - Name: Desktop
-    Value: 762
+    Value: 866
   Exists: 1

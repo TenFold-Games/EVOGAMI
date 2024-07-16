@@ -1,6 +1,7 @@
 using EVOGAMI.Core;
 using EVOGAMI.Interactable;
 using EVOGAMI.Region;
+using FMODUnity;
 using UnityEngine;
 
 namespace EVOGAMI.Movement
@@ -12,6 +13,8 @@ namespace EVOGAMI.Movement
         private CallbackRegion cutRegion;
         
         private Cuttable _objectToCut;
+
+        [SerializeField] StudioEventEmitter sfxcrabcut;
 
         #region Callback Region Events
 
@@ -63,6 +66,8 @@ namespace EVOGAMI.Movement
             
             InputManager.VibrateController(0.05f, 0.05f, 0.025f);
             _objectToCut.CutPerformedCallback.Invoke(_objectToCut);
+
+            sfxcrabcut.Play();
         }
         
         // private void OnCutCanceled()

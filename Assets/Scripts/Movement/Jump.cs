@@ -30,6 +30,7 @@ namespace EVOGAMI.Movement
         [SerializeField] [Tooltip("The animator component")]
         private Animator animator;
 
+        // FMOD Studio Event Emitter
         [SerializeField] StudioEventEmitter frogjumpsfx;
 
         // Cashed Property Indices
@@ -78,8 +79,8 @@ namespace EVOGAMI.Movement
             // Perform jump
             PlayerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
+            // Play frog jump sfx
             frogjumpsfx.Play();
-
 
         }
         
