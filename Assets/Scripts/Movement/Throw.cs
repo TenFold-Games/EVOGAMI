@@ -56,6 +56,12 @@ namespace EVOGAMI.Movement
         {
             if (_throwAt)
                 OnProbeLost(_throwAt.gameObject);
+
+            if (_state != NinjaStarStates.Aim)
+            {
+                ExitThrowState();
+                EnterAimState();
+            }
             
             // Enable gravity
             PlayerManager.Instance.PlayerRb.useGravity = true;
