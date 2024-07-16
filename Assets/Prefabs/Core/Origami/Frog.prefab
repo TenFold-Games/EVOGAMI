@@ -258,7 +258,7 @@ MonoBehaviour:
   checkTransform: {fileID: 2916814856027244850}
   checkLayer:
     serializedVersion: 2
-    m_Bits: 2041
+    m_Bits: 4089
   groundCheckRadius: 0.2
   groundCheckDistance: 0.25
 --- !u!114 &6805688755999872221

@@ -13658,7 +13658,7 @@ GameObject:
   - component: {fileID: 604718919}
   - component: {fileID: 604718918}
   - component: {fileID: 604718917}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24069,7 +24069,7 @@ GameObject:
   - component: {fileID: 1054779709}
   - component: {fileID: 1054779708}
   - component: {fileID: 1054779707}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48450,7 +48450,7 @@ GameObject:
   - component: {fileID: 4013527915768577805}
   - component: {fileID: 160321415338866521}
   - component: {fileID: 4013527915768577806}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48747,11 +48747,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6014814311837207492, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_FollowOffset.y
-      value: -0.4931327
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6014814311837207492, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_FollowOffset.z
-      value: -5.134799
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 7526941702336864273, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -48872,6 +48872,10 @@ PrefabInstance:
     - target: {fileID: 8135690823343560587, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: checkpoints.Array.data[10]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722743930019641665, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+      propertyPath: m_TransparentLayers.m_Bits
+      value: 2048
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
