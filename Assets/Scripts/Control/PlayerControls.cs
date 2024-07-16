@@ -468,6 +468,17 @@ namespace EVOGAMI.Control
                 },
                 {
                     ""name"": """",
+                    ""id"": ""2d8d1811-3e09-4ac3-b69d-d3df77ca5ec7"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c6c1e5d8-21b4-444d-8479-55d6298ba489"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
@@ -503,6 +514,17 @@ namespace EVOGAMI.Control
                     ""name"": """",
                     ""id"": ""43366731-83aa-4837-a8c0-6571d2e1ac21"",
                     ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""223c6f15-65c4-4d63-ad1c-74335460b396"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -556,6 +578,17 @@ namespace EVOGAMI.Control
                 },
                 {
                     ""name"": """",
+                    ""id"": ""945fe3dd-b278-4db1-8fc9-1f790a13ab5e"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""991de560-006a-44f4-abe8-71fedaf5de8a"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
@@ -591,6 +624,17 @@ namespace EVOGAMI.Control
                     ""name"": """",
                     ""id"": ""53e73956-9c8c-4d5d-b244-416e56254f6e"",
                     ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e641c13-0176-43d1-8cba-6cb441ca515c"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

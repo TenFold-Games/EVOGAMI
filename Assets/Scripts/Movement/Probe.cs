@@ -62,7 +62,7 @@ namespace EVOGAMI.Movement
             // var found = Physics.Raycast(ray, out _probeHit, maxProbeDistance, probeLayer);
 
             // If hit too close, ignore
-            Debug.Log($"Found a hit with distance {_probeHit.distance}");
+            // Debug.Log($"Found a hit with distance {_probeHit.distance}");
             return found && !(_probeHit.distance < probeCheckRadius);
         }
 

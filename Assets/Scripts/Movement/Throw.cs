@@ -1,4 +1,3 @@
-using System;
 using EVOGAMI.Core;
 using EVOGAMI.Interactable;
 using EVOGAMI.Origami;
@@ -28,6 +27,10 @@ namespace EVOGAMI.Movement
 
         private GameObject _targetObject;
         private ThrowAt _throwAt;
+        
+        [SerializeField]
+        private float flyCutOff = 5f;
+        private float _flyTimer = 0f;
 
         // State Machine
         private NinjaStarStates _state;
@@ -56,7 +59,13 @@ namespace EVOGAMI.Movement
         {
             if (_throwAt)
                 OnProbeLost(_throwAt.gameObject);
-            
+
+            if (_state != NinjaStarStates.Aim)
+            {
+                ExitThrowState();
+                EnterAimState();
+            }
+
             // Enable gravity
             PlayerManager.Instance.PlayerRb.useGravity = true;
         }
@@ -107,7 +116,7 @@ namespace EVOGAMI.Movement
 
             _state = NinjaStarStates.None;
         }
-        
+
         public void EnterThrowState()
         {
             // Disable user input
@@ -119,7 +128,7 @@ namespace EVOGAMI.Movement
 
             _state = NinjaStarStates.Throw;
         }
-        
+
         public void ExitThrowState()
         {
             // Enable gravity
@@ -128,6 +137,8 @@ namespace EVOGAMI.Movement
             // Enable user input
             InputManager.EnablePlayerControls();
             InputManager.EnableOrigamiControls();
+
+            _flyTimer = 0f;
 
             _state = NinjaStarStates.None;
         }
@@ -147,7 +158,7 @@ namespace EVOGAMI.Movement
         protected override void Start()
         {
             base.Start();
-            
+
             EnterAimState();
         }
 
@@ -159,13 +170,20 @@ namespace EVOGAMI.Movement
 
             // Move the ninja star towards the target transform.
             PlayerTransform.position = Vector3.MoveTowards(
-                PlayerTransform.position, 
-                _targetObject.transform.position, 
+                PlayerTransform.position,
+                _targetObject.transform.position,
                 speed * Time.fixedDeltaTime
             );
-                
+
             // Rotate the y-axis of the ninja star, rotationSpeed degrees per second.
             transform.Rotate(Vector3.up, rotationSpeed * Time.fixedDeltaTime);
+
+            _flyTimer += Time.fixedDeltaTime;
+            if (_flyTimer > flyCutOff)
+            {
+                ExitThrowState();
+                EnterAimState();
+            }
         }
 
         #endregion

@@ -32,7 +32,7 @@ namespace EVOGAMI.Interactable
             if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("OrigamiMesh"))
             {
                 IsStopped = true;
-                Debug.Log($"Hit {other.gameObject.name}");
+                // Debug.Log($"Hit {other.gameObject.name}");
             }
         }
 
