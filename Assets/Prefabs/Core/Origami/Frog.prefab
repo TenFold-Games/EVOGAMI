@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 7269216442371859605}
   - component: {fileID: 7189607802858015478}
   - component: {fileID: 6649883397775873734}
+  - component: {fileID: 2982773153798448466}
   m_Layer: 0
   m_Name: Frog
   m_TagString: OrigamiMesh
@@ -318,6 +319,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   lineRenderer: {fileID: 0}
+  frogtongueoutsfx: {fileID: 2982773153798448466}
   tongueController: {fileID: 7189607802858015478}
 --- !u!120 &7269216442371859605
 LineRenderer:
@@ -456,6 +458,37 @@ MonoBehaviour:
       Data3: 16924839
       Data4: 511820068
     Path: event:/sfx_frog_jump
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &2982773153798448466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6493369439384624171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 645928258
+      Data2: 1177263915
+      Data3: 1722483851
+      Data4: -152109185
+    Path: event:/sfx_frog_tongue_out
   Event: 
   PlayEvent: 0
   StopEvent: 0
