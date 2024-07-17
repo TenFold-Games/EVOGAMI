@@ -17,8 +17,8 @@ namespace EVOGAMI.Editor
             base.OnEnable();
 
             textGameObject = serializedObject.FindProperty("textGameObject");
-            hoverSfx = serializedObject.FindProperty("hoverSfx");
-            clickSfx = serializedObject.FindProperty("clickSfx");
+            hoverSfx = serializedObject.FindProperty("hoversfx");
+            clickSfx = serializedObject.FindProperty("clicksfx");
         }
 
         public override void OnInspectorGUI()

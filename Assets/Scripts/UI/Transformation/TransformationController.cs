@@ -5,6 +5,7 @@ using EVOGAMI.Custom.Enums;
 using EVOGAMI.Custom.Serializable;
 using EVOGAMI.Origami;
 using EVOGAMI.Utils;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -29,6 +30,8 @@ namespace EVOGAMI.UI.Transformation
         // The length of the transformation sequence.
         [SerializeField] [Tooltip("The length of the transformation sequence.")]
         public int sequenceLength = 3;
+
+        [SerializeField] StudioEventEmitter foldSfx;
         
         [Header("Origami")]
         [SerializeField] [Tooltip("The origami container.")]
@@ -95,6 +98,8 @@ namespace EVOGAMI.UI.Transformation
                 direction.ToString()[0], 
                 s => _unlockStatus[_seqFormMapping[s]]
             );
+
+            foldSfx.Play();
         }
 
         #endregion

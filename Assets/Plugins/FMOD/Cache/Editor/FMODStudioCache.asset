@@ -54,6 +54,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1000
+--- !u!114 &-3895110102754173498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx_collectable
+  m_EditorClassIdentifier: 
+  Path: event:/sfx_collectable
+  Guid:
+    Data1: 508088176
+    Data2: 1226117253
+    Data3: -944431217
+    Data4: 825324035
+  Banks:
+  - {fileID: 1602773102428187241}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1500
 --- !u!114 &-1397773691945987778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,12 +158,14 @@ MonoBehaviour:
   - {fileID: 3653629751307321227}
   - {fileID: -1397773691945987778}
   - {fileID: -5579878830673343285}
+  - {fileID: 5197897085486247371}
+  - {fileID: -3895110102754173498}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1602773102428187241}
   StringsBanks:
   - {fileID: 8871384967824601268}
-  cacheTime: 638567612056379827
+  cacheTime: 638567634608184187
   cacheVersion: 131617
 --- !u!114 &1602773102428187241
 MonoBehaviour:
@@ -153,10 +182,10 @@ MonoBehaviour:
   Path: EVOGAMIFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638567612056359841
+  lastModified: 638567634608164015
   FileSizes:
   - Name: Desktop
-    Value: 1809696
+    Value: 1887072
   Exists: 1
 --- !u!114 &3653629751307321227
 MonoBehaviour:
@@ -185,6 +214,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 60000
+--- !u!114 &5197897085486247371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx_paper_fold
+  m_EditorClassIdentifier: 
+  Path: event:/sfx_paper_fold
+  Guid:
+    Data1: -196919981
+    Data2: 1258285276
+    Data3: 642868138
+    Data4: 1400671268
+  Banks:
+  - {fileID: 1602773102428187241}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &6478856592882405535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,8 +310,8 @@ MonoBehaviour:
   Path: EVOGAMIFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638567612056379827
+  lastModified: 638567634608184187
   FileSizes:
   - Name: Desktop
-    Value: 1058
+    Value: 1152
   Exists: 1

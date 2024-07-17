@@ -1,13 +1,13 @@
 using EVOGAMI.Audio;
 using EVOGAMI.Core;
 using EVOGAMI.Utils;
+using FMODUnity;
 using UnityEngine;
 
 namespace EVOGAMI.Region
 {
     public class CollectableRegion :
-        CallbackRegion,
-        IAudioPlayer
+        CallbackRegion
     {
         [Header("Display")]
         // The MeshRenderer for the collectable region
@@ -19,8 +19,7 @@ namespace EVOGAMI.Region
 
         [Header("Audio")]
         // The audio source for the collectable region
-        [SerializeField] [Tooltip("The audio source for the collectable region")]
-        private AudioSource audioSource;
+        [SerializeField] StudioEventEmitter collectableSfx;
 
         [SerializeField] private float rotationSpeed = 10f;
 
@@ -41,9 +40,9 @@ namespace EVOGAMI.Region
             transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
         }
 
-        public void PlayAudio(AudioSource sfx)
+        public void PlayAudio()
         {
-            sfx.Play();
+            collectableSfx.Play();
         }
 
         private void Disappear()
@@ -54,12 +53,8 @@ namespace EVOGAMI.Region
 
         private void PlayAudioAndDestroy()
         {
-            PlayAudio(audioSource);
-            StartCoroutine(CoroutineUtils.DelayAction(audioSource.clip.length, () =>
-            {
-                audioSource.Stop();
-                Destroy(gameObject);
-            }));
+            PlayAudio();
+       
         }
     }
 }

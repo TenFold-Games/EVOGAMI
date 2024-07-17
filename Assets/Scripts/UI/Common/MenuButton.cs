@@ -1,4 +1,5 @@
 using EVOGAMI.Audio;
+using FMODUnity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,11 +17,14 @@ namespace EVOGAMI.UI.Common
 
         [Header("Audio")]
         // The audio source to played on hover
-        [SerializeField] [Tooltip("The audio source to played on hover")]
-        public AudioSource hoverSfx;
+        //[SerializeField] [Tooltip("The audio source to played on hover")]
+        //public AudioSource hoverSfx;
         // The audio source to played on click
-        [SerializeField] [Tooltip("The audio source to played on click")]
-        public AudioSource clickSfx;
+        //[SerializeField] [Tooltip("The audio source to played on click")]
+        //public AudioSource clickSfx;
+
+        [SerializeField] public StudioEventEmitter hoversfx;
+        [SerializeField] public StudioEventEmitter clicksfx;
 
         private delegate void HoverEvent();
         private delegate void ClickEvent();
@@ -110,12 +114,14 @@ namespace EVOGAMI.UI.Common
 
         private void PlayHoverSfx()
         {
-            PlayAudio(hoverSfx);
+            hoversfx.Play();
+            //PlayAudio(hoverSfx);
         }
 
         private void PlayClickSfx()
         {
-            PlayAudio(clickSfx);
+            clicksfx.Play();
+            //PlayAudio(clickSfx);
         }
 
         public void Select(bool shouldPlaySfx)

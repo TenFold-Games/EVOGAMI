@@ -93,7 +93,7 @@
 			<value>true</value>
 		</property>
 		<property name="triggerProbability">
-			<value>69.5</value>
+			<value>63</value>
 		</property>
 		<property name="length">
 			<value>1.51</value>
@@ -135,7 +135,7 @@
 			<value>pitch</value>
 		</property>
 		<property name="amount">
-			<value>11.5</value>
+			<value>27.5</value>
 		</property>
 	</object>
 	<object class="MixerBusEffectChain" id="{2257c138-f92c-480b-8a7b-76c2b2abd584}">
