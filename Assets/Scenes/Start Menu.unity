@@ -439,6 +439,8 @@ GameObject:
   - component: {fileID: 777166988}
   - component: {fileID: 777166987}
   - component: {fileID: 777166986}
+  - component: {fileID: 777166990}
+  - component: {fileID: 777166989}
   m_Layer: 0
   m_Name: Exit
   m_TagString: Untagged
@@ -523,8 +525,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   textGameObject: {fileID: 1479975502}
-  hoversfx: {fileID: 0}
-  clicksfx: {fileID: 0}
+  hoversfx: {fileID: 777166989}
+  clicksfx: {fileID: 777166990}
 --- !u!114 &777166987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +565,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 777166984}
   m_CullTransparentMesh: 1
+--- !u!114 &777166989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777166984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1460537487
+      Data2: 1088588379
+      Data3: 1729502380
+      Data4: -68880394
+    Path: event:/sfx_ui_hover
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &777166990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777166984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1050526392
+      Data2: 1079280902
+      Data3: -802859617
+      Data4: -1727533576
+    Path: event:/sfx_ui_click
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &939173157
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,8 +822,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1424543077}
   - component: {fileID: 1424543076}
-  - component: {fileID: 1424543075}
   - component: {fileID: 1424543078}
+  - component: {fileID: 1424543079}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -767,14 +831,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1424543075
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424543074}
-  m_Enabled: 1
 --- !u!20 &1424543076
 Camera:
   m_ObjectHideFlags: 0
@@ -885,6 +941,19 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1424543079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424543074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &1479975500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1100,8 @@ GameObject:
   - component: {fileID: 1513310450}
   - component: {fileID: 1513310447}
   - component: {fileID: 1513310449}
+  - component: {fileID: 1513310451}
+  - component: {fileID: 1513310452}
   m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
@@ -1145,8 +1216,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   textGameObject: {fileID: 450194716}
-  hoversfx: {fileID: 0}
-  clicksfx: {fileID: 0}
+  hoversfx: {fileID: 1513310451}
+  clicksfx: {fileID: 1513310452}
 --- !u!222 &1513310450
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1155,6 +1226,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513310445}
   m_CullTransparentMesh: 1
+--- !u!114 &1513310451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513310445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1460537487
+      Data2: 1088588379
+      Data3: 1729502380
+      Data4: -68880394
+    Path: event:/sfx_ui_hover
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1513310452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513310445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1050526392
+      Data2: 1079280902
+      Data3: -802859617
+      Data4: -1727533576
+    Path: event:/sfx_ui_click
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1739219747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,6 +1300,8 @@ GameObject:
   - component: {fileID: 1739219751}
   - component: {fileID: 1739219749}
   - component: {fileID: 1739219750}
+  - component: {fileID: 1739219753}
+  - component: {fileID: 1739219754}
   m_Layer: 0
   m_Name: Options
   m_TagString: Untagged
@@ -1261,8 +1396,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   textGameObject: {fileID: 2145904686}
-  hoversfx: {fileID: 0}
-  clicksfx: {fileID: 0}
+  hoversfx: {fileID: 1739219754}
+  clicksfx: {fileID: 1739219753}
 --- !u!222 &1739219751
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1291,6 +1426,68 @@ RectTransform:
   m_AnchoredPosition: {x: -109.99997, y: -50}
   m_SizeDelta: {x: 1000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1739219753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739219747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1050526392
+      Data2: 1079280902
+      Data3: -802859617
+      Data4: -1727533576
+    Path: event:/sfx_ui_click
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1739219754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739219747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1460537487
+      Data2: 1088588379
+      Data3: 1729502380
+      Data4: -68880394
+    Path: event:/sfx_ui_hover
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1946950288
 GameObject:
   m_ObjectHideFlags: 0
