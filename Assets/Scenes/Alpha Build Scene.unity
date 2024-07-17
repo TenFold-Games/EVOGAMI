@@ -48726,16 +48726,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1378258918966722427, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.17675407
+      value: -0.17675419
       objectReference: {fileID: 0}
     - target: {fileID: 1378258918966722427, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000002933309
+      value: -0.000000032795395
       objectReference: {fileID: 0}
     - target: {fileID: 1378258918966722427, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000052676823
+      value: -0.0000000058894525
       objectReference: {fileID: 0}
+    - target: {fileID: 1412121941754791740, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+      propertyPath: clicksfx
+      value: 
+      objectReference: {fileID: 3480900532913494380}
+    - target: {fileID: 1412121941754791740, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+      propertyPath: hoversfx
+      value: 
+      objectReference: {fileID: 3480900532913494379}
     - target: {fileID: 1531488633039250089, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_Name
       value: Core
@@ -48776,13 +48784,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3034789467913279797, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+      propertyPath: clicksfx
+      value: 
+      objectReference: {fileID: 3480900532913494383}
+    - target: {fileID: 3034789467913279797, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+      propertyPath: hoversfx
+      value: 
+      objectReference: {fileID: 3480900532913494384}
+    - target: {fileID: 4258071007763951957, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+      propertyPath: clicksfx
+      value: 
+      objectReference: {fileID: 3480900532913494381}
+    - target: {fileID: 4258071007763951957, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+      propertyPath: hoversfx
+      value: 
+      objectReference: {fileID: 3480900532913494382}
     - target: {fileID: 4290067881774617156, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9842551
+      value: 0.984255
       objectReference: {fileID: 0}
     - target: {fileID: 4290067881774617156, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.17675409
+      value: -0.17675419
       objectReference: {fileID: 0}
     - target: {fileID: 4290067881774617156, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.y
@@ -48886,11 +48910,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7570125994414033130, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99002606
+      value: 0.9900261
       objectReference: {fileID: 0}
     - target: {fileID: 7570125994414033130, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.14088431
+      value: -0.1408843
       objectReference: {fileID: 0}
     - target: {fileID: 7570125994414033130, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.y
@@ -48968,10 +48992,229 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3847374893844450613, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3480900532913494382}
+    - targetCorrespondingSourceObject: {fileID: 3847374893844450613, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3480900532913494381}
+    - targetCorrespondingSourceObject: {fileID: 2772511504106489062, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3480900532913494384}
+    - targetCorrespondingSourceObject: {fileID: 2772511504106489062, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3480900532913494383}
+    - targetCorrespondingSourceObject: {fileID: 8395101737870985289, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3480900532913494380}
+    - targetCorrespondingSourceObject: {fileID: 8395101737870985289, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3480900532913494379}
     - targetCorrespondingSourceObject: {fileID: 5695937256751227303, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1152114145}
   m_SourcePrefab: {fileID: 100100000, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+--- !u!1 &3480900532913494376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8395101737870985289, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+  m_PrefabInstance: {fileID: 3480900532913494375}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3480900532913494377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3847374893844450613, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+  m_PrefabInstance: {fileID: 3480900532913494375}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3480900532913494378 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2772511504106489062, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+  m_PrefabInstance: {fileID: 3480900532913494375}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3480900532913494379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480900532913494376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1460537487
+      Data2: 1088588379
+      Data3: 1729502380
+      Data4: -68880394
+    Path: event:/sfx_ui_hover
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &3480900532913494380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480900532913494376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1050526392
+      Data2: 1079280902
+      Data3: -802859617
+      Data4: -1727533576
+    Path: event:/sfx_ui_click
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &3480900532913494381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480900532913494377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1050526392
+      Data2: 1079280902
+      Data3: -802859617
+      Data4: -1727533576
+    Path: event:/sfx_ui_click
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &3480900532913494382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480900532913494377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1460537487
+      Data2: 1088588379
+      Data3: 1729502380
+      Data4: -68880394
+    Path: event:/sfx_ui_hover
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &3480900532913494383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480900532913494378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1050526392
+      Data2: 1079280902
+      Data3: -802859617
+      Data4: -1727533576
+    Path: event:/sfx_ui_click
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &3480900532913494384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480900532913494378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1460537487
+      Data2: 1088588379
+      Data3: 1729502380
+      Data4: -68880394
+    Path: event:/sfx_ui_hover
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!33 &3571291508898852637
 MeshFilter:
   m_ObjectHideFlags: 0
