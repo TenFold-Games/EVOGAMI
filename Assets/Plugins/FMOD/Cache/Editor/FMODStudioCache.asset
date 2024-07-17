@@ -165,7 +165,7 @@ MonoBehaviour:
   - {fileID: 1602773102428187241}
   StringsBanks:
   - {fileID: 8871384967824601268}
-  cacheTime: 638567634608184187
+  cacheTime: 638567745758956307
   cacheVersion: 131617
 --- !u!114 &1602773102428187241
 MonoBehaviour:
@@ -182,7 +182,7 @@ MonoBehaviour:
   Path: EVOGAMIFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638567634608164015
+  lastModified: 638567745758901146
   FileSizes:
   - Name: Desktop
     Value: 1887072
@@ -310,7 +310,7 @@ MonoBehaviour:
   Path: EVOGAMIFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638567634608184187
+  lastModified: 638567745758956307
   FileSizes:
   - Name: Desktop
     Value: 1152
