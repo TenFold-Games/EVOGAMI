@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{1c8b9a39-3b60-4d3b-8039-6bbd8a33c2e7}">
+		<property name="assetPath">
+			<value>mus_level_01_80bpm.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>72</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5d891a07-893c-4d56-8132-a64cc3b6cd65}</destination>
+		</relationship>
+	</object>
+</objects>

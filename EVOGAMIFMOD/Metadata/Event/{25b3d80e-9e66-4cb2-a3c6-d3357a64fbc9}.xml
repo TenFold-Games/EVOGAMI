@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{25b3d80e-9e66-4cb2-a3c6-d3357a64fbc9}">
 		<property name="name">
-			<value>sfx_paper_fold 2</value>
+			<value>sfx_crab_cut</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
