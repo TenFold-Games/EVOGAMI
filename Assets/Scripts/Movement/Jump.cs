@@ -80,7 +80,7 @@ namespace EVOGAMI.Movement
             PlayerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
             // Play frog jump sfx
-            frogjumpsfx.Play();
+            frogjumpsfx?.Play();
 
         }
         
