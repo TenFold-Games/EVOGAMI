@@ -1,5 +1,9 @@
 using System;
+using System.Numerics;
+using EVOGAMI.Core;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace EVOGAMI.Interactable
 {
@@ -39,14 +43,15 @@ namespace EVOGAMI.Interactable
         public void Pull(float speed)
         {
             if (maxDistance != 0 && _distanceTravelled >= maxDistance) IsStopped = true;
+            var angularVelocity = GetAngularVelocity(speed, transform.position);
+            
+            IsStopped = IsStopped || angularVelocity <= 0.01f;
 
             if (IsStopped)
             {
                 outline.enabled = false;
                 return;
             }
-            
-            var angularVelocity = GetAngularVelocity(speed, transform.position);
             
             // Move the object towards the source transform.
             transform.position = Vector3.MoveTowards(
@@ -82,7 +87,11 @@ namespace EVOGAMI.Interactable
         private float GetAngularVelocity(float speed, Vector3 currentPosition)
         {
             // Calculate the speed based on the angle between the source and current position.
-            var angle = Vector3.Angle(_sourceTransform.position - currentPosition, _targetPosition - currentPosition);
+            // var angle = Vector3.Angle(_sourceTransform.position - currentPosition, _targetPosition - currentPosition);
+            var line1 = new Vector2(_sourceTransform.position.x - currentPosition.x, _sourceTransform.position.z - currentPosition.z);
+            var line2 = new Vector2(_targetPosition.x - currentPosition.x, _targetPosition.z - currentPosition.z);
+            var angle = Vector3.Angle(line1, line2);
+            
             return speed * Mathf.Cos(angle * Mathf.Deg2Rad);
         }
 
