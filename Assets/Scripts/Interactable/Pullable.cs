@@ -29,6 +29,8 @@ namespace EVOGAMI.Interactable
         private Vector3 _targetPosition;
         private float _distanceTravelled;
 
+        private Vector3 _initialPosition;
+
         public bool IsStopped { get; private set; } = false;
 
         private void OnCollisionEnter(Collision other)
@@ -42,7 +44,8 @@ namespace EVOGAMI.Interactable
 
         public void Pull(float speed)
         {
-            if (maxDistance != 0 && _distanceTravelled >= maxDistance) IsStopped = true;
+            // if (maxDistance != 0 && _distanceTravelled >= maxDistance) IsStopped = true;
+            if (HasReachedMaxDistance(transform.position)) IsStopped = true;
             var angularVelocity = GetAngularVelocity(speed, transform.position);
             
             IsStopped = IsStopped || angularVelocity <= 0.01f;
@@ -71,7 +74,8 @@ namespace EVOGAMI.Interactable
 
         public void OnMount()
         {
-            if (maxDistance == 0 || _distanceTravelled < maxDistance) 
+            // if (maxDistance == 0 || _distanceTravelled < maxDistance) 
+            if (!HasReachedMaxDistance(transform.position))
                 IsStopped = false;
         }
 
@@ -94,10 +98,20 @@ namespace EVOGAMI.Interactable
             
             return speed * Mathf.Cos(angle * Mathf.Deg2Rad);
         }
+        
+        private bool HasReachedMaxDistance(Vector3 currentPosition)
+        {
+            return maxDistance != 0 && Vector3.Distance(_initialPosition, currentPosition) >= maxDistance;
+        }
 
         #endregion
 
         #region Unity Functions
+
+        private void Start()
+        {
+            _initialPosition = transform.position;
+        }
 
         private void OnDrawGizmos()
         {
