@@ -69,7 +69,7 @@ namespace EVOGAMI.UI.Transformation
 
         public void Reset()
         {
-            _sequenceMatcher.ClearBuffer();
+            _sequenceMatcher.Reset();
         }
 
         #region Callbacks
@@ -124,12 +124,11 @@ namespace EVOGAMI.UI.Transformation
             _sequenceMatcher.OnSequenceBreak += sequence =>
             {
                 onSequenceBreak.Invoke(sequence);
-                _sequenceMatcher.ClearBuffer();
+                _sequenceMatcher.Reset();
             };
             _sequenceMatcher.OnSequenceComplete += sequence =>
             {
                 onSequenceComplete.Invoke(_seqFormMapping[sequence]);
-                _sequenceMatcher.ClearBuffer();
                 origamiContainer.ChangeForm(_seqFormMapping[sequence]);
             };
         }
