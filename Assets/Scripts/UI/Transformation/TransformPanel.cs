@@ -125,6 +125,8 @@ namespace EVOGAMI.UI.Transformation
                 _startPos = _onScreenPos;
                 _endPos = _offScreenPos;
                 InputManager.Instance.EnablePlayerControls();
+                
+                controller.Reset();
             }
         }
 
