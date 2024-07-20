@@ -61,6 +61,9 @@ namespace EVOGAMI.Movement
         // FMOD Studio Event Emitter
         [SerializeField] StudioEventEmitter frogtongueoutsfx;
         
+        private Color _frogTongueColor = new Color(1.0f, 0.5f, 0.5f); // Example RGB values for a pinkish color
+
+        
         #region Callbacks
 
         protected override void RegisterCallbacks()
@@ -123,7 +126,7 @@ namespace EVOGAMI.Movement
         private void EnterAimState()
         {
             // TBD: Start ----------------------------------------------------------------------------------------------
-            lineRenderer.enabled = true;
+            
             // TBD: End ------------------------------------------------------------------------------------------------
             _state = PullStates.Aim;
         }
@@ -186,20 +189,33 @@ namespace EVOGAMI.Movement
             lineRenderer.endWidth = 0;
             
             lineRenderer.positionCount = 2;
+            
+            lineRenderer.enabled = false; // Hide the lineRenderer initially
             // TBD: End ------------------------------------------------------------------------------------------------
         }
 
         // TBD: Start --------------------------------------------------------------------------------------------------
         private void Aim(bool canPull)
         {
-            lineRenderer.startColor = canPull ? Color.green : Color.red;
-            lineRenderer.endColor = canPull ? Color.green : Color.red;
+            
+            if (!canPull)
+            {
+                lineRenderer.enabled = false; // Change: Hide the lineRenderer if cannot pull
+                return;
+            }
+            
+            // if can pull
+            lineRenderer.startColor = _frogTongueColor;
+            lineRenderer.endColor = _frogTongueColor;
             
             lineRenderer.SetPosition(0, pullPoint.position);
             lineRenderer.SetPosition(1, _isCheckTrue ? _pullHit.point : pullPoint.position + pullPoint.forward * maxPullDistance);
+            
+            lineRenderer.enabled = true; //  Show the lineRenderer if can pull
         }
         // TBD: End ----------------------------------------------------------------------------------------------------
 
+        
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
@@ -224,7 +240,7 @@ namespace EVOGAMI.Movement
                             break;
                         }
                     }
-                    
+            
                     _canPull = ret;
                     if (_pullable && _pullable.IsStopped) _canPull = false;
                     Aim(_canPull);
@@ -233,20 +249,19 @@ namespace EVOGAMI.Movement
                 case PullStates.Pull:
                 {
                     _pullable.Pull(pullSpeed * Time.fixedDeltaTime);
-                    
+            
                     // Check if the pullable stopped
                     if (_pullable.IsStopped)
                     {
                         ExitPullState();
                         EnterAimState();
                     }
-                    
+            
                     break;
                 }
                 case PullStates.None:
                 default:
                     throw new ArgumentOutOfRangeException();
-                    
             }
         }
 
