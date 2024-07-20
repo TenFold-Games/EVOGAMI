@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &8498473 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8135690823343560587, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+  m_PrefabInstance: {fileID: 3480900532913494375}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064ab31007b17433da0aea016fc0bf13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9292789
 GameObject:
   m_ObjectHideFlags: 0
@@ -25703,6 +25714,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2556738370435371164, guid: 2e3061a5e9be226eb9db45890120bf43, type: 3}
+      propertyPath: onRegionEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8498473}
+    - target: {fileID: -2556738370435371164, guid: 2e3061a5e9be226eb9db45890120bf43, type: 3}
+      propertyPath: onRegionEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GameComplete
+      objectReference: {fileID: 0}
+    - target: {fileID: -2556738370435371164, guid: 2e3061a5e9be226eb9db45890120bf43, type: 3}
+      propertyPath: onRegionEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EVOGAMI.Core.GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5221827916187596473, guid: 2e3061a5e9be226eb9db45890120bf43, type: 3}
       propertyPath: m_LocalScale.x
       value: 34.093822
