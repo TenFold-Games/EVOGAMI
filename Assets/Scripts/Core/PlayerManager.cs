@@ -132,8 +132,8 @@ namespace EVOGAMI.Core
             CranesCollected++;
             OnCraneCollected();
 
-            if (CranesCollected == _gameManager.origamiSettings.totalCranes)
-                GameManager.Instance.GameComplete();
+            // if (CranesCollected == _gameManager.origamiSettings.totalCranes)
+            //     GameManager.Instance.GameComplete();
         }
 
         #endregion
