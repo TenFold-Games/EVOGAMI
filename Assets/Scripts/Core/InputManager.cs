@@ -176,6 +176,22 @@ namespace EVOGAMI.Core
             Controls.Origami.Down.canceled += ctx => SequenceCancelledCallback(ctx, Directions.D);
             Controls.Origami.Left.canceled += ctx => SequenceCancelledCallback(ctx, Directions.L);
             Controls.Origami.Right.canceled += ctx => SequenceCancelledCallback(ctx, Directions.R);
+            
+            // Camera
+            Controls.Camera.Orbit.started += ctx => UpdateInputScheme(ctx.control.device);
+            
+            // UI
+            Controls.UI.Pause.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.Navigate.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.Submit.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.Cancel.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.Point.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.Click.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.ScrollWheel.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.MiddleClick.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.RightClick.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.TrackedDevicePosition.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.TrackedDeviceOrientation.started += ctx => UpdateInputScheme(ctx.control.device);
         }
 
         public void OnEnable()
