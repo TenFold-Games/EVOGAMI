@@ -13,7 +13,7 @@ namespace EVOGAMI.Interactable
 
         private void Start()
         {
-            DisableRbPhysics();
+            // DisableRbPhysics();
         }
 
         #endregion
