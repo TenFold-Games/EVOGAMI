@@ -107,6 +107,9 @@ namespace EVOGAMI.UI.Transformation
 
         public void Toggle()
         {
+            int unlockedFormsCount = CountUnlockedForms();
+            if (unlockedFormsCount < 3) return; // Should not move
+            
             // Should not move
             if (isMoving) return;
 
@@ -128,6 +131,16 @@ namespace EVOGAMI.UI.Transformation
                 
                 controller.Reset();
             }
+        }
+        
+        private int CountUnlockedForms()
+        {
+            int count = 0;
+            foreach (var form in PlayerManager.Instance.GainedForms.Values)
+            {
+                if (form) count++;
+            }
+            return count;
         }
 
         private void SetArrows(string buffer)
