@@ -54,6 +54,8 @@ namespace EVOGAMI.UI.Transformation
         private Vector2 _startPos;
         private Vector2 _endPos;
 
+        public bool isPanelOpen = false;
+        
         // Flags
         [HideInInspector] public bool isMoving;
         [HideInInspector] public bool isOffScreen;
@@ -131,6 +133,7 @@ namespace EVOGAMI.UI.Transformation
                 
                 controller.Reset();
             }
+            isPanelOpen = !isPanelOpen;
         }
         
         private void SetArrows(string buffer)
