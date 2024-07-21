@@ -37,7 +37,7 @@ namespace EVOGAMI.UI.Transformation
         private void UpdateUI()
         {
             // Count the forms that have been gained.
-            unlockedFormsCount = CountUnlockedForms();
+            unlockedFormsCount = PlayerManager.Instance.CountUnlockedForms();
 
             
             // Update the visibility of the transformation UI based on the number of unlocked forms.
@@ -46,14 +46,6 @@ namespace EVOGAMI.UI.Transformation
         }
 
         // Utility method to count the number of forms that have been gained.
-        private int CountUnlockedForms()
-        {
-            int count = 0;
-            foreach (var form in PlayerManager.Instance.GainedForms.Values)
-            {
-                if (form) count++;
-            }
-            return count;
-        }
+        
     }
 }

@@ -113,6 +113,16 @@ namespace EVOGAMI.Core
             GainedForms[form] = true;
             OnGainForm(form);
         }
+        
+        // Utility method to count the number of forms that have been gained.
+        public int CountUnlockedForms()
+        {
+            int count = 0;
+            foreach (var (_, unlocked) in GainedForms)
+                if (unlocked)
+                    count++;
+            return count;
+        }
 
         #endregion
 
