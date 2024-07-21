@@ -1,6 +1,9 @@
 using EVOGAMI.Core;
 using EVOGAMI.UI.PanelMenu;
+using EVOGAMI.UI.Transformation;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 namespace EVOGAMI.UI
 {
@@ -12,6 +15,9 @@ namespace EVOGAMI.UI
         private SubMenuBase pauseMenu;
 
         private GameObject _headsUpDisplay;
+        
+        [SerializeField] [Tooltip("The transformation panel")]
+        private TransformPanel _transformationPanel;
 
         public void Start()
         {
@@ -39,7 +45,10 @@ namespace EVOGAMI.UI
         
         private void OnPausePerformed()
         {
-            pauseMenu.gameObject.SetActive(!pauseMenu.IsActive);
+            if (_transformationPanel.isPanelOpen)
+                _transformationPanel.Toggle();
+            else
+                pauseMenu.gameObject.SetActive(!pauseMenu.IsActive);
         }
     }
 }

@@ -699,6 +699,7 @@ GameObject:
   - component: {fileID: 755352032767643405}
   - component: {fileID: 2848870292463182471}
   - component: {fileID: 3974062551045226843}
+  - component: {fileID: 4126705222372051669}
   m_Layer: 5
   m_Name: Transform Panel
   m_TagString: Untagged
@@ -794,6 +795,7 @@ MonoBehaviour:
   - {fileID: 593498332151139470}
   - {fileID: 7911225925869316493}
   foldingAnimation: {fileID: 6769934413735766123}
+  isPanelOpen: 0
   isMoving: 0
   isOffScreen: 0
 --- !u!114 &3974062551045226843
@@ -825,8 +827,39 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   sequenceLength: 3
-  foldSfx: {fileID: 0}
+  foldSfx: {fileID: 4126705222372051669}
   origamiContainer: {fileID: 0}
+--- !u!114 &4126705222372051669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996835113390738562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -196919981
+      Data2: 1258285276
+      Data3: 642868138
+      Data4: 1400671268
+    Path: event:/sfx_paper_fold
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1133169826369066535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2092,6 +2125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5661613168438918117}
   - component: {fileID: 4426983041061080253}
+  - component: {fileID: 927092880044014210}
   m_Layer: 0
   m_Name: Transform
   m_TagString: Untagged
@@ -2129,6 +2163,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2380030965916221104}
   m_CullTransparentMesh: 1
+--- !u!114 &927092880044014210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2380030965916221104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b52a62ec1b485b9b1c84b87c1e5764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformationUI: {fileID: 2380030965916221104}
+  unlockedFormsCount: 0
 --- !u!1 &2415281104665039095
 GameObject:
   m_ObjectHideFlags: 0
@@ -3146,6 +3194,8 @@ GameObject:
   - component: {fileID: 5855152220740200985}
   - component: {fileID: 5334690757309817621}
   - component: {fileID: 4325443346310462841}
+  - component: {fileID: 2472472083963256161}
+  - component: {fileID: 3909879834145541553}
   m_Layer: 0
   m_Name: Exit
   m_TagString: Untagged
@@ -3268,8 +3318,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   textGameObject: {fileID: 8433455465447008021}
-  hoversfx: {fileID: 4325443346310462841}
-  clicksfx: {fileID: 5334690757309817621}
+  hoversfx: {fileID: 3909879834145541553}
+  clicksfx: {fileID: 2472472083963256161}
 --- !u!114 &5334690757309817621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3302,6 +3352,68 @@ MonoBehaviour:
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
 --- !u!114 &4325443346310462841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3915901924377617772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1460537487
+      Data2: 1088588379
+      Data3: 1729502380
+      Data4: -68880394
+    Path: event:/sfx_ui_hover
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &2472472083963256161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3915901924377617772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1050526392
+      Data2: 1079280902
+      Data3: -802859617
+      Data4: -1727533576
+    Path: event:/sfx_ui_click
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &3909879834145541553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3392,7 +3504,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &5949547635727287847
 MonoBehaviour:
@@ -4955,6 +5067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 2250174068639947418}
+  _transformationPanel: {fileID: 2848870292463182471}
 --- !u!1 &6281677087101938273
 GameObject:
   m_ObjectHideFlags: 0
@@ -5650,6 +5763,8 @@ GameObject:
   - component: {fileID: 7549383663394894864}
   - component: {fileID: 1145542809092180157}
   - component: {fileID: 5652989177630785044}
+  - component: {fileID: 4931989505737540328}
+  - component: {fileID: 4749541634887608407}
   m_Layer: 0
   m_Name: Options
   m_TagString: Untagged
@@ -5772,8 +5887,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   textGameObject: {fileID: 6660789319168228511}
-  hoversfx: {fileID: 5652989177630785044}
-  clicksfx: {fileID: 1145542809092180157}
+  hoversfx: {fileID: 4931989505737540328}
+  clicksfx: {fileID: 4749541634887608407}
 --- !u!114 &1145542809092180157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5825,6 +5940,68 @@ MonoBehaviour:
       Data3: 1729502380
       Data4: -68880394
     Path: event:/sfx_ui_hover
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &4931989505737540328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7250936166196242883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1460537487
+      Data2: 1088588379
+      Data3: 1729502380
+      Data4: -68880394
+    Path: event:/sfx_ui_hover
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &4749541634887608407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7250936166196242883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1050526392
+      Data2: 1079280902
+      Data3: -802859617
+      Data4: -1727533576
+    Path: event:/sfx_ui_click
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -6766,6 +6943,8 @@ GameObject:
   - component: {fileID: 8777169902385732720}
   - component: {fileID: 2672182788470062555}
   - component: {fileID: 864408905521473055}
+  - component: {fileID: 5477077825953122389}
+  - component: {fileID: 7941638843533782045}
   m_Layer: 0
   m_Name: Reset
   m_TagString: Untagged
@@ -6888,8 +7067,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   textGameObject: {fileID: 6692686799912415584}
-  hoversfx: {fileID: 864408905521473055}
-  clicksfx: {fileID: 2672182788470062555}
+  hoversfx: {fileID: 5477077825953122389}
+  clicksfx: {fileID: 7941638843533782045}
 --- !u!114 &2672182788470062555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6941,6 +7120,68 @@ MonoBehaviour:
       Data3: 1729502380
       Data4: -68880394
     Path: event:/sfx_ui_hover
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &5477077825953122389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8628315881312722960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1460537487
+      Data2: 1088588379
+      Data3: 1729502380
+      Data4: -68880394
+    Path: event:/sfx_ui_hover
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &7941638843533782045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8628315881312722960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1050526392
+      Data2: 1079280902
+      Data3: -802859617
+      Data4: -1727533576
+    Path: event:/sfx_ui_click
   Event: 
   PlayEvent: 0
   StopEvent: 0
