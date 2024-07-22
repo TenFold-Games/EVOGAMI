@@ -53,6 +53,7 @@ namespace EVOGAMI.UI.PanelMenu
         /// </summary>
         public void OnOptionsClicked()
         {
+            controller.OpenOptionsMenu(this);
         }
 
         /// <summary>

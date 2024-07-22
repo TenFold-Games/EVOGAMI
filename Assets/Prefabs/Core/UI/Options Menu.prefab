@@ -291,11 +291,23 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8473818320636819391}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5600473584929571199}
+        m_TargetAssemblyTypeName: EVOGAMI.UI.OptionsMenu.Tabs.TabBase, Assembly-CSharp
+        m_MethodName: OnTabEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  changeTextColor: 0
   textGameObject: {fileID: 2158391876820376201}
   hoverSfx: {fileID: 0}
   clickSfx: {fileID: 0}
-  changeTextColor: 0
 --- !u!1 &1169966419692523792
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,11 +428,23 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3775913986492333705}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8113792849894026971}
+        m_TargetAssemblyTypeName: EVOGAMI.UI.OptionsMenu.Tabs.TabBase, Assembly-CSharp
+        m_MethodName: OnTabEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  changeTextColor: 0
   textGameObject: {fileID: 7013777290276639877}
   hoverSfx: {fileID: 0}
   clickSfx: {fileID: 0}
-  changeTextColor: 0
 --- !u!1 &1206043857791785621
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,6 +663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3914550070055273941}
   - component: {fileID: 7850240159520828866}
+  - component: {fileID: 4412705381447054095}
   m_Layer: 0
   m_Name: Options Menu
   m_TagString: Untagged
@@ -659,8 +684,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2855787508173706110}
-  - {fileID: 4344950424839228297}
-  - {fileID: 7849886017013363743}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -676,6 +699,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754428760630614776}
   m_CullTransparentMesh: 1
+--- !u!114 &4412705381447054095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754428760630614776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74b613e00ea4102bb8fecef3cbc53d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel: {fileID: 4508753079144158233}
+  defaultButton: {fileID: 1603711815964838964}
+  controller: {fileID: 0}
+  graphicsTab: {fileID: 570267628447190155}
+  audioTab: {fileID: 5600473584929571199}
+  controlsTab: {fileID: 8113792849894026971}
+  creditsTab: {fileID: 5686571650356142296}
+  currentTab: {fileID: 0}
+  cameFrom: {fileID: 0}
 --- !u!1 &2257125870326717072
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +729,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3093015875219316091}
+  - component: {fileID: 5600473584929571199}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -715,6 +760,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -200, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5600473584929571199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2257125870326717072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc858a61f374a7f9ab2b6f468ff4038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionsMenu: {fileID: 4412705381447054095}
 --- !u!1 &2840812093213465397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,11 +1064,23 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1732014397937399603}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 570267628447190155}
+        m_TargetAssemblyTypeName: EVOGAMI.UI.OptionsMenu.Tabs.TabBase, Assembly-CSharp
+        m_MethodName: OnTabEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  changeTextColor: 0
   textGameObject: {fileID: 6415082200541215570}
   hoverSfx: {fileID: 0}
   clickSfx: {fileID: 0}
-  changeTextColor: 0
 --- !u!1 &3930401389731208376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,7 +1104,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3930401389731208376}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1043,7 +1113,7 @@ RectTransform:
   - {fileID: 3093015875219316091}
   - {fileID: 1848942361411813096}
   - {fileID: 3505972192744776258}
-  m_Father: {fileID: 3914550070055273941}
+  m_Father: {fileID: 2855787508173706110}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1252,6 +1322,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8225366081055116309}
+  - {fileID: 4344950424839228297}
+  - {fileID: 7849886017013363743}
   m_Father: {fileID: 3914550070055273941}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1662,7 +1734,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5949400289625046762}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1673,7 +1745,7 @@ RectTransform:
   - {fileID: 7646291984080744188}
   - {fileID: 8289645630470441665}
   - {fileID: 1353031749693413764}
-  m_Father: {fileID: 3914550070055273941}
+  m_Father: {fileID: 2855787508173706110}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1837,11 +1909,23 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1775421737406491755}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4412705381447054095}
+        m_TargetAssemblyTypeName: EVOGAMI.UI.OptionsMenu.OptionsMenu, Assembly-CSharp
+        m_MethodName: OnBackClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  changeTextColor: 0
   textGameObject: {fileID: 2370565205545238954}
   hoverSfx: {fileID: 0}
   clickSfx: {fileID: 0}
-  changeTextColor: 0
 --- !u!1 &6392322363842189091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,6 +1935,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3505972192744776258}
+  - component: {fileID: 5686571650356142296}
   m_Layer: 0
   m_Name: Credits
   m_TagString: Untagged
@@ -1877,6 +1962,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -200, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5686571650356142296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6392322363842189091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12ca17aebc54620b768c5098ded280a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionsMenu: {fileID: 4412705381447054095}
 --- !u!1 &6459907780757002931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1886,6 +1984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1848942361411813096}
+  - component: {fileID: 8113792849894026971}
   m_Layer: 0
   m_Name: Controls
   m_TagString: Untagged
@@ -1915,6 +2014,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -200, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8113792849894026971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6459907780757002931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29307604d24a4a2ba4198198f8d5c944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionsMenu: {fileID: 4412705381447054095}
 --- !u!1 &6745836200362274008
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,10 +2185,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  changeTextColor: 0
   textGameObject: {fileID: 2266465555479546708}
   hoverSfx: {fileID: 0}
   clickSfx: {fileID: 0}
-  changeTextColor: 0
 --- !u!1 &7759585762034520400
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,11 +2346,23 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8184157055889382288}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5686571650356142296}
+        m_TargetAssemblyTypeName: EVOGAMI.UI.OptionsMenu.Tabs.TabBase, Assembly-CSharp
+        m_MethodName: OnTabEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  changeTextColor: 0
   textGameObject: {fileID: 5157016309587958215}
   hoverSfx: {fileID: 0}
   clickSfx: {fileID: 0}
-  changeTextColor: 0
 --- !u!1 &8400216014988943310
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,13 +2543,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4147809901673260746}
+  - component: {fileID: 570267628447190155}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4147809901673260746
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2449,6 +2574,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -200, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &570267628447190155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9165937739480874562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7c2269447c4ef7974fab6291f49ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionsMenu: {fileID: 4412705381447054095}
 --- !u!1001 &813095927982046880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3513,6 +3651,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4876953290346932221}
     m_Modifications:
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Text
+      value: Fullscreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[1].m_Text
+      value: Borderless
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[2].m_Text
+      value: Windowed
+      objectReference: {fileID: 0}
     - target: {fileID: 5440154031388710155, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -3596,6 +3746,10 @@ PrefabInstance:
     - target: {fileID: 6219380450749984299, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
       propertyPath: m_Name
       value: Dropdown
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632278948670275040, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_text
+      value: Fullscreen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3721,6 +3875,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3779404686951565330}
     m_Modifications:
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Text
+      value: Quality
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[1].m_Text
+      value: Balanced
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[2].m_Text
+      value: Performance
+      objectReference: {fileID: 0}
     - target: {fileID: 5440154031388710155, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -3804,6 +3970,10 @@ PrefabInstance:
     - target: {fileID: 6219380450749984299, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
       propertyPath: m_Name
       value: Dropdown
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632278948670275040, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_text
+      value: Quality
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
