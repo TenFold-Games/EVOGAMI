@@ -7,18 +7,22 @@ namespace EVOGAMI.Editor
     [CustomEditor(typeof(MenuButton), true), CanEditMultipleObjects]
     public class MenuButtonEditor : ButtonEditor
     {
-        SerializedProperty textGameObject;
+        // Text
+        private SerializedProperty _changeTextColor;
+        private SerializedProperty _textGameObject;
 
-        SerializedProperty hoverSfx;
-        SerializedProperty clickSfx;
+        // Audio
+        private SerializedProperty _hoverSfx;
+        private SerializedProperty _clickSfx;
 
         protected override void OnEnable()
         {
             base.OnEnable();
 
-            textGameObject = serializedObject.FindProperty("textGameObject");
-            hoverSfx = serializedObject.FindProperty("hoversfx");
-            clickSfx = serializedObject.FindProperty("clicksfx");
+            _changeTextColor = serializedObject.FindProperty("changeTextColor");
+            _textGameObject = serializedObject.FindProperty("textGameObject");
+            _hoverSfx = serializedObject.FindProperty("hoverSfx");
+            _clickSfx = serializedObject.FindProperty("clickSfx");
         }
 
         public override void OnInspectorGUI()
@@ -28,13 +32,14 @@ namespace EVOGAMI.Editor
             serializedObject.Update();
 
             EditorGUILayout.LabelField("Text", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(textGameObject);
+            EditorGUILayout.PropertyField(_changeTextColor);
+            EditorGUILayout.PropertyField(_textGameObject);
 
 
             EditorGUILayout.LabelField("Audio", EditorStyles.boldLabel);
 
-            EditorGUILayout.PropertyField(hoverSfx);
-            EditorGUILayout.PropertyField(clickSfx);
+            EditorGUILayout.PropertyField(_hoverSfx);
+            EditorGUILayout.PropertyField(_clickSfx);
 
             serializedObject.ApplyModifiedProperties();
         }
