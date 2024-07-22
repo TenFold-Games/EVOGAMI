@@ -97,7 +97,7 @@ MonoBehaviour:
   canWalkInAir: 1
   walkSpeed: 5
   rotationSpeed: 10
-  canSprint: 1
+  canSprint: 0
   sprintSpeed: 10
   groundCheckProvider: {fileID: 397967431481544584}
   animator: {fileID: 0}
