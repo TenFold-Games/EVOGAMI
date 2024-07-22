@@ -3317,9 +3317,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  changeTextColor: 1
   textGameObject: {fileID: 8433455465447008021}
-  hoversfx: {fileID: 3909879834145541553}
-  clicksfx: {fileID: 2472472083963256161}
+  hoverSfx: {fileID: 0}
+  clickSfx: {fileID: 0}
 --- !u!114 &5334690757309817621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5037,7 +5038,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 2250174068639947418}
-  _transformationPanel: {fileID: 2848870292463182471}
+  optionsMenu: {fileID: 8385500101465167731}
+  transformationPanel: {fileID: 2848870292463182471}
 --- !u!1 &6281677087101938273
 GameObject:
   m_ObjectHideFlags: 0
@@ -5856,9 +5858,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  changeTextColor: 1
   textGameObject: {fileID: 6660789319168228511}
-  hoversfx: {fileID: 4931989505737540328}
-  clicksfx: {fileID: 4749541634887608407}
+  hoverSfx: {fileID: 0}
+  clickSfx: {fileID: 0}
 --- !u!114 &1145542809092180157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7036,9 +7039,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  changeTextColor: 1
   textGameObject: {fileID: 6692686799912415584}
-  hoversfx: {fileID: 5477077825953122389}
-  clicksfx: {fileID: 7941638843533782045}
+  hoverSfx: {fileID: 0}
+  clickSfx: {fileID: 0}
 --- !u!114 &2672182788470062555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7883,6 +7887,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Options Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 1754428760630614776, guid: 7c9631885bf68754b9ce7b8c78d9d05f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3914550070055273941, guid: 7c9631885bf68754b9ce7b8c78d9d05f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7963,11 +7971,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4412705381447054095, guid: 7c9631885bf68754b9ce7b8c78d9d05f, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 6333606908854258682}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c9631885bf68754b9ce7b8c78d9d05f, type: 3}
+--- !u!114 &8385500101465167731 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4412705381447054095, guid: 7c9631885bf68754b9ce7b8c78d9d05f, type: 3}
+  m_PrefabInstance: {fileID: 5287881012897801340}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74b613e00ea4102bb8fecef3cbc53d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &9165130148430635433 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3914550070055273941, guid: 7c9631885bf68754b9ce7b8c78d9d05f, type: 3}

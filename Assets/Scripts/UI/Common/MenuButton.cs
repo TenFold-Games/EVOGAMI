@@ -124,7 +124,7 @@ namespace EVOGAMI.UI.Common
             base.Select();
             if (!shouldPlaySfx) _hoverCallback += PlayHoverSfx;
 
-            textGameObject.color = colors.selectedColor;
+            if (changeTextColor) textGameObject.color = colors.selectedColor;
         }
     }
 }
