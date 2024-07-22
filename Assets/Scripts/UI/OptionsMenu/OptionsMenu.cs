@@ -1,4 +1,6 @@
+using Cinemachine;
 using EVOGAMI.Core;
+using EVOGAMI.Custom.Scriptable;
 using EVOGAMI.UI.OptionsMenu.Tabs;
 using EVOGAMI.UI.PanelMenu;
 using UnityEngine;
@@ -7,10 +9,6 @@ namespace EVOGAMI.UI.OptionsMenu
 {
     public class OptionsMenu : SubMenuBase
     {
-        [Header("The sub menu controller")]
-        [SerializeField] [Tooltip("The sub menu controller")]
-        private SubMenuController controller;
-
         [Header("Tabs")]
         // The graphics tab
         [SerializeField] [Tooltip("The graphics tab")]
@@ -25,11 +23,13 @@ namespace EVOGAMI.UI.OptionsMenu
         [SerializeField] [Tooltip("The credits tab")]
         private TabBase creditsTab;
 
-        [HideInInspector]
-        public TabBase currentTab;
-        
-        [HideInInspector]
-        public SubMenuBase cameFrom;
+        [Header("Controller")]
+        [SerializeField] [Tooltip("The sub menu controller")]
+        private SubMenuController controller;
+
+        [HideInInspector] public TabBase currentTab;
+
+        [HideInInspector] public SubMenuBase cameFrom;
 
         #region Interaction Callbacks
 
@@ -49,6 +49,7 @@ namespace EVOGAMI.UI.OptionsMenu
             InputManager.Instance.Controls.Origami.Disable();
 
             base.OnEnable();
+            Reset();
 
             // Pause the game
             Time.timeScale = Mathf.Epsilon;
@@ -66,10 +67,14 @@ namespace EVOGAMI.UI.OptionsMenu
             InputManager.Instance.Controls.Origami.Enable();
         }
 
-        private void Start()
+        private void Reset()
         {
             // Set the graphics tab as the current tab
             graphicsTab.OnTabEnter();
+            // Disable all other tabs
+            audioTab.gameObject.SetActive(false);
+            controlsTab.gameObject.SetActive(false);
+            creditsTab.gameObject.SetActive(false);
         }
 
         #endregion
