@@ -1,4 +1,5 @@
 using EVOGAMI.Audio;
+using EVOGAMI.Core;
 using FMODUnity;
 using TMPro;
 using UnityEngine;
@@ -101,10 +102,18 @@ namespace EVOGAMI.UI.Common
             base.Awake();
 
             _hoverCallback += PlayHoverSfx;
-            _clickCallback = PlayClickSfx;
+            _clickCallback += PlayClickSfx;
+            
+            _hoverCallback += VibrateController;
+            _clickCallback += VibrateController;
         }
-
+        
         #endregion
+        
+        private void VibrateController()
+        {
+            InputManager.Instance.VibrateController(0.05f, 0.05f, 0.025f);
+        }
 
         public void PlayAudio(AudioSource source)
         {

@@ -1,4 +1,5 @@
-﻿using EVOGAMI.Control;
+﻿using System.Collections;
+using EVOGAMI.Control;
 using EVOGAMI.Custom.Enums;
 using EVOGAMI.Origami;
 using UnityEngine;
@@ -494,19 +495,28 @@ namespace EVOGAMI.Core
 
         #region Haptic Feedback
 
-        public static void VibrateController(float lowFrequency, float highFrequency, float duration = -1)
+        public Gamepad VibrateController(float lowFrequency, float highFrequency, float duration = -1)
         {
-            if (Instance.ControllerDevice == null) return;
-            
-            Instance.ControllerDevice.SetMotorSpeeds(lowFrequency, highFrequency);
+            if (Instance.ControllerDevice == null) return null;
+
+            var currentGamepad = Instance.ControllerDevice;
+            currentGamepad.SetMotorSpeeds(lowFrequency, highFrequency);
 
             if (duration > 0)
-                Instance.Invoke(nameof(Instance.StopVibration), duration);
+                // Instance.Invoke(nameof(Instance.StopVibration), Mathf.Max(duration, 0.05f));
+                Instance.StartCoroutine(Instance.StopVibrationAfterDuration(currentGamepad, Mathf.Max(duration, 0.05f)));
+            return currentGamepad;
         }
         
-        public void StopVibration()
+        public IEnumerator StopVibrationAfterDuration(Gamepad gamepad, float duration)
         {
-            ControllerDevice.SetMotorSpeeds(0, 0);
+            yield return new WaitForSecondsRealtime(duration);
+            StopVibration(gamepad);
+        }
+        
+        public void StopVibration(Gamepad gamepad)
+        {
+            gamepad.SetMotorSpeeds(0, 0);
         }
 
         #endregion
