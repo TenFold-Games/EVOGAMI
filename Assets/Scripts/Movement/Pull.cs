@@ -5,6 +5,7 @@ using EVOGAMI.Interactable;
 using EVOGAMI.Movement.CheckProvider;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace EVOGAMI.Movement
 {
@@ -48,6 +49,8 @@ namespace EVOGAMI.Movement
 
         // Outline
         private Outline _targetOutline;
+        
+        Gamepad _gamepad;
 
         // TBD: Start --------------------------------------------------------------------------------------------------
         [SerializeField] [Tooltip("The line renderer used to show the pull line.")]
@@ -155,6 +158,8 @@ namespace EVOGAMI.Movement
             
             // Set isPull to true
             // if (tongueController != null && !_pullable.IsStopped) tongueController.SetPullState(true);
+            
+            _gamepad = InputManager.VibrateController(0.005f, 0.005f, -1);
         }
 
         private void ExitPullState()
@@ -169,6 +174,9 @@ namespace EVOGAMI.Movement
             
             // Set isPull to false
             // if (tongueController) tongueController.SetPullState(false);
+            
+            if (_gamepad != null)
+                InputManager.Instance.StopVibration(_gamepad);
         }
 
         #endregion
