@@ -157,9 +157,9 @@ namespace EVOGAMI.Core
             Controls.UI.Pause.canceled += PauseCancelledCallback;
             
             // UI - Cancel
-            Controls.UI.Cancel.started += PauseStartedCallback;
-            Controls.UI.Cancel.performed += PausePerformedCallback;
-            Controls.UI.Cancel.canceled += PauseCancelledCallback;
+            // Controls.UI.Cancel.started += PauseStartedCallback;
+            // Controls.UI.Cancel.performed += PausePerformedCallback;
+            // Controls.UI.Cancel.canceled += PauseCancelledCallback;
             
             // Origami - Transform
             Controls.Origami.Transform.started += TransformStartedCallback;
