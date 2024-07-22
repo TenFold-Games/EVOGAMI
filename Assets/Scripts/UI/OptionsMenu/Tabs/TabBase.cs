@@ -7,6 +7,17 @@ namespace EVOGAMI.UI.OptionsMenu.Tabs
         [SerializeField] [Tooltip("The options menu")]
         protected OptionsMenu optionsMenu;
 
+        protected void Awake()
+        {
+            Initialize();
+
+            RegisterCallbacks();
+        }
+
+        protected abstract void Initialize();
+
+        protected abstract void RegisterCallbacks();
+
         public virtual void OnTabEnter()
         {
             optionsMenu.currentTab?.OnTabExit();

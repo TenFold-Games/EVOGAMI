@@ -8,7 +8,7 @@ namespace EVOGAMI.UI.PanelMenu
     /// </summary>
     public class PauseMenu : SubMenuBase
     {
-        [Header("Controller")]
+        [Header("References")]
         // The sub-menu controller
         [SerializeField] [Tooltip("The sub-menu controller")]
         private SubMenuController controller;

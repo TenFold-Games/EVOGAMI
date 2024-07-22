@@ -125,8 +125,10 @@ namespace EVOGAMI.Core
 
         public void Awake()
         {
-            if (Instance == null) Instance = this;
-            else Destroy(this);
+            if (Instance == null)
+                Instance = this;
+            else
+                Destroy(gameObject);
 
             // Initialize controls
             Controls = new PlayerControls();
@@ -207,7 +209,7 @@ namespace EVOGAMI.Core
 
         public void OnDisable()
         {
-            Controls.Disable();
+            Controls?.Disable();
         }
 
         #endregion
