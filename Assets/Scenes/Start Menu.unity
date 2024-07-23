@@ -215,7 +215,7 @@ MonoBehaviour:
   controller: {fileID: 511373021}
   panel: {fileID: 939173157}
   defaultButton: {fileID: 1513310449}
-  sceneToLoad: Assets/Scenes/intro.unity
+  sceneToLoad: Assets/Scenes/Intro.unity
 --- !u!1 &443805798
 GameObject:
   m_ObjectHideFlags: 0
