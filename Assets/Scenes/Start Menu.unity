@@ -212,11 +212,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ad41c4cbe2a9e148961b6b8d7da0b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 511373021}
   panel: {fileID: 939173157}
   defaultButton: {fileID: 1513310449}
   sceneToLoad: Assets/Scenes/intro.unity
-  controller: {fileID: 511373021}
-  optionsMenu: {fileID: 1355561585}
 --- !u!1 &443805798
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,8 +478,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5df8c94aa924ccea14fef27d6edbe0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 277664734}
+  pauseMenu: {fileID: 0}
   optionsMenu: {fileID: 1355561585}
+  transformMenu: {fileID: 0}
+  currentMenu: {fileID: 0}
+  isCancelPerformedThisFrame: 0
 --- !u!1 &777166984
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +547,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 0.003921569, g: 0.34117648, b: 0.60784316, a: 1}
-    m_PressedColor: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
     m_SelectedColor: {r: 0.003921569, g: 0.34117648, b: 0.60784316, a: 1}
     m_DisabledColor: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
     m_ColorMultiplier: 1
@@ -1480,7 +1482,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 0.003921569, g: 0.34117648, b: 0.60784316, a: 1}
-    m_PressedColor: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
     m_SelectedColor: {r: 0.003921569, g: 0.34117648, b: 0.60784316, a: 1}
     m_DisabledColor: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
     m_ColorMultiplier: 1
@@ -1661,7 +1663,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 0.003921569, g: 0.34117648, b: 0.60784316, a: 1}
-    m_PressedColor: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
     m_SelectedColor: {r: 0.003921569, g: 0.34117648, b: 0.60784316, a: 1}
     m_DisabledColor: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
     m_ColorMultiplier: 1
