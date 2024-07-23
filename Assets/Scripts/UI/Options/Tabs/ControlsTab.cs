@@ -2,18 +2,19 @@ using EVOGAMI.Options;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EVOGAMI.UI.OptionsMenu.Tabs
+namespace EVOGAMI.UI.Options.Tabs
 {
     public class ControlsTab : TabBase
     {
+        [Header("Controls")]
         // Sensitivity Slider
-        [SerializeField] [Header("Sensitivity Slider")]
+        [SerializeField] [Tooltip("Sensitivity Slider")]
         private Slider sensitivitySlider;
         // Invert X Toggle
-        [SerializeField] [Header("Invert X Toggle")]
+        [SerializeField] [Tooltip("Invert X Toggle")]
         private Toggle invertXToggle;
         // Invert Y Toggle
-        [SerializeField] [Header("Invert Y Toggle")]
+        [SerializeField] [Tooltip("Invert Y Toggle")]
         private Toggle invertYToggle;
 
         protected override void Initialize()

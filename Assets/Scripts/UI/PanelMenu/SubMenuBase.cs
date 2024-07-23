@@ -5,18 +5,20 @@ namespace EVOGAMI.UI.PanelMenu
 {
     public abstract class SubMenuBase : MonoBehaviour
     {
+        [Header("References")]
+        // The sub-menu controller
+        [SerializeField] [Tooltip("The sub-menu controller")]
+        protected SubMenuController controller;
         // The sub-menu to be displayed
         [SerializeField] [Tooltip("The sub-menu to be displayed")]
         protected GameObject panel;
         // The default element to be selected when the sub-menu is opened
         [SerializeField] [Tooltip("The default element to be selected when the sub-menu is opened.")]
         protected MenuButton defaultButton;
-        
+
         public delegate void SubMenuEvent();
         public SubMenuEvent EnabledCallback = delegate { };
         public SubMenuEvent DisabledCallback = delegate { };
-
-        public bool IsActive { get; private set; }
 
         /// <summary>
         ///     Enable the sub-menu
@@ -24,13 +26,12 @@ namespace EVOGAMI.UI.PanelMenu
         public virtual void OnEnable()
         {
             // Activate the panel
-            IsActive = true;
-            panel.SetActive(IsActive);
-            
+            panel?.SetActive(true);
+
             EnabledCallback();
 
             // Set selectables
-            defaultButton.Select(false);
+            defaultButton?.Select(false);
         }
 
         /// <summary>
@@ -39,13 +40,17 @@ namespace EVOGAMI.UI.PanelMenu
         public virtual void OnDisable()
         {
             // Set selectables
-            defaultButton.Select();
-            
+            defaultButton?.Select();
+
             DisabledCallback();
 
             // Deactivate the panel
-            IsActive = false;
-            panel.SetActive(IsActive);
+            panel?.SetActive(false);
+        }
+
+        public virtual void OnCancelPerformed()
+        {
+            Debug.Log($"Cancel performed on {name}");
         }
     }
 }
