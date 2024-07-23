@@ -1,46 +1,40 @@
+using EVOGAMI.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 public class VideoEndHandler : MonoBehaviour
 {
-    public VideoPlayer videoPlayer; // Reference to the VideoPlayer component
-    public string sceneName; // Name of the scene to switch to
+    // Reference to the VideoPlayer component
+    [SerializeField] [Tooltip("Reference to the VideoPlayer component")]
+    private VideoPlayer videoPlayer;
+    // Name of the scene to switch to
+    [SerializeField] [Tooltip("Name of the scene to switch to")]
+    public string nextSceneName;
 
-    void Start()
+    private void Start()
     {
-        if (videoPlayer != null)
-        {
-            videoPlayer.loopPointReached += OnVideoEnd; // Subscribe to the loopPointReached event
-        }
+        // Subscribe to the loopPointReached event
+        if (videoPlayer) videoPlayer.loopPointReached += OnVideoEnd;
+        
+        InputManager.Instance.OnCancelPerformed += SkipVideo;
     }
 
-    void Update()
-    {
-        // Check for "W" key press or "West" button on controller
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetButtonDown("West"))
-        {
-            SkipVideo();
-        }
-    }
-
-    void OnVideoEnd(VideoPlayer vp)
+    private void OnVideoEnd(VideoPlayer vp)
     {
         LoadScene();
     }
 
-    void SkipVideo()
+    private void SkipVideo()
     {
         // Skip the video and load the scene
-        if (videoPlayer != null)
-        {
-            videoPlayer.Stop(); // Stop the video
-        }
+        if (videoPlayer) videoPlayer.Stop(); // Stop the video
+
         LoadScene();
     }
 
-    void LoadScene()
+    private void LoadScene()
     {
-        SceneManager.LoadScene(sceneName); // Load the specified scene
+        SceneManager.LoadScene(nextSceneName); // Load the specified scene
     }
 }

@@ -126,9 +126,11 @@ namespace EVOGAMI.Core
         public void Awake()
         {
             if (Instance == null)
+            {
                 Instance = this;
-            else
-                Destroy(gameObject);
+                DontDestroyOnLoad(gameObject);
+            }
+            else Destroy(gameObject);
 
             // Initialize controls
             Controls = new PlayerControls();
