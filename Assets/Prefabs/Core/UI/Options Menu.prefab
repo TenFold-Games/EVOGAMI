@@ -847,6 +847,7 @@ MonoBehaviour:
   controlsTab: {fileID: 8113792849894026971}
   creditsTab: {fileID: 5686571650356142296}
   currentTab: {fileID: 0}
+  isInTab: 0
   cameFrom: {fileID: 0}
 --- !u!1 &2257125870326717072
 GameObject:
@@ -1917,6 +1918,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4344950424839228297}
+  - component: {fileID: 8197175519876048258}
   m_Layer: 0
   m_Name: Side Panel
   m_TagString: Untagged
@@ -1949,6 +1951,23 @@ RectTransform:
   m_AnchoredPosition: {x: 225, y: -200}
   m_SizeDelta: {x: 525, y: 1500}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &8197175519876048258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5949400289625046762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa7e1476760a41b1a69b076c4badf317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionsMenu: {fileID: 4412705381447054095}
+  graphicsButton: {fileID: 1603711815964838964}
+  audioButton: {fileID: 3867512742327485622}
+  controlsButton: {fileID: 8113173540329368665}
+  creditsButton: {fileID: 1362759870179206326}
 --- !u!1 &6286988861891669610
 GameObject:
   m_ObjectHideFlags: 0

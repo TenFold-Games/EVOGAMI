@@ -36,7 +36,8 @@ namespace EVOGAMI.UI
         
         private IEnumerator ResetCancelPerformedFlag()
         {
-            yield return new WaitForEndOfFrame();
+            // yield return new WaitForEndOfFrame();
+            yield return new WaitForSecondsRealtime(Time.unscaledDeltaTime);
             isCancelPerformedThisFrame = false;
         }
 
@@ -91,8 +92,8 @@ namespace EVOGAMI.UI
         {
             if (!currentMenu) return;
 
-            currentMenu.OnCancelPerformed();
-            currentMenu = null;
+            currentMenu.OnCancelPerformed(out var isPanelClosed);
+            if (isPanelClosed) currentMenu = null;
         }
 
         #endregion

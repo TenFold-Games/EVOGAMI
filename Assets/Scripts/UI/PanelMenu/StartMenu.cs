@@ -27,6 +27,12 @@ namespace EVOGAMI.UI.PanelMenu
             Cursor.lockState = CursorLockMode.Locked;
         }
 
+        public override void OnCancelPerformed(out bool isPanelClosed)
+        {
+            // Nothing to do
+            isPanelClosed = false;
+        }
+
         #region Button Callbacks
 
         /// <summary>

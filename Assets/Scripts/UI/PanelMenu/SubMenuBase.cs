@@ -48,9 +48,6 @@ namespace EVOGAMI.UI.PanelMenu
             panel?.SetActive(false);
         }
 
-        public virtual void OnCancelPerformed()
-        {
-            Debug.Log($"Cancel performed on {name}");
-        }
+        public abstract void OnCancelPerformed(out bool isPanelClosed);
     }
 }

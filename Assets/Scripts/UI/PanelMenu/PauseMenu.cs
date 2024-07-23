@@ -55,11 +55,11 @@ namespace EVOGAMI.UI.PanelMenu
             gameObject.SetActive(!gameObject.activeSelf);
         }
 
-        public override void OnCancelPerformed()
+        public override void OnCancelPerformed(out bool isPanelClosed)
         {
-            if (!gameObject.activeSelf) return; // Ignore if not active
+            isPanelClosed = !gameObject.activeSelf;
 
-            base.OnCancelPerformed();
+            if (!gameObject.activeSelf) return; // Ignore if not active
 
             gameObject.SetActive(false);
             
