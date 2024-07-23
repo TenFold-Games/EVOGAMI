@@ -31,6 +31,9 @@ namespace EVOGAMI.Custom.Scriptable
         // The sound effects volume.
         [SerializeField] [Tooltip("The sound effects volume.")]
         public float sfxVolume = 1f;
+        // Whether to mute the game when it is inactive.
+        [SerializeField] [Tooltip("Whether to mute the game when it is inactive.")]
+        public bool muteWhenInactive;
         
         [Header("Controls")]
         // The sensitivity of the camera.
