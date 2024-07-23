@@ -21,8 +21,6 @@ namespace EVOGAMI.Options
 
         private void Awake()
         {
-            Debug.Log("CinemachineFreeLookInputController Awake");
-
             OptionsManager.Instance.SensitivityControllers.Add(this);
             OptionsManager.Instance.XInverters.Add(this);
             OptionsManager.Instance.YInverters.Add(this);
