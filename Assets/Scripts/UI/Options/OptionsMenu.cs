@@ -1,4 +1,5 @@
 using EVOGAMI.Core;
+using EVOGAMI.UI.Common;
 using EVOGAMI.UI.Options.Tabs;
 using EVOGAMI.UI.PanelMenu;
 using UnityEngine;
@@ -25,6 +26,11 @@ namespace EVOGAMI.UI.Options
         public TabBase currentTab;
 
         [HideInInspector] 
+        public bool isInTab;
+        [HideInInspector] 
+        public MenuButton lastSelectedButton;
+
+        [HideInInspector] 
         public SubMenuBase cameFrom;
 
         private void Reset()
@@ -35,14 +41,25 @@ namespace EVOGAMI.UI.Options
             audioTab.gameObject.SetActive(false);
             controlsTab.gameObject.SetActive(false);
             creditsTab.gameObject.SetActive(false);
+
+            isInTab = true;
+            lastSelectedButton = defaultButton;
         }
 
-        public override void OnCancelPerformed()
+        public override void OnCancelPerformed(out bool isPanelClosed)
         {
-            base.OnCancelPerformed();
-            
-            controller.CloseOptionsMenu();
-            
+            if (isInTab && lastSelectedButton)
+            {
+                isPanelClosed = false;
+                lastSelectedButton.Select();
+                isInTab = false; // No longer in a tab
+            }
+            else
+            {
+                isPanelClosed = true;
+                controller.CloseOptionsMenu();
+            }
+
             controller.SetCancelPerformedFlag();
         }
 
@@ -71,7 +88,7 @@ namespace EVOGAMI.UI.Options
 
             // Pause the game
             Time.timeScale = Mathf.Epsilon;
-            
+
             // Lock the cursor
             Cursor.lockState = CursorLockMode.None;
         }
@@ -89,7 +106,7 @@ namespace EVOGAMI.UI.Options
             // Enable player input
             InputManager.Instance.Controls.Player.Enable();
             InputManager.Instance.Controls.Origami.Enable();
-            
+
             // Show the HUD
             controller.ToggleHUD(true);
         }

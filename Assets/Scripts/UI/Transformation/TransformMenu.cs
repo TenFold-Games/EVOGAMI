@@ -16,12 +16,12 @@ namespace EVOGAMI.UI.Transformation
             _transformPanel.Toggle();
         }
 
-        public override void OnCancelPerformed()
+        public override void OnCancelPerformed(out bool isPanelClosed)
         {
+            isPanelClosed = _transformPanel.isOffScreen;
+
             if (_transformPanel.isOffScreen) return; // Ignore if panel is already closed
 
-            base.OnCancelPerformed();
-            
             _transformPanel.Toggle();
             
             controller.SetCancelPerformedFlag();
