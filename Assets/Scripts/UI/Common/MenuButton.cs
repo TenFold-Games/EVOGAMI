@@ -1,4 +1,5 @@
 using EVOGAMI.Audio;
+using EVOGAMI.Core;
 using FMODUnity;
 using TMPro;
 using UnityEngine;
@@ -9,22 +10,15 @@ using UnityEngine.UI;
 
 namespace EVOGAMI.UI.Common
 {
-    public class MenuButton :
-        Button,
-        IAudioPlayer
+    public class MenuButton : Button
     {
+        [Header("Text")]
+        [SerializeField] private bool changeTextColor = true;
         [SerializeField] private TextMeshProUGUI textGameObject;
 
         [Header("Audio")]
-        // The audio source to played on hover
-        //[SerializeField] [Tooltip("The audio source to played on hover")]
-        //public AudioSource hoverSfx;
-        // The audio source to played on click
-        //[SerializeField] [Tooltip("The audio source to played on click")]
-        //public AudioSource clickSfx;
-
-        [SerializeField] public StudioEventEmitter hoversfx;
-        [SerializeField] public StudioEventEmitter clicksfx;
+        [SerializeField] public StudioEventEmitter hoverSfx;
+        [SerializeField] public StudioEventEmitter clickSfx;
 
         private delegate void HoverEvent();
         private delegate void ClickEvent();
@@ -38,7 +32,7 @@ namespace EVOGAMI.UI.Common
         {
             base.OnPointerClick(eventData);
 
-            textGameObject.color = colors.pressedColor;
+            if (changeTextColor) textGameObject.color = colors.pressedColor;
 
             _clickCallback();
         }
@@ -47,7 +41,7 @@ namespace EVOGAMI.UI.Common
         {
             base.OnSubmit(eventData);
 
-            textGameObject.color = colors.pressedColor;
+            if (changeTextColor) textGameObject.color = colors.pressedColor;
 
             _clickCallback();
         }
@@ -58,7 +52,7 @@ namespace EVOGAMI.UI.Common
         {
             base.OnPointerEnter(eventData);
 
-            textGameObject.color = colors.highlightedColor;
+            if (changeTextColor) textGameObject.color = colors.highlightedColor;
 
             _hoverCallback();
         }
@@ -67,7 +61,7 @@ namespace EVOGAMI.UI.Common
         {
             base.OnPointerExit(eventData);
 
-            textGameObject.color = colors.normalColor;
+            if (changeTextColor) textGameObject.color = colors.normalColor;
         }
 
         #endregion
@@ -78,7 +72,7 @@ namespace EVOGAMI.UI.Common
         {
             base.OnSelect(eventData);
 
-            textGameObject.color = colors.selectedColor;
+            if (changeTextColor) textGameObject.color = colors.selectedColor;
 
             _hoverCallback();
         }
@@ -87,7 +81,7 @@ namespace EVOGAMI.UI.Common
         {
             base.OnDeselect(eventData);
 
-            textGameObject.color = colors.normalColor;
+            if (changeTextColor) textGameObject.color = colors.normalColor;
         }
 
         #endregion
@@ -101,27 +95,27 @@ namespace EVOGAMI.UI.Common
             base.Awake();
 
             _hoverCallback += PlayHoverSfx;
-            _clickCallback = PlayClickSfx;
+            _clickCallback += PlayClickSfx;
+            
+            _hoverCallback += VibrateController;
+            _clickCallback += VibrateController;
         }
-
+        
         #endregion
-
-        public void PlayAudio(AudioSource source)
+        
+        private void VibrateController()
         {
-            if (source) 
-                source.Play();
+            InputManager.Instance.VibrateController(0.05f, 0.05f, 0.025f);
         }
 
         private void PlayHoverSfx()
         {
-            hoversfx.Play();
-            //PlayAudio(hoverSfx);
+            hoverSfx?.Play();
         }
 
         private void PlayClickSfx()
         {
-            clicksfx.Play();
-            //PlayAudio(clickSfx);
+            clickSfx?.Play();
         }
 
         public void Select(bool shouldPlaySfx)
@@ -130,7 +124,7 @@ namespace EVOGAMI.UI.Common
             base.Select();
             if (!shouldPlaySfx) _hoverCallback += PlayHoverSfx;
 
-            textGameObject.color = colors.selectedColor;
+            if (changeTextColor) textGameObject.color = colors.selectedColor;
         }
     }
 }

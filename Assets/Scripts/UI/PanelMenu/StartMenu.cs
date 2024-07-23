@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,12 +20,20 @@ namespace EVOGAMI.UI.PanelMenu
             Cursor.lockState = CursorLockMode.None;
         }
 
-        private void Start()
+        public override void OnDisable()
         {
-            OnEnable(); // Explicitly call OnEnable
+            base.OnDisable();
+
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
-        #region Callbacks
+        public override void OnCancelPerformed(out bool isPanelClosed)
+        {
+            // Nothing to do
+            isPanelClosed = false;
+        }
+
+        #region Button Callbacks
 
         /// <summary>
         ///     Callback for when the continue button is clicked.
@@ -41,12 +48,20 @@ namespace EVOGAMI.UI.PanelMenu
         /// </summary>
         public void OnOptionsClicked()
         {
+            controller.OpenOptionsMenu(this);
         }
 
         /// <summary>
         ///     Callback for when the exit button is clicked.
         /// </summary>
         public void OnExitClicked()
+        {
+            // Application.Quit();
+
+            Invoke(nameof(Quit), 1.0f);
+        }
+
+        private void Quit()
         {
             Application.Quit();
         }

@@ -19,6 +19,8 @@ namespace EVOGAMI.Utils
         public event SequenceCallback OnSequenceRead = delegate {  };
         public event SequenceCallback OnSequenceBreak = delegate {  };
         public event SequenceCallback OnSequenceComplete = delegate {  };
+        
+        private bool _isMatchFound;
 
         public SequenceMatcher(int sequenceLength)
         {
@@ -30,9 +32,10 @@ namespace EVOGAMI.Utils
             _recipes.Add(recipe);
         }
         
-        public void ClearBuffer()
+        public void Reset()
         {
             _buffer.Clear();
+            _isMatchFound = false;
         }
         
         public string GetBuffer()
@@ -42,6 +45,8 @@ namespace EVOGAMI.Utils
 
         public void OnSequencePerformed(char c, Func<string, bool> canUnlock)
         {
+            if (_isMatchFound) return; // Ignore if a match is already found.
+
             _buffer.Append(c);
 
             // Trim the buffer if it exceeds the sequence length.
@@ -51,13 +56,15 @@ namespace EVOGAMI.Utils
 
             if (_buffer.Length != _sequenceLength) // Buffer not full
             {
+                _isMatchFound = false;
                 if (!_recipes.Any(recipe => recipe.StartsWith(_buffer.ToString())))
                     OnSequenceBreak(_buffer.ToString());
             }
             else
             {
                 // Buffer is full, check if it matches any of the recipes.
-                if (_recipes.Contains(_buffer.ToString()) && canUnlock(_buffer.ToString()))
+                _isMatchFound = _recipes.Contains(_buffer.ToString()) && canUnlock(_buffer.ToString());
+                if (_isMatchFound)
                     OnSequenceComplete(_buffer.ToString());
                 else
                     OnSequenceBreak(_buffer.ToString());

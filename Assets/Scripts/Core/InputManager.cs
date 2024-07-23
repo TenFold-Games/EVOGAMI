@@ -1,4 +1,5 @@
-﻿using EVOGAMI.Control;
+﻿using System.Collections;
+using EVOGAMI.Control;
 using EVOGAMI.Custom.Enums;
 using EVOGAMI.Origami;
 using UnityEngine;
@@ -124,8 +125,10 @@ namespace EVOGAMI.Core
 
         public void Awake()
         {
-            if (Instance == null) Instance = this;
-            else Destroy(this);
+            if (Instance == null)
+                Instance = this;
+            else
+                Destroy(gameObject);
 
             // Initialize controls
             Controls = new PlayerControls();
@@ -156,6 +159,11 @@ namespace EVOGAMI.Core
             Controls.UI.Pause.performed += PausePerformedCallback;
             Controls.UI.Pause.canceled += PauseCancelledCallback;
             
+            // UI - Cancel
+            Controls.UI.Cancel.started += CancelStartedCallback;
+            Controls.UI.Cancel.performed += CancelPerformedCallback;
+            Controls.UI.Cancel.canceled += CancelCancelledCallback;
+            
             // Origami - Transform
             Controls.Origami.Transform.started += TransformStartedCallback;
             Controls.Origami.Transform.performed += TransformPerformedCallback;
@@ -176,6 +184,22 @@ namespace EVOGAMI.Core
             Controls.Origami.Down.canceled += ctx => SequenceCancelledCallback(ctx, Directions.D);
             Controls.Origami.Left.canceled += ctx => SequenceCancelledCallback(ctx, Directions.L);
             Controls.Origami.Right.canceled += ctx => SequenceCancelledCallback(ctx, Directions.R);
+            
+            // Camera
+            Controls.Camera.Orbit.started += ctx => UpdateInputScheme(ctx.control.device);
+            
+            // UI
+            // Controls.UI.Pause.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.Navigate.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.Submit.started += ctx => UpdateInputScheme(ctx.control.device);
+            // Controls.UI.Cancel.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.Point.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.Click.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.ScrollWheel.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.MiddleClick.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.RightClick.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.TrackedDevicePosition.started += ctx => UpdateInputScheme(ctx.control.device);
+            Controls.UI.TrackedDeviceOrientation.started += ctx => UpdateInputScheme(ctx.control.device);
         }
 
         public void OnEnable()
@@ -185,7 +209,7 @@ namespace EVOGAMI.Core
 
         public void OnDisable()
         {
-            Controls.Disable();
+            Controls?.Disable();
         }
 
         #endregion
@@ -332,6 +356,25 @@ namespace EVOGAMI.Core
             OnPauseCancelled();
         }
         
+        // UI - Cancel
+        private void CancelStartedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnCancelStarted();
+        }
+
+        private void CancelPerformedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnCancelPerformed();
+        }
+        
+        private void CancelCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnCancelCancelled();
+        }
+        
         #endregion
 
         // Origami - Transform
@@ -445,6 +488,15 @@ namespace EVOGAMI.Core
 
         #endregion
         
+        // UI - Cancel
+        #region Cancel
+        
+        public event PauseCallback OnCancelStarted = delegate { };
+        public event PauseCallback OnCancelPerformed = delegate { };
+        public event PauseCallback OnCancelCancelled = delegate { };
+        
+        #endregion
+        
         // Origami - Transform
         #region Transform
         public delegate void TransformCallback();
@@ -473,19 +525,28 @@ namespace EVOGAMI.Core
 
         #region Haptic Feedback
 
-        public static void VibrateController(float lowFrequency, float highFrequency, float duration = -1)
+        public Gamepad VibrateController(float lowFrequency, float highFrequency, float duration = -1)
         {
-            if (Instance.ControllerDevice == null) return;
-            
-            Instance.ControllerDevice.SetMotorSpeeds(lowFrequency, highFrequency);
+            if (Instance.ControllerDevice == null) return null;
+
+            var currentGamepad = Instance.ControllerDevice;
+            currentGamepad.SetMotorSpeeds(lowFrequency, highFrequency);
 
             if (duration > 0)
-                Instance.Invoke(nameof(Instance.StopVibration), duration);
+                // Instance.Invoke(nameof(Instance.StopVibration), Mathf.Max(duration, 0.05f));
+                Instance.StartCoroutine(Instance.StopVibrationAfterDuration(currentGamepad, Mathf.Max(duration, 0.05f)));
+            return currentGamepad;
         }
         
-        public void StopVibration()
+        public IEnumerator StopVibrationAfterDuration(Gamepad gamepad, float duration)
         {
-            ControllerDevice.SetMotorSpeeds(0, 0);
+            yield return new WaitForSecondsRealtime(duration);
+            StopVibration(gamepad);
+        }
+        
+        public void StopVibration(Gamepad gamepad)
+        {
+            gamepad.SetMotorSpeeds(0, 0);
         }
 
         #endregion

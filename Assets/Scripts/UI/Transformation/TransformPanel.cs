@@ -3,6 +3,7 @@ using EVOGAMI.Core;
 using EVOGAMI.Custom.Enums;
 using EVOGAMI.Custom.Serializable;
 using EVOGAMI.Origami;
+using EVOGAMI.UI.Common;
 using EVOGAMI.Utils;
 using UnityEngine;
 
@@ -54,6 +55,8 @@ namespace EVOGAMI.UI.Transformation
         private Vector2 _startPos;
         private Vector2 _endPos;
 
+        public bool isPanelOpen = false;
+        
         // Flags
         [HideInInspector] public bool isMoving;
         [HideInInspector] public bool isOffScreen;
@@ -61,8 +64,8 @@ namespace EVOGAMI.UI.Transformation
         private void Reset()
         {
             // Re-calculate positions
-            _offScreenPos = new Vector2(0, Screen.height);
-            _onScreenPos = Vector2.zero;
+            _offScreenPos = Vector2.zero;
+            _onScreenPos = new Vector2(0, -2160);
 
             // Move back to start position
             canvasRect.anchoredPosition = _offScreenPos;
@@ -107,6 +110,8 @@ namespace EVOGAMI.UI.Transformation
 
         public void Toggle()
         {
+            if (PlayerManager.Instance.FormsGained <= 2) return; // None, Default, and one more form
+            
             // Should not move
             if (isMoving) return;
 
@@ -122,12 +127,16 @@ namespace EVOGAMI.UI.Transformation
             }
             else // On-screen -> Off-screen
             {
+                Debug.Log("Closing the panel.");
                 _startPos = _onScreenPos;
                 _endPos = _offScreenPos;
                 InputManager.Instance.EnablePlayerControls();
+                
+                controller.Reset();
             }
+            isPanelOpen = !isPanelOpen;
         }
-
+        
         private void SetArrows(string buffer)
         {
             if (buffer == null)
@@ -183,6 +192,7 @@ namespace EVOGAMI.UI.Transformation
             // Should not move
             if (!isMoving) return;
 
+            Debug.Log($"Moving from {_startPos} to {_endPos}.");
             _moveTimer += Time.deltaTime;
             var t = _moveTimer / moveDuration;
             canvasRect.anchoredPosition = Vector2.Lerp(_startPos, _endPos, t);

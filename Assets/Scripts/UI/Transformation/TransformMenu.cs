@@ -1,30 +1,41 @@
+using System;
 using EVOGAMI.Core;
+using EVOGAMI.UI.PanelMenu;
 using UnityEngine;
 
 namespace EVOGAMI.UI.Transformation
 {
-    public class TransformMenu : MonoBehaviour
+    public class TransformMenu : SubMenuBase
     {
-        // The transform panel.
-        [SerializeField] [Tooltip("The transform panel.")]
-        private TransformPanel panel;
+        private TransformPanel _transformPanel;
+
+        #region Input Events
+
+        public void OnTransformPerformed()
+        {
+            _transformPanel.Toggle();
+        }
+
+        public override void OnCancelPerformed(out bool isPanelClosed)
+        {
+            isPanelClosed = _transformPanel.isOffScreen;
+
+            if (_transformPanel.isOffScreen) return; // Ignore if panel is already closed
+
+            _transformPanel.Toggle();
+            
+            controller.SetCancelPerformedFlag();
+        }
+
+        #endregion
 
         #region Unity Functions
 
         private void Start()
         {
-            InputManager.Instance.OnTransformPerformed += OnTransformPerformed;
+            _transformPanel = panel.GetComponent<TransformPanel>();
         }
-
-        #endregion
-
-        #region Input Events
-
-        private void OnTransformPerformed()
-        {
-            panel.Toggle();
-        }
-
+        
         #endregion
     }
 }

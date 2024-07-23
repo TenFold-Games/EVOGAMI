@@ -57,6 +57,7 @@ namespace EVOGAMI.Core
                 GainedForms[form] = unlocked;
             if (!GainedForms[_gameManager.origamiSettings.initialForm])
                 GainForm(_gameManager.origamiSettings.initialForm);
+            FormsGained = CountUnlockedForms();
             
             // Reset player rotation on form change
             PlayerOrigami.OnFormChange += (_, _) =>
@@ -95,6 +96,8 @@ namespace EVOGAMI.Core
         #endregion
 
         #region Gaining Forms
+        
+        public int FormsGained { get; private set; }
 
         public delegate void GainFormCallback(OrigamiContainer.OrigamiForm form);
 
@@ -111,7 +114,18 @@ namespace EVOGAMI.Core
                 return;
 
             GainedForms[form] = true;
+            FormsGained = CountUnlockedForms();
             OnGainForm(form);
+        }
+        
+        // Utility method to count the number of forms that have been gained.
+        public int CountUnlockedForms()
+        {
+            var count = 0;
+            foreach (var (_, unlocked) in GainedForms)
+                if (unlocked)
+                    count++;
+            return count;
         }
 
         #endregion
@@ -132,8 +146,8 @@ namespace EVOGAMI.Core
             CranesCollected++;
             OnCraneCollected();
 
-            if (CranesCollected == _gameManager.origamiSettings.totalCranes)
-                GameManager.Instance.GameComplete();
+            // if (CranesCollected == _gameManager.origamiSettings.totalCranes)
+            //     GameManager.Instance.GameComplete();
         }
 
         #endregion

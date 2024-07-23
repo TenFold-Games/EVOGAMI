@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace EVOGAMI.Custom.Scriptable
 {
-    [CreateAssetMenu(fileName = "OrigamiSettings", menuName = "Settings/OrigamiSettings", order = 0)]
+    [CreateAssetMenu(fileName = "OrigamiSettings", menuName = "Settings/OrigamiSettings", order = 1)]
     public class OrigamiSettings : ScriptableObject
     {
         [Header("Form")]
