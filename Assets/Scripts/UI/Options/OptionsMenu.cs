@@ -56,7 +56,7 @@ namespace EVOGAMI.UI.Options
             }
             else
             {
-                isPanelClosed = true;
+                isPanelClosed = !cameFrom;
                 controller.CloseOptionsMenu();
             }
 
