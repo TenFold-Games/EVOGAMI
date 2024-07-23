@@ -159,10 +159,10 @@ namespace EVOGAMI.Core
             Controls.UI.Pause.performed += PausePerformedCallback;
             Controls.UI.Pause.canceled += PauseCancelledCallback;
             
-            // // UI - Cancel
-            // Controls.UI.Cancel.started += PauseStartedCallback;
-            // Controls.UI.Cancel.performed += PausePerformedCallback;
-            // Controls.UI.Cancel.canceled += PauseCancelledCallback;
+            // UI - Cancel
+            Controls.UI.Cancel.started += CancelStartedCallback;
+            Controls.UI.Cancel.performed += CancelPerformedCallback;
+            Controls.UI.Cancel.canceled += CancelCancelledCallback;
             
             // Origami - Transform
             Controls.Origami.Transform.started += TransformStartedCallback;
@@ -189,10 +189,10 @@ namespace EVOGAMI.Core
             Controls.Camera.Orbit.started += ctx => UpdateInputScheme(ctx.control.device);
             
             // UI
-            Controls.UI.Pause.started += ctx => UpdateInputScheme(ctx.control.device);
+            // Controls.UI.Pause.started += ctx => UpdateInputScheme(ctx.control.device);
             Controls.UI.Navigate.started += ctx => UpdateInputScheme(ctx.control.device);
             Controls.UI.Submit.started += ctx => UpdateInputScheme(ctx.control.device);
-            Controls.UI.Cancel.started += ctx => UpdateInputScheme(ctx.control.device);
+            // Controls.UI.Cancel.started += ctx => UpdateInputScheme(ctx.control.device);
             Controls.UI.Point.started += ctx => UpdateInputScheme(ctx.control.device);
             Controls.UI.Click.started += ctx => UpdateInputScheme(ctx.control.device);
             Controls.UI.ScrollWheel.started += ctx => UpdateInputScheme(ctx.control.device);
@@ -356,6 +356,25 @@ namespace EVOGAMI.Core
             OnPauseCancelled();
         }
         
+        // UI - Cancel
+        private void CancelStartedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnCancelStarted();
+        }
+
+        private void CancelPerformedCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnCancelPerformed();
+        }
+        
+        private void CancelCancelledCallback(InputAction.CallbackContext ctx)
+        {
+            UpdateInputScheme(ctx.control.device);
+            OnCancelCancelled();
+        }
+        
         #endregion
 
         // Origami - Transform
@@ -467,6 +486,15 @@ namespace EVOGAMI.Core
         public event PauseCallback OnPausePerformed = delegate { };
         public event PauseCallback OnPauseCancelled = delegate { };
 
+        #endregion
+        
+        // UI - Cancel
+        #region Cancel
+        
+        public event PauseCallback OnCancelStarted = delegate { };
+        public event PauseCallback OnCancelPerformed = delegate { };
+        public event PauseCallback OnCancelCancelled = delegate { };
+        
         #endregion
         
         // Origami - Transform

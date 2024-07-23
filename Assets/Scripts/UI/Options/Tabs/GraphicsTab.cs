@@ -5,21 +5,22 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EVOGAMI.UI.OptionsMenu.Tabs
+namespace EVOGAMI.UI.Options.Tabs
 {
     public class GraphicsTab : TabBase
     {
+        [Header("Graphics")]
         // Quality Settings Dropdown
-        [SerializeField] [Header("Quality Settings Dropdown")]
+        [SerializeField] [Tooltip("Quality Settings Dropdown")]
         private TMP_Dropdown qualityDropdown;
         // Fullscreen Settings Dropdown
-        [SerializeField] [Header("Fullscreen Settings Dropdown")]
+        [SerializeField] [Tooltip("Fullscreen Settings Dropdown")]
         private TMP_Dropdown fullscreenDropdown;
         // Resolution Settings Dropdown
-        [SerializeField] [Header("Resolution Settings Dropdown")]
+        [SerializeField] [Tooltip("Resolution Settings Dropdown")]
         private TMP_Dropdown resolutionDropdown;
         // VSync Setting Toggle
-        [SerializeField] [Header("VSync Settings Toggle")]
+        [SerializeField] [Tooltip("VSync Settings Toggle")]
         private Toggle vSyncToggle;
 
         private readonly HashSet<Vector2Int> _resolutions = new();

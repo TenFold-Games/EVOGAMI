@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,14 +12,6 @@ namespace EVOGAMI.UI.PanelMenu
         // The name of the scene to load
         [SerializeField] [Tooltip("The name of the scene to load")]
         private string sceneToLoad;
-        
-        [Header("References")]
-        // The sub-menu controller
-        [SerializeField] [Tooltip("The sub-menu controller")]
-        private SubMenuController controller;
-        // The options menu
-        [SerializeField] [Tooltip("The options menu")]
-        private OptionsMenu.OptionsMenu optionsMenu;
 
         public override void OnEnable()
         {
@@ -29,12 +20,14 @@ namespace EVOGAMI.UI.PanelMenu
             Cursor.lockState = CursorLockMode.None;
         }
 
-        private void Start()
+        public override void OnDisable()
         {
-            OnEnable(); // Explicitly call OnEnable
+            base.OnDisable();
+
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
-        #region Callbacks
+        #region Button Callbacks
 
         /// <summary>
         ///     Callback for when the continue button is clicked.
@@ -61,7 +54,7 @@ namespace EVOGAMI.UI.PanelMenu
 
             Invoke(nameof(Quit), 1.0f);
         }
-        
+
         private void Quit()
         {
             Application.Quit();

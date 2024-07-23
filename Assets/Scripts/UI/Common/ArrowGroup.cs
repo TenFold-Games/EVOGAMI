@@ -3,7 +3,7 @@ using EVOGAMI.Custom.Enums;
 using EVOGAMI.Custom.Serializable;
 using UnityEngine;
 
-namespace EVOGAMI.UI.Transformation
+namespace EVOGAMI.UI.Common
 {
     public class ArrowGroup : MonoBehaviour
     {

@@ -2,10 +2,11 @@ using EVOGAMI.Options;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EVOGAMI.UI.OptionsMenu.Tabs
+namespace EVOGAMI.UI.Options.Tabs
 {
     public class AudioTab : TabBase
     {
+        [Header("Audio")]
         // Master Volume Slider
         [SerializeField] [Tooltip("Master Volume Slider")]
         private Slider masterVolumeSlider;

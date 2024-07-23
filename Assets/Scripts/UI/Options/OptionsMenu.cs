@@ -1,11 +1,9 @@
-using Cinemachine;
 using EVOGAMI.Core;
-using EVOGAMI.Custom.Scriptable;
-using EVOGAMI.UI.OptionsMenu.Tabs;
+using EVOGAMI.UI.Options.Tabs;
 using EVOGAMI.UI.PanelMenu;
 using UnityEngine;
 
-namespace EVOGAMI.UI.OptionsMenu
+namespace EVOGAMI.UI.Options
 {
     public class OptionsMenu : SubMenuBase
     {
@@ -23,13 +21,30 @@ namespace EVOGAMI.UI.OptionsMenu
         [SerializeField] [Tooltip("The credits tab")]
         private TabBase creditsTab;
 
-        [Header("Controller")]
-        [SerializeField] [Tooltip("The sub menu controller")]
-        private SubMenuController controller;
+        [HideInInspector] 
+        public TabBase currentTab;
 
-        [HideInInspector] public TabBase currentTab;
+        [HideInInspector] 
+        public SubMenuBase cameFrom;
 
-        [HideInInspector] public SubMenuBase cameFrom;
+        private void Reset()
+        {
+            // Set the graphics tab as the current tab
+            graphicsTab.OnTabEnter();
+            // Disable all other tabs
+            audioTab.gameObject.SetActive(false);
+            controlsTab.gameObject.SetActive(false);
+            creditsTab.gameObject.SetActive(false);
+        }
+
+        public override void OnCancelPerformed()
+        {
+            base.OnCancelPerformed();
+            
+            controller.CloseOptionsMenu();
+            
+            controller.SetCancelPerformedFlag();
+        }
 
         #region Interaction Callbacks
 
@@ -44,6 +59,9 @@ namespace EVOGAMI.UI.OptionsMenu
 
         public override void OnEnable()
         {
+            // Hide the HUD
+            controller.ToggleHUD(false);
+
             // Disable player input
             InputManager.Instance.Controls.Player.Disable();
             InputManager.Instance.Controls.Origami.Disable();
@@ -53,10 +71,16 @@ namespace EVOGAMI.UI.OptionsMenu
 
             // Pause the game
             Time.timeScale = Mathf.Epsilon;
+            
+            // Lock the cursor
+            Cursor.lockState = CursorLockMode.None;
         }
 
         public override void OnDisable()
         {
+            // Unlock the cursor
+            Cursor.lockState = CursorLockMode.Locked;
+
             // Unpause the game
             Time.timeScale = 1.0f;
 
@@ -65,16 +89,9 @@ namespace EVOGAMI.UI.OptionsMenu
             // Enable player input
             InputManager.Instance.Controls.Player.Enable();
             InputManager.Instance.Controls.Origami.Enable();
-        }
-
-        private void Reset()
-        {
-            // Set the graphics tab as the current tab
-            graphicsTab.OnTabEnter();
-            // Disable all other tabs
-            audioTab.gameObject.SetActive(false);
-            controlsTab.gameObject.SetActive(false);
-            creditsTab.gameObject.SetActive(false);
+            
+            // Show the HUD
+            controller.ToggleHUD(true);
         }
 
         #endregion

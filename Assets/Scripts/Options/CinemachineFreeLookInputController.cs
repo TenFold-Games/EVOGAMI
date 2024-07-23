@@ -19,7 +19,7 @@ namespace EVOGAMI.Options
         [SerializeField] [Tooltip("The max speed of the x-axis")]
         private float xMaxSpeed = 250f;
 
-        private void Awake()
+        private void Start()
         {
             OptionsManager.Instance.SensitivityControllers.Add(this);
             OptionsManager.Instance.XInverters.Add(this);

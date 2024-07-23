@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using EVOGAMI.Core;
 using UnityEngine;
 
@@ -8,13 +10,11 @@ namespace EVOGAMI.UI.PanelMenu
     /// </summary>
     public class PauseMenu : SubMenuBase
     {
-        [Header("References")]
-        // The sub-menu controller
-        [SerializeField] [Tooltip("The sub-menu controller")]
-        private SubMenuController controller;
-
         public override void OnEnable()
         {
+            // Hide the HUD
+            controller.ToggleHUD(false);
+
             // Disable player input
             InputManager.Instance.Controls.Player.Disable();
             InputManager.Instance.Controls.Origami.Disable();
@@ -23,10 +23,16 @@ namespace EVOGAMI.UI.PanelMenu
 
             // Pause the game
             Time.timeScale = Mathf.Epsilon;
+
+            // Unlock the cursor
+            Cursor.lockState = CursorLockMode.None;
         }
 
         public override void OnDisable()
         {
+            // Lock the cursor
+            Cursor.lockState = CursorLockMode.Locked;
+
             // Unpause the game
             Time.timeScale = 1.0f;
 
@@ -35,9 +41,34 @@ namespace EVOGAMI.UI.PanelMenu
             // Enable player input
             InputManager.Instance.Controls.Player.Enable();
             InputManager.Instance.Controls.Origami.Enable();
+
+            // Show the HUD
+            controller.ToggleHUD(true);
         }
 
         #region Callbacks
+
+        public void OnPausePerformed()
+        {
+            if (controller.isCancelPerformedThisFrame) return; // Fix `esc` key having double role
+            
+            gameObject.SetActive(!gameObject.activeSelf);
+        }
+
+        public override void OnCancelPerformed()
+        {
+            if (!gameObject.activeSelf) return; // Ignore if not active
+
+            base.OnCancelPerformed();
+
+            gameObject.SetActive(false);
+            
+            controller.SetCancelPerformedFlag();
+        }
+
+        #endregion
+
+        #region Button Callbacks
 
         /// <summary>
         ///     Callback for when the reset button is clicked.

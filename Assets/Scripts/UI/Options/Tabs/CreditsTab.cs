@@ -1,4 +1,4 @@
-namespace EVOGAMI.UI.OptionsMenu.Tabs
+namespace EVOGAMI.UI.Options.Tabs
 {
     public class CreditsTab : TabBase
     {

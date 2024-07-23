@@ -111,8 +111,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -263,18 +263,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1603711815964838964}
+    m_SelectOnDown: {fileID: 8113173540329368665}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 2268314037871653881}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.7529412}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -464,18 +464,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 3867512742327485622}
+    m_SelectOnDown: {fileID: 1362759870179206326}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 3461765229251603991}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.7529412}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -721,8 +721,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -839,13 +839,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74b613e00ea4102bb8fecef3cbc53d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   panel: {fileID: 4508753079144158233}
   defaultButton: {fileID: 1603711815964838964}
   graphicsTab: {fileID: 570267628447190155}
   audioTab: {fileID: 5600473584929571199}
   controlsTab: {fileID: 8113792849894026971}
   creditsTab: {fileID: 5686571650356142296}
-  controller: {fileID: 0}
   currentTab: {fileID: 0}
   cameFrom: {fileID: 0}
 --- !u!1 &2257125870326717072
@@ -901,6 +901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionsMenu: {fileID: 4412705381447054095}
+  defaultSelectable: {fileID: 2268314037871653881}
   masterVolumeSlider: {fileID: 2268314037871653881}
   musicVolumeSlider: {fileID: 6511948947469492286}
   sfxVolumeSlider: {fileID: 6616044511250335037}
@@ -979,8 +980,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1168,18 +1169,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 7914158753854019795}
+    m_SelectOnDown: {fileID: 3867512742327485622}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 6029835308829255336}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.7529412}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1639,8 +1640,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1810,8 +1811,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2077,18 +2078,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1362759870179206326}
+    m_SelectOnDown: {fileID: 1603711815964838964}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.7529412}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2235,6 +2236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionsMenu: {fileID: 4412705381447054095}
+  defaultSelectable: {fileID: 0}
 --- !u!1 &6459907780757002931
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,7 +2253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1848942361411813096
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2287,6 +2289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionsMenu: {fileID: 4412705381447054095}
+  defaultSelectable: {fileID: 3461765229251603991}
   sensitivitySlider: {fileID: 3461765229251603991}
   invertXToggle: {fileID: 8792056269945430946}
   invertYToggle: {fileID: 3666262221399200093}
@@ -2347,7 +2350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8289645630470441665
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2419,7 +2422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2427,10 +2430,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.7529412}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2645,18 +2648,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 8113173540329368665}
+    m_SelectOnDown: {fileID: 7914158753854019795}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.7529412}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2865,8 +2868,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2978,6 +2981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionsMenu: {fileID: 4412705381447054095}
+  defaultSelectable: {fileID: 6029835308829255336}
   qualityDropdown: {fileID: 6029835308829255336}
   fullscreenDropdown: {fileID: 3302107209572508119}
   resolutionDropdown: {fileID: 1921417337176414255}
@@ -2994,6 +2998,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toggle
       objectReference: {fileID: 0}
+    - target: {fileID: 6520735052649569471, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 6616044511250335037}
+    - target: {fileID: 6520735052649569471, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 2268314037871653881}
+    - target: {fileID: 6520735052649569471, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 3867512742327485622}
     - target: {fileID: 9073955608947204656, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -3105,12 +3121,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 431584923317431428, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2009457784560131324, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
       propertyPath: m_Name
       value: Slider
       objectReference: {fileID: 0}
+    - target: {fileID: 4348318193005240151, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 3666262221399200093}
+    - target: {fileID: 4348318193005240151, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 8792056269945430946}
     - target: {fileID: 9076878882530256261, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -3193,7 +3217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9156504745889516034, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3224,6 +3248,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3040202062954459780}
     m_Modifications:
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 3302107209572508119}
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 1285030133068807323}
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 1603711815964838964}
     - target: {fileID: 5440154031388710155, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -3659,6 +3695,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toggle
       objectReference: {fileID: 0}
+    - target: {fileID: 6520735052649569471, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 3461765229251603991}
+    - target: {fileID: 6520735052649569471, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 3666262221399200093}
+    - target: {fileID: 6520735052649569471, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 8113173540329368665}
     - target: {fileID: 9073955608947204656, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -3882,6 +3930,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slider
       objectReference: {fileID: 0}
+    - target: {fileID: 4348318193005240151, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 5852145738887340575}
+    - target: {fileID: 4348318193005240151, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 6511948947469492286}
     - target: {fileID: 9076878882530256261, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -4101,6 +4157,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4876953290346932221}
     m_Modifications:
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 6029835308829255336}
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 1921417337176414255}
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 1603711815964838964}
     - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
       propertyPath: m_Options.m_Options.Array.data[0].m_Text
       value: Fullscreen
@@ -4337,6 +4405,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 3779404686951565330}
     m_Modifications:
     - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 1285030133068807323}
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 3302107209572508119}
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 1603711815964838964}
+    - target: {fileID: 1524426548569548177, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
       propertyPath: m_Options.m_Options.Array.data[0].m_Text
       value: Performance
       objectReference: {fileID: 0}
@@ -4434,7 +4514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7632278948670275040, guid: adfc93d5febd46747a1460bf12d06d5a, type: 3}
       propertyPath: m_text
-      value: Quality
+      value: Performance
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4469,6 +4549,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: VSync Toggle
       objectReference: {fileID: 0}
+    - target: {fileID: 6520735052649569471, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 1921417337176414255}
+    - target: {fileID: 6520735052649569471, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 6029835308829255336}
+    - target: {fileID: 6520735052649569471, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 1603711815964838964}
     - target: {fileID: 9073955608947204656, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -5010,6 +5102,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slider
       objectReference: {fileID: 0}
+    - target: {fileID: 4348318193005240151, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 2268314037871653881}
+    - target: {fileID: 4348318193005240151, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 6616044511250335037}
     - target: {fileID: 9076878882530256261, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -5131,6 +5231,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slider
       objectReference: {fileID: 0}
+    - target: {fileID: 4348318193005240151, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 6511948947469492286}
+    - target: {fileID: 4348318193005240151, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 5852145738887340575}
     - target: {fileID: 9076878882530256261, guid: c628f6a20ca909d45ae510c9dec59722, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -5354,6 +5462,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toggle
       objectReference: {fileID: 0}
+    - target: {fileID: 6520735052649569471, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 8792056269945430946}
+    - target: {fileID: 6520735052649569471, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 3461765229251603991}
+    - target: {fileID: 6520735052649569471, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 8113173540329368665}
     - target: {fileID: 9073955608947204656, guid: 2e1b5b99fbb117c478c2ce74ff3bd314, type: 3}
       propertyPath: m_Pivot.x
       value: 1

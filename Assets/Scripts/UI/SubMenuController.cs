@@ -1,7 +1,9 @@
+using System.Collections;
 using EVOGAMI.Core;
+using EVOGAMI.UI.Options;
 using EVOGAMI.UI.PanelMenu;
+using EVOGAMI.UI.Transformation;
 using UnityEngine;
-using Cursor = UnityEngine.Cursor;
 
 namespace EVOGAMI.UI
 {
@@ -10,23 +12,32 @@ namespace EVOGAMI.UI
         [Header("Menus")]
         // The pause menu
         [SerializeField] [Tooltip("The pause menu")]
-        private SubMenuBase pauseMenu;
+        private PauseMenu pauseMenu;
         // The options menu
         [SerializeField] [Tooltip("The options menu")]
-        private OptionsMenu.OptionsMenu optionsMenu;
-        // // The transformation panel
-        // [SerializeField] [Tooltip("The transformation panel")]
-        // private TransformPanel transformationPanel;
+        private OptionsMenu optionsMenu;
+        // The transformation menu
+        [SerializeField] [Tooltip("The transformation menu")]
+        private TransformMenu transformMenu;
+
+        [HideInInspector]
+        public SubMenuBase currentMenu;
+        [HideInInspector]
+        public bool isCancelPerformedThisFrame;
 
         private GameObject _headsUpDisplay;
-
-        private void OnPausePerformed()
+        
+        public void SetCancelPerformedFlag()
         {
-            // if (transformationPanel.isPanelOpen)
-            //     transformationPanel.Toggle();
-            // else
-            //     pauseMenu.gameObject.SetActive(!pauseMenu.IsActive);
-            pauseMenu.gameObject.SetActive(!pauseMenu.IsActive);
+            isCancelPerformedThisFrame = true;
+            
+            StartCoroutine(ResetCancelPerformedFlag());
+        }
+        
+        private IEnumerator ResetCancelPerformedFlag()
+        {
+            yield return new WaitForEndOfFrame();
+            isCancelPerformedThisFrame = false;
         }
 
         public void OpenOptionsMenu(SubMenuBase cameFrom)
@@ -36,6 +47,7 @@ namespace EVOGAMI.UI
             if (optionsMenu.cameFrom)
                 optionsMenu.cameFrom.gameObject.SetActive(false);
 
+            currentMenu = optionsMenu;
             optionsMenu.gameObject.SetActive(true);
         }
 
@@ -46,7 +58,44 @@ namespace EVOGAMI.UI
             // Options menu was opened from some other menu
             if (optionsMenu.cameFrom)
                 optionsMenu.cameFrom.gameObject.SetActive(true);
+            currentMenu = optionsMenu.cameFrom;
         }
+
+        public void ToggleHUD(bool isActive)
+        {
+            _headsUpDisplay?.SetActive(isActive);
+        }
+
+        #region Callbacks
+
+        private void OnPausePerformed()
+        {
+            if (!pauseMenu) return;
+
+            // Ignore if a sub-menu is active and not the pause menu
+            if (currentMenu && currentMenu != pauseMenu) return;
+
+            currentMenu = pauseMenu;
+            pauseMenu.OnPausePerformed();
+        }
+
+        private void OnTransformPerformed()
+        {
+            if (!transformMenu) return;
+
+            currentMenu = transformMenu;
+            transformMenu.OnTransformPerformed();
+        }
+
+        private void OnCancelPerformed()
+        {
+            if (!currentMenu) return;
+
+            currentMenu.OnCancelPerformed();
+            currentMenu = null;
+        }
+
+        #endregion
 
         #region Unity Functions
 
@@ -55,60 +104,20 @@ namespace EVOGAMI.UI
             // Get the heads-up display
             _headsUpDisplay = UiManager.Instance ? UiManager.Instance.headsUpDisplay : null;
 
-            // Disable the menus
-            // pauseMenu.gameObject.SetActive(false);
-            // optionsMenu.gameObject.SetActive(false);
-
             // Subscribe to events
             InputManager.Instance.OnPausePerformed += OnPausePerformed;
-
-            pauseMenu.EnabledCallback += OnPauseMenuEnabled;
-            pauseMenu.DisabledCallback += OnPauseMenuDisabled;
-
-            optionsMenu.EnabledCallback += OnOptionsMenuEnabled;
-            optionsMenu.DisabledCallback += OnOptionsMenuDisabled;
+            InputManager.Instance.OnTransformPerformed += OnTransformPerformed;
+            InputManager.Instance.OnCancelPerformed += OnCancelPerformed;
         }
 
         public void OnDestroy()
         {
             // Unsubscribe from events
             InputManager.Instance.OnPausePerformed -= OnPausePerformed;
-
-            pauseMenu.EnabledCallback -= OnPauseMenuEnabled;
-            pauseMenu.DisabledCallback -= OnPauseMenuDisabled;
-
-            optionsMenu.EnabledCallback -= OnOptionsMenuEnabled;
-            optionsMenu.DisabledCallback -= OnOptionsMenuDisabled;
+            InputManager.Instance.OnTransformPerformed -= OnTransformPerformed;
+            InputManager.Instance.OnCancelPerformed -= OnCancelPerformed;
         }
-
-        #endregion
-
-        #region Sub-Menu Callbacks
-
-        private void OnPauseMenuEnabled()
-        {
-            _headsUpDisplay?.SetActive(false);
-            Cursor.lockState = CursorLockMode.None;
-        }
-
-        private void OnPauseMenuDisabled()
-        {
-            _headsUpDisplay?.SetActive(true);
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
-        private void OnOptionsMenuEnabled()
-        {
-            _headsUpDisplay?.SetActive(false);
-            Cursor.lockState = CursorLockMode.None;
-        }
-
-        private void OnOptionsMenuDisabled()
-        {
-            _headsUpDisplay?.SetActive(true);
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
+        
         #endregion
     }
 }
