@@ -493,8 +493,8 @@ GameObject:
   - component: {fileID: 777166988}
   - component: {fileID: 777166987}
   - component: {fileID: 777166986}
-  - component: {fileID: 777166990}
   - component: {fileID: 777166989}
+  - component: {fileID: 777166990}
   m_Layer: 0
   m_Name: Exit
   m_TagString: Untagged
@@ -580,8 +580,8 @@ MonoBehaviour:
         m_CallState: 2
   changeTextColor: 1
   textGameObject: {fileID: 1479975502}
-  hoverSfx: {fileID: 0}
-  clickSfx: {fileID: 0}
+  hoverSfx: {fileID: 777166989}
+  clickSfx: {fileID: 777166990}
 --- !u!114 &777166987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -881,6 +881,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preferences: {fileID: 11400000, guid: c5354e5fa289dd647bd40e43d15afdc5, type: 2}
+  masterVca: vca:/Master
+  bgmVca: vca:/BGM
 --- !u!1 &1222740232 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1754428760630614776, guid: 7c9631885bf68754b9ce7b8c78d9d05f, type: 3}
@@ -1513,8 +1515,8 @@ MonoBehaviour:
         m_CallState: 2
   changeTextColor: 1
   textGameObject: {fileID: 450194716}
-  hoverSfx: {fileID: 0}
-  clickSfx: {fileID: 0}
+  hoverSfx: {fileID: 777166989}
+  clickSfx: {fileID: 777166990}
 --- !u!222 &1513310450
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1597,8 +1599,8 @@ GameObject:
   - component: {fileID: 1739219751}
   - component: {fileID: 1739219749}
   - component: {fileID: 1739219750}
-  - component: {fileID: 1739219753}
   - component: {fileID: 1739219754}
+  - component: {fileID: 1739219753}
   m_Layer: 0
   m_Name: Options
   m_TagString: Untagged
@@ -1694,8 +1696,8 @@ MonoBehaviour:
         m_CallState: 2
   changeTextColor: 1
   textGameObject: {fileID: 2145904686}
-  hoverSfx: {fileID: 0}
-  clickSfx: {fileID: 0}
+  hoverSfx: {fileID: 777166989}
+  clickSfx: {fileID: 777166990}
 --- !u!222 &1739219751
 CanvasRenderer:
   m_ObjectHideFlags: 0
