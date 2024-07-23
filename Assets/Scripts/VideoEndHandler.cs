@@ -15,7 +15,31 @@ public class VideoEndHandler : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        // Check for "W" key press or "West" button on controller
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetButtonDown("West"))
+        {
+            SkipVideo();
+        }
+    }
+
     void OnVideoEnd(VideoPlayer vp)
+    {
+        LoadScene();
+    }
+
+    void SkipVideo()
+    {
+        // Skip the video and load the scene
+        if (videoPlayer != null)
+        {
+            videoPlayer.Stop(); // Stop the video
+        }
+        LoadScene();
+    }
+
+    void LoadScene()
     {
         SceneManager.LoadScene(sceneName); // Load the specified scene
     }
