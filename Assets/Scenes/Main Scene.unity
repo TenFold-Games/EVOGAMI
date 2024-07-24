@@ -47856,19 +47856,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7570125994414033130, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.5245338
       objectReference: {fileID: 0}
     - target: {fileID: 7570125994414033130, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.0883303
       objectReference: {fileID: 0}
     - target: {fileID: 7570125994414033130, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.83503807
       objectReference: {fileID: 0}
     - target: {fileID: 7570125994414033130, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.14061852
       objectReference: {fileID: 0}
     - target: {fileID: 7585983995406835032, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_SizeDelta.x
@@ -47929,6 +47929,10 @@ PrefabInstance:
     - target: {fileID: 8502730491066100862, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: foldSfx
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551851842564427605, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
+      propertyPath: StopEvent
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8722743930019641665, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_TransparentLayers.m_Bits
