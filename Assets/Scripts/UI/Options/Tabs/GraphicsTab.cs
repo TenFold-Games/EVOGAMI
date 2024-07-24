@@ -29,10 +29,12 @@ namespace EVOGAMI.UI.Options.Tabs
         {
             foreach (var resolution in Screen.resolutions)
             {
-                // If not 16:9, skip
-                if (!Mathf.Approximately(resolution.width / (float)resolution.height, 16 / 9f)) continue;
+                // Get the width, calculate the height (16:9)
+                var width = resolution.width;
+                var height = (int)(resolution.width / 16f * 9f);
+                
                 // Add resolution to list
-                _resolutions.Add(new Vector2Int(resolution.width, resolution.height));
+                _resolutions.Add(new Vector2Int(width, height));
             }
         }
 
