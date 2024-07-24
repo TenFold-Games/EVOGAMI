@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using EVOGAMI.Core;
 using EVOGAMI.UI.PanelMenu;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace EVOGAMI.UI.Transformation
 
         public override void OnCancelPerformed(out bool isPanelClosed)
         {
-            isPanelClosed = _transformPanel.isOffScreen;
+            isPanelClosed = false;
 
             if (_transformPanel.isOffScreen) return; // Ignore if panel is already closed
 
@@ -34,6 +35,19 @@ namespace EVOGAMI.UI.Transformation
         private void Start()
         {
             _transformPanel = panel.GetComponent<TransformPanel>();
+            
+            _transformPanel.OnPanelMovementStopped += OnPanelMovementStopped;
+        }
+        
+        private void OnDestroy()
+        {
+            _transformPanel.OnPanelMovementStopped -= OnPanelMovementStopped;
+        }
+        
+        private void OnPanelMovementStopped(bool isOffScreen)
+        {
+            if (isOffScreen)
+                controller.currentMenu = null;
         }
         
         #endregion

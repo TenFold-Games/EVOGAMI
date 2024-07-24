@@ -24,6 +24,8 @@ namespace EVOGAMI.UI
         public SubMenuBase currentMenu;
         [HideInInspector]
         public bool isCancelPerformedThisFrame;
+        [HideInInspector]
+        public bool isPanelClosed;
 
         private GameObject _headsUpDisplay;
         
@@ -92,7 +94,7 @@ namespace EVOGAMI.UI
         {
             if (!currentMenu) return;
 
-            currentMenu.OnCancelPerformed(out var isPanelClosed);
+            currentMenu.OnCancelPerformed(out isPanelClosed);
             if (isPanelClosed) currentMenu = null;
         }
 

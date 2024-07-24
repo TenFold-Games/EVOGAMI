@@ -92,7 +92,12 @@ namespace EVOGAMI.UI.PanelMenu
         /// </summary>
         public void OnExitClicked()
         {
-            GameManager.Instance.ExitGame();
+            Invoke(nameof(Quit), 0.5f);
+        }
+
+        private void Quit()
+        {
+            Application.Quit();
         }
 
         #endregion

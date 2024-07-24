@@ -1,3 +1,5 @@
+using System.Collections;
+using EVOGAMI.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,6 +42,12 @@ namespace EVOGAMI.UI.PanelMenu
         /// </summary>
         public void OnStartClicked()
         {
+            StartCoroutine(LoadScene());
+        }
+
+        private IEnumerator LoadScene()
+        {
+            yield return new WaitForSeconds(0.5f);
             SceneManager.LoadScene(sceneToLoad);
         }
 
@@ -56,9 +64,7 @@ namespace EVOGAMI.UI.PanelMenu
         /// </summary>
         public void OnExitClicked()
         {
-            // Application.Quit();
-
-            Invoke(nameof(Quit), 1.0f);
+            Invoke(nameof(Quit), 0.5f);
         }
 
         private void Quit()

@@ -52,7 +52,7 @@ namespace EVOGAMI.Options
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
+                // DontDestroyOnLoad(gameObject);
             }
             else
             {
@@ -122,8 +122,6 @@ namespace EVOGAMI.Options
         }
 
         #endregion
-
-        // TODO: Implement audio settings
 
         #region Audio
 

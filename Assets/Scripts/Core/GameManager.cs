@@ -106,7 +106,8 @@ namespace EVOGAMI.Core
         public void ExitGame()
         {
             // TODO: Save game state
-            Application.Quit();
+
+            Invoke(nameof(Application.Quit), 1.0f);
         }
 
         public void ResetGame()

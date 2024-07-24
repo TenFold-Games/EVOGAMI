@@ -46,6 +46,9 @@ namespace EVOGAMI.UI.Transformation
         [SerializeField] [Tooltip("The folding animation component.")]
         private FoldingAnimation foldingAnimation;
 
+        public delegate void PanelEvent(bool isOffScreen);
+        public PanelEvent OnPanelMovementStopped = delegate { };
+
         // The off-screen and on-screen positions of the canvas.
         private Vector2 _offScreenPos; // Off-screen
         private Vector2 _onScreenPos; // On-screen
@@ -192,7 +195,6 @@ namespace EVOGAMI.UI.Transformation
             // Should not move
             if (!isMoving) return;
 
-            Debug.Log($"Moving from {_startPos} to {_endPos}.");
             _moveTimer += Time.deltaTime;
             var t = _moveTimer / moveDuration;
             canvasRect.anchoredPosition = Vector2.Lerp(_startPos, _endPos, t);
@@ -202,6 +204,9 @@ namespace EVOGAMI.UI.Transformation
                 isMoving = false;
                 _moveTimer = 0;
                 isOffScreen = !isOffScreen;
+                
+                OnPanelMovementStopped(isOffScreen);
+
                 if (isOffScreen) Reset(); // Off-screen
             }
         }
