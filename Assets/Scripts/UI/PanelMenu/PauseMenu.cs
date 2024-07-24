@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using EVOGAMI.Core;
 using UnityEngine;
@@ -51,7 +50,7 @@ namespace EVOGAMI.UI.PanelMenu
         public void OnPausePerformed()
         {
             if (controller.isCancelPerformedThisFrame) return; // Fix `esc` key having double role
-            
+
             gameObject.SetActive(!gameObject.activeSelf);
         }
 
@@ -62,7 +61,7 @@ namespace EVOGAMI.UI.PanelMenu
             if (!gameObject.activeSelf) return; // Ignore if not active
 
             gameObject.SetActive(false);
-            
+
             controller.SetCancelPerformedFlag();
         }
 
@@ -92,11 +91,13 @@ namespace EVOGAMI.UI.PanelMenu
         /// </summary>
         public void OnExitClicked()
         {
-            Invoke(nameof(Quit), 0.5f);
+            Debug.Log("OnExitClicked");
+            StartCoroutine(Quit());
         }
-
-        private void Quit()
+        
+        private IEnumerator Quit()
         {
+            yield return new WaitForSecondsRealtime(0.5f);
             Application.Quit();
         }
 
