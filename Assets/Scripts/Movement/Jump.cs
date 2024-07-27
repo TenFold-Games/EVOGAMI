@@ -19,6 +19,9 @@ namespace EVOGAMI.Movement
         // The force applied to the player when jumping.
         [SerializeField] [Tooltip("The force applied to the player when jumping.")]
         private float jumpForce = 5f;
+        // Whether there is a difference between big and small jumps.
+        [SerializeField] [Tooltip("Whether there is a difference between big and small jumps.")]
+        private bool isBigJump = false;
         
         [Header("Ground Check")]
         // The ground check provider.
@@ -55,21 +58,23 @@ namespace EVOGAMI.Movement
         {
             base.RegisterCallbacks();
             
-            InputManager.OnJumpPerformed += OnJumpPerformed;
+            InputManager.OnJumpStarted += OnJumpStarted;
+            InputManager.OnJumpCancelled += OnJumpCancelled;
         }
         
         protected override void UnregisterCallbacks()
         {
             base.UnregisterCallbacks();
             
-            InputManager.OnJumpPerformed -= OnJumpPerformed;
+            InputManager.OnJumpStarted -= OnJumpStarted;
+            InputManager.OnJumpCancelled -= OnJumpCancelled;
         }
 
         #endregion
         
         #region Input Events
         
-        private void OnJumpPerformed()
+        private void OnJumpStarted()
         {
             if (!groundCheckProvider.IsCheckTrue) return;
             
@@ -83,7 +88,16 @@ namespace EVOGAMI.Movement
             frogjumpsfx?.Play();
 
         }
-        
+
+        private void OnJumpCancelled()
+        {
+            if (!isBigJump) return;
+
+            // Remove upwards force
+            if (PlayerRb.velocity.y > 0)
+                PlayerRb.AddForce(Vector3.down * PlayerRb.velocity.y, ForceMode.Impulse);
+        }
+
         #endregion
 
         #region Unity Functions
