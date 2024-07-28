@@ -164,6 +164,8 @@ namespace EVOGAMI.Movement
 
         private void ExitPullState()
         {
+            lineRenderer.enabled = false;
+            
             // Reset the pullable component.
             _pullable = null;
 
@@ -212,14 +214,7 @@ namespace EVOGAMI.Movement
                 return;
             }
             
-            // if can pull
-            lineRenderer.startColor = _frogTongueColor;
-            lineRenderer.endColor = _frogTongueColor;
-            
-            lineRenderer.SetPosition(0, pullPoint.position);
-            lineRenderer.SetPosition(1, _isCheckTrue ? _pullHit.point : pullPoint.position + pullPoint.forward * maxPullDistance);
-            
-            lineRenderer.enabled = true; //  Show the lineRenderer if can pull
+            lineRenderer.enabled = false;
         }
         // TBD: End ----------------------------------------------------------------------------------------------------
 
@@ -256,6 +251,15 @@ namespace EVOGAMI.Movement
                 }
                 case PullStates.Pull:
                 {
+                    // if can pull
+                    lineRenderer.startColor = _frogTongueColor;
+                    lineRenderer.endColor = _frogTongueColor;
+            
+                    lineRenderer.SetPosition(0, pullPoint.position);
+                    lineRenderer.SetPosition(1, _isCheckTrue ? _pullHit.point : pullPoint.position + pullPoint.forward * maxPullDistance);
+            
+                    lineRenderer.enabled = true; //  Show the lineRenderer if can pull
+                    
                     _pullable.Pull(pullSpeed * Time.fixedDeltaTime);
             
                     // Check if the pullable stopped
