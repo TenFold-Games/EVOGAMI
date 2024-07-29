@@ -297,6 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 8.77
   isBigJump: 1
+  minJumpCutoff: 0.15
   groundCheckProvider: {fileID: 2494217303144362527}
   animator: {fileID: 4250060218162524038}
   frogjumpsfx: {fileID: 6649883397775873734}
