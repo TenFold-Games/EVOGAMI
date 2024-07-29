@@ -1,3 +1,4 @@
+using System.Collections;
 using EVOGAMI.Animations;
 using EVOGAMI.Core;
 using EVOGAMI.Movement.CheckProvider.Ground;
@@ -19,6 +20,12 @@ namespace EVOGAMI.Movement
         // The force applied to the player when jumping.
         [SerializeField] [Tooltip("The force applied to the player when jumping.")]
         private float jumpForce = 5f;
+        // Whether there is a difference between big and small jumps.
+        [SerializeField] [Tooltip("Whether there is a difference between big and small jumps.")]
+        private bool isBigJump = false;
+        // The minimal time the jump must perform before being cut off.
+        [SerializeField] [Tooltip("The minimal time the jump must perform before being cut off.")]
+        private float minJumpCutoff = 0.1f;
         
         [Header("Ground Check")]
         // The ground check provider.
@@ -32,6 +39,8 @@ namespace EVOGAMI.Movement
 
         // FMOD Studio Event Emitter
         [SerializeField] StudioEventEmitter frogjumpsfx;
+        
+        private float _jumpTimer = 0f;
 
         // Cashed Property Indices
         private static readonly int Vertical = Animator.StringToHash("vertical");
@@ -55,23 +64,28 @@ namespace EVOGAMI.Movement
         {
             base.RegisterCallbacks();
             
-            InputManager.OnJumpPerformed += OnJumpPerformed;
+            InputManager.OnJumpStarted += OnJumpStarted;
+            InputManager.OnJumpCancelled += OnJumpCancelled;
         }
         
         protected override void UnregisterCallbacks()
         {
             base.UnregisterCallbacks();
             
-            InputManager.OnJumpPerformed -= OnJumpPerformed;
+            InputManager.OnJumpStarted -= OnJumpStarted;
+            InputManager.OnJumpCancelled -= OnJumpCancelled;
         }
 
         #endregion
         
         #region Input Events
         
-        private void OnJumpPerformed()
+        private void OnJumpStarted()
         {
             if (!groundCheckProvider.IsCheckTrue) return;
+            
+            _jumpTimer = Time.time;
+            Debug.Log($"Jump started at {_jumpTimer}.");
             
             // Add haptic feedback
             InputManager.VibrateController(0.05f, 0.05f, 0.025f);
@@ -83,8 +97,38 @@ namespace EVOGAMI.Movement
             frogjumpsfx?.Play();
 
         }
-        
+
+        private void OnJumpCancelled()
+        {
+            if (!isBigJump) return;
+            
+            var diff = Time.time - _jumpTimer;
+            
+            if (diff < minJumpCutoff)
+                // Wait until the minimal jump time is reached
+                StartCoroutine(StopJumpingAfterTime(minJumpCutoff - diff));
+            else
+                // Stop immediately
+                StopJumping();
+        }
+
         #endregion
+        
+        private IEnumerator StopJumpingAfterTime(float time)
+        {
+            Debug.Log($"Jump cut off, waiting for {time} seconds.");
+            yield return new WaitForSeconds(time);
+            Debug.Log("Jump cut off, stopping.");
+
+            StopJumping();
+        }
+
+        private void StopJumping()
+        {
+            // Remove upwards force
+            if (PlayerRb.velocity.y > 0)
+                PlayerRb.AddForce(Vector3.down * PlayerRb.velocity.y, ForceMode.Impulse);
+        }
 
         #region Unity Functions
         
