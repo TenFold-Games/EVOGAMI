@@ -20,10 +20,10 @@ namespace EVOGAMI.Movement
 
         private void OnCutTriggerEnter(Collider other)
         {
-            // if (_objectToCut != null)
-            // {
-            //     _objectToCut.DisableHighlight(); // Disable highlight on the previous object
-            // }
+            if (_objectToCut != null)
+            {
+                _objectToCut.DisableHighlight(); // Disable highlight on the previous object
+            }
             // Set the object to cut.
             _objectToCut = other.GetComponent<Cuttable>();
 
