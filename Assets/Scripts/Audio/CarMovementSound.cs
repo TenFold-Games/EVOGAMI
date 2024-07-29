@@ -1,20 +1,33 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class CarMovementSound : MonoBehaviour
+public class CarMovement : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody carRigidbody; // Rigidbody component of the car
+    public UnityEvent onStartMoving;
 
     [SerializeField]
-    [Tooltip("The audio source for the collectable region")]
-    private AudioSource audioSource; // AudioSource to play the sound when the car moves
-
+    private Rigidbody carRigidbody;
     private Vector3 previousPosition;
     [SerializeField] private bool isMoving = false;
 
-    private void OnTriggerEnter(Collider other)
+    void Start()
     {
-        audioSource.Play();
+        previousPosition = transform.position;
+    }
+
+    void Update()
+    {
+        bool currentlyMoving = Vector3.Distance(previousPosition, transform.position) > 0.01f;
+        if (currentlyMoving && !isMoving)
+        {
+            isMoving = true;
+            onStartMoving?.Invoke(); // Trigger the event
+        }
+        else if (!currentlyMoving && isMoving)
+        {
+            isMoving = false;
+        }
+
+        previousPosition = transform.position;
     }
 }
