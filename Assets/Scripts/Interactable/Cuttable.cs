@@ -29,7 +29,7 @@ namespace EVOGAMI.Interactable
         // Outline component for highlighting
         private Outline _outline;
 
-        void Start()
+        public void Start()
         {
             _outline = GetComponent<Outline>();
             if (_outline != null)
@@ -38,10 +38,12 @@ namespace EVOGAMI.Interactable
             }
         }
 
-        public void EnableHighlight()
+        public void EnableHighlight(float transparency = 1.0f)
         {
             if (_outline != null)
             {
+                Color currentColor = _outline.OutlineColor;
+                _outline.OutlineColor = new Color(currentColor.r, currentColor.g, currentColor.b, transparency);
                 _outline.enabled = true; // Enable the outline
             }
         }
