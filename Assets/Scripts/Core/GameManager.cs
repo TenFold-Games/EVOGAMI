@@ -57,7 +57,7 @@ namespace EVOGAMI.Core
 
         #region Scene Management
 
-        private void LoadStartMenu()
+        public void LoadStartMenu()
         {
             // Load the start menu scene
             SceneManager.LoadScene(startMenuScene);

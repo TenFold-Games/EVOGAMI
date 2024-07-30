@@ -86,13 +86,18 @@ namespace EVOGAMI.UI.PanelMenu
             controller.OpenOptionsMenu(this);
         }
 
-        /// <summary>
-        ///     Callback for when the exit button is clicked.
-        /// </summary>
-        public void OnExitClicked()
+        // /// <summary>
+        // ///     Callback for when the exit button is clicked.
+        // /// </summary>
+        // public void OnExitClicked()
+        // {
+        //     Debug.Log("OnExitClicked");
+        //     StartCoroutine(Quit());
+        // }
+        
+        public void OnMainMenuClicked()
         {
-            Debug.Log("OnExitClicked");
-            StartCoroutine(Quit());
+            GameManager.Instance.LoadStartMenu();
         }
         
         private IEnumerator Quit()

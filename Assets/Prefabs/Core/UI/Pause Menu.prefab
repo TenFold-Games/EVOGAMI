@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 3852147110611589669}
   - component: {fileID: 2411890767930542837}
   m_Layer: 0
-  m_Name: Exit
+  m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2021277279248452878}
         m_TargetAssemblyTypeName: EVOGAMI.UI.PanelMenu.PauseMenu, Assembly-CSharp
-        m_MethodName: OnExitClicked
+        m_MethodName: OnMainMenuClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -821,7 +821,7 @@ GameObject:
   - component: {fileID: 8925872379882712022}
   - component: {fileID: 8520417477244743809}
   m_Layer: 0
-  m_Name: Exit (TMP)
+  m_Name: Main Menu (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -874,7 +874,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'EXIT
+  m_text: 'Main Menu
 
 '
   m_isRightToLeft: 0
