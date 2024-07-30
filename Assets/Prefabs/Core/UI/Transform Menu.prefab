@@ -1617,9 +1617,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipes:
-  - form: 0
-    sequence: 000000000100000002000000
   - form: 1
+    sequence: 000000000100000002000000
+  - form: 0
     sequence: 030000000000000003000000
   - form: 2
     sequence: 020000000200000000000000
