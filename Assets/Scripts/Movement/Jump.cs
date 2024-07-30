@@ -85,7 +85,6 @@ namespace EVOGAMI.Movement
             if (!groundCheckProvider.IsCheckTrue) return;
             
             _jumpTimer = Time.time;
-            Debug.Log($"Jump started at {_jumpTimer}.");
             
             // Add haptic feedback
             InputManager.VibrateController(0.05f, 0.05f, 0.025f);
@@ -116,9 +115,7 @@ namespace EVOGAMI.Movement
         
         private IEnumerator StopJumpingAfterTime(float time)
         {
-            Debug.Log($"Jump cut off, waiting for {time} seconds.");
             yield return new WaitForSeconds(time);
-            Debug.Log("Jump cut off, stopping.");
 
             StopJumping();
         }
