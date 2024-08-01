@@ -3,7 +3,12 @@ guid: d5b79f5c109dd8c4d8fc1699c45f0f77
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rope_MAT
+    second: {fileID: 2100000, guid: bc7decb1e37bdbc428fb16558485473e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
