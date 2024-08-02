@@ -110,6 +110,17 @@ namespace EVOGAMI.Core
             Invoke(nameof(Application.Quit), 1.0f);
         }
 
+        public async void PlayerDied()
+        {
+            InputManager.Instance.DisableAllControls();
+
+            await UiManager.Instance.FadeToBlack(0.1f, 0.5f);
+            PlayerManager.Instance.RespawnAtLastCheckpoint();
+            await UiManager.Instance.FadeFromBlack(0.1f, 0.5f);
+            
+            InputManager.Instance.EnableAllControls();
+        }
+
         public void ResetGame()
         {
             var playerRb = PlayerManager.Instance.PlayerRb;

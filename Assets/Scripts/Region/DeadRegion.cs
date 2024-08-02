@@ -20,7 +20,7 @@ namespace EVOGAMI.Region
             PlayAudio(audioSource);
             onRegionEnter.Invoke(other);
 
-            PlayerManager.Instance.RespawnAtLastCheckpoint();
+            GameManager.Instance.PlayerDied();
         }
 
         public void PlayAudio(AudioSource sfx)
