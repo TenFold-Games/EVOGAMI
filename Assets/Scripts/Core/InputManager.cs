@@ -109,6 +109,11 @@ namespace EVOGAMI.Core
             Controls.Origami.Disable();
         }
         
+        public void DisableAllControls()
+        {
+            Controls.Disable();
+        }
+        
         public void EnablePlayerControls()
         {
             Controls.Player.Enable();
@@ -117,6 +122,11 @@ namespace EVOGAMI.Core
         public void EnableOrigamiControls()
         {
             Controls.Origami.Enable();
+        }
+        
+        public void EnableAllControls()
+        {
+            Controls.Enable();
         }
 
         #endregion
