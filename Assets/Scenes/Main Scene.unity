@@ -11036,7 +11036,7 @@ GameObject:
   - component: {fileID: 462048431}
   - component: {fileID: 462048434}
   - component: {fileID: 462048433}
-  - component: {fileID: 462048432}
+  - component: {fileID: 462048435}
   m_Layer: 3
   m_Name: Child Drawing Cranes
   m_TagString: Untagged
@@ -11059,27 +11059,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 539713518}
   m_LocalEulerAnglesHint: {x: 49.585, y: 13.985, z: 179.296}
---- !u!65 &462048432
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462048430}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &462048433
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11129,6 +11108,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462048430}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!64 &462048435
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462048430}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &463987402
 GameObject:
@@ -18484,7 +18485,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2144576068}
+      - m_Target: {fileID: 968833106}
         m_TargetAssemblyTypeName: EVOGAMI.Interactable.RbPhysicsSwitch, Assembly-CSharp
         m_MethodName: EnableRbPhysics
         m_Mode: 1
@@ -18496,7 +18497,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2144576069}
+      - m_Target: {fileID: 968833104}
         m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
         m_MethodName: Play
         m_Mode: 1
@@ -28040,6 +28041,7 @@ GameObject:
   - component: {fileID: 1051406825}
   - component: {fileID: 1051406824}
   - component: {fileID: 1051406823}
+  - component: {fileID: 1051406828}
   m_Layer: 9
   m_Name: sweep2 (2)
   m_TagString: Untagged
@@ -28107,7 +28109,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2144576068}
+      - m_Target: {fileID: 968833106}
         m_TargetAssemblyTypeName: EVOGAMI.Interactable.RbPhysicsSwitch, Assembly-CSharp
         m_MethodName: EnableRbPhysics
         m_Mode: 1
@@ -28119,7 +28121,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2144576069}
+      - m_Target: {fileID: 968833104}
         m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
         m_MethodName: Play
         m_Mode: 1
@@ -28203,6 +28205,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051406821}
   m_Mesh: {fileID: 8842454360301578861, guid: c44449a8e56586542bacade6a4c2b899, type: 3}
+--- !u!54 &1051406828
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051406821}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1054443169 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 12db6cc1fbd48864ba249bc3f4ebc46b, type: 3}
@@ -43278,7 +43307,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2144576068}
+      - m_Target: {fileID: 968833106}
         m_TargetAssemblyTypeName: EVOGAMI.Interactable.RbPhysicsSwitch, Assembly-CSharp
         m_MethodName: EnableRbPhysics
         m_Mode: 1
@@ -43290,7 +43319,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2144576069}
+      - m_Target: {fileID: 968833104}
         m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
         m_MethodName: Play
         m_Mode: 1
