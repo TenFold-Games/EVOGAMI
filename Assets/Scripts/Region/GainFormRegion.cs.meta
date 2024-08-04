@@ -3,7 +3,11 @@ guid: 274842caf7b9c554caf80a3552db9f6f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - meshRenderer: {instanceID: 0}
+  - m_collider: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - particleEffectPrefab: {fileID: 7194952087870367276, guid: a56fa166c27c1b64a90204cdc43a72fd, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

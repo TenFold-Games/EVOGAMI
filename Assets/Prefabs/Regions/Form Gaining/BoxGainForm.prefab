@@ -131,4 +131,5 @@ MonoBehaviour:
   meshRenderer: {fileID: 0}
   m_collider: {fileID: 0}
   rotationSpeed: 10
+  audioSource: {fileID: 0}
   form: 0

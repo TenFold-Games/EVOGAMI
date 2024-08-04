@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using EVOGAMI.Custom.Serializable;
 using EVOGAMI.Origami;
+using EVOGAMI.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace EVOGAMI.Core
 {
@@ -22,6 +25,8 @@ namespace EVOGAMI.Core
         // The mappings between forms and icons
         [SerializeField] [Tooltip("The mappings between forms and icons")]
         public List<OriObjMapping> formIconMappings;
+        [SerializeField] [Tooltip("A black screen for fading, covering the entire screen")]
+        private Image blackScreen;
         
         [Header("UI Sections")]
         // The heads-up display
@@ -35,6 +40,48 @@ namespace EVOGAMI.Core
         public GameObject formGainedUi;
         
         private Dictionary<OrigamiContainer.OrigamiForm, GameObject> _origamiMapping;
+
+        #region Fading
+
+        private IEnumerator FadeToBlackCoroutine(float wait, float duration)
+        {
+            yield return new WaitForSeconds(wait);
+
+            // Enable the black screen
+            blackScreen.gameObject.SetActive(true);
+
+            for (float i = 0; i <= 1; i += Time.deltaTime / duration)
+            {
+                blackScreen.color = new Color(0, 0, 0, i);
+                yield return null;
+            }
+
+            blackScreen.color = new Color(0, 0, 0, 1); // Ensure the black screen is fully black
+        }
+
+        private IEnumerator FadeFromBlackCoroutine(float wait, float duration)
+        {
+            yield return new WaitForSeconds(wait);
+
+            for (float i = 1; i >= 0; i -= Time.deltaTime / duration)
+            {
+                blackScreen.color = new Color(0, 0, 0, i);
+                yield return null;
+            }
+            blackScreen.gameObject.SetActive(false);
+        }
+
+        public Task FadeToBlack(float wait, float duration)
+        {
+            return FadeToBlackCoroutine(wait, duration).AsTask(this);
+        }
+
+        public Task FadeFromBlack(float wait, float duration)
+        {
+            return FadeFromBlackCoroutine(wait, duration).AsTask(this);
+        }
+
+        #endregion
 
         #region Unity Functions
 

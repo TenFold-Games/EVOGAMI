@@ -59,16 +59,29 @@ namespace EVOGAMI.Region
         // The form to gain when the player enters this region
         [SerializeField] [Tooltip("The form to gain when the player enters this region")]
         public OrigamiContainer.OrigamiForm form;
+        
+        [Header("Particle Effect")]
+        // Reference to the Particle Effect Prefab
+        [SerializeField] private GameObject particleEffectPrefab;
+
 
         protected override void OnTriggerEnter(Collider other)
         {
             if (!IsConditionMet(other)) return;
             
+            Debug.Log("Trigger entered by: " + other.name);
+            
             onRegionEnter.Invoke(other);
+            // Particle effect
+            GameObject particleEffect = Instantiate(particleEffectPrefab, transform.position, Quaternion.identity); // Play particle effect
+            particleEffect.GetComponent<ParticleSystem>().Play(); // Ensure it plays
+            
             Disappear();
 
             PlayerManager.Instance.GainForm(form);
             PlayAudioAndDestroy();
+            
+            Debug.Log("Particle effect and form gain completed");
 
         }
     }
