@@ -1,5 +1,6 @@
 using System.Collections;
 using EVOGAMI.Core;
+using EVOGAMI.UI.Common;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,19 @@ namespace EVOGAMI.UI.PanelMenu
         // The name of the scene to load
         [SerializeField] [Tooltip("The name of the scene to load")]
         private string sceneToLoad;
+        
+        [Header("Buttons")]
+        // The start button
+        [SerializeField] [Tooltip("The start button")]
+        private MenuButton startButton;
+        // The options button
+        [SerializeField] [Tooltip("The options button")]
+        private MenuButton optionsButton;
+        // The exit button
+        [SerializeField] [Tooltip("The exit button")]
+        private MenuButton exitButton;
+
+        #region Unity Functions
 
         public override void OnEnable()
         {
@@ -28,6 +42,8 @@ namespace EVOGAMI.UI.PanelMenu
 
             Cursor.lockState = CursorLockMode.Locked;
         }
+
+        #endregion
 
         public override void OnCancelPerformed(out bool isPanelClosed)
         {

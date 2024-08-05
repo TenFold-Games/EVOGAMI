@@ -100,7 +100,14 @@ namespace EVOGAMI.UI.Common
             _hoverCallback += VibrateController;
             _clickCallback += VibrateController;
         }
-        
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            
+            if (changeTextColor) textGameObject.color = colors.normalColor;
+        }
+
         #endregion
         
         private void VibrateController()
