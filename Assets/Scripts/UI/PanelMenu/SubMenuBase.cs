@@ -1,3 +1,4 @@
+using System;
 using EVOGAMI.UI.Common;
 using UnityEngine;
 
@@ -46,6 +47,11 @@ namespace EVOGAMI.UI.PanelMenu
 
             // Deactivate the panel
             panel?.SetActive(false);
+        }
+
+        public void Start()
+        {
+            defaultButton?.Select(false);
         }
 
         public abstract void OnCancelPerformed(out bool isPanelClosed);
