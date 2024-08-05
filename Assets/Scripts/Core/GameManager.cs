@@ -47,9 +47,6 @@ namespace EVOGAMI.Core
         /// </summary>
         [Serializable] public class GameCompleteEvent : UnityEvent {}
 
-        private GameObject _headsUpDisplay;
-        private GameObject _finishLevelUi;
-
         /// <summary>
         ///     The indices of the checkpoints
         /// </summary>
@@ -81,13 +78,6 @@ namespace EVOGAMI.Core
 
             // Locks the cursor to the game window
             Cursor.lockState = CursorLockMode.Locked;
-        }
-
-        private void Start()
-        {
-            // Get the UI elements
-            _headsUpDisplay = UiManager.Instance.headsUpDisplay;
-            _finishLevelUi = UiManager.Instance.finishLevelUi;
         }
 
         #endregion
@@ -141,6 +131,7 @@ namespace EVOGAMI.Core
         /// <summary>
         ///     The game is complete
         /// </summary>
+        [ContextMenu("Game Complete")]
         public void GameComplete()
         {
             onGameComplete.Invoke();
@@ -152,8 +143,8 @@ namespace EVOGAMI.Core
         {
             yield return new WaitForSeconds(3);
 
-            _headsUpDisplay.SetActive(false);
-            _finishLevelUi.SetActive(true);
+            UiManager.Instance.headsUpDisplay.SetActive(false);
+            UiManager.Instance.finishLevelUi.SetActive(true);
 
             yield return new WaitForSeconds(3);
 
