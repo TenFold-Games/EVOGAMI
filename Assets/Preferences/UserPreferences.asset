@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206e2053d83f4a4abd2c56e591373947, type: 3}
   m_Name: UserPreferences
   m_EditorClassIdentifier: 
-  qualityLevel: 0
+  qualityLevel: 2
   fullscreenMode: 3
   resolution: {x: 1920, y: 1080}
   vSync: 1
