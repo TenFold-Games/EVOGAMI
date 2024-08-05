@@ -114,6 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 5
+  isBigJump: 0
+  minJumpCutoff: 0.1
   groundCheckProvider: {fileID: 397967431481544584}
   animator: {fileID: 0}
   frogjumpsfx: {fileID: 0}
@@ -538,6 +540,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 8100745372a4ccf479c10435c9531819, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 282e7da87b437854c98ca2df09b31d07, type: 2}
     - target: {fileID: 919132149155446097, guid: 8100745372a4ccf479c10435c9531819, type: 3}
       propertyPath: m_Name
       value: Mesh
