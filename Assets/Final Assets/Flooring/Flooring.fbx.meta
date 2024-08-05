@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 3e507de64fd230a4689785f9e1c14400
+guid: f00234e3142532a4b9d567f388b28ce0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FloorTiles_MAT
+    second: {fileID: 2100000, guid: dc56fe6daeeab3a45b6748a2446c02a0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
