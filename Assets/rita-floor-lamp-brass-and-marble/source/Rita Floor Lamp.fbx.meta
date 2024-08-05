@@ -3,7 +3,32 @@ guid: f595396cd91b6f644a6cf4a679ee623a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BRASS
+    second: {fileID: 2100000, guid: 49a8101388588a54b9c2fe6964ef0254, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FLOOR
+    second: {fileID: 2100000, guid: beaa07838252f564a8c27d7833eb34f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LAMP_SHADE
+    second: {fileID: 2100000, guid: 860a01dc47809ab42b6f83125f64e444, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LIGHT_BULB
+    second: {fileID: 2100000, guid: 1cf2ae2c1b9f79e40adad9df16ac400d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MARBLE
+    second: {fileID: 2100000, guid: e0b813c636eccfd468e68ed81dd343ff, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
