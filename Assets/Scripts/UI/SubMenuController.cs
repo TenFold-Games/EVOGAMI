@@ -85,6 +85,7 @@ namespace EVOGAMI.UI
         private void OnTransformPerformed()
         {
             if (!transformMenu) return;
+            if (PlayerManager.Instance.FormsGained <= 2) return; // None, Default, and one more form
 
             currentMenu = transformMenu;
             transformMenu.OnTransformPerformed();
