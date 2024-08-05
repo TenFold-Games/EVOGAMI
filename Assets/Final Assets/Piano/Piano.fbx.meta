@@ -3,7 +3,57 @@ guid: e00011840e294d54d8ff99191d386a9d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base_MAT
+    second: {fileID: 2100000, guid: 384e39af3db3e8b4dac220043a10f9f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Piano_MAT
+    second: {fileID: 2100000, guid: a1f20142828cde94d8399b29e2029e7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface1
+    second: {fileID: 2100000, guid: d92dc2a4f843a3e4a9a78f8de182ccb8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface2
+    second: {fileID: 2100000, guid: 1e5e36bd907470a4c8cfbc1e933b2ea7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__aiStandardSurface2
+    second: {fileID: 2100000, guid: 53232aefc0ef2d547b1518592563f2b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__aiStandardSurface3
+    second: {fileID: 2100000, guid: ab31544681929b04e9c4a139d259da45, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__aiStandardSurface4
+    second: {fileID: 2100000, guid: d98dc05a433b551468a30551fd27bf6f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__aiStandardSurface5
+    second: {fileID: 2100000, guid: 88d694cade8cd5146b0db99f3400e48c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__aiStandardSurface7
+    second: {fileID: 2100000, guid: 8b10698c7681d894ab5e831763312161, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__aiStandardSurface8
+    second: {fileID: 2100000, guid: 0470645df54555b43bac94ec0b873c83, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
