@@ -86,6 +86,7 @@ namespace EVOGAMI.Options
         public void SetQualityLevel(int quality)
         {
             preferences.qualityLevel = quality;
+            QualitySettings.SetQualityLevel(preferences.qualityLevel);
         }
 
         public void SetFullscreen(FullScreenMode fullscreen)
