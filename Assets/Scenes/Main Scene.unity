@@ -7465,6 +7465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 328559174}
   - component: {fileID: 328559175}
+  - component: {fileID: 328559176}
   m_Layer: 0
   m_Name: Slope Region
   m_TagString: Untagged
@@ -7502,12 +7503,24 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.107323855, y: 0.09087256, z: 0.35376757}
   m_Center: {x: 0.0027473085, y: -0.052748553, z: -0.009814847}
+--- !u!114 &328559176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328559173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 514d74e0bfab4943aff452b914bca01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &329081389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52612,7 +52625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7570125994414033130, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.14128675
+      value: 0.14128676
       objectReference: {fileID: 0}
     - target: {fileID: 7570125994414033130, guid: 8aa67941987ded146a101f401c7e0c1c, type: 3}
       propertyPath: m_LocalRotation.y
