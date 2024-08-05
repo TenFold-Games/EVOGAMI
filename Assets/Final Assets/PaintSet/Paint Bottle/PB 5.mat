@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_LightGreen
+  m_Name: PB 5
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_Parent: {fileID: 2100000, guid: ca59440f2864bba44bfc52d8ed6b945d, type: 2}
-  m_ModifiedSerializedProperties: 16
+  m_Parent: {fileID: 2100000, guid: 5720f549f5b469048967ed7231272cef, type: 2}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -25,21 +25,12 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats:
-    - _Blend: 0
-    - _DstBlend: 0
-    - _DstBlendAlpha: 0
-    - _GlossMapScale: 0
-    - _Glossiness: 0
-    - _GlossyReflections: 0
-    - _Parallax: 0.005
-    - _Surface: 0
-    - _ZWrite: 1
+    m_Floats: []
     m_Colors:
-    - _BaseColor: {r: 0.81768423, g: 0.990566, b: 0.8234624, a: 1}
-    - _Color: {r: 0.81768423, g: 0.99056596, b: 0.8234624, a: 1}
+    - _BaseColor: {r: 0.8113208, g: 0.4762931, b: 0.10332859, a: 1}
+    - _Color: {r: 0.8113207, g: 0.47629303, b: 0.10332855, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &712026328446226398
+--- !u!114 &6955199745877524090
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
