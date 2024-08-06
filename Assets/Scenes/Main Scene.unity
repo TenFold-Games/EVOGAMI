@@ -26579,6 +26579,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gain Ninja Star Form
       objectReference: {fileID: 0}
+    - target: {fileID: 5105355727401920688, guid: f76b8551b25d3fd42a2c026b0cd52c2f, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8069395147477055698, guid: f76b8551b25d3fd42a2c026b0cd52c2f, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -33453,6 +33457,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gain Crab Form
       objectReference: {fileID: 0}
+    - target: {fileID: 5105355727401920688, guid: f76b8551b25d3fd42a2c026b0cd52c2f, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8069395147477055698, guid: f76b8551b25d3fd42a2c026b0cd52c2f, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -40312,7 +40320,7 @@ GameObject:
   - component: {fileID: 1466405811}
   - component: {fileID: 1466405810}
   - component: {fileID: 1466405809}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47235,7 +47243,7 @@ GameObject:
   - component: {fileID: 1772343306}
   - component: {fileID: 1772343305}
   - component: {fileID: 1772343304}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: Cube (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

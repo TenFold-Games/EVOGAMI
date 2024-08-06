@@ -87,7 +87,7 @@ namespace EVOGAMI.Movement
             var blocked = Physics.Linecast(
                 transform.position, 
                 _probeHit.point,
-                ~probeLayer & ~LayerMask.GetMask("Ignore Raycast")
+                ~probeLayer & ~LayerMask.GetMask("Ignore Raycast", "TransparentFX")
             );
             Debug.DrawLine(transform.position, _probeHit.point, blocked ? Color.magenta : Color.blue);
             return blocked;
