@@ -195,8 +195,8 @@ namespace EVOGAMI.Movement
             EnterAimState();
             
             // TBD: Start ----------------------------------------------------------------------------------------------
-            lineRenderer.startWidth = pullCheckRadius;
-            lineRenderer.endWidth = 0.1f;
+            lineRenderer.startWidth = 0.1f;
+            lineRenderer.endWidth = 0f;
             
             lineRenderer.positionCount = 2;
             
