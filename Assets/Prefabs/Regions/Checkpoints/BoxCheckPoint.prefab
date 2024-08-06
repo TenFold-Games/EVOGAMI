@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1729270740681390566}
   - component: {fileID: 8069395147477055698}
   - component: {fileID: 9142681041934028932}
-  m_Layer: 2
+  m_Layer: 1
   m_Name: BoxCheckPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6768590238017950339}
-  m_Layer: 2
+  m_Layer: 1
   m_Name: Respawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}

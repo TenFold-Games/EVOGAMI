@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1729270740681390566}
   - component: {fileID: 8069395147477055698}
   - component: {fileID: 5412827250213701200}
-  m_Layer: 2
+  m_Layer: 1
   m_Name: InstructionActive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,3 +118,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473d79aad604cd7479a4bfd4167f670e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onRegionEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onRegionExit:
+    m_PersistentCalls:
+      m_Calls: []
+  tags: []
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  m_collider: {fileID: 0}
+  uiObject: {fileID: 0}
