@@ -196,7 +196,7 @@ namespace EVOGAMI.Movement
             
             // TBD: Start ----------------------------------------------------------------------------------------------
             lineRenderer.startWidth = pullCheckRadius;
-            lineRenderer.endWidth = 0;
+            lineRenderer.endWidth = 0.1f;
             
             lineRenderer.positionCount = 2;
             
