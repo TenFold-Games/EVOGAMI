@@ -1,4 +1,4 @@
-using EVOGAMI.Core;
+using System.Collections;
 using EVOGAMI.Interactable;
 using EVOGAMI.Region;
 using FMODUnity;
@@ -20,25 +20,20 @@ namespace EVOGAMI.Movement
 
         private void OnCutTriggerEnter(Collider other)
         {
-            if (_objectToCut != null)
-            {
-                _objectToCut.DisableHighlight(); // Disable highlight on the previous object
-            }
+            // Disable highlight on the previous object
+            _objectToCut?.DisableHighlight();
+
             // Set the object to cut.
             _objectToCut = other.GetComponent<Cuttable>();
 
-            if (_objectToCut != null)
-            {
-                _objectToCut.EnableHighlight(0.5f); // Enable highlight on the new object
-            }
+            // Enable highlight on the new object
+            _objectToCut?.EnableHighlight(0.5f);
         }
         
         private void OnCutTriggerExit(Collider other)
         {
-            if (_objectToCut != null)
-            {
-                _objectToCut.DisableHighlight();
-            }
+            _objectToCut?.DisableHighlight();
+
             // Reset the object to cut.
             _objectToCut = null;
         }
@@ -51,22 +46,14 @@ namespace EVOGAMI.Movement
         {
             base.RegisterCallbacks();
             
-            // TBD: Start ----------------------------------------------------------------------------------------------
-            // TODO: set proper bindings
             InputManager.OnInteractPerformed += OnCutPerformed;
-            // InputManager.OnInteractionCanceled += OnCutCanceled;
-            // TBD: End ------------------------------------------------------------------------------------------------
         }
         
         protected override void UnregisterCallbacks()
         {
             base.UnregisterCallbacks();
             
-            // TBD: Start ----------------------------------------------------------------------------------------------
-            // TODO: set proper bindings
             InputManager.OnInteractPerformed -= OnCutPerformed;
-            // InputManager.OnInteractionCanceled -= OnCutCanceled;
-            // TBD: End ------------------------------------------------------------------------------------------------
         }
 
         #endregion
@@ -75,14 +62,14 @@ namespace EVOGAMI.Movement
 
         private void OnCutPerformed()
         {
+            sfxcrabcut.Play();
+
             if (_objectToCut == null) return; // No object to cut.
             
             InputManager.VibrateController(0.05f, 0.05f, 0.025f);
             _objectToCut.CutPerformedCallback.Invoke(_objectToCut);
-
-            sfxcrabcut.Play();
         }
-        
+
         // private void OnCutCanceled()
         // {
         //     _objectToCut.CutCanceledCallback.Invoke(_objectToCut);
@@ -99,5 +86,11 @@ namespace EVOGAMI.Movement
         }
 
         #endregion
+
+        public void ResetObjectToCut()
+        {
+            _objectToCut?.DisableHighlight();
+            _objectToCut = null;
+        }
     }
 }
