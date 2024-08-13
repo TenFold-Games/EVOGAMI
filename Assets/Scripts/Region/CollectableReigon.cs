@@ -19,7 +19,8 @@ namespace EVOGAMI.Region
 
         [Header("Audio")]
         // The audio source for the collectable region
-        [SerializeField] StudioEventEmitter collectableSfx;
+        [SerializeField] [Tooltip("The audio source for the collectable region")]
+        private StudioEventEmitter collectableSfx;
 
         [SerializeField] private float rotationSpeed = 10f;
 
@@ -37,7 +38,7 @@ namespace EVOGAMI.Region
         private void Update()
         {
             // Rotate the object slowly around the Y-axis
-            transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.up * (rotationSpeed * Time.deltaTime));
         }
 
         public void PlayAudio()
