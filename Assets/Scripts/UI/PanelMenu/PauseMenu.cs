@@ -1,6 +1,7 @@
 using System.Collections;
 using EVOGAMI.Core;
 using UnityEngine;
+using EVOGAMI.Utils;
 
 namespace EVOGAMI.UI.PanelMenu
 {
@@ -97,6 +98,12 @@ namespace EVOGAMI.UI.PanelMenu
         
         public void OnMainMenuClicked()
         {
+            StartCoroutine(MainMenuClickedCoroutine());
+        }
+        
+        private IEnumerator MainMenuClickedCoroutine()
+        {
+            yield return new WaitForSecondsRealtime(0.5f);
             GameManager.Instance.LoadStartMenu();
         }
         
