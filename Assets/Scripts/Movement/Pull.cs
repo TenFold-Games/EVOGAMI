@@ -158,8 +158,8 @@ namespace EVOGAMI.Movement
             
             // Set isPull to true
             // if (tongueController != null && !_pullable.IsStopped) tongueController.SetPullState(true);
-            
-            _gamepad = InputManager.VibrateController(0.005f, 0.005f, -1);
+
+            _gamepad = InputManager.VibrateController(0.1f, 0.1f, -1f);
         }
 
         private void ExitPullState()
@@ -295,7 +295,7 @@ namespace EVOGAMI.Movement
             
             if (!_pullable.IsStopped)
             {
-                InputManager.VibrateController(0.05f, 0.05f, 0.025f);
+                InputManager.VibrateController();
                 _targetOutline.enabled = true;
             }
         }
@@ -304,7 +304,7 @@ namespace EVOGAMI.Movement
         {
             if (!_targetOutline) return;
             
-            InputManager.VibrateController(0.05f, 0.05f, 0.025f);
+            InputManager.VibrateController();
             _targetOutline.enabled = false;
         }
 

@@ -18,25 +18,25 @@ namespace EVOGAMI.UI.Common
         public void OnPointerEnter(PointerEventData eventData)
         {
             hoverSfx.Play();
-            InputManager.Instance.VibrateController(0.05f, 0.05f, 0.025f);
+            InputManager.Instance.VibrateController();
         }
 
         public void OnSelect(BaseEventData eventData)
         {
             hoverSfx.Play();
-            InputManager.Instance.VibrateController(0.05f, 0.05f, 0.025f);
+            InputManager.Instance.VibrateController();
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
             clickSfx.Play();
-            InputManager.Instance.VibrateController(0.05f, 0.05f, 0.025f);
+            InputManager.Instance.VibrateController();
         }
 
         public void OnSubmit(BaseEventData eventData)
         {
             clickSfx.Play();
-            InputManager.Instance.VibrateController(0.05f, 0.05f, 0.025f);
+            InputManager.Instance.VibrateController();
         }
     }
 }

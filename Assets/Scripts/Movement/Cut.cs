@@ -66,7 +66,7 @@ namespace EVOGAMI.Movement
 
             if (_objectToCut == null) return; // No object to cut.
             
-            InputManager.VibrateController(0.05f, 0.05f, 0.025f);
+            InputManager.VibrateController();
             _objectToCut.CutPerformedCallback.Invoke(_objectToCut);
         }
 
