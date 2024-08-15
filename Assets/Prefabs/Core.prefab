@@ -252,7 +252,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3577663787762337026}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08837524, y: 0.8351374, z: -0.14076161, w: 0.52432966}
+  m_LocalRotation: {x: 0.0883303, y: 0.83503807, z: -0.14061852, w: 0.5245338}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -521,7 +521,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5553355268711142407}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06927064, y: 0.8396995, z: -0.11033237, w: 0.52719367}
+  m_LocalRotation: {x: 0.069218345, y: 0.83959496, z: -0.11019301, w: 0.5273962}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -766,8 +766,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8640212437333107821}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07509701, y: 0.8384279, z: -0.11961247, w: 0.5263953}
-  m_LocalPosition: {x: -9.965047, y: 5.434046, z: 40.1723}
+  m_LocalRotation: {x: 0.12003974, y: -0.52020234, z: 0.07413547, w: 0.8423087}
+  m_LocalPosition: {x: -0.6995201, y: 5.645046, z: 36.720886}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -957,7 +957,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8780074858313460947}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07882326, y: 0.83755976, z: -0.12554754, w: 0.5258501}
+  m_LocalRotation: {x: 0.07877468, y: 0.8374577, z: -0.12540635, w: 0.5260536}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1024,6 +1024,7 @@ GameObject:
   - component: {fileID: 4527539049305065451}
   - component: {fileID: 8722743930019641665}
   - component: {fileID: 875885545184271271}
+  - component: {fileID: 6460579971211005552}
   m_Layer: 0
   m_Name: FreeLook Camera
   m_TagString: Untagged
@@ -1215,6 +1216,19 @@ MonoBehaviour:
   freeLookCamera: {fileID: 7260690243084267468}
   xMinSpeed: 50
   xMaxSpeed: 250
+--- !u!114 &6460579971211005552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214502695129794236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81edf4e003440a1a57b6536ef24405d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputProvider: {fileID: 4527539049305065451}
 --- !u!1001 &4817004974239870245
 PrefabInstance:
   m_ObjectHideFlags: 0
