@@ -159,7 +159,7 @@ namespace EVOGAMI.Movement
             // Set isPull to true
             // if (tongueController != null && !_pullable.IsStopped) tongueController.SetPullState(true);
 
-            _gamepad = InputManager.VibrateController(0.1f, 0.1f, -1f);
+            _gamepad = InputManager.VibrateController(0.25f, 0.25f, -1f);
         }
 
         private void ExitPullState()

@@ -1,3 +1,4 @@
+using EVOGAMI.Core;
 using EVOGAMI.Options;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,9 @@ namespace EVOGAMI.UI.Options.Tabs
         // Sensitivity Slider
         [SerializeField] [Tooltip("Sensitivity Slider")]
         private Slider sensitivitySlider;
+        // Vibration Slider
+        [SerializeField] [Tooltip("Vibration Slider")]
+        private Slider vibrationSlider;
         // Invert X Toggle
         [SerializeField] [Tooltip("Invert X Toggle")]
         private Toggle invertXToggle;
@@ -20,6 +24,7 @@ namespace EVOGAMI.UI.Options.Tabs
         protected override void Initialize()
         {
             sensitivitySlider.value = OptionsManager.Instance.preferences.cameraSensitivity;
+            vibrationSlider.value = OptionsManager.Instance.preferences.controllerVibration;
             invertXToggle.isOn = OptionsManager.Instance.preferences.invertX;
             invertYToggle.isOn = OptionsManager.Instance.preferences.invertY;
         }
@@ -28,6 +33,7 @@ namespace EVOGAMI.UI.Options.Tabs
         {
             // Update callbacks
             sensitivitySlider.onValueChanged.AddListener(OnSensitivitySliderValueChanged);
+            vibrationSlider.onValueChanged.AddListener(OnVibrationSliderValueChanged);
             invertXToggle.onValueChanged.AddListener(OnInvertXToggleValueChanged);
             invertYToggle.onValueChanged.AddListener(OnInvertYToggleValueChanged);
         }
@@ -37,6 +43,12 @@ namespace EVOGAMI.UI.Options.Tabs
         private void OnSensitivitySliderValueChanged(float value)
         {
             OptionsManager.Instance.SetSensitivity(value);
+        }
+
+        private void OnVibrationSliderValueChanged(float value)
+        {
+            OptionsManager.Instance.SetVibration(value);
+            InputManager.Instance.VibrateController();
         }
 
         private void OnInvertXToggleValueChanged(bool value)

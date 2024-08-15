@@ -21,5 +21,6 @@ MonoBehaviour:
   sfxVolume: 1
   muteWhenInactive: 1
   cameraSensitivity: 0.5
+  controllerVibration: 0.5
   invertX: 0
   invertY: 1

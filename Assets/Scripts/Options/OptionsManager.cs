@@ -183,6 +183,11 @@ namespace EVOGAMI.Options
             foreach (var controller in SensitivityControllers) controller.SetSensitivity(sensitivity);
         }
 
+        public void SetVibration(float vibration)
+        {
+            preferences.controllerVibration = vibration;
+        }
+
         public void SetInvertX(bool invert)
         {
             preferences.invertX = invert;
