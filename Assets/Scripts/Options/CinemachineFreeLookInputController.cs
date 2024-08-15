@@ -24,6 +24,10 @@ namespace EVOGAMI.Options
             OptionsManager.Instance.SensitivityControllers.Add(this);
             OptionsManager.Instance.XInverters.Add(this);
             OptionsManager.Instance.YInverters.Add(this);
+
+            SetSensitivity(OptionsManager.Instance.preferences.cameraSensitivity);
+            InvertX(OptionsManager.Instance.preferences.invertX);
+            InvertY(OptionsManager.Instance.preferences.invertY);
         }
 
         public void SetSensitivity(float sensitivity)
