@@ -564,7 +564,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8120628740871805471
 RectTransform:
   m_ObjectHideFlags: 0
@@ -745,8 +745,8 @@ MonoBehaviour:
         m_CallState: 2
   changeTextColor: 1
   textGameObject: {fileID: 6870484246147148555}
-  hoverSfx: {fileID: 3852147110611589669}
-  clickSfx: {fileID: 2411890767930542837}
+  hoverSfx: {fileID: 5136020910062998908}
+  clickSfx: {fileID: 4818569502388076483}
 --- !u!114 &5136020910062998908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,8 +1082,8 @@ MonoBehaviour:
         m_CallState: 2
   changeTextColor: 1
   textGameObject: {fileID: 6905723237217462004}
-  hoverSfx: {fileID: 3852147110611589669}
-  clickSfx: {fileID: 2411890767930542837}
+  hoverSfx: {fileID: 633251406340616587}
+  clickSfx: {fileID: 2747967130762996303}
 --- !u!114 &633251406340616587
 MonoBehaviour:
   m_ObjectHideFlags: 0

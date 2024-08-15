@@ -1163,6 +1163,7 @@ GameObject:
   - component: {fileID: 5661613168438918117}
   - component: {fileID: 4426983041061080253}
   - component: {fileID: 927092880044014210}
+  - component: {fileID: 6882603592200180422}
   m_Layer: 0
   m_Name: Transform
   m_TagString: Untagged
@@ -1201,6 +1202,20 @@ CanvasRenderer:
   m_GameObject: {fileID: 2380030965916221104}
   m_CullTransparentMesh: 1
 --- !u!114 &927092880044014210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2380030965916221104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b52a62ec1b485b9b1c84b87c1e5764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformationUI: {fileID: 2380030965916221104}
+  unlockedFormsCount: 0
+--- !u!114 &6882603592200180422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1502,7 +1517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6679350572293147584
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2082,7 +2097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4190734943811744464
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4756,10 +4771,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pause Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 5848166949399576442, guid: 7f6aee9f510a3e14eafa297c06cb7c96, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8120628740871805471, guid: 7f6aee9f510a3e14eafa297c06cb7c96, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4989,10 +5000,6 @@ PrefabInstance:
     - target: {fileID: 1754428760630614776, guid: 7c9631885bf68754b9ce7b8c78d9d05f, type: 3}
       propertyPath: m_Name
       value: Options Menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 1754428760630614776, guid: 7c9631885bf68754b9ce7b8c78d9d05f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3914550070055273941, guid: 7c9631885bf68754b9ce7b8c78d9d05f, type: 3}
       propertyPath: m_Pivot.x

@@ -315,12 +315,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pullSpeed: 1
   pullPoint: {fileID: 8742821125988627461}
-  maxPullDistance: 8.69
+  maxPullDistance: 11
   pullCheckRadius: 0.1
   pullLayer:
     serializedVersion: 2
     m_Bits: 256
-  lineRenderer: {fileID: 0}
+  lineRenderer: {fileID: 7269216442371859605}
   frogtongueoutsfx: {fileID: 2982773153798448466}
   tongueController: {fileID: 7189607802858015478}
 --- !u!120 &7269216442371859605
