@@ -78,7 +78,38 @@ Transform:
   m_GameObject: {fileID: 1483400352589393121}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.038, z: 0.1}
+  m_LocalPosition: {x: 0, y: -0.038, z: 0.305}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 883528280370039549}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4716356235476494828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6070108230120985313}
+  m_Layer: 0
+  m_Name: Grounc Check Sphere (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6070108230120985313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716356235476494828}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.038, z: -0.203}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -146,6 +177,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2916814856027244850}
+  - {fileID: 6070108230120985313}
   - {fileID: 4664765334343289235}
   m_Father: {fileID: 4106126533245857275}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -160,6 +192,7 @@ GameObject:
   - component: {fileID: 4106126533245857275}
   - component: {fileID: 893247889171126746}
   - component: {fileID: 2494217303144362527}
+  - component: {fileID: 8486728927933701847}
   - component: {fileID: 6805688755999872221}
   - component: {fileID: 6328380476177856481}
   - component: {fileID: 5039065905281578786}
@@ -230,6 +263,25 @@ MonoBehaviour:
     m_Bits: 4093
   groundCheckRadius: 0.1
   groundCheckDistance: 0.1
+--- !u!114 &8486728927933701847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6493369439384624171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dc4b640050c46c19a365630a05170d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkTransform: {fileID: 2916814856027244850}
+  checkLayer:
+    serializedVersion: 2
+    m_Bits: 4093
+  secondCheckTransform: {fileID: 6070108230120985313}
+  groundCheckRadius: 0.1
+  groundCheckDistance: 0.1
 --- !u!114 &6805688755999872221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,7 +300,7 @@ MonoBehaviour:
   rotationSpeed: 10
   canSprint: 0
   sprintSpeed: 10
-  groundCheckProvider: {fileID: 2494217303144362527}
+  groundCheckProvider: {fileID: 8486728927933701847}
   animator: {fileID: 4250060218162524038}
 --- !u!114 &6328380476177856481
 MonoBehaviour:
@@ -265,7 +317,7 @@ MonoBehaviour:
   jumpForce: 8.77
   isBigJump: 1
   minJumpCutoff: 0.15
-  groundCheckProvider: {fileID: 2494217303144362527}
+  groundCheckProvider: {fileID: 8486728927933701847}
   animator: {fileID: 4250060218162524038}
   frogjumpsfx: {fileID: 6649883397775873734}
 --- !u!114 &5039065905281578786
