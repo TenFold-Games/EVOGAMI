@@ -1,12 +1,9 @@
-using EVOGAMI.Audio;
 using EVOGAMI.Core;
 using UnityEngine;
 
 namespace EVOGAMI.Region
 {
-    public class DeadRegion :
-        CallbackRegion,
-        IAudioPlayer
+    public class DeadRegion : CallbackRegion
     {
         [Header("Audio")]
         // The audio source for the dead region
@@ -23,7 +20,7 @@ namespace EVOGAMI.Region
             GameManager.Instance.PlayerDied();
         }
 
-        public void PlayAudio(AudioSource sfx)
+        private void PlayAudio(AudioSource sfx)
         {
             sfx.Play();
         }
