@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Cinemachine;
 using EVOGAMI.Control;
 using EVOGAMI.Custom.Enums;
 using EVOGAMI.Options;
-using EVOGAMI.Origami;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.DualShock;
@@ -24,11 +23,13 @@ namespace EVOGAMI.Core
             Unsupported
         }
 
+        public HashSet<CinemachineInputProvider> VirtualCameras { get; set; } = new();
+
         /// <summary>
         ///     Singleton instance of the InputManager.
         /// </summary>
         public static InputManager Instance { get; private set; }
-        
+
         /// <summary>
         ///     The player controls.
         /// </summary>
@@ -38,12 +39,11 @@ namespace EVOGAMI.Core
         ///     The value of the player's movement input.
         /// </summary>
         public Vector2 MoveInput { get; private set; }
+
         /// <summary>
         ///     Whether the player is moving.
         /// </summary>
         public bool IsMoving { get; private set; }
-
-        private Directions _sequenceInput;
 
         private CinemachineCore.AxisInputDelegate _defaultGetInputAxis;
         
@@ -112,39 +112,48 @@ namespace EVOGAMI.Core
         public void DisableCameraControls()
         {
             Controls.Camera.Disable();
-            CinemachineCore.GetInputAxis = delegate { return 0; };
+            foreach (var virtualCamera in VirtualCameras)
+                virtualCamera.enabled = false;
         }
-        
+
         public void DisableOrigamiControls()
         {
             Controls.Origami.Disable();
         }
-        
+
         public void DisableAllControls()
         {
-            Controls.Disable();
+            DisablePlayerControls();
             DisableCameraControls();
+            DisableOrigamiControls();
+
+            Controls.Disable();
         }
-        
+
         public void EnablePlayerControls()
         {
             Controls.Player.Enable();
         }
-        
+
         public void EnableCameraControls()
         {
             Controls.Camera.Enable();
-            CinemachineCore.GetInputAxis = _defaultGetInputAxis;
+            foreach (var virtualCamera in VirtualCameras)
+                virtualCamera.enabled = true;
         }
-        
+
         public void EnableOrigamiControls()
         {
             Controls.Origami.Enable();
         }
-        
+
         public void EnableAllControls()
         {
             Controls.Enable();
+
+            EnablePlayerControls();
+            EnableCameraControls();
+            EnableOrigamiControls();
         }
 
         #endregion
@@ -194,12 +203,12 @@ namespace EVOGAMI.Core
             Controls.UI.Pause.started += PauseStartedCallback;
             Controls.UI.Pause.performed += PausePerformedCallback;
             Controls.UI.Pause.canceled += PauseCancelledCallback;
-            
+
             // UI - Cancel
             Controls.UI.Cancel.started += CancelStartedCallback;
             Controls.UI.Cancel.performed += CancelPerformedCallback;
             Controls.UI.Cancel.canceled += CancelCancelledCallback;
-            
+
             // Origami - Transform
             Controls.Origami.Transform.started += TransformStartedCallback;
             Controls.Origami.Transform.performed += TransformPerformedCallback;
@@ -220,10 +229,10 @@ namespace EVOGAMI.Core
             Controls.Origami.Down.canceled += ctx => SequenceCancelledCallback(ctx, Directions.D);
             Controls.Origami.Left.canceled += ctx => SequenceCancelledCallback(ctx, Directions.L);
             Controls.Origami.Right.canceled += ctx => SequenceCancelledCallback(ctx, Directions.R);
-            
+
             // Camera
             Controls.Camera.Orbit.started += ctx => UpdateInputScheme(ctx.control.device);
-            
+
             // UI
             // Controls.UI.Pause.started += ctx => UpdateInputScheme(ctx.control.device);
             Controls.UI.Navigate.started += ctx => UpdateInputScheme(ctx.control.device);
@@ -236,8 +245,6 @@ namespace EVOGAMI.Core
             Controls.UI.RightClick.started += ctx => UpdateInputScheme(ctx.control.device);
             Controls.UI.TrackedDevicePosition.started += ctx => UpdateInputScheme(ctx.control.device);
             Controls.UI.TrackedDeviceOrientation.started += ctx => UpdateInputScheme(ctx.control.device);
-
-            _defaultGetInputAxis = CinemachineCore.GetInputAxis;
         }
 
         public void OnEnable()
@@ -326,7 +333,7 @@ namespace EVOGAMI.Core
             UpdateInputScheme(ctx.control.device);
             OnSprintHoldCancelled();
         }
-        
+
         #endregion
 
         // Player - Sprint (Press)
@@ -343,11 +350,13 @@ namespace EVOGAMI.Core
             UpdateInputScheme(ctx.control.device);
             OnSprintPressPerformed();
         }
-        private void SprintPressCancelledCallback(InputAction.CallbackContext ctx) { 
+
+        private void SprintPressCancelledCallback(InputAction.CallbackContext ctx)
+        {
             UpdateInputScheme(ctx.control.device);
-            OnSprintPressCancelled(); 
+            OnSprintPressCancelled();
         }
-        
+
         #endregion
 
         // Player - Interact
@@ -393,7 +402,7 @@ namespace EVOGAMI.Core
             UpdateInputScheme(ctx.control.device);
             OnPauseCancelled();
         }
-        
+
         // UI - Cancel
         private void CancelStartedCallback(InputAction.CallbackContext ctx)
         {
@@ -406,13 +415,13 @@ namespace EVOGAMI.Core
             UpdateInputScheme(ctx.control.device);
             OnCancelPerformed();
         }
-        
+
         private void CancelCancelledCallback(InputAction.CallbackContext ctx)
         {
             UpdateInputScheme(ctx.control.device);
             OnCancelCancelled();
         }
-        
+
         #endregion
 
         // Origami - Transform
@@ -435,7 +444,7 @@ namespace EVOGAMI.Core
             UpdateInputScheme(ctx.control.device);
             OnTransformCancelled();
         }
-        
+
         #endregion
 
         // Origami - Sequence
@@ -458,65 +467,69 @@ namespace EVOGAMI.Core
             UpdateInputScheme(ctx.control.device);
             OnSequenceCancelled(sequenceInput);
         }
-        
+
         #endregion
-        
+
         #endregion
 
         #region Input Event Exposure
 
         // Player - Move
         #region Move
-        
+
         public delegate void MoveCallback();
 
         public event MoveCallback OnMoveStarted = delegate { };
         public event MoveCallback OnMovePerformed = delegate { };
         public event MoveCallback OnMoveCancelled = delegate { };
-        
+
         #endregion
 
         // Player - Jump
         #region Jump
+
         public delegate void JumpCallback();
 
         public event JumpCallback OnJumpStarted = delegate { };
         public event JumpCallback OnJumpPerformed = delegate { };
         public event JumpCallback OnJumpCancelled = delegate { };
-        
+
         #endregion
 
         // Player - Sprint (Hold)
         #region Sprint (Hold)
+
         public delegate void SprintCallback();
 
         public event SprintCallback OnSprintHoldStarted = delegate { };
         public event SprintCallback OnSprintHoldPerformed = delegate { };
 
         public event SprintCallback OnSprintHoldCancelled = delegate { };
-        
+
         #endregion
 
         // Player - Sprint (Press)
         #region Sprint (Press)
+
         public event SprintCallback OnSprintPressStarted = delegate { };
         public event SprintCallback OnSprintPressPerformed = delegate { };
         public event SprintCallback OnSprintPressCancelled = delegate { };
-        
+
         #endregion
 
         // Player - Interact
         #region Interact
 
         public delegate void InteractCallback();
+
         public event InteractCallback OnInteractStarted = delegate { };
         public event InteractCallback OnInteractPerformed = delegate { };
         public event InteractCallback OnInteractCancelled = delegate { };
 
         #endregion
-        
+
         // UI - Pause
-        #region Pause 
+        #region Pause
 
         public delegate void PauseCallback();
 
@@ -525,37 +538,38 @@ namespace EVOGAMI.Core
         public event PauseCallback OnPauseCancelled = delegate { };
 
         #endregion
-        
+
         // UI - Cancel
         #region Cancel
-        
+
         public event PauseCallback OnCancelStarted = delegate { };
         public event PauseCallback OnCancelPerformed = delegate { };
         public event PauseCallback OnCancelCancelled = delegate { };
-        
+
         #endregion
-        
+
         // Origami - Transform
         #region Transform
+
         public delegate void TransformCallback();
-        
+
         public event TransformCallback OnTransformStarted = delegate { };
         public event TransformCallback OnTransformPerformed = delegate { };
         public event TransformCallback OnTransformCancelled = delegate { };
-        
+
         #endregion
 
         // Origami - Sequence
         #region Sequence
-        
+
         public delegate void SequenceCallback(Directions direction);
-        
+
         public event SequenceCallback OnSequenceStarted = delegate { };
         public event SequenceCallback OnSequencePerformed = delegate { };
         public event SequenceCallback OnSequenceCancelled = delegate { };
-        
+
         #endregion
-        
+
         public delegate void InputSchemeChangedCallback(InputDeviceScheme oldInputDeviceScheme, InputDeviceScheme newInputDeviceScheme);
         public event InputSchemeChangedCallback OnInputSchemeChanged = delegate { };
 
@@ -582,7 +596,7 @@ namespace EVOGAMI.Core
             yield return new WaitForSecondsRealtime(duration);
             StopVibration(gamepad);
         }
-        
+
         public void StopVibration(Gamepad gamepad)
         {
             gamepad.SetMotorSpeeds(0, 0);

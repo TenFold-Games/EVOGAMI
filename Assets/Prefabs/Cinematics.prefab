@@ -195,6 +195,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7274581951151946503}
   - component: {fileID: 8149915945698874341}
+  - component: {fileID: 6075149199442021371}
+  - component: {fileID: 567489198149875326}
   m_Layer: 0
   m_Name: Level Begin Track Sequence
   m_TagString: Untagged
@@ -245,6 +247,63 @@ PlayableDirector:
     - 86986d290a230094ca854362025e34f2: {fileID: 5491426809029910724}
     - 14cae83aab339d440860f3b24b498941: {fileID: 0}
     - 1caa5b8061a1b7249bed94938b88b46e: {fileID: 0}
+--- !u!114 &6075149199442021371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3167332516888049566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 9c0eef1225b970148b8d034c6ae985f6, type: 2}
+    - {fileID: 11400000, guid: afb49fdf023054e47b68a3328478ecfe, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 567489198149875326}
+          m_TargetAssemblyTypeName: EVOGAMI.Control.ControlsActiveSetter, Assembly-CSharp
+          m_MethodName: DisableAllControls
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 567489198149875326}
+          m_TargetAssemblyTypeName: EVOGAMI.Control.ControlsActiveSetter, Assembly-CSharp
+          m_MethodName: EnableAllControls
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &567489198149875326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3167332516888049566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ef32d9091947049733a6b043cc1a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4114304447015334672
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +314,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2447895047589033019}
   - component: {fileID: 8650815436321866476}
+  - component: {fileID: 4863212672391218105}
+  - component: {fileID: 7352059085596954816}
   m_Layer: 0
   m_Name: First Sticky
   m_TagString: Untagged
@@ -300,6 +361,63 @@ PlayableDirector:
     - 220672a106f1cd84ebc76fcfffda4136: {fileID: 7274121976253917071}
     - 26c3b448a468c854388fa9aa1e36b95b: {fileID: 0}
     - 10a9ce61d6dc7c447b447f45c2114714: {fileID: 0}
+--- !u!114 &4863212672391218105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4114304447015334672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 9c0eef1225b970148b8d034c6ae985f6, type: 2}
+    - {fileID: 11400000, guid: afb49fdf023054e47b68a3328478ecfe, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7352059085596954816}
+          m_TargetAssemblyTypeName: EVOGAMI.Control.ControlsActiveSetter, Assembly-CSharp
+          m_MethodName: DisableAllControls
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7352059085596954816}
+          m_TargetAssemblyTypeName: EVOGAMI.Control.ControlsActiveSetter, Assembly-CSharp
+          m_MethodName: EnableAllControls
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &7352059085596954816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4114304447015334672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ef32d9091947049733a6b043cc1a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5741755415409536835
 GameObject:
   m_ObjectHideFlags: 0
