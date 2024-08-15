@@ -37,13 +37,6 @@ namespace EVOGAMI.Options
         private VCA _masterVca;
         private VCA _sfxVca;
 
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            if (scene.name != "Alpha Build Scene") return;
-
-            ApplyControlsSettings();
-        }
-
         #region Unity Functions
 
         public void Awake()
@@ -59,9 +52,6 @@ namespace EVOGAMI.Options
                 Destroy(gameObject);
                 return;
             }
-
-            // Register the scene loaded callback
-            SceneManager.sceneLoaded += OnSceneLoaded;
 
             // Apply settings
             ApplyGraphicsSettings();
