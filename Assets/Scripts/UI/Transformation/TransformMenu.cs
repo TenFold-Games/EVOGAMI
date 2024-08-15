@@ -32,8 +32,10 @@ namespace EVOGAMI.UI.Transformation
 
         #region Unity Functions
 
-        private void Start()
+        private new void Start()
         {
+            base.Start();
+
             _transformPanel = panel.GetComponent<TransformPanel>();
             
             _transformPanel.OnPanelMovementStopped += OnPanelMovementStopped;

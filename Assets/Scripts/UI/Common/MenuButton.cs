@@ -112,7 +112,7 @@ namespace EVOGAMI.UI.Common
         
         private void VibrateController()
         {
-            InputManager.Instance.VibrateController(0.05f, 0.05f, 0.025f);
+            InputManager.Instance.VibrateController();
         }
 
         private void PlayHoverSfx()

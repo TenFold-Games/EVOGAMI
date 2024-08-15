@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using Cinemachine;
 using EVOGAMI.Control;
 using EVOGAMI.Custom.Enums;
 using EVOGAMI.Origami;
@@ -41,6 +43,8 @@ namespace EVOGAMI.Core
         public bool IsMoving { get; private set; }
 
         private Directions _sequenceInput;
+
+        private CinemachineCore.AxisInputDelegate _defaultGetInputAxis;
         
         // Input device
         private InputDevice _inputDevice;
@@ -103,6 +107,12 @@ namespace EVOGAMI.Core
         {
             Controls.Player.Disable();
         }
+
+        public void DisableCameraControls()
+        {
+            Controls.Camera.Disable();
+            CinemachineCore.GetInputAxis = delegate { return 0; };
+        }
         
         public void DisableOrigamiControls()
         {
@@ -112,11 +122,18 @@ namespace EVOGAMI.Core
         public void DisableAllControls()
         {
             Controls.Disable();
+            DisableCameraControls();
         }
         
         public void EnablePlayerControls()
         {
             Controls.Player.Enable();
+        }
+        
+        public void EnableCameraControls()
+        {
+            Controls.Camera.Enable();
+            CinemachineCore.GetInputAxis = _defaultGetInputAxis;
         }
         
         public void EnableOrigamiControls()
@@ -208,6 +225,8 @@ namespace EVOGAMI.Core
             Controls.UI.RightClick.started += ctx => UpdateInputScheme(ctx.control.device);
             Controls.UI.TrackedDevicePosition.started += ctx => UpdateInputScheme(ctx.control.device);
             Controls.UI.TrackedDeviceOrientation.started += ctx => UpdateInputScheme(ctx.control.device);
+
+            _defaultGetInputAxis = CinemachineCore.GetInputAxis;
         }
 
         public void OnEnable()
@@ -533,7 +552,7 @@ namespace EVOGAMI.Core
 
         #region Haptic Feedback
 
-        public Gamepad VibrateController(float lowFrequency, float highFrequency, float duration = -1)
+        public Gamepad VibrateController(float lowFrequency = 0.5f, float highFrequency = 0.5f, float duration = 0.15f)
         {
             if (Instance.ControllerDevice == null) return null;
 
@@ -542,7 +561,7 @@ namespace EVOGAMI.Core
 
             if (duration > 0)
                 // Instance.Invoke(nameof(Instance.StopVibration), Mathf.Max(duration, 0.05f));
-                Instance.StartCoroutine(Instance.StopVibrationAfterDuration(currentGamepad, Mathf.Max(duration, 0.05f)));
+                Instance.StartCoroutine(Instance.StopVibrationAfterDuration(currentGamepad, duration));
             return currentGamepad;
         }
         

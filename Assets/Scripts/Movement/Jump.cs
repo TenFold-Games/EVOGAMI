@@ -87,7 +87,7 @@ namespace EVOGAMI.Movement
             _jumpTimer = Time.time;
             
             // Add haptic feedback
-            InputManager.VibrateController(0.05f, 0.05f, 0.025f);
+            InputManager.VibrateController();
 
             // Perform jump
             PlayerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);

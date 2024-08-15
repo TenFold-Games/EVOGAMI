@@ -50,8 +50,8 @@ namespace EVOGAMI.Movement
 
         private void Awake()
         {
-            onProbeFound.AddListener(obj => InputManager.Instance.VibrateController(0.05f, 0.05f, 0.025f));
-            onProbeLost.AddListener(obj => InputManager.Instance.VibrateController(0.05f, 0.05f, 0.025f));
+            onProbeFound.AddListener(obj => InputManager.Instance.VibrateController());
+            onProbeLost.AddListener(obj => InputManager.Instance.VibrateController());
         }
 
         #region Physics
