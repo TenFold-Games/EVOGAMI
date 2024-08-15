@@ -6,6 +6,7 @@ using EVOGAMI.Movement.CheckProvider;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace EVOGAMI.Movement
 {
@@ -41,6 +42,23 @@ namespace EVOGAMI.Movement
         // The raycast hit used to store the pull hit.
         private RaycastHit _pullHit;
 
+        [Header("Tongue")]
+        // The FMOD Studio Event Emitter for the frog tongue out SFX.
+        [SerializeField] [Tooltip("The FMOD Studio Event Emitter for the frog tongue out SFX.")]
+        private StudioEventEmitter frogTongueOutSfx;
+
+        // TBD: Start --------------------------------------------------------------------------------------------------
+        // The color of the frog tongue.
+        [SerializeField] [Tooltip("The color of the frog tongue.")]
+        private Color frogTongueColor = new Color(1.0f, 0.5f, 0.5f);
+        // The line renderer used to show the pull line.
+        [SerializeField] [Tooltip("The line renderer used to show the pull line.")]
+        private LineRenderer lineRenderer;
+        // The material for the line renderer.
+        [SerializeField] [Tooltip("The material for the line renderer.")]
+        private Material lineMaterial;
+        // TBD: End ----------------------------------------------------------------------------------------------------
+
         // Object Being Pulled
         private Pullable _pullable;
 
@@ -52,20 +70,9 @@ namespace EVOGAMI.Movement
         
         Gamepad _gamepad;
 
-        // TBD: Start --------------------------------------------------------------------------------------------------
-        [SerializeField] [Tooltip("The line renderer used to show the pull line.")]
-        private LineRenderer lineRenderer;
-        // TBD: End ----------------------------------------------------------------------------------------------------
-
         // Flags
         private bool _canPull;
         private bool _isCheckTrue;
-
-        // FMOD Studio Event Emitter
-        [SerializeField] StudioEventEmitter frogtongueoutsfx;
-        
-        private Color _frogTongueColor = new Color(1.0f, 0.5f, 0.5f); // Example RGB values for a pinkish color
-
         
         #region Callbacks
 
@@ -93,7 +100,7 @@ namespace EVOGAMI.Movement
             if (!_canPull || _state != PullStates.Aim) return;
 
             // Play Frog Tongue Out SFX
-            frogtongueoutsfx.Play();
+            frogTongueOutSfx.Play();
             
             // Pull the object.
             ExitAimState();
@@ -195,6 +202,12 @@ namespace EVOGAMI.Movement
             EnterAimState();
             
             // TBD: Start ----------------------------------------------------------------------------------------------
+            lineRenderer = gameObject.AddComponent<LineRenderer>();
+            if (!lineRenderer) lineRenderer = gameObject.AddComponent<LineRenderer>();
+            lineRenderer.materials = new[] {lineMaterial};
+            lineRenderer.startColor = frogTongueColor;
+            lineRenderer.endColor = frogTongueColor;
+
             lineRenderer.startWidth = 0.1f;
             lineRenderer.endWidth = 0f;
             
@@ -251,10 +264,6 @@ namespace EVOGAMI.Movement
                 }
                 case PullStates.Pull:
                 {
-                    // if can pull
-                    lineRenderer.startColor = _frogTongueColor;
-                    lineRenderer.endColor = _frogTongueColor;
-            
                     lineRenderer.SetPosition(0, pullPoint.position);
                     lineRenderer.SetPosition(1, _isCheckTrue ? _pullHit.point : pullPoint.position + pullPoint.forward * maxPullDistance);
             
