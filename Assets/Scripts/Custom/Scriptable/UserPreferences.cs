@@ -39,6 +39,9 @@ namespace EVOGAMI.Custom.Scriptable
         // The sensitivity of the camera.
         [SerializeField] [Tooltip("The sensitivity of the camera.")]
         public float cameraSensitivity = 1f;
+        // The vibration intensity of the controller.
+        [SerializeField] [Tooltip("The vibration intensity of the controller.")]
+        public float controllerVibration = 0.5f;
         // Invert the camera controls on the X-axis.
         [SerializeField] [Tooltip("Invert the camera controls on the X-axis.")]
         public bool invertX;
