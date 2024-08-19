@@ -140,10 +140,7 @@ namespace EVOGAMI.Core
             if (PlayerManager.Instance.CranesCollected > GameManager.Instance.origamiSettings.totalCranes){
                 GameManager.Instance.origamiSettings.totalCranes = PlayerManager.Instance.CranesCollected;
                 scoreString.color = new Color(1f, 0.84f, 0f);
-
-
             }
-
 
             scoreString.text = PlayerManager.Instance.CranesCollected + " / " + GameManager.Instance.origamiSettings.totalCranes;
         }
