@@ -27,7 +27,7 @@ namespace EVOGAMI.Core
         public List<OriObjMapping> formIconMappings;
         [SerializeField] [Tooltip("A black screen for fading, covering the entire screen")]
         private Image blackScreen;
-        
+
         [Header("UI Sections")]
         // The heads-up display
         [SerializeField] [Tooltip("The heads-up display")]
@@ -38,7 +38,7 @@ namespace EVOGAMI.Core
         // The UI for the game gained
         [FormerlySerializedAs("gameGainedUi")] [SerializeField] [Tooltip("The UI for the game gained")]
         public GameObject formGainedUi;
-        
+
         private Dictionary<OrigamiContainer.OrigamiForm, GameObject> _origamiMapping;
 
         #region Fading
@@ -68,6 +68,7 @@ namespace EVOGAMI.Core
                 blackScreen.color = new Color(0, 0, 0, i);
                 yield return null;
             }
+
             blackScreen.gameObject.SetActive(false);
         }
 
@@ -100,18 +101,18 @@ namespace EVOGAMI.Core
                 _origamiMapping.Add(mapping.form, mapping.gameObject);
                 mapping.gameObject.SetActive(PlayerManager.Instance.GainedForms[mapping.form]);
             }
-            
+
             scoreString.text = "0 / " + GameManager.Instance.origamiSettings.totalCranes;
-            
+
             // Subscribe to events
             PlayerManager.Instance.OnGainForm += OnGainForm;
             PlayerManager.Instance.OnCraneCollected += OnCraneCollected;
         }
 
         #endregion
-        
+
         #region Callbacks
-        
+
         /// <summary>
         ///     Callback for when the player gains a new form
         /// </summary>
@@ -121,30 +122,33 @@ namespace EVOGAMI.Core
             if (!_origamiMapping.ContainsKey(form)) return; // Should not happen
 
             _origamiMapping[form].SetActive(true);
-            
+
             formGainedUi.SetActive(true);
             StartCoroutine(WaitCloseFormGained());
         }
-        
+
         private IEnumerator WaitCloseFormGained()
         {
             yield return new WaitForSeconds(3);
             formGainedUi.SetActive(false);
         }
-        
+
         /// <summary>
         ///     Callback for when the player collects a crane
         /// </summary>
         private void OnCraneCollected()
         {
-            if (PlayerManager.Instance.CranesCollected > GameManager.Instance.origamiSettings.totalCranes){
-                GameManager.Instance.origamiSettings.totalCranes = PlayerManager.Instance.CranesCollected;
+            if (PlayerManager.Instance.CranesCollected > GameManager.Instance.origamiSettings.totalCranes)
+            {
                 scoreString.color = new Color(1f, 0.84f, 0f);
+                scoreString.text = PlayerManager.Instance.CranesCollected + " / " + PlayerManager.Instance.CranesCollected;
             }
-
-            scoreString.text = PlayerManager.Instance.CranesCollected + " / " + GameManager.Instance.origamiSettings.totalCranes;
+            else
+            {
+                scoreString.text = PlayerManager.Instance.CranesCollected + " / " + GameManager.Instance.origamiSettings.totalCranes;
+            }
         }
-        
+
         #endregion
     }
 }
