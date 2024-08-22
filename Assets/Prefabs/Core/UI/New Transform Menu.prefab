@@ -1065,6 +1065,7 @@ MonoBehaviour:
   - {fileID: 3824202529923344304}
   foldingAnimation: {fileID: 4001785538892171882}
   closeDelay: 0.5
+  transformationHUD: {fileID: 0}
 --- !u!114 &922530282061638884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1139,6 +1140,7 @@ GameObject:
   - component: {fileID: 4001785538892171882}
   - component: {fileID: 4922949339852684024}
   - component: {fileID: 2251892638527418036}
+  - component: {fileID: 6571470577903590521}
   m_Layer: 5
   m_Name: Animation
   m_TagString: Untagged
@@ -1233,6 +1235,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &6571470577903590521
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8475108506730139536}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d1eb96990da8e1d4ebfc850b15ac84a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &5609628771951724432
 PrefabInstance:
   m_ObjectHideFlags: 0
