@@ -49,7 +49,7 @@ namespace EVOGAMI.UI.PanelMenu
             panel?.SetActive(false);
         }
 
-        protected virtual void Start()
+        public void Start()
         {
             defaultButton?.Select(false);
         }

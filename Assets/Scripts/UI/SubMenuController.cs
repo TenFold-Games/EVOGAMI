@@ -3,9 +3,7 @@ using EVOGAMI.Core;
 using EVOGAMI.UI.Options;
 using EVOGAMI.UI.PanelMenu;
 using EVOGAMI.UI.Transformation;
-using EVOGAMI.UI.TransformationNew;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace EVOGAMI.UI
 {
@@ -21,9 +19,6 @@ namespace EVOGAMI.UI
         // The transformation menu
         [SerializeField] [Tooltip("The transformation menu")]
         private TransformMenu transformMenu;
-        // The new transformation menu
-        [SerializeField] [Tooltip("The new transformation menu")]
-        private TransformationMenu transformationMenu;
 
         [HideInInspector]
         public SubMenuBase currentMenu;
@@ -89,16 +84,11 @@ namespace EVOGAMI.UI
 
         private void OnTransformPerformed()
         {
-            // if (!transformMenu) return;
-            // if (PlayerManager.Instance.FormsGained <= 2) return; // None, Default, and one more form
-            //
-            // currentMenu = transformMenu;
-            // transformMenu.OnTransformPerformed();
-            if (!transformationMenu) return;
+            if (!transformMenu) return;
             if (PlayerManager.Instance.FormsGained <= 2) return; // None, Default, and one more form
 
-            currentMenu = transformationMenu;
-            transformationMenu.OnTransformPerformed();
+            currentMenu = transformMenu;
+            transformMenu.OnTransformPerformed();
         }
 
         private void OnCancelPerformed()

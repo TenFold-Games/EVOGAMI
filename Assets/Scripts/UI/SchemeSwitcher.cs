@@ -20,7 +20,7 @@ namespace EVOGAMI.UI
         private void SwitchScheme(InputManager.InputDeviceScheme oldScheme, InputManager.InputDeviceScheme scheme)
         {
             foreach (var mapping in mappings)
-                mapping.gameObject?.SetActive(mapping.device == scheme);
+                mapping.gameObject.SetActive(mapping.device == scheme);
         }
     }
 }
