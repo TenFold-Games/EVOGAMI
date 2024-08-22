@@ -14,6 +14,11 @@ namespace EVOGAMI.UI.TransformationNew
             _transformationPanel.Toggle();
         }
 
+        private void OnPanelStateChange(bool isClosed)
+        {
+            controller.currentMenu = isClosed ? null : this;
+        }
+
         #region Unity Functioins
 
         protected override void Start()
@@ -22,7 +27,13 @@ namespace EVOGAMI.UI.TransformationNew
 
             _transformationPanel = panel.GetComponent<TransformationPanel>();
 
+            _transformationPanel.OnPanelStateChange += OnPanelStateChange;
             _transformationPanel.gameObject.SetActive(false);
+        }
+
+        private void OnDestroy()
+        {
+            _transformationPanel.OnPanelStateChange -= OnPanelStateChange;
         }
 
         #endregion

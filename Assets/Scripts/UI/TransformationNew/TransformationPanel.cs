@@ -45,6 +45,9 @@ namespace EVOGAMI.UI.TransformationNew
         [SerializeField] [Tooltip("The HUD instruction for transformation")]
         private GameObject transformationHUD;
 
+        public delegate void PanelEvent(bool isClosed);
+        public PanelEvent OnPanelStateChange = delegate { };
+
         private Camera _mainCamera;
 
         public void Reset()
@@ -134,6 +137,8 @@ namespace EVOGAMI.UI.TransformationNew
                 );
                 foldingAnimation.transform.position = playerScreenPosition;
 
+                OnPanelStateChange(false);
+
                 gameObject.SetActive(true);
             }
             else // On-screen -> Off-screen
@@ -142,6 +147,8 @@ namespace EVOGAMI.UI.TransformationNew
                 InputManager.Instance.EnablePlayerControls();
 
                 Time.timeScale = 1.0f;
+
+                OnPanelStateChange(true);
 
                 Reset();
             }
