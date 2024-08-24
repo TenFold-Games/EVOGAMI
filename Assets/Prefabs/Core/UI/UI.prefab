@@ -4897,6 +4897,18 @@ PrefabInstance:
       propertyPath: transformationHUD
       value: 
       objectReference: {fileID: 2380030965916221104}
+    - target: {fileID: 3569621677737175372, guid: 22cc46fcfae8df94cb723979eef1917a, type: 3}
+      propertyPath: hudToHide.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3569621677737175372, guid: 22cc46fcfae8df94cb723979eef1917a, type: 3}
+      propertyPath: hudToHide.Array.data[0]
+      value: 
+      objectReference: {fileID: 2380030965916221104}
+    - target: {fileID: 3569621677737175372, guid: 22cc46fcfae8df94cb723979eef1917a, type: 3}
+      propertyPath: hudToHide.Array.data[1]
+      value: 
+      objectReference: {fileID: 3637931671729238081}
     - target: {fileID: 5129587694513996693, guid: 22cc46fcfae8df94cb723979eef1917a, type: 3}
       propertyPath: controller
       value: 

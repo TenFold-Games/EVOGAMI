@@ -42,13 +42,15 @@ namespace EVOGAMI.UI.TransformationNew
         
         [Header("HUD")]
         // The HUD instruction for transformation
-        [SerializeField] [Tooltip("The HUD instruction for transformation")]
-        private GameObject transformationHUD;
+        [SerializeField] [Tooltip("The HUD to hide during transformation")]
+        private GameObject[] hudToHide;
 
         public delegate void PanelEvent(bool isClosed);
         public PanelEvent OnPanelStateChange = delegate { };
 
         private Camera _mainCamera;
+
+        private bool[] _hudActiveStates;
 
         public void Reset()
         {
@@ -89,6 +91,8 @@ namespace EVOGAMI.UI.TransformationNew
                 oriObj.gameObject.SetActive(PlayerManager.Instance.GainedForms[oriObj.form]);
 
             _mainCamera = Camera.main;
+
+            _hudActiveStates = new bool[hudToHide.Length];
         }
 
         #endregion
@@ -122,8 +126,6 @@ namespace EVOGAMI.UI.TransformationNew
         {
             if (PlayerManager.Instance.FormsGained <= 2) return; // None, Default, and one more form
 
-            transformationHUD.SetActive(!transformationHUD.activeSelf);
-
             if (!gameObject.activeSelf) // Off-screen -> On-Screen
             {
                 Time.timeScale = Mathf.Epsilon;
@@ -139,6 +141,12 @@ namespace EVOGAMI.UI.TransformationNew
 
                 OnPanelStateChange(false);
 
+                for (var i = 0; i < hudToHide.Length; i++)
+                {
+                    _hudActiveStates[i] = hudToHide[i].activeSelf;
+                    hudToHide[i].SetActive(false);
+                }
+
                 gameObject.SetActive(true);
             }
             else // On-screen -> Off-screen
@@ -149,6 +157,9 @@ namespace EVOGAMI.UI.TransformationNew
                 Time.timeScale = 1.0f;
 
                 OnPanelStateChange(true);
+
+                for (var i = 0; i < hudToHide.Length; i++)
+                    hudToHide[i].SetActive(_hudActiveStates[i]);
 
                 Reset();
             }
