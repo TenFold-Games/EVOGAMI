@@ -60,6 +60,12 @@ namespace EVOGAMI.Core
             SceneManager.LoadScene(startMenuScene);
         }
 
+        public void LoadOutroScene()
+        {
+            // Load the outro scene
+            SceneManager.LoadScene("Outro");
+        }
+
         #endregion
 
         #region Unity Functions
@@ -141,14 +147,18 @@ namespace EVOGAMI.Core
 
         private System.Collections.IEnumerator FinishLevelCoroutine()
         {
-            yield return new WaitForSeconds(3);
+            // yield return new WaitForSeconds(3);
+            //
+            // UiManager.Instance.headsUpDisplay.SetActive(false);
+            // UiManager.Instance.finishLevelUi.SetActive(true);
+            //
+            // yield return new WaitForSeconds(3);
+            //
+            // LoadStartMenu();
 
-            UiManager.Instance.headsUpDisplay.SetActive(false);
-            UiManager.Instance.finishLevelUi.SetActive(true);
+            yield return new WaitForSecondsRealtime(3);
 
-            yield return new WaitForSeconds(3);
-
-            LoadStartMenu();
+            LoadOutroScene();
         }
 
         #endregion
