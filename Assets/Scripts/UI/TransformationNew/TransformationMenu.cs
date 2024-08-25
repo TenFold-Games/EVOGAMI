@@ -27,7 +27,7 @@ namespace EVOGAMI.UI.TransformationNew
             _transformationPanel = panel.GetComponent<TransformationPanel>();
 
             _transformationPanel.OnPanelStateChange += OnPanelStateChange;
-            _transformationPanel.gameObject.SetActive(false);
+            // _transformationPanel.gameObject.SetActive(false);
         }
 
         private void OnDestroy()

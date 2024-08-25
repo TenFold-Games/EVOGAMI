@@ -93,6 +93,8 @@ namespace EVOGAMI.UI.TransformationNew
             _mainCamera = Camera.main;
 
             _hudActiveStates = new bool[hudToHide.Length];
+
+            gameObject.SetActive(false);
         }
 
         #endregion
