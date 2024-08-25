@@ -4,6 +4,7 @@ using EVOGAMI.Custom.Scriptable;
 using EVOGAMI.Custom.Serializable;
 using EVOGAMI.Core;
 using EVOGAMI.Origami.States;
+using EVOGAMI.UI.Common;
 using UnityEngine;
 
 namespace EVOGAMI.Origami
@@ -25,11 +26,17 @@ namespace EVOGAMI.Origami
         private PlayerManager _playerManager;
 
         // Forms
-        [SerializeField] private OriObjMapping[] formsMeshMapping;
+        [SerializeField] [Tooltip("The forms and their corresponding meshes")]
+        private OriObjMapping[] formsMeshMapping;
         public Dictionary<OrigamiForm, GameObject> Forms;
         
         // Initial form
-        [SerializeField] private OrigamiSettings origamiSettings;
+        [SerializeField] [Tooltip("The settings for the origami")]
+        private OrigamiSettings origamiSettings;
+
+        // UI
+        [SerializeField] [Tooltip("The rectile UI")]
+        private Rectile rectile;
 
         // States
         private OrigamiCrabState _crabState;
@@ -145,6 +152,7 @@ namespace EVOGAMI.Origami
             
             OnFormChange.Invoke(StateMachine.CurrentState.Form, form);
 
+            rectile.HideAll();
             switch (form)
             {
                 case OrigamiForm.Crab:
@@ -154,6 +162,7 @@ namespace EVOGAMI.Origami
                     StateMachine.ChangeState(_frogState);
                     break;
                 case OrigamiForm.NinjaStar:
+                    rectile.ShowRectile();
                     StateMachine.ChangeState(_ninjaStarState);
                     break;
                 case OrigamiForm.None:
