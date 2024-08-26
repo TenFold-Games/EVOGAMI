@@ -1244,10 +1244,6 @@ PrefabInstance:
       propertyPath: origamiContainer
       value: 
       objectReference: {fileID: 7637370290059537053}
-    - target: {fileID: 6333606908854258682, guid: 90f165923b2141741a7d620091924dfa, type: 3}
-      propertyPath: transformMenu
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6871928528263421059, guid: 90f165923b2141741a7d620091924dfa, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1300,10 +1296,6 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 7518481258729215662}
-    - target: {fileID: 8505737814987008023, guid: 90f165923b2141741a7d620091924dfa, type: 3}
-      propertyPath: transformationPanel
-      value: 
-      objectReference: {fileID: 4788785657009221611}
     - target: {fileID: 9046623096057144554, guid: 90f165923b2141741a7d620091924dfa, type: 3}
       propertyPath: m_Name
       value: UI
@@ -1319,17 +1311,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6902501094047260302, guid: 90f165923b2141741a7d620091924dfa, type: 3}
   m_PrefabInstance: {fileID: 4817004974239870245}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4788785657009221611 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 48518898892292814, guid: 90f165923b2141741a7d620091924dfa, type: 3}
-  m_PrefabInstance: {fileID: 4817004974239870245}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7504acd30d95441b89debbf9972ef8a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7049714161828856405 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2525654270674661232, guid: 90f165923b2141741a7d620091924dfa, type: 3}

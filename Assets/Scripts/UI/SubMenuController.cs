@@ -89,16 +89,20 @@ namespace EVOGAMI.UI
 
         private void OnTransformPerformed()
         {
-            // if (!transformMenu) return;
-            // if (PlayerManager.Instance.FormsGained <= 2) return; // None, Default, and one more form
-            //
-            // currentMenu = transformMenu;
-            // transformMenu.OnTransformPerformed();
-            if (!transformationMenu) return;
+            Debug.Log("Transform performed");
+
+            if (!transformMenu) return;
             if (PlayerManager.Instance.FormsGained <= 2) return; // None, Default, and one more form
 
-            currentMenu = transformationMenu;
-            transformationMenu.OnTransformPerformed();
+            Debug.Log("Transform performed");
+            
+            currentMenu = transformMenu;
+            transformMenu.OnTransformPerformed();
+            // if (!transformationMenu) return;
+            // if (PlayerManager.Instance.FormsGained <= 2) return; // None, Default, and one more form
+            //
+            // currentMenu = transformationMenu;
+            // transformationMenu.OnTransformPerformed();
         }
 
         private void OnCancelPerformed()
