@@ -14,7 +14,12 @@ namespace EVOGAMI.UI
             InputManager.Instance.OnInputSchemeChanged += SwitchScheme;
 
             foreach (var mapping in mappings)
-                mapping.gameObject.SetActive(mapping.device == InputManager.Instance.InputScheme);
+                mapping.gameObject?.SetActive(mapping.device == InputManager.Instance.InputScheme);
+        }
+
+        private void OnDestroy()
+        {
+            InputManager.Instance.OnInputSchemeChanged -= SwitchScheme;
         }
 
         private void SwitchScheme(InputManager.InputDeviceScheme oldScheme, InputManager.InputDeviceScheme scheme)
